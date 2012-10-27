@@ -1,59 +1,70 @@
-# Laravel Documentation
+# Documentation de Laravel 3.x
 
-- [The Basics](#the-basics)
-- [Who Will Enjoy Laravel?](#who-will-enjoy-laravel)
-- [What Makes Laravel Different?](#laravel-is-different)
-- [Application Structure](#application-structure)
-- [Laravel's Community](#laravel-community)
-- [License Information](#laravel-license)
+- [Le choix d'un framework](#le-choix-d-un-framework)
+- [Pourquoi Laravel ?](#pourquoi-Laravel)
+- [Laravel est différent](#Laravel-est-different)
+- [Structure de l'application](#structure-de-l-application)
+- [Laravel's Community](#Laravel-community)
+    - [Laravel France](#Laravel-France)
+- [License Information](#Laravel-license)
 
-<a name="the-basics"></a>
-## The Basics
+<a name="le-choix-d-un-framework"></a>
+## Le choix d'un framework
 
-Welcome to the Laravel documentation. These documents were designed to function both as a getting-started guide and as a feature reference. Even though you may jump into any section and start learning, we recommend reading the documentation in order as it allows us to progressively establish concepts that will be used in later documents. 
+Il existe une multitude de framework PHP, plus ou moins lourd et offrant différentes fonctionnalités et modes de fonctionnements. Le choix d'un framework n'est pas un choix aisé, il faut savoir prendre le temps d'en appréhender quelques un pour pouvoir choisir celui qui nous correspond le mieux. Plusieurs critères entrent en compte : la lisibilité du code, la facilité d'apprentissage, la documentation, les outils fournis par le framework....
 
-<a name="who-will-enjoy-laravel"></a>
-## Who Will Enjoy Laravel?
-
-Laravel is a powerful framework that emphasizes flexibility and expressiveness. Users new to Laravel will enjoy the same ease of development that is found in the most popular and lightweight PHP frameworks. More experienced users will appreciate the opportunity to modularize their code in ways that are not possible with other frameworks. Laravel's flexibility will allow your organization to update and mold the application over time as is needed and its expressiveness will allow you and your team to develop code that is both concise and easily read.
+Je ne prendrais malheureusement pas le temps de vous présenter différents framework, uniquement celui pour lequel vous êtes sans doute sur ce site : Laravel
 
 
-<a name="laravel-is-different"></a>
-## What Makes Laravel Different?
+<a name="pourquoi-Laravel"></a>
+## Pourquoi Laravel?
 
-There are many ways in which Laravel differentiates itself from other frameworks. Here are a few examples that we think make good bullet points:
+Nous aimons php, mais il faut bien avouer que ce langage a des défauts. Un exemple concret : nous connaissons la fonction `str_replace`, qui remplace toutes les occurences d'une chaine dans une autre. Et nous connaissons également `strtolower`, qui prend une chaine de caractère et le transforme en minuscule. Quel est le problème ? il n'y a aucune cohérence dans le nom de ces fonctions ! Ce n'est qu'un petit échantillon, nous aurions également pu parler des noms d'erreur incompéhensible (ex: T_PAAMAYIM_NEKUDOTAYIM)...
+Laravel nous apporte une solution, avec une approche qui rend la compréhension du code intuitive, presque naturelle. Le framework est aussi doté d'outils puissants, que vous aurez l'occasion de découvrir dans ce guide.
 
-- **Bundles** are Laravel's modular packaging system. [The Laravel Bundle Repository](http://bundles.laravel.com/) is already populated with quite a few features that can be easily added to your application. You can either download a bundle repository to your bundles directory or use the "Artisan" command-line tool to automatically install them.
-- **The Eloquent ORM** is the most advanced PHP ActiveRecord implementation available.  With the capacity to easily apply constraints to both relationships and nested eager-loading you'll have complete control over your data with all of the conveniences of ActiveRecord.  Eloquent natively supports all of the methods from Laravel's Fluent query-builder.
-- **Application Logic** can be implemented within your application either using controllers (which many web-developers are already familiar with) or directly into route declarations using syntax similar to the Sinatra framework. Laravel is designed with the philosophy of giving a developer the flexibility that they need to create everything from very small sites to massive enterprise applications.
-- **Reverse Routing** allows you to create links to named routes. When creating links just use the route's name and Laravel will automatically insert the correct URI.  This allows you to change your routes at a later time and Laravel will update all of the relevant links site-wide.
-- **Restful Controllers** are an optional way to separate your GET and POST request logic. In a login example your controller's get_login() action would serve up the form and your controller's post_login() action would accept the posted form, validate, and either redirect to the login form with an error message or redirect your user to their dashboard.
-- **Class Auto Loading** keeps you from having to maintain an autoloader configuration and from loading unnecessary components when they won't be used. Want to use a library or model?  Don't bother loading it, just use it. Laravel will handle the rest.
-- **View Composers** are blocks of code that can be run when a view is loaded. A good example of this would be a blog side-navigation view that contains a list of random blog posts. Your composer would contain the logic to load the blog posts so that all you have to do i load the view and it's all ready for you. This keeps you from having to make sure that your controllers load the a bunch of data from your models for views that are unrelated to that method's page content.
-- **The IoC container** (Inversion of Control) gives you a method for generating new objects and optionally instantiating and referencing singletons. IoC means that you'll rarely ever need to bootstrap any external libraries. It also means that you can access these objects from anywhere in your code without needing to deal with an inflexible monolithic structure. 
-- **Migrations** are version control for your database schemas and they are directly integrated into Laravel. You can both generate and run migrations using the "Artisan" command-line utility. Once another member makes schema changes you can update your local copy from the repository and run migrations. Now you're up to date, too!
-- **Unit-Testing** is an important part of Laravel. Laravel itself sports hundreds of tests to help ensure that new changes don't unexpectedly break anything. This is one of the reasons why Laravel is widely considered to have some of the most stable releases in the industry.  Laravel also makes it easy for you to write unit-tests for your own code.  You can then run tests with the "Artisan" command-line utility.
-- **Automatic Pagination** prevents your application logic from being cluttered up with a bunch of pagination configuration. Instead of pulling in the current page, getting a count of db records, and selected your data using a limit/offset just call 'paginate' and tell Laravel where to output the paging links in your view. Laravel automatically does the rest. Laravel's pagination system was designed to be easy to implement and easy to change. It's also important to note that just because Laravel can handle these things automatically doesn't mean that you can't call and configure these systems manually if you prefer.
+<a name="Laravel-est-different"></a>
+## Laravel est différent
 
-These are just a few ways in which Laravel differentiates itself from other PHP frameworks.  All of these features and many more are discussed thoroughly in this documentation.
+Il y a beaucoup de choses qui rendent Laravel différent des autres framework, jetez un oeil par vous même:
 
-<a name="application-structure"></a>
-## Application Structure
+- **Les bundles** sont des 'plugins' pour Laravel. [Le dépôt de bundle Laravel](http://bundles.laravel.com/) contient déjà un certain nombre de bundle qui peuvent être ajouté facilement à votre application web. Vous pouvez télécharger votre bundle directement depuis internet, en le téléchargeant dans le dossier /bundles, ou utiliser "Artisan", l'outil en ligne de commande pour automatiser le téléchargement de celui ci.
+- **L'ORM Eloquent**, qui est l'implémentation d'ActiveRecord la plus complète disponible en PHP ! Avec sa capacité d'appliquer des contraintes de relations des plus simples aux plus complèxes, et son système de chargement imbriqué, vous obtenez un contrôle complet sur vos données avec tout le confort d'utilisation d'ActiveRecord. Eloquent supporte nativement toutes les méthodes de Fluent, le générateur de requête de Laravel.
+- **La logique applicative** ( ou logique de contrôle ) peut être placé soit dans un controller (ce qui est la norme chez les développeurs avec le modèle MVC) ou directement dans la déclaration de la route, grâce aux fonctions anonymes. Vous avez alors grâce à Laravel la possibilité liberté de choisir un modèle qui correspond le mieux au besoin de votre site, qu'il soit gros ou petit.
+- **Les routes nommées** vous donne a possibilité de nommer une route 'login' et de demander au framework d'apeller la route nommée 'login', ainsi vous pouvez changer à volonté le design de la route, vos liens resterons correct.
+- **Les controlleurs RESTful** sont une option disponible pour séparer la logique applicative des requêtes GET et POST. Ainsi dans un controlleur de login, la méthode get_login() aura pour rôle de fournir le formulaire, tandis que la méthode post_login() traitera ce dernier, le validera et redirigera l'utilisateur en fonction du résultat.
+- **Le chargement automatique de classes** nous permet de ne pas avoir à maintenir un fichier de chargement automatique, ou à faire des includes dans chacunes de nos classes. Vous avez besoin d'utiliser un modèle ? Ne vous embêtez pas à le charger, Laravel s'occupe de tout !
+- **Les composeurs de vues** sont des blocks de codes qui sont éxécuté lorsqu'une vue est chargée. Un bon exemple serait une sidebar dans un blog, qui afficherai des articles au hasard. Le composeur contiendra le code qui chagera ces articles aux hasard. Cela vous permet de ne pas avoir ce code dans votre controlleur principal, alors qu'il n'a aucun lien direct avec ma méthode appellée.
+- **Le conteneur IoC** (Inversion de Contrôle) est un injecteur de dépendances, qui vous permet donc de générer des objets, et également d'instancier des singletons. Grâce à l'IoC, vous ne devriez que très rarement instancié des bibliothèques externes. Cela signifie également que ces objets sont accessibles partout dans votre code, le rendant ainsi plus flexible et moins monolithique. 
+- **Les migrations** vous permettent de garder le contrôle sur l'évolution des tables de votre base de données. Vous pouvez les générer et les éxecuter grâve à l'outil en ligne de commande "Artisan". En équipe, quand votre collègue récupère le projet, il n'aura plus qu'à lancer l'execution de l'outil de migration et sa base de données sera à jour !
+- **Les tests unitaires** ont une place très importante pour Laravel. Le framework Laravel contient lui même une batterie d'une centaines de test pour s'assurer que les changements apportés à ce dernier ne cassent rien. Laravel vous fourni grâce à "Artistan", l'outil en ligne de commande, la possibilité d'executer facilement vos tests.
+- **La pagination automatique** est utile pour ne pas avoir à gérer la logique de pagination. A la place d'obtenir le nombre d'enregistrement dans la base de données puis de selectionner les données avec un offset et une limite, appellez si^mplement `paginate` et dites à Laravel ou écrire la liste des pages dans votre vue. Laravel s'occupe de tout. Le système de pagination de laravel a été conçu pour être facile à implementer. Une chose à garder en mémoire, qui vaut également pour le reste, ce n'est pas parce que Laravel peut le faire pour vous que vous êtes obligé de le faire par Laravel. Rien ne vous empêche de créer un système manuel !
 
-Laravel's directory structure is designed to be familiar to users of other popular PHP frameworks. Web applications of any shape or size can easily be created using this structure similarly to the way that they would be created in other frameworks.
+Vous avez là un aperçu de ce qui rend Laravel différent des autres frameworks PHP. Toutes ces fonctionnalités et bien d'autres vous seront présentées dans la documentation.
 
-However due to Laravel's unique architecture, it is possible for developers to create their own infrastructure that is specifically designed for their application. This may be most beneficial to large projects such as content-management-systems. This kind of architectural flexibility is unique to Laravel.
+<a name="structure-de-l-application"></a>
+## Structure de l'application
 
-Throughout the documentation we'll specify the default locations for declarations where appropriate.
+La structure des repertoires de Laravel est très proches des autres framework PHP. La structure est adaptée aux sites de toute tailles, et vous permet de vous concentrer immediatement sur ce qui est important pour votre projet.
 
-<a name="laravel-community"></a>
-## Laravel's Community
+Cependant, l'architecture de Laravel est flexible. Cela signifie que vous pouvez si vous le souhaitez, modifier l'architecture pour correspondre à des besoins précis, notamment si vous travaillez sur de gros sites, ou sur de gros projets tel que des CMS. 
 
-Laravel is lucky to be supported by rapidly growing, friendly and enthusiastic community. The [Laravel Forums](http://forums.laravel.com) are a great place to find help, make a suggestion, or just see what other people are saying.
+Dans cette documentation, nous partirons du principe que l'architecture par défaut est respectée. 
 
-Many of us hang out every day in the #laravel IRC channel on FreeNode. [Here's a forum post explaining how you can join us.](http://forums.laravel.com/viewtopic.php?id=671) Hanging out in the IRC channel is a really great way to learn more about web-development using Laravel. You're welcome to ask questions, answer other people's questions, or just hang out and learn from other people's questions being answered. We love Laravel and would love to talk to you about it, so don't be a stranger!
+<a name="Laravel-community"></a>
+## La communauté laravel
 
-<a name="laravel-license"></a>
-## License Information
+Laravel a la chance d'être supportée par une communauté qui grandit rapidement, avec des membres amicaux et enthousiastes. Les [Forums de laravel[en]](http://forums.Laravel.com) sont une bonne place pour trouver de l'aide, donner l'aide, proposer des suggestions ou simplement voir ce qui se passe.
 
-Laravel is open-sourced software licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+La plupart d'entre nous passons du temps sur le channel IRC #laravel sur le réseau FreeNode [Voir sur le forum comment nous rejoindre[en]](http://forums.Laravel.com/viewtopic.php?id=671). C'est une place idéale pour apprendre beaucoup de choses sur le monde du développement web en utilisant Laravel. Vous pouvez poser des questions, répondre aux questions des autre spersonnes, venir discuter de l'actualité des technos du web, ect... Nous aimons Laravel, et nous adorons en parler, alors n'hesiter pas à nous rejoindre.
+
+### Laravel France
+
+Notre but est de monter une communauté d'aide et de partage.
+
+Si vous êtes Francophone et que vous souhaitez participer au projet, n'hesitez pas à prendre contact avec nous, sur notre channel IRC [#laravel.fr](irc://freenode.net/laravel.fr) du réseau FreeNode
+
+
+<a name="Laravel-license"></a>
+## License
+
+Laravel est une application open source sous [license MIT](http://www.opensource.org/licenses/mit-license.php).
