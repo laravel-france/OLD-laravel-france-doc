@@ -55,7 +55,7 @@ Dans cette documentation, nous partirons du principe que l'architecture par déf
 
 Laravel a la chance d'être supportée par une communauté qui grandit rapidement, avec des membres amicaux et enthousiastes. Les [Forums de laravel[en]](http://forums.Laravel.com) sont une bonne place pour trouver de l'aide, donner l'aide, proposer des suggestions ou simplement voir ce qui se passe.
 
-La plupart d'entre nous passons du temps sur le channel IRC #laravel sur le réseau FreeNode [Voir sur le forum comment nous rejoindre[en]](http://forums.Laravel.com/viewtopic.php?id=671). C'est une place idéale pour apprendre beaucoup de choses sur le monde du développement web en utilisant Laravel. Vous pouvez poser des questions, répondre aux questions des autre spersonnes, venir discuter de l'actualité des technos du web, ect... Nous aimons Laravel, et nous adorons en parler, alors n'hesiter pas à nous rejoindre.
+La plupart d'entre nous passons du temps sur le channel IRC [#laravel](irc://freenode.net/laravel) sur le réseau FreeNode [Voir sur le forum comment nous rejoindre[en]](http://forums.Laravel.com/viewtopic.php?id=671). C'est une place idéale pour apprendre beaucoup de choses sur le monde du développement web en utilisant Laravel. Vous pouvez poser des questions, répondre aux questions des autre spersonnes, venir discuter de l'actualité des technos du web, ect... Nous aimons Laravel, et nous adorons en parler, alors n'hesiter pas à nous rejoindre.
 
 ### Laravel France
 
