@@ -283,7 +283,7 @@ Bien sur, vous pouvez utiliser le joker **(:bundle)** dans toutes vos routes, pa
 
 Les contrôleurs fournissent une autre manière de géré la logique applicative. Si vous n'êtes pas familiarisé avec  ce principe, vous devriez [vous renseignez sur les contrôleurs](/guides/v3/controleurs) puis revenir ici.
 
-Il est important de comprendre que dans Laravel, toutes les routes possibles doivent être définies, même les routes vers les contrôleurs. Cela signie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas* accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
+Il est important de comprendre que dans Laravel, toutes les routes possibles doivent être définies, même les routes vers les contrôleurs. Cela signifie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas* accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
 
 En général, vous enregistrerez vos contrôleur dans le dossier "controllers" de votre application. Pour exposer tous vos contrôleurs, vous pouvez utiliser la méthode suivante :
 
