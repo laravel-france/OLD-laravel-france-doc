@@ -1,6 +1,6 @@
-# Controllers
+# Contrôleurs
 
-## Contents
+## Au menu
 
 - [Les bases](#the-basics)
 - [Routage de contrôleur](#controller-routing)

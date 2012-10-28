@@ -1,6 +1,6 @@
 # Installation et configuration
 
-## Contents
+## Au menu
 
 - [Pré-requis](#requirements)
 - [Installation](#installation)

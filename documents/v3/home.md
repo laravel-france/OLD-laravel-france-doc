@@ -1,5 +1,7 @@
 # Documentation de Laravel 3.x
 
+## Au menu
+
 - [Le choix d'un framework](#le-choix-d-un-framework)
 - [Pourquoi Laravel ?](#pourquoi-Laravel)
 - [Laravel est différent](#Laravel-est-different)
