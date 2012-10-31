@@ -1,40 +1,40 @@
-# Errors & Logging
+# Erreurs & Logging
 
-## Contents
+## Au menu
 
-- [Basic Configuration](#basic-configuration)
+- [Configuration basique](#basic-configuration)
 - [Logging](#logging)
-- [The Logger Class](#the-logger-class)
+- [La classe Logger](#the-logger-class)
 
 <a name="basic-configuration"></a>
-## Basic Configuration
+## Configuration basique
 
-All of the configuration options regarding errors and logging live in the **application/config/errors.php** file. Let's jump right in.
+Toutes les options de configuration qui concerne les erreurs et le logging se trouvent dans le fichier **application/config/errors.php**. Jetons y un oeil.
 
-### Ignored Errors
+### Erreurs ignorées
 
-The **ignore** option contains an array of error levels that should be ignored by Laravel. By "ignored", we mean that we won't stop execution of the script on these errors. However, they will be logged when logging is enabled.
+L'option **ignore** contient un tableau des niveaux d'erreurs qui voient être ignorés par Laravel. Par "ignoré", nous voulons dire que nous n'arreterons pas l'execution d'un script pour ces erreurs. Cependant, elles seront logguées si le logging est activé.
 
-### Error Detail
+### Détails d'erreurs
 
-The **detail** option indicates if the framework should display the error message and stack trace when an error occurs. For development, you will want this to be **true**. However, in a production environment, set this to **false**. When disabled, the view located in **application/views/error/500.php** will be displayed, which contains a generic error message.
+L'option détail **detail** indique si le framework doit afficher le messge d'erreur et la pile de suivie quand une erreur se produit. En développement, vous pouvez le mettre à **true**, cependant production, placez celà à **false**. Lorsqu'il est à false, la vue située dans le fichier **application/views/error/500.php** sera affichée. Elle contient un message d'erreur générique.
 
 <a name="logging"></a>
 ## Logging
 
-To enable logging, set the **log** option in the error configuration to "true". When enabled, the Closure defined by the **logger** configuration item will be executed when an error occurs. This gives you total flexibility in how the error should be logged. You can even e-mail the errors to your development team!
+Pour activer le logging, placez l'option **log** à true dans le fichier de configuration **errors.php**. Quand le loggine est actif, la fonction anonyme contenue dans l'élément **logger** du fichier de configuration sera executé lorsqu'une erreur surgie. Cela vous donne une flexibilité totale sur la manière dont les erreurs doivent être logguées. Vous pouvez par exemple envoyé un email à l'équipe de développement !
 
-By default, logs are stored in the **storage/logs** directory, and a new log file is created for each day. This keeps your log files from getting crowded with too many messages.
+Par defaut, les fichiers de logs sont stockés dans le répertoire **storage/logs**, et un nouveau fichier de log est créé chaque jours. Cela empêche d'avoir de gros fichiers de logs avec trop de messages.
 
 <a name="the-logger-class"></a>
-## The Logger Class
+## La classe Logger
 
-Sometimes you may wish to use Laravel's **Log** class for debugging, or just to log informational messages. Here's how to use it:
+Vous pouvez si vous le souhaitez utiliser la classe **Log** de Laravel pour debugguer, ou juste logguer des messages d'informations. Voici comment l'utiliser :
 
-#### Writing a message to the logs:
+#### Ecriture d'un message dans le log :
 
-	Log::write('info', 'This is just an informational message!');
+	Log::write('info', 'Ceci est un message informel');
 
-#### Using magic methods to specify the log message type:
+#### Utilisation de la méthode magique pour spécifier le type de message:
 
-	Log::info('This is just an informational message!');
+	Log::info('Ceci est un message informel');

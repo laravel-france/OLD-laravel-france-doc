@@ -1,29 +1,29 @@
 # Bundles
 
-## Contents
+## Au menu
 
 - [The Basics](#the-basics)
-- [Creating Bundles](#creating-bundles)
-- [Registering Bundles](#registering-bundles)
-- [Bundles & Class Loading](#bundles-and-class-loading)
-- [Starting Bundles](#starting-bundles)
-- [Routing To Bundles](#routing-to-bundles)
-- [Using Bundles](#using-bundles)
-- [Bundle Assets](#bundle-assets)
-- [Installing Bundles](#installing-bundles)
-- [Upgrading Bundles](#upgrading-bundles)
+- [Création de bundles](#creating-bundles)
+- [Enregistrement de bundles](#registering-bundles)
+- [Bundles & chargement de classes](#bundles-and-class-loading)
+- [Démarrage de bundles](#starting-bundles)
+- [Routage de bundles](#routing-to-bundles)
+- [Utilisation de bundles](#using-bundles)
+- [Assets de bundles](#bundle-assets)
+- [Installation de bundles](#installing-bundles)
+- [Mise à jour de bundles](#upgrading-bundles)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Bundles are the heart of the improvements that were made in Laravel 3.0. They are a simple way to group code into convenient "bundles". A bundle can have it's own views, configuration, routes, migrations, tasks, and more. A bundle could be everything from a database ORM to a robust authentication system. Modularity of this scope is an important aspect that has driven virtually all design decisions within Laravel. In many ways you can actually think of the application folder as the special default bundle with which Laravel is pre-programmed to load and use.
+Les bundles sont le coeur des améliorations apportées à Laravel 3.0. Ils sont un moyen simple de grouper du qui appartient à un même module. Un bundle peut avoir ses propres vues, sa configuration, ses routes, ses migrations, ses tâches, etc…  Un bundle peut être tout ce que vous souhaitez, d'un ORM à un système complet d'authentification. La modularité est un aspect important qui a virtuellement conduit toutes les décisions de conception de Laravel. En fait, vous pouvez imaginez que le dossier application est un bundle spécial fourni par Laravel, qui est pré-programmé et prêt à être utilisé.
 
 <a name="creating-and-registering"></a>
-## Creating Bundles
+## Création de bundles
 
-The first step in creating a bundle is to create a folder for the bundle within your **bundles** directory. For this example, let's create an "admin" bundle, which could house the administrator back-end to our application. The **application/start.php** file provides some basic configuration that helps to define how our application will run. Likewise we'll create a **start.php** file within our new bundle folder for the same purpose. It is run every time the bundle is loaded. Let's create it:
+La première étape pour créer un bundle est de créer un dossier pour ce dernier dans le répertoire **bundles**. Pour cet exemple, créons un bundle "admin", dans lequel sera logé le backend de notre application. Le fichier **application/start.php** fournit quelques options de configurations qui nous aide à définir comment va fonctionner notre application. De la même manière, nous allons créer un fichier **start.php** à la racine de notre bundle, qui aura le même rôle. Ce fichier est exécuté chaque fois que notre bundle est chargé.
 
-#### Creating a bundle start.php file:
+#### Création du fichier start.php de note bundle:
 
 	<?php
 
@@ -31,22 +31,22 @@ The first step in creating a bundle is to create a folder for the bundle within 
 		'Admin' => Bundle::path('admin').'models',
 	));
 
-In this start file we've told the auto-loader that classes that are namespaced to "Admin" should be loaded out of our bundle's models directory. You can do anything you want in your start file, but typically it is used for registering classes with the auto-loader. **In fact, you aren't required to create a start file for your bundle.**
+Dans ce fichier de démarrage, nous informons l'autoloader que les classes du namespace Admin doivent être chargées dans le dossier models de notre bundle. Vous pouvez faire ce que vous souhaitez dans votre fichier de démarrage, mais en général il est utilisé pour enregistrer vos classes dans l'autoloader. **En fait, vous n'êtes même pas obligé de créer le fichier start.php.**
 
-Next, we'll look at how to register this bundle with our application!
+Maintenant, nous allons voir comment enregistrer ce bundle dans notre application !
 
 <a name="registering-bundles"></a>
-## Registering Bundles
+## Enregistrement de bundles
 
-Now that we have our admin bundle, we need to register it with Laravel. Pull open your **application/bundles.php** file. This is where you register all bundles used by your application. Let's add ours:
+Maintenant que nous avons notre bundle "admin", nous devons le déclarer avec Laravel. Ouvrez le fichier **application/bundles.php**. Ce fichier est l'endroit où vous enregistrerez tous les bundles utilisés pour votre application. Ajoutons le notre :
 
-#### Registering a simple bundle:
+#### Déclaration simple d'un bundle :
 
 	return array('admin'),
 
-By convention, Laravel will assume that the Admin bundle is located at the root level of the bundle directory, but we can specify another location if we wish:
+Par convention, Laravel va charger le bundle directement à la racine du dossier bundles. Vous trouverez ci dessous un exemple montrant comment changer ce chemin pour votre bundle :
 
-#### Registering a bundle with a custom location:
+#### Déclaration d'un bundle avec une chemin personnalisé :
 
 	return array(
 
@@ -54,14 +54,14 @@ By convention, Laravel will assume that the Admin bundle is located at the root 
 
 	);
 
-Now Laravel will look for our bundle in **bundles/userscape/admin**.
+Maintenant, Laravel chargera ce bundle depuis **bundles/userscape/admin**.
 
 <a name="bundles-and-class-loading"></a>
-## Bundles & Class Loading
+## Bundles & chargement de classes
 
-Typically, a bundle's **start.php** file only contains auto-loader registrations. So, you may want to just skip **start.php** and declare your bundle's mappings right in its registration array. Here's how:
+Typiquement, le fichier **start.php** d'un bundle contient uniquement les déclarations d'autoloading des classes. Vous pouvez alors ne pas créer le fichier **start.php** et déclarer les règles d'autoloading lors de la déclaration de votre bundle. Voici comment faire :
 
-#### Defining auto-loader mappings in a bundle registration:
+#### Définition de l'autoloading dans l'enregistrement du bundle :
 
 	return array(
 
@@ -81,26 +81,26 @@ Typically, a bundle's **start.php** file only contains auto-loader registrations
 
 	);
 
-Notice that each of these options corresponds to a function on the Laravel [auto-loader](/docs/loading). In fact, the value of the option will automatically be passed to the corresponding function on the auto-loader.
+Remarquez que chacune de ces options corréspond à une fonction de [l'autoloader](/guides/v3/loading) Laravel. En fait, les valeurs de ces options seront automatiquement passées aux méthodes de l'autoloader.
 
-You may have also noticed the **(:bundle)** place-holder. For convenience, this will automatically be replaced with the path to the bundle. It's a piece of cake.
+Vous avez probablement remarqué le joker **(:bundle)**. Ceci sera automatiquement remplacé par le chemin du bundle. Un vrai jeu d'enfant !
 
 <a name="starting-bundles"></a>
-## Starting Bundles
+## Démarrage de bundles
 
-So our bundle is created and registered, but we can't use it yet. First, we need to start it:
+Notre bundle est créé et déclaré, mais nous ne pouvons pas encore l'utiliser. Nous devons d'abord le démarrer :
 
-#### Starting a bundle:
+#### Démarrage d'un bundle :
 
 	Bundle::start('admin');
 
-This tells Laravel to run the **start.php** file for the bundle, which will register its classes in the auto-loader. The start method will also load the **routes.php** file for the bundle if it is present.
+Cela demande à Laravel d'exécuter le fichier **start.php** du bundle, qui enregistrera les règles d'autoloading des classes. La méthode start chargement également le fichier **routes.php** s'il existe.
 
-> **Note:** The bundle will only be started once. Subsequent calls to the start method will be ignored.
+> **Note:** Le bundle ne peut être démarré qu'une fois. Si vous effectuez d'autres appels, ils seront ignorés.
 
-If you use a bundle throughout your application, you may want it to start on every request. If this is the case, you can configure the bundle to auto-start in your **application/bundles.php** file:
+Si vous utilisez un bundle partout dans votre application, vous devrez alors le démarrer à chaque requêtes. Dans ce cas, vous pouvez configurer le bundle pour qu'il démarre automatiquement dans votre fichier **application/bundles.php** :
 
-#### Configuration a bundle to auto-start:
+#### Configuration d'un bundle pour un démarrage automatique :
 
 	return array(
 
@@ -108,105 +108,105 @@ If you use a bundle throughout your application, you may want it to start on eve
 
 	);
 
-You do not always need to explicitly start a bundle. In fact, you can usually code as if the bundle was auto-started and Laravel will take care of the rest. For example, if you attempt to use a bundle views, configurations, languages, routes or filters, the bundle will automatically be started!
+En vrai, vous n'avez pas besoin de le démarrer explicitement. Vous pouvez simplement partir du principe qu'il est démarré, et si vous essayez d'utiliser une vue, un fichier de configuration, de traduction, une route ou un filtre d'un bundle, Laravel le démarrera automatiquement pour vous !
 
-Each time a bundle is started, it fires an event. You can listen for the starting of bundles like so:
+Chaque fois qu'un bundle est démarré, un événement est lancé. Vous pouvez suivre cet événement de la manière suivante :
 
-#### Listen for a bundle's start event:
+#### Ecoute l'événement de démarrage d'un bundle :
 
 	Event::listen('laravel.started: admin', function()
 	{
 		// The "admin" bundle has started...
 	});
 
-It is also possible to "disable" a bundle so that it will never be started.
+Il est également possible de désactiver un bundle, afin qu'il ne soit jamais démarré.
 
-#### Disabling a bundle so it can't be started:
+#### Désactivé un bundle pour qu'il ne puisse pas être démarré :
 
 	Bundle::disable('admin');
 
 <a name="routing-to-bundles"></a>
-## Routing To Bundles
+## Routage de bundles
 
-Refer to the documentation on [bundle routing](/docs/routing#bundle-routes) and [bundle controllers](/docs/controllers#bundle-controllers) for more information on routing and bundles.
+Veuillez vous référer à la documentation sur [le routage de bundles](/guides/v3/routes#bundle-routes) et [les contrôleurs de bundles](/guides/v3/controleurs#bundle-controllers) pour plus d'informations.
 
 <a name="using-bundles"></a>
-## Using Bundles
+## Utilisations de bundles
 
-As mentioned previously, bundles can have views, configuration, language files and more. Laravel uses a double-colon syntax for loading these items. So, let's look at some examples:
+Comme indiqué précédemment, les bundles peuvent contenir des vues, des fichiers de configuration, de langue, et plus encore. Laravel utilise la syntaxe **::** pour les charger. Voyons quelques exemples :
 
-#### Loading a bundle view:
+#### Charge une vue d'un bundle :
 
 	return View::make('bundle::view');
 
-#### Loading a bundle configuration item:
+#### Charge une option d'un fichier de configuration d'un bundle :
 
 	return Config::get('bundle::file.option');
 
-#### Loading a bundle language line:
+#### Charge une ligne d'un fichier de langue d'un bundle :
 
 	return Lang::line('bundle::file.line');
 
-Sometimes you may need to gather more "meta" information about a bundle, such as whether it exists, its location, or perhaps its entire configuration array. Here's how:
+Parfois vous souhaitez rassembler des informations "meta" à propos d'un bundle, tel que le fait qu'il existe, sa location, son tableau de configuration complet… voici comment faire :
 
-#### Determine whether a bundle exists:
+#### Détermine si un bundle existe :
 
 	Bundle::exists('admin');
 
-#### Retrieving the installation location of a bundle:
+#### Retriouve la location d'un bundle :
 
 	$location = Bundle::path('admin');
 
-#### Retrieving the configuration array for a bundle:
+#### Retrouve le tableau de configuration d'un bundle :
 
 	$config = Bundle::get('admin');
 
-#### Retrieving the names of all installed bundles:
+#### Retrouve le nom de tous les bundles installés :
 
 	$names = Bundle::names();
 
 <a name="bundle-assets"></a>
-## Bundle Assets
+## Assets de bundle
 
-If your bundle contains views, it is likely you have assets such as JavaScript and images that need to be available in the **public** directory of the application. No problem. Just create **public** folder within your bundle and place all of your assets in this folder.
+Si votre bundle contient des vues, il est possible que vous ayez des assets, tel que des fichiers javascripts et des images que vous avez besoin de rendre disponible dans le dossier **public** de l'application. Pas de problèmes, créez simplement un dossier public dans votre bundle et placez vos bundles à l'intérieur.
 
-Great! But, how do they get into the application's **public** folder. The Laravel "Artisan" command-line provides a simple command to copy all of your bundle's assets to the public directory. Here it is:
+Mais, comment les rendre disponibles dans le dossier **public** de l'application ? L'outil en ligne de commande "Artisan" fournit une commande simple pour copier tous les assets de votre bundle vers le dossier public.
 
-#### Publish bundle assets into the public directory:
+#### Publie les assets d'un bundle dans le dossier public:
 
 	php artisan bundle:publish
 
-This command will create a folder for the bundle's assets within the application's **public/bundles** directory. For example, if your bundle is named "admin", a **public/bundles/admin** folder will be created, which will contain all of the files in your bundle's public folder.
+Cette commande crée un dossier pour les assets du bundle dans le dossier **public/bundles** de l'application. Par exemple, si votre bundle s'appelle "admin", alors le dossier **public/bundles/admin** sera créé, et contiendra tous les fichiers du dossier public de votre bundle.
 
-For more information on conveniently getting the path to your bundle assets once they are in the public directory, refer to the documentation on [asset management](/docs/views/assets#bundle-assets).
+Pour plus d'informations sur l'exploitation d'assets de bundle, référez vous à la documentation sur [le management d'assets](/docs/views/assets#bundle-assets).
 
 <a name="installing-bundles"></a>
-## Installing Bundles
+## Installation de bundles
 
-Of course, you may always install bundles manually; however, the "Artisan" CLI provides an awesome method of installing and upgrading your bundle. The framework uses simple Zip extraction to install the bundle. Here's how it works.
+Bien sûr, vous pouvez installer les bundles manuellement, nous avons appris comment faire dans ce document. Cependant, "Artisan" fournit une méthode géniale pour installer et mettre à jour vos bundles. Le framework utilise un simple dézippage pour installer les bundles. Voilà comment faire :
 
-#### Installing a bundle via Artisan:
+#### Installe un bundle via Artisan:
 
 	php artisan bundle:install eloquent
 
-Great! Now that you're bundle is installed, you're ready to [register it](#registering-bundles) and [publish its assets](#bundle-assets).
+Bien, maintenant que votre bundle est installé, vous êtes prêt pour [l'enregistrer](#registering-bundles) et [publier ses assets](#bundle-assets).
 
-Need a list of available bundles? Check out the Laravel [bundle directory](http://bundles.laravel.com)
+Pour obtenir une liste des assets disponibles, rendez vous sur le [répertoire de bundles Laravel[en]](http://bundles.laravel.com)
 
 <a name="upgrading-bundles"></a>
-## Upgrading Bundles
+## Mise à jour d'un bundle
 
-When you upgrade a bundle, Laravel will automatically remove the old bundle and install a fresh copy.
+Quand vous mettez à jour un Bundle, Laravel va en fait supprimer la vieille version et réinstaller une copie à jour.
 
-#### Upgrading a bundle via Artisan:
+#### Mise à jour via Artisan:
 
 	php artisan bundle:upgrade eloquent
 
-> **Note:** After upgrading the bundle, you may need to [re-publish its assets](#bundle-assets).
+> **Note:** Après la mise à jour d'un bundle, vous devez [republier ses assets](#bundle-assets).
 
-**Important:** Since the bundle is totally removed on an upgrade, you must be aware of any changes you have made to the bundle code before upgrading. You may need to change some configuration options in a bundle. Instead of modifying the bundle code directly, use the bundle start events to set them. Place something like this in your **application/start.php** file.
+**Important:** Etant donné que lors d'une mise à jour, le bundle est complètement supprimé, les changement que vous avez apporté seront perdu. Il arrive parfois qu'il faille mettre à jour le fichier de configuration d'un bundle. Plutôt que de modifier le bundle directement, utilisez l'événement start pour configurer vos options. Placez quelque chose comme cela dans le fichier  **application/start.php** :
 
-#### Listening for a bundle's start event:
+#### Ecoute pour l'événement de démarrage d'un bundle :
 
 	Event::listen('laravel.started: admin', function()
 	{

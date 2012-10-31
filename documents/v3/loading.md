@@ -1,25 +1,25 @@
-# Class Auto Loading
+# Autoloading
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Registering Directories](#directories)
-- [Registering Mappings](#mappings)
-- [Registering Namespaces](#namespaces)
+- [Les bases](#the-basics)
+- [Enregistrement de répértoires](#directories)
+- [Enregistrement d'une table de correspondance](#mappings)
+- [Enregistrement de namespaces](#namespaces)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Auto-loading allows you to lazily load class files when they are needed without explicitly *requiring* or *including* them. So, only the classes you actually need are loaded for any given request to your application, and you can just jump right in and start using any class without loading it's related file.
+L'autoloading vous autorise à utiliser des classes sans avoir à les les **inclure** explicitement. Les seules classe chargées sont celles que vous utilisez lors d'une requête sur votre application, vous pouvez donc développer en utilisant ces classes sans avoir à les inclure manuellement.
 
-By default, the **models** and **libraries** directories are registered with the auto-loader in the **application/start.php** file. The loader uses a class to file name loading convention, where all file names are lower-cased. So for instance, a "User" class within the models directory should have a file name of "user.php". You may also nest classes within sub-directories. Just namespace the classes to match the directory structure. So, a "Entities\User" class would have a file name of "entities/user.php" within the models directory.
+Par défaut, les dossiers **models** and **libraries** sont enregistrés avec l'autoloader, dans le fichier **application/start.php**. Le chargeur de classes utilise le nom de fichier pour détecter où se trouvent les classes. La convention de nommage indique que le nom du fichier doit être en minuscule. Ainsi, si vous avez un modèle User dans votre dossier modela, ce dernier doit résider dans un fichier nommé user.php. Lorsqu'un classe se trouve dans un sous répertoire, donnez à votre classe un namespace qui correspond son arborescence. Par exemple, une classe "Entities\User" se trouvera dans dans le fichier "entities/user.php", à l'intérieur du dossier models.
 
 <a name="directories"></a>
-## Registering Directories
+## Enregistrement de répértoires
 
-As noted above, the models and libraries directories are registered with the auto-loader by default; however, you may register any directories you like to use the same class to file name loading conventions:
+Comme vu ci dessus, les dossiers models et libraries sont enregistré par l'autoloader par défaut; cependant, si vous souhaitez enregistrer un dossier qui respecte la convention de nommage de fichier décrite précédemment, vous pouvez le faire de la manière suivante :
 
-#### Registering directories with the auto-loader:
+#### Enregistre des dossiers avec l'autoloader:
 
 	Autoloader::directories(array(
 		path('app').'entities',
@@ -27,11 +27,11 @@ As noted above, the models and libraries directories are registered with the aut
 	));
 
 <a name="mappings"></a>
-## Registering Mappings
+## Enregistrement d'une table de correspondance
 
-Sometimes you may wish to manually map a class to its related file. This is the most performant way of loading classes:
+Parfois vous voudrez faire correspondre manuellement une classe à un fichier. Cette technique est la plus performante :
 
-#### Registering a class to file mapping with the auto-loader:
+#### Enregistrement d'une classe associé à son chemin:
 
 	Autoloader::map(array(
 		'User'    => path('app').'models/user.php',
@@ -39,19 +39,19 @@ Sometimes you may wish to manually map a class to its related file. This is the 
 	));
 
 <a name="namespaces"></a>
-## Registering Namespaces
+## Enregistrement de namespaces
 
-Many third-party libraries use the PSR-0 standard for their structure. PSR-0 states that class names should match their file names, and directory structure is indicated by namespaces. If you are using a PSR-0 library, just register it's root namespace and directory with the auto-loader:
+Beaucoup de bibliothèques tierces utiliser le standard PSR-0. Le PSR-0 dit que le nom de la classe doit correspondre au nom du fichier, et que le chemin vers ce fichier est indiqué par son namespace. Si vous utiliser une bibliothèque PSR-0, enregistrez simplement le namespace de base et le chemin pour y accéder :
 
-#### Registering a namespace with the auto-loader:
+#### Enregistre un namespace avec l'autoloader:
 
 	Autoloader::namespaces(array(
 		'Doctrine' => path('libraries').'Doctrine',
 	));
 
-Before namespaces were available in PHP, many projects used underscores to indicate directory structure. If you are using one of these legacy libraries, you can still easily register it with the auto-loader. For example, if you are using SwiftMailer, you may have noticed all classes begin with "Swift_". So, we'll register "Swift" with the auto-loader as the root of an underscored project.
+Avant que les namespaces ne soit disponibles en PHP, beaucoup de projets utilisaient des underscore pour indiquer la structure des répertoires. Si vous utilisez une de ces  libraries, vous pouvez également utiliser l'autoloader. Par exemple, si vous utilisez SwiftMailer, Vous avez remarqué que toutes les classes commencent par "Swift_". Nous allons enregistrer "Swift" avec l'autoloader, en tant que base d'un projet utilisant les underscores.
 
-#### Registering an "underscored" library with the auto-loader:
+#### Enregistre un projet "underscoré" avec l'autoloader:
 
 	Autoloader::underscored(array(
 		'Swift' => path('libraries').'SwiftMailer',

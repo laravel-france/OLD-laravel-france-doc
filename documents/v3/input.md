@@ -1,109 +1,109 @@
-# Input & Cookies
+# Entrées et cookies
 
-## Contents
+## Au menu
 
-- [Input](#input)
-- [JSON Input](#json)
-- [Files](#files)
-- [Old Input](#old-input)
-- [Redirecting With Old Input](#redirecting-with-old-input)
+- [Entrées](#input)
+- [Entrées en JSON](#json)
+- [Fichiers](#files)
+- [VIeilles entrées](#old-input)
+- [Redirection avec de vieilles entrées](#redirecting-with-old-input)
 - [Cookies](#cookies)
-- [Merging & Replacing](#merge)
+- [Fusion et remplacement](#merge)
 
 <a name="input"></a>
 ## Input
 
-The **Input** class handles input that comes into your application via GET, POST, PUT, or DELETE requests. Here are some examples of how to access input data using the Input class:
+La classe **Input** gère les entrées qui viennent dans à notre application via les requêtes GET, POST, PUT ou DELETE. Voici quelques exemples qui montrent comment accéder aux entrées avec la classe Input :
 
-#### Retrieve a value from the input array:
+#### Retourne une valeur depuis le tableau d'entrée :
 
 	$email = Input::get('email');
 
-> **Note:** The "get" method is used for all request types (GET, POST, PUT, and DELETE), not just GET requests.
+> **Note:** La méthode "get" est utilisée pour tous les types de requête (GET, POST, PUT, and DELETE), pas seulement pour les GET.
 
-#### Retrieve all input from the input array:
+#### Retourne toutes les entrées :
 
 	$input = Input::get();
 
-#### Retrieve all input including the $_FILES array:
+#### Retourne toutes les entrées, incluant le tableau $_FILES :
 
 	$input = Input::all();
 
-By default, *null* will be returned if the input item does not exist. However, you may pass a different default value as a second parameter to the method:
+Par défaut, *null* sera retourné si la clé n'existe pas. Vous pouvez passer en tant que second argument une valeur par défaut :
 
-#### Returning a default value if the requested input item doesn't exist:
+#### Retourne une valeur par défaut si la clé 'name' n'existe pas :
 
 	$name = Input::get('name', 'Fred');
 
-#### Using a Closure to return a default value:
+#### Utilisation d'une fonction anonyme pour retourner une valeur par défaut :
 
 	$name = Input::get('name', function() {return 'Fred';});
 
-#### Determining if the input contains a given item:
+#### Détermine si l'entée contient la clé donnée :
 
 	if (Input::has('name')) ...
 
-> **Note:** The "has" method will return *false* if the input item is an empty string.
+> **Note:** La méthode "has" retournera *false* si l'entrée est une chaine de caractères vide.
 
 <a name="json"></a>
-## JSON Input
+## Entrées en JSON
 
-When working with JavaScript MVC frameworks like Backbone.js, you will need to get the JSON posted by the application. To make your life easier, we've included the `Input::json` method:
+Quand vous travaillez avec des framework javascript MVC tel que Backbone.js, vous aurez besoin de récupérer le JSON envoyé par l'application. Pour vous facilité la bien nous avons inclus la méthode `Input::json` :
 
-#### Get JSON input to the application:
+#### Récupère l'entrée JSON :
 
 	$data = Input::json();
 
 <a name="files"></a>
-## Files
+## Fichiers
 
-#### Retrieving all items from the $_FILES array:
+#### Retourne tous les éléments du tableau $_FILES :
 
 	$files = Input::file();
 
-#### Retrieving an item from the $_FILES array:
+#### Retourne un élément du tableau $_FILES :
 
 	$picture = Input::file('picture');
 
-#### Retrieving a specific item from a $_FILES array:
+#### Retourne une information précis du tableau $_FILES :
 
 	$size = Input::file('picture.size');
 
 <a name="old-input"></a>
-## Old Input
+## Vieilles entrées
 
-You'll commonly need to re-populate forms after invalid form submissions. Laravel's Input class was designed with this problem in mind. Here's an example of how you can easily retrieve the input from the previous request. First, you need to flash the input data to the session:
+Vous aurez couramment besoin de repeuplé vos formulaires après qu'ils aient été refusé lors d'une soumission. La classe Input de Laravel a été conçue avec ce problème dans l'esprit. Voici un exemple de comment vous pouvez facilement retrouver les entrées de la requête précédente. Premièrement, vous avez besoin de "flasher" les entrées dans une session :
 
-#### Flashing input to the session:
+#### Insertion des entrées en session "flash" :
 
 	Input::flash();
 
-#### Flashing selected input to the session:
+#### Insertion sélective des entrées en session "flash" :
 
 	Input::flash('only', array('username', 'email'));
 
 	Input::flash('except', array('password', 'credit_card'));
 
-#### Retrieving a flashed input item from the previous request:
+#### Retrouve les entrées flashées dans la requête précédente :
 
 	$name = Input::old('name');
 
-> **Note:** You must specify a session driver before using the "old" method.
+> **Note:** Vous devez spécifier un driver de session avant d'utiliser la méthode "old".
 
-*Further Reading:*
+*Voir aussi :*
 
-- *[Sessions](/docs/session/config)*
+- *[Sessions](/guides/v3/session/config)*
 
 <a name="redirecting-with-old-input"></a>
-## Redirecting With Old Input
+## Redirection avec de vieilles entrées
 
-Now that you know how to flash input to the session. Here's a shortcut that you can use when redirecting that prevents you from having to micro-manage your old input in that way:
+Maintenant que vous savez comment flashes vos entrées en session, voici un raccourci qui vous permet de faire le flash automatiquement lors d'une redirection :
 
-#### Flashing input from a Redirect instance:
+#### Flash des entrées dans une instance de redirection :
 
 	return Redirect::to('login')->with_input();
 
-#### Flashing selected input from a Redirect instance:
+#### Flash sélectif des données dans une instance de redirection :
 
 	return Redirect::to('login')->with_input('only', array('username'));
 
@@ -112,43 +112,43 @@ Now that you know how to flash input to the session. Here's a shortcut that you 
 <a name="cookies"></a>
 ## Cookies
 
-Laravel provides a nice wrapper around the $_COOKIE array. However, there are a few things you should be aware of before using it. First, all Laravel cookies contain a "signature hash". This allows the framework to verify that the cookie has not been modified on the client. Secondly, when setting cookies, the cookies are not immediately sent to the browser, but are pooled until the end of the request and then sent together. This means that you will not be able to both set a cookie and retrieve the value that you set in the same request.
+Laravel fournit une couche de gestion des cookies vraiment simple à utiliser. Il y a cependant certaines choses à savoir avant de l'utiliser. Premièrement, tous les cookies Laravel contiennent une signature cryptée. Cela permet au framework de vérifier que le cookie n'a pas été modifié sur le poste du client. Secondement, lorsque vous posez une cookie, le cookie n'est pas immédiatement envoyé au navigateur, mais est mis en attente et est envoyé en même temps que la réponse. Cela signifie que vous ne pouvez pas déclaré un cookie et l'exploité dans la même requête.
 
-#### Retrieving a cookie value:
+#### Retrouve la valeur d'un cookie :
 
 	$name = Cookie::get('name');
 
-#### Returning a default value if the requested cookie doesn't exist:
+#### Retourne une valeur par défaut si le cookie demandé n'existe pas :
 
 	$name = Cookie::get('name', 'Fred');
 
-#### Setting a cookie that lasts for 60 minutes:
+#### Pose un cookie qui dure 60 minutes:
 
 	Cookie::put('name', 'Fred', 60);
 
-#### Creating a "permanent" cookie that lasts five years:
+#### Crée un cookie "permanent" ( qui dure en fait, 5 ans ) :
 
 	Cookie::forever('name', 'Fred');
 
-#### Deleting a cookie:
+#### Supression d'un cookie :
 
 	Cookie::forget('name');
 
 <a name="merge"></a>
-## Merging & Replacing
+## Fusion & remplacement
 
-Sometimes you may wish to merge or replace the current input. Here's how:
+Parfois vous souhaitez fusionner ou remplacer les entrées actuelles. Voilà comment faire :
 
-#### Merging new data into the current input:
+#### Fusion de nouvelles données dans l'input :
 
 	Input::merge(array('name' => 'Spock'));
 
-#### Replacing the entire input array with new data:
+#### Remplace l'input par le tableau fourni :
 
 	Input::replace(array('doctor' => 'Bones', 'captain' => 'Kirk'));
 
-## Clearing Input
+## Supression des entrées
 
-To clear all input data for the current request, you may use the `clear` method:
+Pour vider toutes les entrées de la requête courante, utilisez la méthode `clear` :
 
 	Input::clear();
