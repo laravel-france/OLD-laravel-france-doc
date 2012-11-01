@@ -1,34 +1,34 @@
-# Runtime Configuration
+# Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Retrieving Options](#retrieving-options)
-- [Setting Options](#setting-options)
+- [Les bases](#the-basics)
+- [Obtention d'options](#retrieving-options)
+- [Définition d'options](#setting-options)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Sometimes you may need to get and set configuration options at runtime. For this you'll use the **Config** class, which utilizes Laravel's "dot" syntax for accessing configuration files and items.
+Parfois vous devez obtenir et définir des options lors de l'execution de votre application. Pour cela, utilisez la classe **Config**, qui utilise la syntaxe "point" pour accéder aux fichiers de configuration et à leurs éléments.
 
 <a name="retrieving-options"></a>
-##  Retrieving Options
+## Obtention d'options
 
-#### Retrieve a configuration option:
+#### Retourne une option de configuration :
 
 	$value = Config::get('application.url');
 
-#### Return a default value if the option doesn't exist:
+#### Retourne une valeur par défaut si l'option de configuration n'existe pas :
 
 	$value = Config::get('application.timezone', 'UTC');
 
-#### Retrieve an entire configuration array:
+#### Retourne un tableau avec toutes les valeurs de configurations :
 
 	$options = Config::get('database');
 
 <a name="setting-options"></a>
-## Setting Options
+## Définition d'options
 
-#### Set a configuration option:
+#### Défini une option de configuration :
 
 	Config::set('cache.driver', 'apc');

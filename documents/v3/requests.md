@@ -1,39 +1,39 @@
-# Examining Requests
+# Requêtes
 
-## Contents
+## Au menu
 
-- [Working With The URI](#working-with-the-uri)
-- [Other Request Helpers](#other-request-helpers)
+- [Travail avec les URI](#working-with-the-uri)
+- [Autres helpers de requpetes](#other-request-helpers)
 
 <a name="working-with-the-uri"></a>
-## Working With The URI
+## Travail avec les URI
 
-#### Getting the current URI for the request:
+#### Obtient l'URI courrant de la requête :
 
 	echo URI::current();
 
-#### Getting a specific segment from the URI:
+#### Obtient une segment spéficique de l'URI :
 
 	echo URI::segment(1);
 
-#### Returning a default value if the segment doesn't exist:
+#### Retourne une valeur pas défaut si ne segment n'existe pas :
 
 	echo URI::segment(10, 'Foo');
 
-#### Getting the full request URI, including query string:
+#### Obtient l'URL complète, y compris la query string :
 
 	echo URI::full();
 
-Sometimes you may need to determine if the current URI is a given string, or begins with a given string. Here's an example of how you can use the is() method to accomplish this:
+Si vous souhaitez déterminé si l'URI de la requête est une chaine de caractères donnée ou commence par une chaine de caractère donnée, alors vous pouvez utiliser la méthode **is** pour faire cela :
 
-#### Determine if the URI is "home":
+#### Determine si l'URI est "home" :
 
 	if (URI::is('home'))
 	{
 		// The current URI is "home"!
 	}
 
-#### Determine if the current URI begins with "docs/":
+#### Determine si l'URI commence par "docs/" :
 
 	if URI::is('docs/*'))
 	{
@@ -41,35 +41,35 @@ Sometimes you may need to determine if the current URI is a given string, or beg
 	}
 
 <a name="other-request-helpers"></a>
-## Other Request Helpers
+## Autres helpers de requpetes
 
-#### Getting the current request method:
+#### Retourne le verbe HTTP utilisé (GET, POST, ...)
 
 	echo Request::method();
 
-#### Accessing the $_SERVER global array:
+#### accès au tableau globale $_SERVER :
 
 	echo Request::server('http_referer');
 
-#### Retrieving the requester's IP address:
+#### Retourne l'adresse IP du client :
 
 	echo Request::ip();
 
-#### Determining if the current request is using HTTPS:
+#### Determine si la requête utilise HTTPS :
 
 	if (Request::secure())
 	{
 		// This request is over HTTPS!
 	}
 
-#### Determining if the current request is an AJAX request:
+#### Determine si la requête courante est une requête AJAX :
 
 	if (Request::ajax())
 	{
 		// This request is using AJAX!
 	}
 
-#### Determining if the current requst is via the Artisan CLI:
+#### Determine si la requête courrant se fait via Artisan :
 
 	if (Request::cli())
 	{

@@ -1,68 +1,67 @@
-# Generating URLs
+# Génération d'URLs
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [URLs To Routes](#urls-to-routes)
-- [URLs To Controller Actions](#urls-to-controller-actions)
-- [URLs To Assets](#urls-to-assets)
-- [URL Helpers](#url-helpers)
+- [Les bases](#the-basics)
+- [URLs vers une route](#urls-to-routes)
+- [URLs vers une action de contrôleur](#urls-to-controller-actions)
+- [URLs vers un asset](#urls-to-assets)
+- [Helpers d'URL](#url-helpers)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-#### Retrieving the application's base URL:
+#### Retourne l'URL de l'application :
 
 	$url = URL::base();
 
-#### Generating a URL relative to the base URL:
+#### Retourne une URL relative à la base de l'application :
 
 	$url = URL::to('user/profile');
 
-#### Generating a HTTPS URL:
+#### Génére une URL HTTPS :
 
 	$url = URL::to_secure('user/login');
 
-#### Retrieving the current URL:
+#### Retourne l'URL courante :
 
 	$url = URL::current();
 
-#### Retrieving the current URL including query string:
+#### Retourne l'URL courante, avec les query string:
 
 	$url = URL::full();
 
 <a name="urls-to-routes"></a>
-## URLs To Routes
+## URLs vers une route
 
-#### Generating a URL to a named route:
+#### Génération d'une URL vers une route nommée :
 
 	$url = URL::to_route('profile');
 
-Sometimes you may need to generate a URL to a named route, but also need to specify the values that should be used instead of the route's URI wildcards. It's easy to replace the wildcards with proper values:
-
-#### Generating a URL to a named route with wildcard values:
+Vous devrez parfois fournir à une route des arguments, pour ce faire, passez les en tant que tableau en second argument :
+#### Génére une URL vers une route nommée avec des arguments :
 
 	$url = URL::to_route('profile', array($username));
 
-*Further Reading:*
+*Voir aussiF:*
 
-- [Named Routes](/docs/routing#named-routes)
+- [Route nommées](/guides/v3/routes#named-routes)
 
 <a name="urls-to-controller-actions"></a>
-## URLs To Controller Actions
+## URLs vers une action de contrôleur
 
-#### Generating a URL to a controller action:
+#### Genere une URL vers une action de contrôleur :
 
 	$url = URL::to_action('user@profile');
 
-#### Generating a URL to an action with wildcard values:
+#### Genere une URL vers une action de contrôleur avec des paramètres :
 
 	$url = URL::to_action('user@profile', array($username));
 
 <a name="urls-to-assets"></a>
-## URLs To Assets
+## URLs vers des assets
 
-URLs generated for assets will not contain the "application.index" configuration option.
+Les URLs générés generated for assets will not contain the "application.index" configuration option.
 
 #### Generating a URL to an asset:
 
