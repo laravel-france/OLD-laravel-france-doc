@@ -67,7 +67,7 @@
 - [Configuration](/guides/v3/config)
 - [Requêtes](/guides/v3/requests)
 - [Génération d'URLs](/guides/v3/urls)
-- [Events](/guides/v3/evenements)
+- [Evénements](/guides/v3/evenements)
 - [Validation](/guides/v3/validation)
 - [Working With Files](/guides/v3/files)
 - [Working With Strings](/guides/v3/strings)

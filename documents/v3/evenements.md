@@ -1,100 +1,100 @@
-# Events
+# Evénements
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Firing Events](#firing-events)
-- [Listening To Events](#listening-to-events)
-- [Queued Events](#queued-events)
-- [Laravel Events](#laravel-events)
+- [Les bases](#the-basics)
+- [Lancer un événement](#firing-events)
+- [Ecouter un événement](#listening-to-events)
+- [Queue d'événements](#queued-events)
+- [Les événements Laravel](#laravel-events)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Events can provide a great away to build de-coupled applications, and allow plug-ins to tap into the core of your application without modifying its code.
+Les événements peuvent fournir un bon moyen de construire une application découplée, et autoriser des plugins à intéragir avec le coeur de votre application, sans en modifier le code.
 
 <a name="firing-events"></a>
-## Firing Events
+## Lancer un événement
 
-To fire an event, just tell the **Event** class the name of the event you want to fire:
+Pour lancer un événement, dites juste à la méthode **fire** de la classe **Event** l'événement que vous souhaitez lancer :
 
-#### Firing an event:
+#### Lance un événement :
 
 	$responses = Event::fire('loaded');
 
-Notice that we assigned the result of the **fire** method to a variable. This method will return an array containing the responses of all the event's listeners.
+Remarquez que nous avons assigné le résultat de la méthode **fire** à une varabile. Cette méthode retournera un tableau qui contiendra les réponses de tous les "écouteurs" d'événements.
 
-Sometimes you may want to fire an event, but just get the first response. Here's how:
+Pour lancer un événement et obtenir uniquement la première réponse, il vous faudra utiliser ~~la force~~ la méthode **first** :
 
-#### Firing an event and retrieving the first response:
+#### Lancé un événement et obtient la première réponse :
 
 	$response = Event::first('loaded');
 
-> **Note:** The **first** method will still fire all of the handlers listening to the event, but will only return the first response.
+> **Note:** La méthode **first** va tout de même exécuter tous les "écoutera" qui gèrent cet événement, mais il retournera que la première réponse.
 
-The **Event::until** method will execute the event handlers until the first non-null response is returned.
+La méthode **Event::until** va exécuter tous les gestionnaires d'événements jusqu'à ce qu'une réponse différente de null lui est retournée.
 
-#### Firing an event until the first non-null response:
+#### Lance un événement jusqu'à une réponse différente de null :
 
 	$response = Event::until('loaded');
 
 <a name="listening-to-events"></a>
-## Listening To Events
+## Ecouter un événement
 
-So, what good are events if nobody is listening? Register an event handler that will be called when an event fires:
+A quoi bon lancer des événements si personne ne les écoute ? Enregistrer un écouteur d'événement  qui sera appellé quand un événement set déclenché :
 
-#### Registering an event handler:
+#### Enregistre un écouteur d'événement :
 
 	Event::listen('loaded', function()
 	{
 		// I'm executed on the "loaded" event!
 	});
 
-The Closure we provided to the method will be executed each time the "loaded" event is fired.
+La fonction anonyme fournie à la méthode sera exécuté cheque fois que l'événement "loader" sera lancé.
 
 <a name="queued-events"></a>
-## Queued Events
+## Queue d'événements
 
-Sometimes you may wish to "queue" an event for firing, but not fire it immediately. This is possible using the `queue` and `flush` methods. First, throw an event on a given queue with a unique identifier:
+Vous avez la possibilité avec Laravel de créer une queue, une salle d'attente d'événements, et de les lancer plus tard. Cela est possible grâce aux méthodes `queue` et `flush`. Premièrement, mettons un événement dans une queue avec un identifiant unique :
 
-#### Registering a queued event:
+#### Enregistrer une événement délayé :
 
 	Event::queue('foo', $user->id, array($user));
 
-This method accepts three parameters. The first is the name of the queue, the second is a unique identifier for this item on the queue, and the third is an array of data to pass to the queue flusher.
+Cette méthode accepte trois paramètres. Le premier est le nom de la queue, le second est un identifiant unique pour cet événement, et le troisième est un tableau avec les données à passer au videur de queue.
 
-Next, we'll register a flusher for the `foo` queue:
+Maintenant, enregistrer un déclencheur pour la queue `foo` :
 
-#### Registering an event flusher:
+#### Enregistre un videur de queue d'événements :
 
 	Event::flusher('foo', function($key, $user)
 	{
 		//
 	});
 
-Note that the event flusher receives two arguments. The first, is the unique identifier for the queued event, which in this case would be the user's ID. The second (and any remaining) parameters would be the payload items for the queued event.
+Notez que le videur de queue d'événements reçoit deux arguments. Le premier est l'identifiant unique de de l'événement en queue, qui dand notre cas sera l'identifiant de l'utilisateur. Le second ( et les suivant en général ) correspond à l'argument passé lors de l'enregistrement de l'événement dans la queue. 
 
-Finally, we can run our flusher and flush all queued events using the `flush` method:
+Pour finir, nous pouvons déclencher notre videur et lancer tous les événements grâce à la méthode `flush` :
 
 	Event::flush('foo');
 
 <a name="laravel-events"></a>
-## Laravel Events
+## Les événements Laravel
 
-There are several events that are fired by the Laravel core. Here they are:
+Il y a plusieurs événements qui sont lancé par le coeur du framework Laravel, les voici :
 
-#### Event fired when a bundle is started:
+#### Événement lancé quand un bundle est démarré :
 
 	Event::listen('laravel.started: bundle', function() {});
 
-#### Event fired when a database query is executed:
+#### Événement lancé quand une requête sur la base de donnée est exécutée :
 
 	Event::listen('laravel.query', function($sql, $bindings, $time) {});
 
-#### Event fired right before response is sent to browser:
+#### Événement lancé juste avant que la réponse ne soit envoyée au navigateur:
 
 	Event::listen('laravel.done', function($response) {});
 
-#### Event fired when a messaged is logged using the Log class:
+#### Événement lancé quand un message est loggué avec la classe Log:
 
 	Event::listen('laravel.log', function($type, $message) {});

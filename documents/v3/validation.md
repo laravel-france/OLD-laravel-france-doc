@@ -1,6 +1,6 @@
 # Validation
 
-## Contents
+## Au menu
 
 - [The Basics](#the-basics)
 - [Validation Rules](#validation-rules)
