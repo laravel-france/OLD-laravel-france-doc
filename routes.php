@@ -37,6 +37,31 @@ function document_exists($page)
 	return file_exists(doc_root().$page.'.md');
 }
 
+/**
+ * Get the title of the document
+ *
+ * @param string $document
+ * @return string
+ */
+function document_title($document)
+{
+    $result = array();
+    $string = " ".$document;
+    $offset = 0;
+    while(true)
+    {
+        $ini = strpos($string,'<h1>',$offset);
+        if ($ini == 0)
+            break;
+        $ini += strlen('<h1>');
+        $len = strpos($string,'</h1>',$ini) - $ini;
+        $result[] = substr($string,$ini,$len);
+        $offset = $ini+$len;
+    }
+    return (isset($result[0])) ? $result[0] : null;
+
+}
+
 
 /**
  * Handle the documentation homepage.
@@ -45,7 +70,14 @@ function document_exists($page)
  */
 Route::get('(:bundle)/(:any?)', function($version="v3")
 {
-	return View::make('guides::page')->with('content', document($version.DIRECTORY_SEPARATOR.'home'))->with('sidebar', document($version.DIRECTORY_SEPARATOR.'contents'));
+
+    $document = document($version.DIRECTORY_SEPARATOR.'home');
+    $title = document_title($document);
+       
+	return View::make('guides::page')
+        ->with('title', $title)
+        ->with('content', $document)
+        ->with('sidebar', document($version.DIRECTORY_SEPARATOR.'contents'));
 });
 
 /**
@@ -70,7 +102,14 @@ Route::get('(:bundle)/(:any)/(:any)/(:any?)', function($version, $section, $page
 
 	if (document_exists($file))
 	{
-		return View::make('guides::page')->with('content', document($file))->with('sidebar', document($version.'/contents'));
+
+        $document = document($file);
+        $title = document_title($document);
+
+		return View::make('guides::page')
+            ->with('title', $title)
+            ->with('content', $document)
+            ->with('sidebar', document($version.'/contents'));
 	}
 	else
 	{
