@@ -17,7 +17,7 @@ The Schema Builder provides methods for creating and modifying your database tab
 
 *Further Reading:*
 
-- [Migrations](/docs/database/migrations)
+- [Migrations](/guides/v3/database/migrations)
 
 <a name="creating-dropping-tables"></a>
 ## Creating & Dropping Tables

@@ -44,7 +44,7 @@ As you have probably noticed, each database connection defined in the **applicat
 
 	'default' => 'sqlite';
 
-The default connection will always be used by the [fluent query builder](/docs/database/fluent). If you need to change the default connection during a request, use the **Config::set** method.
+The default connection will always be used by the [fluent query builder](/guides/v3/database/fluent). If you need to change the default connection during a request, use the **Config::set** method.
 
 <a href="options"></a>
 ##Overwriting The Default PDO Options

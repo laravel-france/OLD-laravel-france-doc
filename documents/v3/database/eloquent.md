@@ -66,7 +66,7 @@ Need to retrieve an entire table? Just use the static **all** method:
 	     echo $user->email;
 	}
 
-Of course, retrieving an entire table isn't very helpful. Thankfully, **every method that is available through the fluent query builder is available in Eloquent**. Just begin querying your model with a static call to one of the [query builder](/docs/database/fluent) methods, and execute the query using the **get** or **first** method. The get method will return an array of models, while the first method will return a single model:
+Of course, retrieving an entire table isn't very helpful. Thankfully, **every method that is available through the fluent query builder is available in Eloquent**. Just begin querying your model with a static call to one of the [query builder](/guides/v3/database/fluent) methods, and execute the query using the **get** or **first** method. The get method will return an array of models, while the first method will return a single model:
 
 	$user = User::where('email', '=', $email)->first();
 
@@ -560,4 +560,4 @@ Because Eloquent inherits all the features and methods of Fluent queries, deleti
 
 	$author->delete();
 
-Note, however, than this won't delete any related models (e.g. all the author's Book models will still exist), unless you have set up [foreign keys](/docs/database/schema#foreign-keys) and cascading deletes.
+Note, however, than this won't delete any related models (e.g. all the author's Book models will still exist), unless you have set up [foreign keys](/guides/v3/database/schema#foreign-keys) and cascading deletes.

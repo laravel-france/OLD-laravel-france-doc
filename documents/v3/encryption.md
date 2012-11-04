@@ -1,30 +1,30 @@
-# Encryption
+# Chiffrement
 
 ## Au menu
 
 - [Les bases](#the-basics)
-- [Encrypting A String](#encrypt)
+- [Chiffrage d'une chaîne](#encrypt)
 - [Decrypting A String](#decrypt)
 
 <a name="the-basics"></a>
 ## Les bases
 
-Laravel's **Crypter** class provides a simple interface for handling secure, two-way encryption. By default, the Crypter class provides strong AES-256 encryption and decryption out of the box via the Mcrypt PHP extension.
+La classe **Crypter** de Laravel fournie une interface simple pour gérer du chiffrement sécurisé. Par défaut, la classe Crypter fournie la possibilité de chiffrer et déchiffrer des données avec AES-256 grâce à l'extension PHP mcrypt.
 
-> **Note:** Don't forget to install the Mcrypt PHP extension on your server.
+> **Note:** N'oubliez pas d'installer l'extension mcrypt sur votre serveur.
 
 <a name="encrypt"></a>
-## Encrypting A String
+## Chiffrage d'une chaîne
 
-#### Encrypting a given string:
+#### Chiffre une chaîne donnée :
 
 	$encrypted = Crypter::encrypt($value);
 
 <a name="decrypt"></a>
-## Decrypting A String
+## Déchiffrage d'une chaîne
 
-#### Decrypting a string:
+#### Déchiffre une chaîne donnée:
 
 	$decrypted = Crypter::decrypt($encrypted);
 
-> **Note:** It's incredibly important to point out that the decrypt method will only decrypt strings that were encrypted using **your** application key.
+> **Note:** Il est important de noter que cette méthode ne peut déchiffrer que des chaîne qui ont été chiffrées avec **votre** application key.

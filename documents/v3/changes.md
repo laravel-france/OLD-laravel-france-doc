@@ -165,13 +165,13 @@
 <a name="3.2"></a>
 ## Laravel 3.2
 
-- [Added `to_array` method to the base Eloquent model](/docs/database/eloquent#to-array).
-- [Added `$hidden` static variable to the base Eloquent model](/docs/database/eloquent#to-array).
-- [Added `sync` method to has\_many\_and\_belongs\_to Eloquent relationship](/docs/database/eloquent#sync-method).
-- [Added `save` method to has\_many Eloquent relationship](/docs/database/eloquent#has-many-save).
-- [Added `unless` structure to Blade template engine](/docs/views/templating#blade-unless).
-- [Added Blade comments](/docs/views/templating#blade-comments).
-- [Added simpler environment management](/docs/install#environments).
+- [Added `to_array` method to the base Eloquent model](/guides/v3/database/eloquent#to-array).
+- [Added `$hidden` static variable to the base Eloquent model](/guides/v3/database/eloquent#to-array).
+- [Added `sync` method to has\_many\_and\_belongs\_to Eloquent relationship](/guides/v3/database/eloquent#sync-method).
+- [Added `save` method to has\_many Eloquent relationship](/guides/v3/database/eloquent#has-many-save).
+- [Added `unless` structure to Blade template engine](/guides/v3/views/templating#blade-unless).
+- [Added Blade comments](/guides/v3/views/templating#blade-comments).
+- [Added simpler environment management](/guides/v3/install#environments).
 - Added `Blade::extend()` method to define custom blade compilers.
 - Added `View::exists` method.
 - Use [Memcached](http://php.net/manual/en/book.memcached.php) API instead of older [Memcache](http://php.net/manual/en/book.memcache.php) API.

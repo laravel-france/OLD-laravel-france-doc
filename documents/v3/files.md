@@ -1,92 +1,92 @@
-# Working With Files
+# Travail avec des fichiers
 
 ## Au menu
 
-- [Reading Files](#get)
-- [Writing Files](#put)
-- [Removing files](#delete)
-- [File Uploads](#upload)
-- [File Extensions](#ext)
-- [Checking File Types](#is)
-- [Getting MIME Types](#mime)
-- [Copying Directories](#cpdir)
-- [Removing Directories](#rmdir)
+- [Lecture](#get)
+- [Écriture](#put)
+- [Suppression](#delete)
+- [Upload d'un fichier](#upload)
+- [Extension d'un fichier](#ext)
+- [Vérifier ](#is)le type d'un fichier
+- [Obtention du type MIME](#mime)
+- [Copie de dossier](#cpdir)
+- [Suppression de dossier](#rmdir)
 
 <a name="get"></a>
-## Reading Files
+## Lecture
 
-#### Getting the contents of a file:
+#### Obtient le contenu d'un fichier :
 
-	$contents = File::get('path/to/file');
+	$contents = File::get('chemin/vers/fichier');
 
 <a name="put"></a>
-## Writing Files
+## Écriture
 
-#### Writing to a file:
+#### Ecrit dans un fichier :
 
-	File::put('path/to/file', 'file contents');
+	File::put('chemin/vers/fichier', 'contenu du fichier');
 
-#### Appending to a file:
+#### Ajout dans un fichier :
 
-	File::append('path/to/file', 'appended file content');
+	File::append('chemin/vers/fichier', 'ajout au fichier');
 
 <a name="delete"></a>
-## Removing Files
+## Suppression
 
-#### Deleting a single file:
+#### Supprime un fichier :
 
-	File::delete('path/to/file');
+	File::delete('chemin/vers/fichier');
 
 <a name="upload"></a>
-## File Uploads
+## Upload d'un fichier
 
-#### Moving a $_FILE to a permanent location:
+#### Déplace un fichier du tableau $_FILE vers un emplacement permanent :
 
-	Input::upload('picture', 'path/to/pictures', 'filename.ext');
+	Input::upload('picture', 'chemin/vers/img', 'fichier.ext');
 
-> **Note:** You can easily validate file uploads using the [Validator class](/docs/validation).
+> **Note:** Vous pouvez facilement valider l'image mise en ligne grâce à la [classe Validator](/guides/v3/validation).
 
 <a name="ext"></a>
-## File Extensions
+## Extension d'un fichier
 
-#### Getting the extension from a filename:
+#### Obtient l'extension d'un fichier :
 
 	File::extension('picture.png');
 
 <a name="is"></a>
-## Checking File Types
+## Vérifier le type d'un fichier
 
-#### Determining if a file is given type:
+#### Détermine si un fichier est du type donné :
 
-	if (File::is('jpg', 'path/to/file.jpg'))
+	if (File::is('jpg', 'chemin/vers/fichier.jpg'))
 	{
 		//
 	}
 
-The **is** method does not simply check the file extension. The Fileinfo PHP extension will be used to read the content of the file and determine the actual MIME type.
+La méthode **is** ne regarde pas uniquement l'extension. Elle vérifie aussi le type MIME grâce à l'extension Fileinfo de PHP.
 
-> **Note:** You may pass any of the extensions defined in the **application/config/mimes.php** file to the **is** method.
-> **Note:** The Fileinfo PHP extension is required for this functionality. More information can be found on the [PHP Fileinfo page](http://php.net/manual/en/book.fileinfo.php).
+> **Note:** Vous pouvez passer n'importe quelle extension définie dans le fichier **application/config/mimes.php** à la méthode **is**.
+> **Note:** L'extension PHP Fileinfo est requise pour cette fonctionnalité. Plus d'information sur la [page Fileinfo de PHP.net](http://php.net/manual/fr/book.fileinfo.php).
 
 <a name="mime"></a>
-## Getting MIME Types
+## Obtention du type MIME
 
-#### Getting the MIME type associated with an extension:
+#### Obtient le type MIME associé à une extension :
 
-	echo File::mime('gif'); // outputs 'image/gif'
+	echo File::mime('gif'); // retourne 'image/gif'
 
-> **Note:** This method simply returns the MIME type defined for the extension in the **application/config/mimes.php** file.
+> **Note:** Cette méthode retourne simplement le type MIME défini dans le fichier **application/config/mimes.php**.
 
 <a name="cpdir"></a>
-## Copying Directories
+## Copie de dossier
 
-#### Recursively copy a directory to a given location:
+#### Copie récursivement un dossier vers une emplacement donné :
 
-	File::cpdir($directory, $destination);
+	File::cpdir($dossier, $destination);
 
 <a name="rmdir"></a>
-## Removing Directories
+## Suppression de dossier
 
-#### Recursively delete a directory:
+#### Supprime récursivement un dossier :
 
-	File::rmdir($directory);
+	File::rmdir($dossier);

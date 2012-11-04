@@ -16,7 +16,7 @@
 
 This tutorial explains Les bases of contributing to a project on [GitHub](https://github.com/) via the command-line. The workflow can apply to most projects on GitHub, but in this case, we will be focused on the [Laravel](https://github.com/laravel/laravel) project. This tutorial is applicable to OSX, Linux and Windows.
 
-This tutorial assumes you have installed [Git](http://git-scm.com/) and you have created a [GitHub account](https://github.com/signup/free). If you haven't already, look at the [Laravel on GitHub](/docs/contrib/github) documentation in order to familiarize yourself with Laravel's repositories and branches.
+This tutorial assumes you have installed [Git](http://git-scm.com/) and you have created a [GitHub account](https://github.com/signup/free). If you haven't already, look at the [Laravel on GitHub](/guides/v3/contrib/github) documentation in order to familiarize yourself with Laravel's repositories and branches.
 
 <a name="forking-laravel"></a>
 ## Forking Laravel
@@ -53,7 +53,7 @@ Now you have a pristine clone of the Laravel repository along with your fork as 
 <a name="creating-branches"></a>
 ## Creating Branches
 
-First, make sure you are working in the **develop** branch. If you submit changes to the **master** branch, it is unlikely they will be pulled in anytime in the near future. For more information on this, read the documentation for [Laravel on GitHub](/docs/contrib/github). To switch to the develop branch:
+First, make sure you are working in the **develop** branch. If you submit changes to the **master** branch, it is unlikely they will be pulled in anytime in the near future. For more information on this, read the documentation for [Laravel on GitHub](/guides/v3/contrib/github). To switch to the develop branch:
 
 	# git checkout develop
 

@@ -55,4 +55,4 @@ Just want to execute commands on the default Redis server? You can just use stat
 
 	$values = Redis::lrange('names', 5, 10);
 
-> **Note:** Redis [cache](/docs/cache/config#redis) and [session](/docs/session/config#redis) drivers are included with Laravel.
+> **Note:** Redis [cache](/guides/v3/cache/config#redis) and [session](/guides/v3/session/config#redis) drivers are included with Laravel.

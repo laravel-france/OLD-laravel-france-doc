@@ -41,9 +41,9 @@ Les **Actions** sont le nom donnés aux méthode qui doivent être accessible vi
 
 Il est important de comprendre que dans Laravel, toutes les routes possibles doivent être définies, même les routes vers les contrôleurs.
 
-Cela signifie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas* accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
+Cela signifie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas** accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
 
-Regardez la [page sur le routage](/guides/routes#controller-routing) pour plus d'informations.
+Regardez la [page sur le routage](/guides/v3/routes#controller-routing) pour plus d'informations.
 
 <a name="bundle-controllers"></a>
 ## Contrôleurs de Bundle

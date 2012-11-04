@@ -1,21 +1,31 @@
-# Localization
+# Traduction & Localisation
 
 ## Au menu
 
 - [Les bases](#the-basics)
-- [Retrieving A Language Line](#get)
-- [Place Holders & Replacements](#replace)
+- [Retrouver une ligne de langue](#get)
+- [Utilisation de jokers](#replace)
 
 <a name="the-basics"></a>
 ## Les bases
 
-Localization is the process of translating your application into different languages. The **Lang** class provides a simple mechanism to help you organize and retrieve the text of your multilingual application.
+La localisation est le processus de traduction de votre application en différent langages. La classe **Lang** fournie un mécanisme simple pour vous aider à organiser et à retrouver le texte de votre application multilingue.
 
-All of the language files for your application live under the **application/language** directory. Within the **application/language** directory, you should create a directory for each language your application speaks. So, for example, if your application speaks English and Spanish, you might create **en** and **sp** directories under the **language** directory.
+Tous les fichiers de langues de votre application se trouvent dans le dossier **application/language**. Dans ce dossier **application/language**, vous devrez créer un dossier pour chaque langage que vous application supportera. Par exemple, si vous application supporte l'anglais et le français, vous devrez créer un dossier **en** et un dossier **sp**.
 
-Each language directory may contain many different language files. Each language file is simply an array of string values in that language. In fact, language files are structured identically to configuration files. For example, within the **application/language/en** directory, you could create a **marketing.php** file that looks like this:
+Laravel est fourni avec une liste relativement bien fournie de dossiers de langues, pour le supporte des messages d'erreurs.
 
-#### Creating a language file:
+Chaque dossier de langue peut contenir plusieurs fichiers de langues. Et dans chaque fichier se trouve un tableau de chaînes dans ce langage. En fait, les fichier de langues ont la même structure que les fichier de configurations. Par exemple dans le dossier **application/language/fr**, vous pourriez créer un fichier **marketing.php** qui ressemblerai à cela :
+
+#### Crée un fichier de langue :
+
+	return array(
+
+	     'welcome' => 'Bienvenu sur notre site !',
+
+	);
+
+Ensuite, vous créeriez un fichier **marketing.php** dans le dossier **application/language/en**. Il ressemblerai à cela :
 
 	return array(
 
@@ -23,48 +33,40 @@ Each language directory may contain many different language files. Each language
 
 	);
 
-Next, you should create a corresponding **marketing.php** file within the **application/language/sp** directory. The file would look something like this:
-
-	return array(
-
-	     'welcome' => 'Bienvenido a nuestro sitio web!',
-
-	);
-
-Nice! Now you know how to get started setting up your language files and directories. Let's keep localizing!
+Bien ! Maintenant vous êtes prêt pour commencer à mettre en place vos dossiers & fichiers de langue, continuons à "localiser" !
 
 <a name="get"></a>
-## Retrieving A Language Line
+## Retrouver une ligne de langue
 
-#### Retrieving a language line:
+#### Retrouve une ligne de langue:
 
 	echo Lang::line('marketing.welcome')->get();
 
-#### Retrieving a language line using the "__" helper:
+#### Retrouver une ligne de langue en utilisant l'helper "__" ( deux underscore ):
 
 	echo __('marketing.welcome');
 
-Notice how a dot was used to separate "marketing" and "welcome"? The text before the dot corresponds to the language file, while the text after the dot corresponds to a specific string within that file.
+Remarquez comment le point est utiliser pour séparer "marketing" et "welcome". Le texte avant le point correspond au fichier de langue, tandis que le texte après le point correspond à une clé inscrite de ce fichier.
 
-Need to retrieve the line in a language other than your default? Not a problem. Just mention the language to the **get** method:
+Pour obtenir une ligne dans un langage précis, passez l'abréviation de ce langage à la méthode `get` :
 
-#### Getting a language line in a given language:
+#### Obitent une ligne de langue dans un langage donné :
 
-	echo Lang::line('marketing.welcome')->get('sp');
+	echo Lang::line('marketing.welcome')->get('en');
 
 <a name="replace"></a>
-## Place Holders & Replacements
+## Utilisation de jokers
 
-Now, let's work on our welcome message. "Welcome to our website!" is a pretty generic message. It would be helpful to be able to specify the name of the person we are welcoming. But, creating a language line for each user of our application would be time-consuming and ridiculous. Thankfully, you don't have to. You can specify "place-holders" within your language lines. Place-holders are preceded by a colon:
+Maintenant, travaillons sur notre message de bienvenu. Ce dernier est très générique. Trop générique. Pourquoi ne pas placer le nom de l'utilisateur ci ce dernier est connécté ? Pour ce faire, nous pouvons placer un joker dans notre ligne de langue. Les jokers sont précédés par le caractère ':' :
 
-#### Creating a language line with place-holders:
+#### Crée une ligne de langage avec un joker :
 
-	'welcome' => 'Welcome to our website, :name!'
+	'welcome_connected' => 'Bienvenu sur notre site, :nom!'
 
-#### Retrieving a language line with replacements:
+#### Retrouve une ligne de langue avec une valeur :
 
-	echo Lang::line('marketing.welcome', array('name' => 'Taylor'))->get();
+	echo Lang::line('marketing.welcome_connected', array('nom' => 'Julien'))->get();
 
-#### Retrieving a language line with replacements using "__":
+#### Retrouve une ligne de langue avec une valeur en utilisant "__":
 
-	echo __('marketing.welcome', array('name' => 'Taylor'));
+	echo __('marketing.welcome', array('nom' => 'Julien'));

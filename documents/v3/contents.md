@@ -69,12 +69,12 @@
 - [Génération d'URLs](/guides/v3/urls)
 - [Evénements](/guides/v3/evenements)
 - [Validation](/guides/v3/validation)
-- [Working With Files](/guides/v3/files)
-- [Working With Strings](/guides/v3/strings)
-- [Localization](/guides/v3/localization)
-- [Encryption](/guides/v3/encryption)
-- [IoC Container](/guides/v3/ioc)
-- [Unit Testing](/guides/v3/testing)
+- [Travail avec des fichiers](/guides/v3/files)
+- [Travail avec des chaînes](/guides/v3/strings)
+- [Traduction & Localisation](/guides/v3/localization)
+- [Chiffrement](/guides/v3/encryption)
+- [IoC Container[en]](/guides/v3/ioc)
+- [Tests unitaires](/guides/v3/testing)
 
 ### Database
 
