@@ -2,55 +2,54 @@
 
 ## Au menu
 
-- [Quick Start Using SQLite](#quick)
-- [Configuring Other Databases](#server)
-- [Setting The Default Connection Name](#default)
-- [Overwriting The Default PDO Options](#options)
+- [Démarrage rapide avec SQLite](#quick)
+- [Configuration des autres types de base de données](#server)
+- [Définir le nom des connexions par défaut](#default)
+- [Surcharge des options PDO](#options)
 
-Laravel supports the following databases out of the box:
+Laravel supporte d'origine les bases de données suivantes :
 
 - MySQL
 - PostgreSQL
 - SQLite
 - SQL Server
 
-All of the database configuration options live in the **application/config/database.php** file.
+Toutes les options de configurations des bases de données se trouvent dans le fichier **application/config/database.php**.
 
 <a name="quick"></a>
-## Quick Start Using SQLite
+## Démarrage rapide avec SQLite
 
-[SQLite](http://sqlite.org) is an awesome, zero-configuration database system. By default, Laravel is configured to use a SQLite database. Really, you don't have to change anything. Just drop a SQLite database named **application.sqlite** into the **application/storage/database** directory. You're done.
+[SQLite](http://sqlite.org) est une base de donnée géniale, qui nécessite zéro configuration. Par défaut, Laravel est configuré pour utiliser MySQL. Pour passer à SQLite, changez l'option **default** et mettez : sqlite. Voilà c'est tout, vous n'avez rien d'autre à changer.
 
-Of course, if you want to name your database something besides "application", you can modify the database option in the SQLite section of the **application/config/database.php** file:
+Bien sur, si vous souhaitez que votre base de donnée ne s'appelle pas  "application", vous pouvez modifier l'option 'database' du fichier **application/config/database.php** :
 
 	'sqlite' => array(
 	     'driver'   => 'sqlite',
 	     'database' => 'your_database_name',
+         'prefix' => ''
 	)
 
-If your application receives less than 100,000 hits per day, SQLite should be suitable for production use in your application. Otherwise, consider using MySQL or PostgreSQL.
-
-> **Note:** Need a good SQLite manager? Check out this [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/).
+Si votre application reçoit moins de 100 000 hits par jour, SQLite est une bonne solution pour la production. Sinon, pensez à MySQL ou PostgreSQL.
 
 <a name="server"></a>
-## Configuring Other Databases
+## Configuration des autres types de base de données
 
-If you are using MySQL, SQL Server, or PostgreSQL, you will need to edit the configuration options in **application/config/database.php**. In the configuration file you can find sample configurations for each of these systems. Just change the options as necessary for your server and set the default connection name.
+Si vous utilisez MySQL, SQL Server, ou PostgreSQL, vous aurez besoin de modifier les options de configuration dans **application/config/database.php**. Dans le fichier de configuration, vous trouverez des exemples de configurations pour chacun de ces SGBDR. Changez simplement les options nécessaires pour votre serveur.
 
 <a name="default"></a>
-## Setting The Default Connection Name
+## Définir le nom des connexions par défaut
 
-As you have probably noticed, each database connection defined in the **application/config/database.php** file has a name. By default, there are three connections defined: **sqlite**, **mysql**, **sqlsrv**, and **pgsql**. You are free to change these connection names. The default connection can be specified via the **default** option:
+Comme vous avez pu le remarquer, chaque connexion définie dans le fichier **application/config/database.php** à un nom. Par défaut, il y a quates connexions définies : **sqlite**, **mysql**, **sqlsrv**, et **pgsql**. Vous êtes libre de changer ces noms de connexions. La connexion par défaut est spécifiée via l'option **default** :
 
-	'default' => 'sqlite';
+	'default' => 'sqlite'
 
-The default connection will always be used by the [fluent query builder](/guides/v3/database/fluent). If you need to change the default connection during a request, use the **Config::set** method.
+La connexion par défaut sera toujours utilisée par le [Fluent query builder](/guides/v3/database/fluent). Si vous devez changer la connexion par défaut pour une requête, utilisez la méthode `Config::set`.
 
 <a href="options"></a>
-##Overwriting The Default PDO Options
+## Surcharge des options PDO
 
-The PDO connector class (**laravel/database/connectors/connector.php**) has a set of default PDO attributes defined which can be overwritten in the options array for each system. For example, one of the default attributes is to force column names to lowercase (**PDO::CASE_LOWER**) even if they are defined in UPPERCASE or CamelCase in the table. Therefore, under the default attributes, query result object variables would only be accessible in lowercase.
-An example of the MySQL system settings with added default PDO attributes:
+La classe connector (**laravel/database/connectors/connector.php**) a un lot d'attributs PDO définis qui peuvent être surchargés dans le tableau de configuration de chaque système. Par exemple, l'un des attributs par défaut est de forcer le nom des colonnes en minuscule (**PDO::CASE_LOWER**) même si ils sont définis en majuscule ou en camelCase dans la table. Par conséquent, les variables des objets générés ne seront accessibles qu'en minuscule.
+Voici un exemple de configuration du système MySQL avec des attributs PDO ajoutés :
 
 	'mysql' => array(
 		'driver'   => 'mysql',
@@ -67,4 +66,4 @@ An example of the MySQL system settings with added default PDO attributes:
 		PDO::ATTR_EMULATE_PREPARES  => false,
 	),
 
-More about the PDO connection attributes can be found [in the PHP manual](http://php.net/manual/en/pdo.setattribute.php).
+Plus d'informations à propos des attributs de connection PDO peuvent être trouvés [dans le manuel PHP](http://php.net/manual/fr/pdo.setattribute.php).

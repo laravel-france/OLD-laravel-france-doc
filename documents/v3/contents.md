@@ -1,4 +1,4 @@
-### General
+### Général
 - [Accueil](/guides/v3/home)
 - [Installation](/guides/v3/installation)
 	- [Pré-requis](/guides/v3/installation#requirements)
@@ -76,10 +76,10 @@
 - [IoC Container[en]](/guides/v3/ioc)
 - [Tests unitaires](/guides/v3/testing)
 
-### Database
+### Base de données
 
 - [Configuration](/guides/v3/database/config)
-- [Raw Queries](/guides/v3/database/raw)
+- [Requêtes brutes](/guides/v3/database/raw)
 - [Fluent Query Builder](/guides/v3/database/fluent)
 - [Eloquent ORM](/guides/v3/database/eloquent)
 - [Schema Builder](/guides/v3/database/schema)
