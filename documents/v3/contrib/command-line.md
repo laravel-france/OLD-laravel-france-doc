@@ -1,6 +1,6 @@
 # Contributing to Laravel via Command-Line
 
-## Contents
+## Au menu
 
 - [Getting Started](#getting-started)
 - [Forking Laravel](#forking-laravel)
@@ -14,7 +14,7 @@
 <a name="getting-started"></a>
 ## Getting Started
 
-This tutorial explains the basics of contributing to a project on [GitHub](https://github.com/) via the command-line. The workflow can apply to most projects on GitHub, but in this case, we will be focused on the [Laravel](https://github.com/laravel/laravel) project. This tutorial is applicable to OSX, Linux and Windows.
+This tutorial explains Les bases of contributing to a project on [GitHub](https://github.com/) via the command-line. The workflow can apply to most projects on GitHub, but in this case, we will be focused on the [Laravel](https://github.com/laravel/laravel) project. This tutorial is applicable to OSX, Linux and Windows.
 
 This tutorial assumes you have installed [Git](http://git-scm.com/) and you have created a [GitHub account](https://github.com/signup/free). If you haven't already, look at the [Laravel on GitHub](/docs/contrib/github) documentation in order to familiarize yourself with Laravel's repositories and branches.
 

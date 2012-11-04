@@ -1,13 +1,13 @@
 # Raw Queries
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Other Query Methods](#other-query-methods)
 - [PDO Connections](#pdo-connections)
 
 <a name="the-bascis"></a>
-## The Basics
+## Les bases
 
 The **query** method is used to execute arbitrary, raw SQL against your database connection. 
 

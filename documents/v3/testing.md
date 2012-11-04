@@ -1,14 +1,14 @@
 # Unit Testing
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Creating Test Classes](#creating-test-classes)
 - [Running Tests](#running-tests)
 - [Calling Controllers From Tests](#calling-controllers-from-tests)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Unit Testing allows you to test your code and verify that it is working correctly. In fact, many advocate that you should even write your tests before you write your code! Laravel provides beautiful integration with the popular [PHPUnit](http://www.phpunit.de/manual/current/en/) testing library, making it easy to get started writing your tests. In fact, the Laravel framework itself has hundreds of unit tests!
 

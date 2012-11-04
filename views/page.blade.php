@@ -6,11 +6,16 @@
 
 @section('content')
     <div id="guides">
-        <article>
-    	   {{ $content }}
-        </article>
-        <aside id="menu">
+      <div class="row">
+        <div class="span3">
+          <div class="well">
             {{ $sidebar }}
-        </aside>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+            <article>
+               {{ $content }}
+            </article>
+        </div>
     </div>
 @endsection

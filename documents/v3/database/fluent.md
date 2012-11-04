@@ -1,8 +1,8 @@
 # Fluent Query Builder
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Retrieving Records](#get)
 - [Building Where Clauses](#where)
 - [Nested Where Clauses](#nested-where)
@@ -16,7 +16,7 @@
 - [Updating Records](#update)
 - [Deleting Records](#delete)
 
-## The Basics
+## Les bases
 
 The Fluent Query Builder is Laravel's powerful fluent interface for building SQL queries and working with your database. All queries use prepared statements and are protected against SQL injection.
 

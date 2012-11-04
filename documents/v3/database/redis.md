@@ -1,13 +1,13 @@
 # Redis
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Configuration](#config)
 - [Usage](#usage)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 [Redis](http://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 

@@ -1,13 +1,13 @@
 # Encryption
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Encrypting A String](#encrypt)
 - [Decrypting A String](#decrypt)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Laravel's **Crypter** class provides a simple interface for handling secure, two-way encryption. By default, the Crypter class provides strong AES-256 encryption and decryption out of the box via the Mcrypt PHP extension.
 

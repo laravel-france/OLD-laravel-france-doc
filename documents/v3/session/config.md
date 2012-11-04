@@ -1,8 +1,8 @@
 # Session Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Cookie Sessions](#cookie)
 - [File System Sessions](#file)
 - [Database Sessions](#database)
@@ -11,7 +11,7 @@
 - [In-Memory Sessions](#memory)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 The web is a stateless environment. This means that each request to your application is considered unrelated to any previous request. However, **sessions** allow you to store arbitrary data for each visitor to your application. The session data for each visitor is stored on your web server, while a cookie containing a **session ID** is stored on the visitor's machine. This cookie allows your application to "remember" the session for that user and retrieve their session data on subsequent requests to your application.
 

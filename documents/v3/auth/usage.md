@@ -1,6 +1,6 @@
 # Authentication Usage
 
-## Contents
+## Au menu
 
 - [Salting & Hashing](#hash)
 - [Logging In](#login)

@@ -1,6 +1,6 @@
 # Working With Strings
 
-## Contents
+## Au menu
 
 - [Capitalization, Etc.](#capitalization)
 - [Word & Character Limiting](#limits)

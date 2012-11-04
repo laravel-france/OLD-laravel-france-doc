@@ -1,6 +1,6 @@
 # Contributing to Laravel using TortoiseGit
 
-## Contents
+## Au menu
 
 - [Getting Started](#getting-started)
 - [Forking Laravel](#forking-laravel)
@@ -14,7 +14,7 @@
 <a name="getting-started"></a>
 ## Getting Started
 
-This tutorial explains the basics of contributing to a project on [GitHub](https://github.com/) using [TortoiseGit](http://code.google.com/p/tortoisegit/) for Windows. The workflow can apply to most projects on GitHub, but in this case, we will be focused on the [Laravel](https://github.com/laravel/laravel) project.
+This tutorial explains Les bases of contributing to a project on [GitHub](https://github.com/) using [TortoiseGit](http://code.google.com/p/tortoisegit/) for Windows. The workflow can apply to most projects on GitHub, but in this case, we will be focused on the [Laravel](https://github.com/laravel/laravel) project.
 
 This tutorial assumes you have installed TortoiseGit for Windows and you have created a GitHub account. If you haven't already, look at the [Laravel on GitHub](/docs/contrib/github) documentation in order to familiarize yourself with Laravel's repositories and branches.
 

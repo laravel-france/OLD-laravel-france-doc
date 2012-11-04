@@ -1,8 +1,8 @@
 # Eloquent ORM
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Conventions](#conventions)
 - [Retrieving Models](#get)
 - [Aggregates](#aggregates)
@@ -18,7 +18,7 @@
 - [Deleting Models](#delete)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 An ORM is an [object-relational mapper](http://en.wikipedia.org/wiki/Object-relational_mapping), and Laravel has one that you will absolutely love to use. It is named "Eloquent" because it allows you to work with your database objects and relationships using an eloquent and expressive syntax. In general, you will define one Eloquent model for each table in your database. To get started, let's define a simple model:
 

@@ -104,7 +104,7 @@
 ### Artisan CLI
 
 - [Tasks](/guides/v3/artisan/tasks)
-	- [The Basics](/guides/v3/artisan/tasks#the-basics)
+	- [Les bases](/guides/v3/artisan/tasks#the-basics)
 	- [Creating & Running Tasks](/guides/v3/artisan/tasks#creating-tasks)
 	- [Bundle Tasks](/guides/v3/artisan/tasks#bundle-tasks)
 	- [CLI Options](/guides/v3/artisan/tasks#cli-options)

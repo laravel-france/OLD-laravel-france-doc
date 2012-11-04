@@ -1,14 +1,14 @@
 # Tasks
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Creating & Running Tasks](#creating-tasks)
 - [Bundle Tasks](#bundle-tasks)
 - [CLI Options](#cli-options)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Laravel's command-line tool is called Artisan. Artisan can be used to run "tasks" such as migrations, cronjobs, unit-tests, or anything that want. 
 

@@ -1,6 +1,6 @@
 # Database Configuration
 
-## Contents
+## Au menu
 
 - [Quick Start Using SQLite](#quick)
 - [Configuring Other Databases](#server)

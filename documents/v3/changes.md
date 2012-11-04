@@ -1,6 +1,6 @@
 # Laravel Change Log
 
-## Contents
+## Au menu
 
 - [Laravel 3.2.10](#3.2.10)
 - [Upgrading From 3.2.9](#upgrade-3.2.10)

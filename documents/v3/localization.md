@@ -1,13 +1,13 @@
 # Localization
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Retrieving A Language Line](#get)
 - [Place Holders & Replacements](#replace)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Localization is the process of translating your application into different languages. The **Lang** class provides a simple mechanism to help you organize and retrieve the text of your multilingual application.
 

@@ -1,6 +1,6 @@
 # Working With Files
 
-## Contents
+## Au menu
 
 - [Reading Files](#get)
 - [Writing Files](#put)

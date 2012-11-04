@@ -2,7 +2,7 @@
 
 ## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Création de bundles](#creating-bundles)
 - [Enregistrement de bundles](#registering-bundles)
 - [Bundles & chargement de classes](#bundles-and-class-loading)
@@ -178,7 +178,7 @@ Mais, comment les rendre disponibles dans le dossier **public** de l'application
 
 Cette commande crée un dossier pour les assets du bundle dans le dossier **public/bundles** de l'application. Par exemple, si votre bundle s'appelle "admin", alors le dossier **public/bundles/admin** sera créé, et contiendra tous les fichiers du dossier public de votre bundle.
 
-Pour plus d'informations sur l'exploitation d'assets de bundle, référez vous à la documentation sur [le management d'assets](/docs/views/assets#bundle-assets).
+Pour plus d'informations sur l'exploitation d'assets de bundle, référez vous à la documentation sur [le management d'assets](/guides/v3/vues/assets#bundle-assets).
 
 <a name="installing-bundles"></a>
 ## Installation de bundles

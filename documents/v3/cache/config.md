@@ -1,8 +1,8 @@
 # Cache Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Database](#database)
 - [Memcached](#memcached)
 - [Redis](#redis)
@@ -10,7 +10,7 @@
 - [In-Memory Cache](#memory)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Imagine your application displays the ten most popular songs as voted on by your users. Do you really need to look up these ten songs every time someone visits your site? What if you could store them for 10 minutes, or even an hour, allowing you to dramatically speed up your application? Laravel's caching makes it simple.
 

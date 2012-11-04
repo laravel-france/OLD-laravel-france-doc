@@ -1,6 +1,6 @@
 # Artisan Commands
 
-## Contents
+## Au menu
 
 - [Help](#help)
 - [Application Configuration](#application-configuration)

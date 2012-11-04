@@ -1,14 +1,14 @@
 # Laravel on GitHub
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Repositories](#repositories)
 - [Branches](#branches)
 - [Pull Requests](#pull-requests)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Because Laravel's development and source control is done through GitHub, anyone is able to make contributions to it. Anyone can fix bugs, add features or improve the documentation.
 

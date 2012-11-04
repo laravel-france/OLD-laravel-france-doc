@@ -1,8 +1,8 @@
 # Schema Builder
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Creating & Dropping Tables](#creating-dropping-tables)
 - [Adding Columns](#adding-columns)
 - [Dropping Columns](#dropping-columns)
@@ -11,7 +11,7 @@
 - [Foreign Keys](#foreign-keys)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 The Schema Builder provides methods for creating and modifying your database tables. Using a fluent syntax, you can work with your tables without using any vendor specific SQL.
 
