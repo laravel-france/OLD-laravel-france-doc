@@ -1,6 +1,6 @@
 # Artisan Commands
 
-## Contents
+## Au menu
 
 - [Help](#help)
 - [Application Configuration](#application-configuration)
@@ -21,21 +21,21 @@ Description  | Command
 View a list of available artisan commands. | `php artisan help:commands`
 
 <a name="application-configuration"></a>
-## Application Configuration <small>[(More Information)](/docs/install#basic-configuration)</small>
+## Application Configuration <small>[(More Information)](/guides/v3/install#basic-configuration)</small>
 
 Description  | Command
 ------------- | -------------
 Generate a secure application key. An application key will not be generated unless the field in **config/application.php** is empty. | `php artisan key:generate`
 
 <a name="sessions"></a>
-## Database Sessions <small>[(More Information)](/docs/session/config#database)</small>
+## Database Sessions <small>[(More Information)](/guides/v3/session/config#database)</small>
 
 Description  | Command
 ------------- | -------------
 Create a session table  | `php artisan session:table`
 
 <a name="migrations"></a>
-## Migrations <small>[(More Information)](/docs/database/migrations)</small>
+## Migrations <small>[(More Information)](/guides/v3/database/migrations)</small>
 
 Description  | Command
 ------------- | -------------
@@ -49,7 +49,7 @@ Rolling back the last migration operation | `php artisan migrate:rollback`
 Roll back all migrations that have ever run  |  `php artisan migrate:reset`
 
 <a name="bundles"></a>
-## Bundles <small>[(More Information)](/docs/bundles)</small>
+## Bundles <small>[(More Information)](/guides/v3/bundles)</small>
 
 Description  | Command
 ------------- | -------------
@@ -63,7 +63,7 @@ Publish all bundles assets | `php artisan bundle:publish`
 > **Note:** After installing you need to [register the bundle](../bundles/#registering-bundles)
 
 <a name="tasks"></a>
-## Tasks <small>[(More Information)](/docs/artisan/tasks)</small>
+## Tasks <small>[(More Information)](/guides/v3/artisan/tasks)</small>
 
 Description  | Command
 ------------- | -------------
@@ -74,7 +74,7 @@ Running a task on a bundle | `php artisan admin::generate`
 Running a specific method on a bundle  |  `php artisan admin::generate:list`
 
 <a name="unit-tests"></a>
-## Unit Tests <small>[(More Information)](/docs/testing)</small>
+## Unit Tests <small>[(More Information)](/guides/v3/testing)</small>
 
 Description  | Command
 ------------- | -------------
@@ -82,7 +82,7 @@ Running the application tests  |  `php artisan test`
 Running the bundle tests  |  `php artisan test bundle-name`
 
 <a name="routing"></a>
-## Routing <small>[(More Information)](/docs/routing)</small>
+## Routing <small>[(More Information)](/guides/v3/routing)</small>
 
 Description  | Command
 ------------- | -------------

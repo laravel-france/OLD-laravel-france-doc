@@ -1,15 +1,15 @@
 # Migrations
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Prepping Your Database](#prepping-your-database)
 - [Creating Migrations](#creating-migrations)
 - [Running Migrations](#running-migrations)
 - [Rolling Back](#rolling-back)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Think of migrations as a type of version control for your database. Let's say your working on a team, and you all have local databases for development. Good ole' Eric makes a change to the database and checks in his code that uses the new column. You pull in the code, and your application breaks because you don't have the new column. What do you do? Migrations are the answer. Let's dig in deeper to find out how to use them!
 
@@ -41,7 +41,7 @@ You may also create migrations for a bundle.
 
 *Further Reading:*
 
-- [Schema Builder](/docs/database/schema)
+- [Schema Builder](/guides/v3/database/schema)
 
 <a name="running-migrations"></a>
 ## Running Migrations

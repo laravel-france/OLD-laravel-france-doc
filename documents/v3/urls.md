@@ -43,7 +43,7 @@ Vous devrez parfois fournir à une route des arguments, pour ce faire, passez le
 
 	$url = URL::to_route('profile', array($username));
 
-*Voir aussiF:*
+*Voir aussi:*
 
 - [Route nommées](/guides/v3/routes#named-routes)
 

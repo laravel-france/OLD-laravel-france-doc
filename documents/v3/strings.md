@@ -1,72 +1,74 @@
-# Working With Strings
+# Travailler sur des chaînes de caractères
 
-## Contents
+## Au menu
 
-- [Capitalization, Etc.](#capitalization)
-- [Word & Character Limiting](#limits)
-- [Generating Random Strings](#random)
-- [Singular & Plural](#singular-and-plural)
+- [Gestion de la casse](#capitalization)
+- [Limite de mots & des caractères](#limits)
+- [Génération de chaîne aléatoires](#random)
+- [Singulier & pluriel](#singular-and-plural)
 - [Slugs](#slugs)
 
 <a name="capitalization"></a>
-## Capitalization, Etc.
+## Gestion de la casse
 
-The **Str** class also provides three convenient methods for manipulating string capitalization: **upper**, **lower**, and **title**. These are more intelligent versions of the PHP [strtoupper](http://php.net/manual/en/function.strtoupper.php), [strtolower](http://php.net/manual/en/function.strtolower.php), and [ucwords](http://php.net/manual/en/function.ucwords.php) methods. More intelligent because they can handle UTF-8 input if the [multi-byte string](http://php.net/manual/en/book.mbstring.php) PHP extension is installed on your web server. To use them, just pass a string to the method:
+La classe **Str** fournie des raccourcis intelligents vers des fonctions PHP, afin de faciliter la mise en majuscule, minuscule, et en mode "titre" ( première lettres de chaque mots en majuscule ). Ces méthodes sont plus intelligentes que les fonctions [strtoupper](http://php.net/manual/fr/function.strtoupper.php), [strtolower](http://php.net/manual/fr/function.strtolower.php), et [ucwords](http://php.net/manual/fr/function.ucwords.php) car ils gèrent l'UTF-8 si l'extension [multi-byte string](http://php.net/manual/fr/book.mbstring.php) PHP est installée. Pour les utiliser, passez juste une chaîne aux méthodes :
 
-	echo Str::lower('I am a string.');
+	echo Str::lower('Je suis une chaîne.'); // je suis une chaîne
 
-	echo Str::upper('I am a string.');
+	echo Str::upper('I am a string.'); // JE SUIS UNE CHAÎNE
 
-	echo Str::title('I am a string.');
+	echo Str::title('I am a string.'); // Je Suis Une Chaîne
 
 <a name="limits"></a>
-## Word & Character Limiting
+## Limite de mots & des caractères
 
-#### Limiting the number of characters in a string:
+#### Limite le nombre de caractères dans un chaîne :
 
 	echo Str::limit($string, 10);
 	echo Str::limit_exact($string, 10);
 
-#### Limiting the number of words in a string:
+> **Note** : cette méthode reçoit un troisième argument, qui est une fin personnalisée. La valeur par défaut est "...". La différence entre limit et limit_exact est que `limit($string,10)` fera au total 13 caractères (avec les ...), tandis que `limit_exact($string, 10)` n'en fera que 10.
+
+#### Limite le nombre de mots dans un chaîne : 
 
 	echo Str::words($string, 10);
 
 <a name="random"></a>
-## Generating Random Strings
+## Génération de chaîne aléatoires
 
-#### Generating a random string of alpha-numeric characters:
+#### Génère une chaîne alpha-numerique :
 
 	echo Str::random(32);
 
-#### Generating a random string of alphabetic characters:
+#### Génère une chaîne avec uniquement des lettres :
 
 	echo Str::random(32, 'alpha');
 
 <a name="singular-and-plural"></a>
-## Singular & Plural
+## Singulier & pluriel
 
-The String class is capable of transforming your strings from singular to plural, and vice versa.
+La classe String est capable de transformer vos chaînes du singulier vers le pluriel, et vice versa.
 
-#### Getting the plural form of a word:
+#### Obtient le pluriel d'un mot :
 
 	echo Str::plural('user');
 
-#### Getting the singular form of a word:
+#### Obtient le singulier d'un mot :
 
 	echo Str::singular('users');
 
-#### Getting the plural form if given value is greater than one:
+#### Obtient le pluriel d'un mot si le second argument est plus grand que "un" :
 
 	echo Str::plural('comment', count($comments));
 
 <a name="slugs"></a>
 ## Slugs
 
-#### Generating a URL friendly slug:
+#### Génération d'un slug :
 
-	return Str::slug('My First Blog Post!');
+	return Str::slug('My First Blog Post!'); // my-first-blog-post
 
-#### Generating a URL friendly slug using a given separator:
+#### Génération d'un slug en utilisant un séparateur donné :
 
-	return Str::slug('My First Blog Post!', '_');
+	return Str::slug('My First Blog Post!', '_'); // my_first_blog_post
 

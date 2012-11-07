@@ -1,14 +1,14 @@
 # Laravel on GitHub
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Repositories](#repositories)
 - [Branches](#branches)
 - [Pull Requests](#pull-requests)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Because Laravel's development and source control is done through GitHub, anyone is able to make contributions to it. Anyone can fix bugs, add features or improve the documentation.
 
@@ -42,5 +42,5 @@ In order to keep the codebase clean, stable and at high quality, even with so ma
 
 *Further Reading*
 
- - [Contributing to Laravel via Command-Line](/docs/contrib/command-line)
- - [Contributing to Laravel using TortoiseGit](/docs/contrib/tortoisegit)
+ - [Contributing to Laravel via Command-Line](/guides/v3/contrib/command-line)
+ - [Contributing to Laravel using TortoiseGit](/guides/v3/contrib/tortoisegit)

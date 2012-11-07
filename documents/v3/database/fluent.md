@@ -1,86 +1,86 @@
 # Fluent Query Builder
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Retrieving Records](#get)
-- [Building Where Clauses](#where)
-- [Nested Where Clauses](#nested-where)
-- [Dynamic Where Clauses](#dynamic)
-- [Table Joins](#joins)
-- [Ordering Results](#ordering)
-- [Skip & Take](#limit)
-- [Aggregates](#aggregates)
-- [Expressions](#expressions)
-- [Inserting Records](#insert)
+- [Les bases](#the-basics)
+- [Récupération de données](#get)
+- [Clause WHERE](#where)
+- [Clauses WHERE imbriquées](#nested-where)
+- [Clauses WHERE dynamiques](#dynamic)
+- [Jointure](#joins)
+- [Tri du résultat](#ordering)
+- [Passer & prendre](#limit)
+- [Agrégats](#aggregates)
+- [Expressions brutes](#expressions)
+- [Insertion de lignes](#insert)
 - [Updating Records](#update)
-- [Deleting Records](#delete)
+- [Suppression d'enregistrements](#delete)
 
-## The Basics
+## Les bases
 
-The Fluent Query Builder is Laravel's powerful fluent interface for building SQL queries and working with your database. All queries use prepared statements and are protected against SQL injection.
+Fluent Query Builder est une [interface fluide](http://fr.wikipedia.org/wiki/D%C3%A9signation_cha%C3%AEn%C3%A9e) puissante de Laravel, qui permet de construire des requêtes SQL et de travailler avec votre base de données. Toutes les requêtes utilisent des déclarations préparées et sont protégées contre les injections SQL.
 
-You can begin a fluent query using the **table** method on the DB class. Just mention the table you wish to query:
+Vous pouvez commencer à utiliser une requête fluide en utilisant la méthode **table** de la classe DB. Mentionnez juste la table sur laquelle vous souhaitez faire vos requêtes :
 
 	$query = DB::table('users');
 
-You now have a fluent query builder for the "users" table. Using this query builder, you can retrieve, insert, update, or delete records from the table.
+Vous avez maintenant une constructeur de requête fluide pour la table "users". En utilisant ce constructeur de requête, vous pouvez récupérer, insérer, mettre à jour ou supprimer des entrées de la table.
 
 <a name="get"></a>
-## Retrieving Records
+## Récupération de données
 
-#### Retrieving an array of records from the database:
+#### Récupère un tableau d'entrées depuis la table :
 
 	$users = DB::table('users')->get();
 
-> **Note:** The **get** method returns an array of objects with properties corresponding to the column on the table.
+> **Note:** La méthode **get** retourne un tableau d'objets avec des propriétés correspondantes aux noms des colonnes de la table.
 
-#### Retrieving a single record from the database:
+#### Récupère une seule ligne de la table :
 
 	$user = DB::table('users')->first();
 	
-#### Retrieving a single record by its primary key:
+#### Récupère une seule ligne par sa clé primaire :
 
 	$user = DB::table('users')->find($id);
 
-> **Note:** If no results are found, the **first** method will return NULL. The **get** method will return an empty array.
+> **Note:** Si aucun résultat n'est trouvé, la méthode **first** renvoie NULL. La méthode **get** retournera un tableau vide.
 
-#### Retrieving the value of a single column from the database:
+#### Récupère la valeur d'une seule colonne de la table :
 
 	$email = DB::table('users')->where('id', '=', 1)->only('email');
 
-#### Only selecting certain columns from the database:
+#### Sélectionne uniquement certaines colonnes de la table :
 
 	$user = DB::table('users')->get(array('id', 'email as user_email'));
 
-#### Selecting distinct results from the database:
+#### Sélectionne les résultats distinct de la table :
 
 	$user = DB::table('users')->distinct()->get();
 
 <a name="where"></a>
-## Building Where Clauses
+## Clause WHERE
 
-### where and or\_where
+### where et or\_where
 
-There are a variety of methods to assist you in building where clauses. The most basic of these methods are the **where** and **or_where** methods. Here is how to use them:
+Il y a une variété de méthodes pour vous assister à construire votre clause WHERE. Les plus basiques sont les méthodes **where** et **or_where**. Voici comment les utiliser :
 
 	return DB::table('users')
 		->where('id', '=', 1)
 		->or_where('email', '=', 'example@gmail.com')
 		->first();
 
-Of course, you are not limited to simply checking equality. You may also use **greater-than**, **less-than**, **not-equal**, and **like**:
+Bien sur, vous n'êtes pas limité à une simple vérification d'égalité. Vous pouvez également utiliser **plus grand que**, **plus petit que**, **différent**, et **like**:
 
 	return DB::table('users')
 		->where('id', '>', 1)
 		->or_where('name', 'LIKE', '%Taylor%')
 		->first();
 
-As you may have assumed, the **where** method will add to the query using an AND condition, while the **or_where** method will use an OR condition.
+La méthode **where** est ajoutée à la requête avec un AND, tandis que la méthode **or_where** sera ajoutée avec un OR.
 
 ### where\_in, where\_not\_in, or\_where\_in, and or\_where\_not\_in
 
-The suite of **where_in** methods allows you to easily construct queries that search an array of values:
+La collection de méthodes **where_in** vous permet de construire facilement des requêtes qui doivent chercher un tableau de données :
 
 	DB::table('users')->where_in('id', array(1, 2, 3))->get();
 
@@ -98,7 +98,7 @@ The suite of **where_in** methods allows you to easily construct queries that se
 
 ### where\_null, where\_not\_null, or\_where\_null, and or\_where\_not\_null
 
-The suite of **where_null** methods makes checking for NULL values a piece of cake:
+La collection de méthodes **where_null** rendent la recherchent de valeur NULL vraiment facile :
 
 	return DB::table('users')->where_null('updated_at')->get();
 
@@ -115,9 +115,9 @@ The suite of **where_null** methods makes checking for NULL values a piece of ca
 		->get();
 
 <a name="nested-where"></a>
-## Nested Where Clauses
+## Clauses WHERE imbriquées
 
-You may discover the need to group portions of a WHERE clause within parentheses. Just pass a Closure as parameter to the **where** or **or_where** methods:
+Vous aurez parfois besoin de regrouper des portions d'une clause WHERE entre parenthèses. Passez une fonction anonyme en tant que paramètre aux méthodes **where** ou **or_where** :
 
 	$users = DB::table('users')
 		->where('id', '=', 1)
@@ -128,14 +128,14 @@ You may discover the need to group portions of a WHERE clause within parentheses
 		})
 		->get();
 
-The example above would generate a query that looks like:
+L'exemple ci dessus génère la requêtes suivante : :
 
 	SELECT * FROM "users" WHERE "id" = ? OR ("age" > ? AND "votes" > ?)
 
 <a name="dynamic"></a>
-## Dynamic Where Clauses
+## Clauses WHERE dynamiques
 
-Dynamic where methods are great way to increase the readability of your code. Here are some examples:
+les méthodes where dynamiques sont un bon moyen d'**améliorer considérablement la lisibilité de votre code**. Voici quelques exemples :
 
 	$user = DB::table('users')->where_email('example@gmail.com')->first();
 
@@ -145,23 +145,23 @@ Dynamic where methods are great way to increase the readability of your code. He
 
 
 <a name="joins"></a>
-## Table Joins
+## Jointure
 
-Need to join to another table? Try the **join** and **left\_join** methods:
+Besoin de joindre deux tables ? Essayez les méthodes **join** et **left\_join** :
 
 	DB::table('users')
 		->join('phone', 'users.id', '=', 'phone.user_id')
 		->get(array('users.email', 'phone.number'));
 
-The **table** you wish to join is passed as the first parameter. The remaining three parameters are used to construct the **ON** clause of the join.
+La **table** que vous souhaitez joindre est passé en tant que premier paramètre. les trois autres paramètres sont utilisés pour construire la clause ON de la jointure.
 
-Once you know how to use the join method, you know how to **left_join**. The method signatures are the same:
+Une fois que vous savez utiliser la méthode join, vous savez comment utiliser la méthode **left_join**. Cette méthode à la même signature que la précédente :
 
 	DB::table('users')
 		->left_join('phone', 'users.id', '=', 'phone.user_id')
 		->get(array('users.email', 'phone.number'));
 
-You may also specify multiple conditions for an **ON** clause by passing a Closure as the second parameter of the join:
+Vous pouvez spécifié plusieurs conditions de jointure pour la clause **ON** en passant une fonction anonyme en tant que second paramètre de la jointure :
 
 	DB::table('users')
 		->join('phone', function($join)
@@ -172,13 +172,13 @@ You may also specify multiple conditions for an **ON** clause by passing a Closu
 		->get(array('users.email', 'phone.number'));
 
 <a name="ordering"></a>
-## Ordering Results
+## Tri du résultat
 
-You can easily order the results of your query using the **order_by** method. Simply mention the column and direction (desc or asc) of the sort:
+Vous pouvez trier facilement les résultats en utilisant la méthode **order_by**. Mentionnez simplement la colonne et la direction (desc ou asc) :
 
 	return DB::table('users')->order_by('email', 'desc')->get();
 
-Of course, you may sort on as many columns as you wish:
+Bien sur, vous pouvez trier autant de colonnes que vous le souhaitez :
 
 	return DB::table('users')
 		->order_by('email', 'desc')
@@ -186,20 +186,20 @@ Of course, you may sort on as many columns as you wish:
 		->get();
 
 <a name="limit"></a>
-## Skip & Take
+## Passer & prendre
 
-If you would like to **LIMIT** the number of results returned by your query, you can use the **take** method:
+Si vous souhaitez limiter le nombre de résultats retournés par votre requête, utilisez la méthode **take** :
 
 	return DB::table('users')->take(10)->get();
 
-To set the **OFFSET** of your query, use the **skip** method:
+Pour placer un décalage sur les résultats de votre requête, utilisez la méthode **skip** :
 
 	return DB::table('users')->skip(10)->get();
 
 <a name="aggregates"></a>
-## Aggregates
+## Agrégats
 
-Need to get a **MIN**, **MAX**, **AVG**, **SUM**, or **COUNT** value? Just pass the column to the query:
+Besoin d'utiliser **MIN**, **MAX**, **AVG**, **SUM**, ou **COUNT** ? Passez le nom de la colonne à la requête :
 
 	$min = DB::table('users')->min('age');
 
@@ -211,60 +211,60 @@ Need to get a **MIN**, **MAX**, **AVG**, **SUM**, or **COUNT** value? Just pass 
 
 	$count = DB::table('users')->count();
 
-Of course, you may wish to limit the query using a WHERE clause first:
+Bien sur, vous pouvez limiter la requête en plaçant une clause WHERE d'abord :
 
 	$count = DB::table('users')->where('id', '>', 10)->count();
 
 <a name="expressions"></a>
-## Expressions
+## Expressions brutes
 
-Sometimes you may need to set the value of a column to a SQL function such as **NOW()**. Usually a reference to now() would automatically be quoted and escaped. To prevent this use the **raw** method on the **DB** class. Here's what it looks like:
+Vous pourez avoir besoin d'utiliser  des functions MySQL telle que **NOW()**. En écrivant simplement NOW() dans une méthode, des guillemets seraient placées autour et NOW() serait considéré comme une simple chaîne. Pour éviter cela, il faut utiliser la méthode **raw** de la classe **DB**. Voilà à quoi cela ressemble :
 
 	DB::table('users')->update(array('updated_at' => DB::raw('NOW()')));
 
-The **raw** method tells the query to inject the contents of the expression into the query as a string rather than a bound parameter. For example, you can also use expressions to increment column values:
+La méthode **raw** indique à la requête que le contenu de l'expression doit être inséré dans la requête en tant que tel, et non pas en tant que paramètre attaché. Vous pouvez utiliser cette méthode pour incrémenter un champ par exemple :
 
 	DB::table('users')->update(array('votes' => DB::raw('votes + 1')));
 
-Of course, convenient methods are provided for **increment** and **decrement**:
+Mais, sachez que le Fluent Query Builder de Laravel founrnit des méthodes **increment** et **decrement** :
 
 	DB::table('users')->increment('votes');
 
 	DB::table('users')->decrement('votes');
 
 <a name="insert"></a>
-## Inserting Records
+## Insertion de lignes
 
-The insert method expects an array of values to insert. The insert method will return true or false, indicating whether the query was successful:
+La méthode insert attend un tableau de donnée à insérer. Elle retourne true si l'insertion s'est bien déroulée, et false dans le cas contraire :
 
 	DB::table('users')->insert(array('email' => 'example@gmail.com'));
 
-Inserting a record that has an auto-incrementing ID? You can use the **insert\_get\_id** method to insert a record and retrieve the ID:
+Si vous inséré une ligne qui contient un ID qui s'auto-incrémente, vous pouvez utiliser la méthode **insert\_get\_id** pour insérer une entrée et récupérer l'ID de la ligne :
 
 	$id = DB::table('users')->insert_get_id(array('email' => 'example@gmail.com'));
 
-> **Note:** The **insert\_get\_id** method expects the name of the auto-incrementing column to be "id".
+> **Note:** La méthode **insert\_get\_id** nécessite que la colonne qui s'auto-incrémente soit nommée "id".
 
 <a name="update"></a>
-## Updating Records
+## Mise à jour d'enregistrements
 
-To update records simply pass an array of values to the **update** method:
+Pour mettre à jour des enregistrement, passez simplement une tableau de données à la méthode **update** :
 
 	$affected = DB::table('users')->update(array('email' => 'new_email@gmail.com'));
 
-Of course, when you only want to update a few records, you should add a WHERE clause before calling the update method:
+Bien sur, si vous souhaitez ne mettre à jour que quelques enregistrements, vous pouvez utiliser des clauses WHERE avant la méthode update :
 
 	$affected = DB::table('users')
 		->where('id', '=', 1)
 		->update(array('email' => 'new_email@gmail.com'));
 
 <a name="delete"></a>
-## Deleting Records
+## Suppression d'enregistrements
 
-When you want to delete records from your database, simply call the **delete** method:
+Quand vous souhaitez supprimer des données, utilisez la méthode **delete** :
 
 	$affected = DB::table('users')->where('id', '=', 1)->delete();
 
-Want to quickly delete a record by its ID? No problem. Just pass the ID into the delete method:
+Pour supprimer un enregistrement dont vous connaissez l'ID, passez ce dernier en tant qu'argument :
 
 	$affected = DB::table('users')->delete(1);

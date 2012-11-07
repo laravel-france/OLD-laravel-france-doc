@@ -2,30 +2,30 @@
 
 ## Au menu
 
-- [The Basics](#the-basics)
-- [Validation Rules](#validation-rules)
-- [Retrieving Error Message](#retrieving-error-messages)
-- [Validation Walkthrough](#validation-walkthrough)
-- [Custom Error Messages](#custom-error-messages)
-- [Custom Validation Rules](#custom-validation-rules)
+- [Les bases](#the-basics)
+- [Règles de validation](#validation-rules)
+- [Retrouver les messages d'erreurs](#retrieving-error-messages)
+- [Processus de validation](#validation-walkthrough)
+- [Message d'erreur personnalisé](#custom-error-messages)
+- [Règles de validations personnalisées](#custom-validation-rules)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Almost every interactive web application needs to validate data. For instance, a registration form probably requires the password to be confirmed. Maybe the e-mail address must be unique. Validating data can be a cumbersome process. Thankfully, it isn't in Laravel. The Validator class provides an awesome array of validation helpers to make validating your data a breeze. Let's walk through an example:
+Presque toutes les applications web interactives ont besoin de valider des données. Par exemple, pour l'enregistrement d'un utilisateur, vous devez vérifier que le mot de passe est bien confirmé, que l'adresse email doit être unique. Valider des données pour être un processus lourd. Heureusement, ce n'est pas le cas avec Laravel. La classe `Validator` fournie un tableau de validation génial, qui transforme la validation en un jeu d'enfant. Voyons cela en exemple :
 
-#### Get an array of data you want to validate:
+#### Obtient un tableau avec toutes les données que l'on souhaite valider :
 
 	$input = Input::all();
 
-#### Define the validation rules for your data:
+#### Définition  du tableau de validation :
 
 	$rules = array(
 		'name'  => 'required|max:50',
 		'email' => 'required|email|unique:users',
 	);
 
-#### Create a Validator instance and validate the data:
+#### Création d'un instance de Validator et validation des données :
 
 	$validation = Validator::make($input, $rules);
 
@@ -34,259 +34,257 @@ Almost every interactive web application needs to validate data. For instance, a
 		return $validation->errors;
 	}
 
-With the *errors* property, you can access a simple message collector class that makes working with your error messages a piece of cake. Of course, default error messages have been setup for all validation rules. The default messages live at **language/en/validation.php**.
+Avec la propriété *errors*, vous pouvez accéder simplement à une collection de la classe Message qui facilite le travail avec les messages d'erreurs. Bien sur, des messages d'erreurs par défaut existent pour les toutes les règles de validations existantes. Les messages par défaut se trouvent dans **language/fr/validation.php**.
 
-Now you are familiar with the basic usage of the Validator class. You're ready to dig in and learn about the rules you can use to validate your data!
+Maintenant que vous êtes familié avec l'utilisation basique de la classe Validator, nous pouvons creuser le sujet et en savoir plus à propos des règles de validation qui vous sont offertes par défaut avec Laravel
 
 <a name="validation-rules"></a>
-## Validation Rules
+## Règles de validation
 
-- [Required](#rule-required)
-- [Alpha, Alpha Numeric, & Alpha Dash](#rule-alpha)
-- [Size](#rule-size)
-- [Numeric](#rule-numeric)
+- [Requis](#rule-required)
+- [Alpha, alpha-numerique, & alpha-tiret](#rule-alpha)
+- [Taille](#rule-size)
+- [Nombres](#rule-numeric)
 - [Inclusion & Exclusion](#rule-in)
 - [Confirmation](#rule-confirmation)
-- [Acceptance](#rule-acceptance)
-- [Same & Different](#same-and-different)
-- [Regular Expression Match](#regex-match)
-- [Uniqueness & Existence](#rule-unique)
+- [Acceptation](#rule-acceptance)
+- [Identique & Différent](#same-and-different)
+- [Expressions régulières](#regex-match)
+- [Unicité et existence ](#rule-unique)
 - [Dates](#dates)
-- [E-Mail Addresses](#rule-email)
+- [Adresses E-Mail](#rule-email)
 - [URLs](#rule-url)
 - [Uploads](#rule-uploads)
 
 <a name="rule-required"></a>
-### Required
+### Requis
 
-#### Validate that an attribute is present and is not an empty string:
+#### Valide qu'un attribut est présent et n'est pas une chaîne vide :
 
 	'name' => 'required'
 
-#### Validate that an attribute is present, when another attribute is present:
+#### Valide qu'un attribut est présent, lorsqu'un autre attribut est présent :
 	'last_name' => 'required_with:first_name'
 
 <a name="rule-alpha"></a>
-### Alpha, Alpha Numeric, & Alpha Dash
+### Alpha, alpha-numerique, & alpha-tiret
 
-#### Validate that an attribute consists solely of letters:
+#### Valide qu'un attribut ne contient que des lettres :
 
 	'name' => 'alpha'
 
-#### Validate that an attribute consists of letters and numbers:
+#### Valide qu'un attribut ne contient que des chiffres et des lettres:
 
 	'username' => 'alpha_num'
 
-#### Validate that an attribute only contains letters, numbers, dashes, or underscores:
+#### Valide qu'un attribut ne contient que des chiffres, des lettres, des tirets et des underscore :
 
 	'username' => 'alpha_dash'
 
 <a name="rule-size"></a>
-### Size
+### Taille
 
-#### Validate that an attribute is a given length, or, if an attribute is numeric, is a given value:
+#### Valide qu'un attribut fait la longueur donnée, ou alors si c'est un chiffre qu'il soit de la valeur donnée :
 
 	'name' => 'size:10'
 
-#### Validate that an attribute size is within a given range:
+#### Valide que la taille d'un attribut soit dans cette plage :
 
 	'payment' => 'between:10,50'
 
-> **Note:** All minimum and maximum checks are inclusive.
+> **Note:** Tous les mins et les maxs sont inclusifs.
 
-#### Validate that an attribute is at least a given size:
+#### Valide qu'un attribut fasse au moins la taille donnée :
 
 	'payment' => 'min:10'
 
-#### Validate that an attribute is no greater than a given size:
+#### Valide qu'un attribut ne sont pas plus grand que la taille donnée :
 
 	'payment' => 'max:50'
 
 <a name="rule-numeric"></a>
-### Numeric
+### Nombres
 
-#### Validate that an attribute is numeric:
+#### Valide que c'est un nombre :
 
 	'payment' => 'numeric'
 
-#### Validate that an attribute is an integer:
+#### Valide que c'est un entier :
 
 	'payment' => 'integer'
 
 <a name="rule-in"></a>
 ### Inclusion & Exclusion
 
-#### Validate that an attribute is contained in a list of values:
+#### Valide qu'un attribut soit contenu dans la liste :
 
 	'size' => 'in:small,medium,large'
 
-#### Validate that an attribute is not contained in a list of values:
+#### Valide qu'un attribut ne soit pas dans la liste :
 
 	'language' => 'not_in:cobol,assembler'
 
 <a name="rule-confirmation"></a>
 ### Confirmation
 
-The *confirmed* rule validates that, for a given attribute, a matching *attribute_confirmation* attribute exists.
+La règle *confirmed* valide que pour un attribut donné (disons password) , un second attribut nommé *password_confirmation* existe.
 
-#### Validate that an attribute is confirmed:
+#### Valide que l'attribut est confirmé :
 
 	'password' => 'confirmed'
 
-Given this example, the Validator will make sure that the *password* attribute matches the *password_confirmation* attribute in the array being validated.
-
 <a name="rule-acceptance"></a>
-### Acceptance
+### Acceptation
 
-The *accepted* rule validates that an attribute is equal to *yes* or *1*. This rule is helpful for validating checkbox form fields such as "terms of service".
+La règle *accepted* valide qu'un attribut est égal à *yes* ou à *1*. Cette règle est utile pour valider les checkbox d'acceptation des "conditions générales d'utilisations" par exemple :
 
-#### Validate that an attribute is accepted:
+#### Valide qu'un attribut est accépté :
 
 	'terms' => 'accepted'
 
 <a name="same-and-different"></a>
-## Same & Different
+## Identique & Différent
 
-#### Validate that an attribute matches another attribute:
+#### Valide qu'un attribut soit identique à un autre :
 
 	'token1' => 'same:token2'
 
-#### Validate that two attributes have different values:
+#### Valide que deux attributs ont des valeurs différents :
 
 	'password' => 'different:old_password',
 
 <a name="regex-match"></a>
-### Regular Expression Match
+### Expressions régulières
 
-The *match* rule validates that an attribute matches a given regular expression.
+La règle *match* vérifie qu'un attribut correspond à l'expression régulière .
 
-#### Validate that an attribute matches a regular expression:
+#### Valide qu'un attribut correspond à l'expression régulière :
 
 	'username' => 'match:/[a-z]+/';
 
 <a name="rule-unique"></a>
-### Uniqueness & Existence
+### Unicité et existence
 
-#### Validate that an attribute is unique on a given database table:
+#### Valide qu'un attribut est unique dans la table de base de données donnée :
 
 	'email' => 'unique:users'
 
-In the example above, the *email* attribute will be checked for uniqueness on the *users* table. Need to verify uniqueness on a column name other than the attribute name? No problem:
+Dans l'exemple ci dessus, l'unicité de l'attribut email sera vérifié dans la table *users*.  Si le nombre de l'attribut ne correspond pas au nom de la colonne dans votre table, utilisez la syntaxe suivante :
 
-#### Specify a custom column name for the unique rule:
+#### Spécifie un nom de colonne personnalisé pour la règle d'unicité :
 
 	'email' => 'unique:users,email_address'
 
-Many times, when updating a record, you want to use the unique rule, but exclude the row being updated. For example, when updating a user's profile, you may allow them to change their e-mail address. But, when the *unique* rule runs, you want it to skip the given user since they may not have changed their address, thus causing the *unique* rule to fail. It's easy:
+Le cas de la mise à jour de données avec la règles d'unicité est particulier. En effet, si un utilisateur met à jour son profil, et ne change pas son adresse email, le système détectera celle ci comme un doublon, étant donné qu'elle se trouve déjà dans la base. Pour résoudre ce problème, indiqué à la règle l'ID que vous souhaitez ignoré.
 
-#### Forcing the unique rule to ignore a given ID:
+#### Force la règle 'unique' à ignoré l'ID donné :
 
 	'email' => 'unique:users,email_address,10'
 
-#### Validate that an attribute exists on a given database table:
+#### Valide qu'un attribut existe dans la table donnée :
 
 	'state' => 'exists:states'
 
-#### Specify a custom column name for the exists rule:
+#### Spécifie un nom de colonne personnalisé pour la règle 'exists':
 
 	'state' => 'exists:states,abbreviation'
 
 <a name="dates"></a>
 ### Dates
 
-#### Validate that a date attribute is before a given date:
+#### Valide qu'une date est avant une date donnée :
 
 	'birthdate' => 'before:1986-28-05';
 
-#### Validate that a date attribute is after a given date:
+#### Valide qu'une date est après une date donnée :
 
 	'birthdate' => 'after:1986-28-05';
 
-> **Note:** The **before** and **after** validation rules use the **strtotime** PHP function to convert your date to something the rule can understand.
+> **Note:** Les règles **before** et **after** utilisent la fonction PHP `strtotime` pour convertir votre date en en quelquechose de compréhensible pour la règle PHP function to convert your date to something the rule can understand.
 
 <a name="rule-email"></a>
-### E-Mail Addresses
+### Adresses E-Mail 
 
-#### Validate that an attribute is an e-mail address:
+#### Valide qu'un attribut soit une adresse email :
 
 	'address' => 'email'
 
-> **Note:** This rule uses the PHP built-in *filter_var* method.
+> **Note:** Cette règle utilise la fonction PHP `filter_var`.
 
 <a name="rule-url"></a>
 ### URLs
 
-#### Validate that an attribute is a URL:
+#### Valide qu'un attribut est une URL :
 
 	'link' => 'url'
 
-#### Validate that an attribute is an active URL:
+#### Valide qu'un attribut est une URL active :
 
 	'link' => 'active_url'
 
-> **Note:** The *active_url* rule uses *checkdnsr* to verify the URL is active.
+> **Note:** La règle *active_url* utilise la fonction `checkdnsr` pour vérifier que l'URL est active.
 
 <a name="rule-uploads"></a>
 ### Uploads
 
-The *mimes* rule validates that an uploaded file has a given MIME type. This rule uses the PHP Fileinfo extension to read the contents of the file and determine the actual MIME type. Any extension defined in the *config/mimes.php* file may be passed to this rule as a parameter:
+La règle *mimes* valide qu'un fichier uploadé à un MIME type donné. Cette règle utilise l'extension Fileinfo de PHP pour lire le contenu du fichier et déterminer le MIME type de ce dernier. N'importe quelle extension définie dans le fichier **config/mimes.php** peut être passée à cette règle en tant que paramètre :
 
-#### Validate that a file is one of the given types:
+#### Valide qu'un fichier est du type donné :
 
 	'picture' => 'mimes:jpg,gif'
 
-> **Note:** When validating files, be sure to use Input::file() or Input::all() to gather the input.
+> **Note:** Lorsque vous validez un fichier, soyez sur d'utiliser Input::file() ou Input::all() pour rassembler des données.
 
-#### Validate that a file is an image:
+#### Valide qu'un fichier est une image :
 
 	'picture' => 'image'
 
-#### Validate that a file is no more than a given size in kilobytes:
+#### Valide qu'un fichier est une image qui ne fait pas plus de 100 kilobytes:
 
 	'picture' => 'image|max:100'
 
 <a name="retrieving-error-messages"></a>
-## Retrieving Error Messages
+## Retrouver les messages d'erreurs
 
-Laravel makes working with your error messages a cinch using a simple error collector class. After calling the *passes* or *fails* method on a Validator instance, you may access the errors via the *errors* property. The error collector has several simple functions for retrieving your messages:
+Laravel rend le travail avec les messages d'erreur agréable en une classe de collection d'erreur simple. Après avoir appelé les méthodes `passes` ou `fails` sur une instance de Validator, vous pourrez accéder aux messages d'erreurs via la propriété  *errors*. Le collecteur d'erreur a plusieurs fonctions simples pour retrouver les messages d'erreurs :
 
-#### Determine if an attribute has an error message:
+#### Détermine si un attribut à un message d'erreur :
 
 	if ($validation->errors->has('email'))
 	{
-		// The e-mail attribute has errors...
+		// l'attribut email à des erreurs ...
 	}
 
-#### Retrieve the first error message for an attribute:
+#### Retrouve le premier message d'erreurs pour un attribut :
 
 	echo $validation->errors->first('email');
 
-Sometimes you may need to format the error message by wrapping it in HTML. No problem. Along with the :message place-holder, pass the format as the second parameter to the method.
+Parfois il est nécessaire de formater le message d'erreur en le plaçant dans du code HTML. Avec le joker :message, passez le format de votre message en second argument à la méthode .
 
-#### Format an error message:
+#### Formate un message d'erreur :
 
 	echo $validation->errors->first('email', '<p>:message</p>');
 
-#### Get all of the error messages for a given attribute:
+#### Retourne tous les messages d'erreur d'un attribut donné :
 
 	$messages = $validation->errors->get('email');
 
-#### Format all of the error messages for an attribute:
+#### Formate tous les messages d'erreurs d'un attribut donné :
 
 	$messages = $validation->errors->get('email', '<p>:message</p>');
 
-#### Get all of the error messages for all attributes:
+#### Retourne tous les messages d'erreurs pour tous les attributs :
 
 	$messages = $validation->errors->all();
 
-#### Format all of the error messages for all attributes:
+#### Formate tous les messages d'erreurs pour tous les attributs :
 
 	$messages = $validation->errors->all('<p>:message</p>');
 
 <a name="validation-walkthrough"></a>
-## Validation Walkthrough
+## Processus de validation
 
-Once you have performed your validation, you need an easy way to get the errors back to the view. Laravel makes it amazingly simple. Let's walk through a typical scenario. We'll define two routes:
+Une fois que vous avez réalisé votre validation, vous avez besoin d'un moyen simple de retourner les erreurs à la vue. Laravel rend cela incroyablement simple. Voyons un scénario typique, et commençons par définir les routes :
 
 	Route::get('register', function()
 	{
@@ -305,149 +303,148 @@ Once you have performed your validation, you need an easy way to get the errors 
 		}
 	});
 
-Great! So, we have two simple registration routes. One to handle displaying the form, and one to handle the posting of the form. In the POST route, we run some validation over the input. If the validation fails, we redirect back to the registration form and flash the validation errors to the session so they will be available for us to display.
+Bien, nous avons deux routes d'enregistrement simples : une pour afficher le formulaire, et une pour poster les données. Dans la route POST, nous exécutons quelques règles de validation sur les entrées. Si la validation échoue, nous redirigeons l'utilisateur vers le formulaire, et nous flashons les erreurs de validations dans la session, il seront donc disponible pour être affichés.
 
-**But, notice we are not explicitly binding the errors to the view in our GET route**. However, an errors variable ($errors) will still be available in the view. Laravel intelligently determines if errors exist in the session, and if they do, binds them to the view for you. If no errors exist in the session, an empty message container will still be bound to the view. In your views, this allows you to always assume you have a message container available via the errors variable. We love making your life easier.
+**Mais, remarquez que nous ne n'attachons à aucun moment les erreurs à la vue**. Cependant, une variable $errors sera disponible dans la vue. Laravel détermine intelligemment si une erreur existe dans la session, et si elle existe, elle sera automatiquement attaché à la vue pour vous. Si aucune erreur n'existe, la variable existera tout de même mais le conteneur sera vide. Cela nous permet de s'assurer que dans notre vue, une variable erreur existe quoi qu'il arrive. Nous aimons vous simplifier la vie !
 
-For example, if email address validation failed, we can look for 'email' within the $errors session var.
+Par exemple; si notre adresse email n'était pas valide, nous pouvons vérifié que le conteneur d'erreur à une erreur pour l'attribut 'email' :
 
 	$errors->has('email')
 
-Using Blade, we can then conditionally add error messages to our view.
+Avec Blade, nous pouvons alors afficher un message d'erreur de manière conditionnelle.
 
-	{{ $errors->has('email') ? 'Invalid Email Address' : 'Condition is false. Can be left blank' }}
+	{{ $errors->has('email') ? 'Adresse email invalide' : 'Pas d'erreur, nous devrions ne rien écrire ici' }}
 
-This will also work great when we need to conditionally add classes when using something like Twitter Bootstrap.
-For example, if the email address failed validation, we may want to add the "error" class from Bootstrap to our *div class="control-group"* statement.
+Ceci est également super quand nous avous besoin d'ajouter une classe lorsque nous utilisons par exemple Twitter Bootsrap : 
 
 	<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
 	
-When the validation fails, our rendered view will have the appended *error* class.
+Lorsque la validation échoue, le class *error* sera ajoutée au div :
 
 	<div class="control-group error">
 	
 
 
 <a name="custom-error-messages"></a>
-## Custom Error Messages
+## Messages d'erreur personnalisés
 
-Want to use an error message other than the default? Maybe you even want to use a custom error message for a given attribute and rule. Either way, the Validator class makes it easy.
+Vous ne souhaitez pas utiliser les messages d'erreur par défaut ? Peut-être que vous souhaitez utiliser un message d'erreur personnalisé pour un attribut et une règle précis. Avec ma classe Validator, c'est vraiment facile.
 
-#### Create an array of custom messages for the Validator:
+#### Crée un tableau avec un message d'erreur perso pour le validateur :
 
 	$messages = array(
-		'required' => 'The :attribute field is required.',
+		'required' => 'Le champ :attribute field est requis.',
 	);
 
 	$validation = Validator::make(Input::get(), $rules, $messages);
 
-Great! Now our custom message will be used anytime a required validation check fails. But, what is this **:attribute** stuff in our message? To make your life easier, the Validator class will replace the **:attribute** place-holder with the actual name of the attribute! It will even remove underscores from the attribute name.
+Maintenant notre message d'erreur sera utilisé lorsque la validation échouera . Pour rendre votre vie plus facile, la classe Validator remplacera le joker **:attribute** par le nom de l'attribut. Il supprimera même les underscores par des espaces.
 
-You may also use the **:other**, **:size**, **:min**, **:max**, and **:values** place-holders when constructing your error messages:
+Il existe d'autres joker : **:other**, **:size**, **:min**, **:max**, et **:values**. Voilà comment les utiliser :
 
 #### Other validation message place-holders:
 
 	$messages = array(
-		'same'    => 'The :attribute and :other must match.',
-		'size'    => 'The :attribute must be exactly :size.',
-		'between' => 'The :attribute must be between :min - :max.',
-		'in'      => 'The :attribute must be one of the following types: :values',
+		'same'    => 'Les attributs :attribute et :other doivent être identiques.',
+		'size'    => 'Le :attribute doit être exactement :size.',
+		'between' => 'Le :attribute doit être entre :min et :max.',
+		'in'      => 'Le :attribute doit avoir un des types suivants : :values',
 	);
 
-So, what if you need to specify a custom required message, but only for the email attribute? No problem. Just specify the message using an **attribute_rule** naming convention:
+Comment faire pour avoir un message d'erreur précis précis pour le faire que le champ email soit requis ? Ajoutez le message au tableau en utilisant la convention **nomDeLattribut_nomDeLaRegle** :
 
-#### Specifying a custom error message for a given attribute:
+#### Spécifie un message d'erreur personnalisé pour un attribut et une règle donnés :
 
 	$messages = array(
-		'email_required' => 'We need to know your e-mail address!',
+		'email_required' => 'Nous avons besoin de votre adresse email !',
 	);
 
-In the example above, the custom required message will be used for the email attribute, while the default message will be used for all other attributes.
+Dans l'exemple ci dessus, le message personnalisé sera utilisé pour l'attribut email, alors que tous les autres attributs auront la message par défaut.
 
-However, if you are using many custom error messages, specifying inline may become cumbersome and messy. For that reason, you can specify your custom messages in the **custom** array within the validation language file:
+Si vous allez utiliser une message d'erreur personnalisé dans plusieurs endroits de votre application, vous pouvez l'inséré dans l'élément **custom** du tableau se trouvant dans le fichier de de langue : 
 
-#### Adding custom error messages to the validation language file:
+#### Ajoute un message d'erreur personnalisé dans le fichier de langue :
 
 	'custom' => array(
-		'email_required' => 'We need to know your e-mail address!',
+		'email_required' => 'Nous avons besoin de votre adresse email !',
 	)
 
 <a name="custom-validation-rules"></a>
-## Custom Validation Rules
+## Règles de validation personnalisées
 
-Laravel provides a number of powerful validation rules. However, it's very likely that you'll need to eventually create some of your own. There are two simple methods for creating validation rules. Both are solid so use whichever you think best fits your project.
+Laravel fourni un grand nombre de règles puissantes, cependant il est fort probable que vous ayez besoin d'écrire des règles propres à votre application. Il y a deux méthodes simples pour créer des règles de validations. Les deux méthodes sont efficaces, utilisez donc celle qui est la plus appropriée pour votre projet.
 
-#### Registering a custom validation rule:
+#### Enregistre une règle de validation personnalisée :
 
-	Validator::register('awesome', function($attribute, $value, $parameters)
+	Validator::register('genial', function($attribute, $value, $parameters)
 	{
-	    return $value == 'awesome';
+	    return $value == 'génial';
 	});
 
-In this example we're registering a new validation rule with the validator. The rule receives three arguments. The first is the name of the attribute being validated, the second is the value of the attribute being validated, and the third is an array of parameters that were specified for the rule.
+Dans cet exemple, nous enregistrons une nouvelle règle de validation dans le Validator. La règle reçoit trois arguments : le premier est le nom de l'attribut qui est validé, le second est le valeur de l'attribut qui est validé, et le troisième est un tableau des paramètres passés à la règle.
 
-Here is how your custom validation rule looks when called:
+Vous utiliserez votre règle personnalisée comme n'importe quel autre règle : 
 
 	$rules = array(
     	'username' => 'required|awesome',
 	);
 
-Of course, you will need to define an error message for your new rule. You can do this either in an ad-hoc messages array:
+Et bien sur, vous devrez définir un message d'erreur par défaut pour votre règle. 
 
 	$messages = array(
-    	'awesome' => 'The attribute value must be awesome!',
+    	'awesome' => 'L\'attribut n'est pas génial !',
 	);
 
 	$validator = Validator::make(Input::get(), $rules, $messages);
 
-Or by adding an entry for your rule in the **language/en/validation.php** file:
+Ou en ajoutant votre entrée dans le fichier **language/LOCALE/validation.php** :
 
-	'awesome' => 'The attribute value must be awesome!',
+	'awesome' => 'L\'attribut n'est pas génial !',
 
-As mentioned above, you may even specify and receive a list of parameters in your custom rule:
+Comment mentionné ci dessus, vous pouvez recevoir une liste d'arguments :
 
-	// When building your rules array...
+	// Création du tableau de validation...
 
 	$rules = array(
 	    'username' => 'required|awesome:yes',
 	);
 
-	// In your custom rule...
+	// dans votre règle personnalisée...
 
 	Validator::register('awesome', function($attribute, $value, $parameters)
 	{
 	    return $value == $parameters[0];
 	});
 
-In this case, the parameters argument of your validation rule would receive an array containing one element: "yes".
+Dans ce cas, l'argument parameters de votre règle de validation contiendra un tableau avec un seul element : 'yes'.
 
-Another method for creating and storing custom validation rules is to extend the Validator class itself. By extending the class you create a new version of the validator that has all of the pre-existing functionality combined with your own custom additions. You can even choose to replace some of the default methods if you'd like. Let's look at an example:
+Une autre méthode pour créer un stocker des règles de validations personnalisées est d'hériter de la classe Validator. En héritant votre classe de la classe Validator, vous pourrez profiter de toutes les règles existantes, des votres, et vous pourrez même réécrire certaines règles ! Voyons cela ensemble : 
 
-First, create a class that extends **Laravel\Validator** and place it in your **application/libraries** directory:
+Premièrement, créez une classe qui hérite de **Laravel\Validator** et placez la dans votre dossier **application/libraries** :
 
-#### Defining a custom validator class:
+#### Definie une classe de validation personnalisée :
 
 	<?php
 
 	class Validator extends Laravel\Validator {}
 
-Next, remove the Validator alias from **config/application.php**. This is necessary so that you don't end up with 2 classes named "Validator" which will certainly conflict with one another.
+Ensuite, supprimez l'alias Validator de votre fichier **config/application.php**. Cela est necessaire pour ne pas avoir deux classes Validator dans votre espace de travail.
 
-Next, let's take our "awesome" rule and define it in our new class:
+Ensuite, insérons nous règle "genial" : 
 
-#### Adding a custom validation rule:
+#### Ajout d'une règle perso dans notre classe de validation :
 
 	<?php
 
 	class Validator extends Laravel\Validator {
 
-	    public function validate_awesome($attribute, $value, $parameters)
+	    public function validate_genial($attribute, $value, $parameters)
 	    {
-	        return $value == 'awesome';
+	        return $value == 'génial';
 	    }
 
 	}
 
-Notice that the method is named using the **validate_rule** naming convention. The rule is named "awesome" so the method must be named "validate_awesome". This is one way in which registering your custom rules and extending the Validator class are different. Validator classes simply need to return true or false. That's it!
+Remarquez que le nom de la règle respecte une convention : **validate_nomDeLaRegle**. Cette règle s'appelle "genial" alors la méthode doit s'appeler "validate_genial".
 
-Keep in mind that you'll still need to create a custom message for any validation rules that you create.  The method for doing so is the same no matter how you define your rule!
+Gardez en tête que dans ce cas précis, vous devez également écrire vos messages d'erreurs par défaut. La méthode pour le faire est la même, qu'importe où la règle est déclarée !

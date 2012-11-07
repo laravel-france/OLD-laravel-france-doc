@@ -1,8 +1,8 @@
 # Session Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Cookie Sessions](#cookie)
 - [File System Sessions](#file)
 - [Database Sessions](#database)
@@ -11,7 +11,7 @@
 - [In-Memory Sessions](#memory)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 The web is a stateless environment. This means that each request to your application is considered unrelated to any previous request. However, **sessions** allow you to store arbitrary data for each visitor to your application. The session data for each visitor is stored on your web server, while a cookie containing a **session ID** is stored on the visitor's machine. This cookie allows your application to "remember" the session for that user and retrieve their session data on subsequent requests to your application.
 
@@ -51,7 +51,7 @@ That's it. You're ready to go!
 <a name="database"></a>
 ## Database Sessions
 
-To start using database sessions, you will first need to [configure your database connection](/docs/database/config).
+To start using database sessions, you will first need to [configure your database connection](/guides/v3/database/config).
 
 Next, you will need to create a session table. Below are some SQL statements to help you get started. However, you may also use Laravel's "Artisan" command-line to generate the table for you!
 
@@ -87,7 +87,7 @@ All you need to do now is set the driver in the **application/config/session.php
 <a name="memcached"></a>
 ## Memcached Sessions
 
-Before using Memcached sessions, you must [configure your Memcached servers](/docs/database/config#memcached).
+Before using Memcached sessions, you must [configure your Memcached servers](/guides/v3/database/config#memcached).
 
 Just set the driver in the **application/config/session.php** file:
 
@@ -96,7 +96,7 @@ Just set the driver in the **application/config/session.php** file:
 <a name="redis"></a>
 ## Redis Sessions
 
-Before using Redis sessions, you must [configure your Redis servers](/docs/database/redis#config).
+Before using Redis sessions, you must [configure your Redis servers](/guides/v3/database/redis#config).
 
 Just set the driver in the **application/config/session.php** file:
 

@@ -1,21 +1,21 @@
-# Unit Testing
+# Tests unitaires
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Creating Test Classes](#creating-test-classes)
-- [Running Tests](#running-tests)
-- [Calling Controllers From Tests](#calling-controllers-from-tests)
+- [Les bases](#the-basics)
+- [Création d'une classe de tests](#creating-test-classes)
+- [Exécution de tests](#running-tests)
+- [Appel d'un contrôleur depuis un test](#calling-controllers-from-tests)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-Unit Testing allows you to test your code and verify that it is working correctly. In fact, many advocate that you should even write your tests before you write your code! Laravel provides beautiful integration with the popular [PHPUnit](http://www.phpunit.de/manual/current/en/) testing library, making it easy to get started writing your tests. In fact, the Laravel framework itself has hundreds of unit tests!
+Les tests unitaires servent à tester votre code et vérifier qu'il fonctionne correctement. En fait, certains affirment qu'il faut d'abord écrire les tests et ensuite écrire votre code, afin qu'il répond positivement aux tests. Laravel fournie une intégration de la bibliothèque la plus utilisé en PHP : [PHPUnit](http://www.phpunit.de/manual/current/fr/), ce qui rend facile le démarrage rapide de l'écriture test ! Le framework Laravel lui même à des centaines de tests unitaires.
 
 <a name="creating-test-classes"></a>
-## Creating Test Classes
+## Création d'une classe de tests
 
-All of your application's tests live in the **application/tests** directory. In this directory, you will find a basic **example.test.php** file. Pop it open and look at the class it contains:
+Tous les tests de notre application se trouverons dans le dossier **application/tests**. Dans ce dossier existe un fichier fourni de base avec Laravel : **example.test.php**. C'est un fichier de test très basique. Ouvrez le et observez son contenu :
 
 	<?php
 
@@ -33,36 +33,36 @@ All of your application's tests live in the **application/tests** directory. In 
 
 	}
 
-Take special note of the **.test.php** file suffix. This tells Laravel that it should include this class as a test case when running your test. Any files in the test directory that are not named with this suffix will not be considered a test case.
+Prenez note également que l'extension du fichier est **.test.php**. Cela indique à laravel que ce fichier doit être considéré comme un cas de test lorsque vous exécuterez vos tests. Les fichiers dans ce dossier qui ne finissent pas par .test.php ne seront pas considérés.
 
-If you are writing tests for a bundle, just place them in a **tests** directory within the bundle. Laravel will take care of the rest!
+Si vous écrivez des tests pour un bundle, alors placez le dans un dossier **tests** à la racine de votre bundle. Laravel va gérer le rester !
 
-For more information regarding creating test cases, check out the [PHPUnit documentation](http://www.phpunit.de/manual/current/en/).
+Pour plus d'informations concernant la création de cas de tests, lisez la [documentation de PHPUnit](http://www.phpunit.de/manual/current/fr/).
 
 <a name="running-tests"></a>
-## Running Tests
+## Exécution de tests
 
-To run your tests, you can use Laravel's Artisan command-line utility:
+Pour exécuter vos tests, vous pouvez utiliser Artisan :
 
-#### Running the application's tests via the Artisan CLI:
+#### Exécution des test de l'application via Artisan :
 
 	php artisan test
 
-#### Running the unit tests for a bundle:
+#### Exécution des test d'un bundle :
 
 	php artisan test bundle-name
 
 <a name="#calling-controllers-from-tests"></a>
-## Calling Controllers From Tests
+## Appel d'un contrôleur depuis un test
 
-Here's an example of how you can call your controllers from your tests:
+Voici un exemple qui illustre comment vous pouvez appeler vos contrôleurs depuis vos test :
 
-#### Calling a controller from a test:
+#### Appel d'un contrôleur depuis un test :
 
 	$response = Controller::call('home@index', $parameters);
 
-#### Resolving an instance of a controller from a test:
+#### Résolution d'une instance d'un contrôleur depuis un test :
 
 	$controller = Controller::resolve('application', 'home@index');
 
-> **Note:** The controller's action filters will still run when using Controller::call to execute controller actions.
+> **Note:** Les filtres d'action de votre contrôleur seront exécuté lorsque vous utilisez `Controller::call`.

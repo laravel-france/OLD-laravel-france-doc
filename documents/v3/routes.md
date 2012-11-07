@@ -108,7 +108,7 @@ Libre à vous de charger cela pour que cela corresponde à ce que vous désirez 
 
 *Voir aussi :*
 
-- *[Événements](/docs/evenements)*
+- *[Événements](/guides/v3/evenements)*
 
 <a name="filters"></a>
 ## Filtres

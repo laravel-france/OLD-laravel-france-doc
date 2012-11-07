@@ -1,6 +1,6 @@
 # Authentication Usage
 
-## Contents
+## Au menu
 
 - [Salting & Hashing](#hash)
 - [Logging In](#login)
@@ -9,7 +9,7 @@
 - [Logging Out](#logout)
 - [Writing Custom Drivers](#drivers)
 
-> **Note:** Before using the Auth class, you must [specify a session driver](/docs/session/config).
+> **Note:** Before using the Auth class, you must [specify a session driver](/guides/v3/session/config).
 
 <a name="hash"></a>
 ## Salting & Hashing
@@ -59,7 +59,7 @@ Use the **login** method to login a user without checking their credentials, suc
 <a name="filter"></a>
 ## Protecting Routes
 
-It is common to limit access to certain routes only to logged in users. In Laravel this is accomplished using the [auth filter](/docs/routing#filters). If the user is logged in, the request will proceed as normal; however, if the user is not logged in, they will be redirected to the "login" [named route](/docs/routing#named-routes).
+It is common to limit access to certain routes only to logged in users. In Laravel this is accomplished using the [auth filter](/guides/v3/routing#filters). If the user is logged in, the request will proceed as normal; however, if the user is not logged in, they will be redirected to the "login" [named route](/guides/v3/routing#named-routes).
 
 To protect a route, simply attach the **auth** filter:
 

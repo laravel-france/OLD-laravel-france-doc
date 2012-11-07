@@ -1,56 +1,56 @@
-# Raw Queries
+# Requêtes brutes
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Other Query Methods](#other-query-methods)
-- [PDO Connections](#pdo-connections)
+- [Les bases](#the-basics)
+- [Autres méthodes de requêtes](#other-query-methods)
+- [Utiliser directement PDO](#pdo-connections)
 
 <a name="the-bascis"></a>
-## The Basics
+## Les bases
 
-The **query** method is used to execute arbitrary, raw SQL against your database connection. 
+La méthode **query** est utilisée pour exécuter des des requêtes SQL brutes sur votre base de données. 
 
-#### Selecting records from the database:
+#### Sélection d'enregistrement depuis la base de donnée :
 
 	$users = DB::query('select * from users');
 
-#### Selecting records from the database using bindings:
+#### Sélection d'enregistrement depuis la base de donnée utilisant des paramètres :
 
 	$users = DB::query('select * from users where name = ?', array('test'));
 
-#### Inserting a record into the database
+#### Insertion d'une ligne dans la base 
 
 	$success = DB::query('insert into users values (?, ?)', $bindings);
 
-#### Updating table records and getting the number of affected rows:
+#### Mise à jour des enregistrements d'une table, et retour du nombres de lignes affectées :
 
 	$affected = DB::query('update users set name = ?', $bindings);
 
-#### Deleting from a table and getting the number of affected rows:
+#### Suppression de lignes d'une table et obtient le nombre de lignes supprimées :
 
 	$affected = DB::query('delete from users where id = ?', array(1));
 
 <a name="other-query-methods"></a>
-## Other Query Methods
+## Autres méthodes de requêtes
 
-Laravel provides a few other methods to make querying your database simple. Here's an overview:
+Larvel fournit quelques autres méthode pour rendre le requêtage plus simple :
 
-#### Running a SELECT query and returning the first result:
+#### Exécute une requête SELECT et obtient uniquement le premier résultat :
 
 	$user = DB::first('select * from users where id = 1');
 
-#### Running a SELECT query and getting the value of a single column:
+#### Exécute une requête et obtient la valeur d'une seule colonne :
 
 	$email = DB::only('select email from users where id = 1');
 
 <a name="pdo-connections"></a>
-## PDO Connections
+## Utiliser directement PDO 
 
-Sometimes you may wish to access the raw PDO connection behind the Laravel Connection object.
+Si vous souhaitez utiliser directement la connexion PDO, voici comment faire :
 
-#### Get the raw PDO connection for a database:
+#### Obtient la connexion PDO pour une base de données :
 
 	$pdo = DB::connection('sqlite')->pdo;
 
-> **Note:** If no connection name is specified, the **default** connection will be returned.
+> **Note:** Si aucun nom de connexion n'est spécifiée, alors la connexion **default** sera utilisée.

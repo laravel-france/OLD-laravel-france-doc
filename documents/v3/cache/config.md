@@ -1,8 +1,8 @@
 # Cache Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [Database](#database)
 - [Memcached](#memcached)
 - [Redis](#redis)
@@ -10,7 +10,7 @@
 - [In-Memory Cache](#memory)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Imagine your application displays the ten most popular songs as voted on by your users. Do you really need to look up these ten songs every time someone visits your site? What if you could store them for 10 minutes, or even an hour, allowing you to dramatically speed up your application? Laravel's caching makes it simple.
 
@@ -62,7 +62,7 @@ Then, add your Memcached servers to the **servers** array:
 
 [Redis](http://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
-Before using the Redis cache driver, you must [configure your Redis servers](/docs/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
+Before using the Redis cache driver, you must [configure your Redis servers](/guides/v3/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
 
 	'driver' => 'redis'
 

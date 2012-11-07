@@ -33,11 +33,11 @@ Si vous souhaitez déterminé si l'URI de la requête est une chaine de caractè
 		// The current URI is "home"!
 	}
 
-#### Determine si l'URI commence par "docs/" :
+#### Determine si l'URI commence par "guides/v3/" :
 
-	if URI::is('docs/*'))
+	if URI::is('guides/v3/*'))
 	{
-		// The current URI begins with "docs/"!
+		// The current URI begins with "guides/v3/"!
 	}
 
 <a name="other-request-helpers"></a>

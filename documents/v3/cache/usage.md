@@ -1,6 +1,6 @@
 # Cache Usage
 
-## Contents
+## Au menu
 
 - [Storing Items](#put)
 - [Retrieving Items](#get)

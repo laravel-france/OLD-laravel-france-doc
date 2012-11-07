@@ -1,15 +1,15 @@
 # Auth Configuration
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
+- [Les bases](#the-basics)
 - [The Authentication Driver](#driver)
 - [The Default "Username"](#username)
 - [Authentication Model](#model)
 - [Authentication Table](#table)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
 Most interactive applications have the ability for users to login and logout. Laravel provides a simple class to help you validate user credentials and retrieve information about the current user of your application.
 
