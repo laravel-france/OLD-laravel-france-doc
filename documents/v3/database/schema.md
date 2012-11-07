@@ -1,49 +1,49 @@
 # Schema Builder
 
-## Contents
+## Au menu
 
-- [The Basics](#the-basics)
-- [Creating & Dropping Tables](#creating-dropping-tables)
-- [Adding Columns](#adding-columns)
-- [Dropping Columns](#dropping-columns)
-- [Adding Indexes](#adding-indexes)
-- [Dropping Indexes](#dropping-indexes)
-- [Foreign Keys](#foreign-keys)
+- [Les bases](#the-basics)
+- [Création et suppression de tables](#creating-dropping-tables)
+- [Ajout de colonnes](#adding-columns)
+- [Suppression de colonnes](#dropping-columns)
+- [Ajout d'index](#adding-indexes)
+- [Suppression d'index](#dropping-indexes)
+- [Clé étrangère](#foreign-keys)
 
 <a name="the-basics"></a>
-## The Basics
+## Les bases
 
-The Schema Builder provides methods for creating and modifying your database tables. Using a fluent syntax, you can work with your tables without using any vendor specific SQL.
+Le Schema Builder fournit des méthodes pour créer et modifier les tables de votre base de données. En utilisant une syntaxe fluide, vous pouvez travailler sur vos tables sans savoir à utiliser la syntaxe SQL.
 
-*Further Reading:*
+*Voir aussi:*
 
-- [Migrations](/docs/database/migrations)
+- [Migrations](/guides/v3/database/migrations)
 
 <a name="creating-dropping-tables"></a>
-## Creating & Dropping Tables
+## Création & suppression de tables
 
-The **Schema** class is used to create and modify tables. Let's jump right into an example:
+La classe **Schema** est utilisée pour créer, modifier ou supprimer des tables. Voyons cela en exemple :
 
-#### Creating a simple database table:
+#### Création d'une simple table :
 
 	Schema::create('users', function($table)
 	{
 		$table->increments('id');
 	});
 
-Let's go over this example. The **create** method tells the Schema builder that this is a new table, so it should be created. In the second argument, we passed a Closure which receives a Table instance. Using this Table object, we can fluently add and drop columns and indexes on the table.
+Revenons sur cet exemple. La méthode **create** indique au schema builder que c'est une nouvelle table, et donc qu'elle doit être créée. Le second argument est une fonction anonyme, qui reçoit une instance de Table. En utilisant l'objet Table, nous pouvons enchainer l'ajout ou la suppression de colonnes et d'index sur cette table.
 
-#### Dropping a table from the database:
+#### Suppression d'une table :
 
 	Schema::drop('users');
 
-#### Dropping a table from a given database connection:
+#### Suppression d'une table depuis la base de donnée indiquée.
 
 	Schema::drop('users', 'connection_name');
 
-Sometimes you may need to specify the database connection on which the schema operation should be performed.
+Lors de la création vous pourriez avoir besoin de spécifié sur quelle base de données l'opération doit être effectuée.
 
-#### Specifying the connection to run the operation on:
+#### Spécifie sur quelle connexion travailler :
 
 	Schema::create('users', function($table)
 	{
@@ -51,31 +51,32 @@ Sometimes you may need to specify the database connection on which the schema op
 	});
 
 <a name="adding-columns"></a>
-## Adding Columns
+## Ajout de colonnes
 
-The fluent table builder's methods allow you to add columns without using vendor specific SQL. Let's go over it's methods:
+
+Les méthodes du constructeur de table fluide vous permettent d'ajouter des colonnes sans utiliser de syntaxe SQL particulière à un SGBDR :
 
 Command  | Description
 ------------- | -------------
-`$table->increments('id');`  |  Incrementing ID to the table
-`$table->string('email');`  |  VARCHAR equivalent column
-`$table->string('name', 100);`  |  VARCHAR equivalent with a length
-`$table->integer('votes');`  |  INTEGER equivalent to the table
-`$table->float('amount');`  |  FLOAT equivalent to the table
-`$table->decimal('amount', 5, 2);`  |  DECIMAL equivalent with a precision and scale
-`$table->boolean('confirmed');`  |  BOOLEAN equivalent to the table
-`$table->date('created_at');`  |  DATE equivalent to the table
-`$table->timestamp('added_on');`  |  TIMESTAMP equivalent to the table
-`$table->timestamps();`  |  Adds **created\_at** and **updated\_at** columns
-`$table->text('description');`  |  TEXT equivalent to the table
-`$table->blob('data');`  |  BLOB equivalent to the table
-`->nullable()`  |  Designate that the column allows NULL values
-`->default($value)`  |  Declare a default value for a column
-`->unsigned()`  |  Set INTEGER to UNSIGNED
+`$table->increments('id');`  |  ID incrémental
+`$table->string('email');`  |  colonne de type VARCHAR
+`$table->string('name', 100);`  |  colonne de type VARCHAR avec une taille
+`$table->integer('votes');`  |  colonne de type INTERGER
+`$table->float('amount');`  |  colonne de type FLOAT
+`$table->decimal('amount', 5, 2);`  |  colonne de type DECIMAL avec une précision et une échelle
+`$table->boolean('confirmed');`  |  colonne de type BOOLEAN
+`$table->date('created_at');`  |  colonne de type DATE
+`$table->timestamp('added_on');`  | colonne de type TIMESTAMP
+`$table->timestamps();`  |  Ajoute **created\_at** et **updated\_at** à la table ( type DATE )
+`$table->text('description');`  |  colonne de type TEXT
+`$table->blob('data');`  |  colonne de type BLOG
+`->nullable()`  |  colonne pouvant être nulles
+`->default($value)`  |  colonne ayant une valeur par défaut
+`->unsigned()`  |  Défini un INTEGER comme non signé
 
-> **Note:** Laravel's "boolean" type maps to a small integer column on all database systems.
+> **Note:** Laravel faire correspondre "boolean" avec le plus petit type d'entier disponible.
 
-#### Example of creating a table and adding columns
+#### Exemple de création de table avec ajout de colonnes
 
 	Schema::table('users', function($table)
 	{
@@ -89,65 +90,63 @@ Command  | Description
 	});
 
 <a name="dropping-columns"></a>
-## Dropping Columns
+## Suppression de colonnes
 
-#### Dropping a column from a database table:
+#### Supprime une colonne de la table:
 
 	$table->drop_column('name');
 
-#### Dropping several columns from a database table:
+#### Supprime plusieurs colonnes de la table:
 
 	$table->drop_column(array('name', 'email'));
 
 <a name="adding-indexes"></a>
-## Adding Indexes
+## Ajout d'index
 
-The Schema builder supports several types of indexes. There are two ways to add the indexes. Each type of index has its method; however, you can also fluently define an index on the same line as a column addition. Let's take a look:
+Le Schema builder supporte plusieurs type d'index. Il y a deux manières d'ajouter des index. Chaque type d'index à sa propre méthode, cependant vous pouvez aussi définir de manière fluide un index sur la même ligne que l'ajout de la colonne :
 
-#### Fluently creating a string column with an index:
+#### Crée de manière fluide une colonne avec un index:
 
 	$table->string('email')->unique();
 
-If defining the indexes on a separate line is more your style, here are example of using each of the index methods:
+Si vous préférez définir vos clés sur une ligne à part, alors voici comment faire :
 
 Command  | Description
 ------------- | -------------
-`$table->primary('id');`  |  Adding a primary key
-`$table->primary(array('fname', 'lname'));`  |  Adding composite keys
-`$table->unique('email');`  |  Adding a unique index
-`$table->fulltext('description');`  |  Adding a full-text index
-`$table->index('state');`  |  Adding a basic index
+`$table->primary('id');`  |  Ajoute une clé primaire
+`$table->primary(array('fname', 'lname'));`  |  Ajout une clé primaire sur plusieurs colonnes
+`$table->unique('email');`  |  Ajout un index d'unicité
+`$table->fulltext('description');`  |  ajoute un index full-text
+`$table->index('state');`  |  ajout un index basique
 
 <a name="dropping-indexes"></a>
-## Dropping Indexes
+## Suppression d'index :
 
-To drop indexes you must specify the index's name. Laravel assigns a reasonable name to all indexes. Simply concatenate the table name and the names of the columns in the index, then append the type of the index. Let's take a look at some examples:
+Pour supprimer un index, vous devez spécifié son nom. Laravel assigne un nom cohérent à tous les index. concaténez simplement le nom de la table, et le nom des colonnes, ensuite ajoutez le type d'index. 
 
 Command  | Description
 ------------- | -------------
-`$table->drop_primary('users_id_primary');`  |  Dropping a primary key from the "users" table
-`$table->drop_unique('users_email_unique');`  |  Dropping a unique index from the "users" table
-`$table->drop_fulltext('profile_description_fulltext');`  |  Dropping a full-text index from the "profile" table
-`$table->drop_index('geo_state_index');`  |  Dropping a basic index from the "geo" table
+`$table->drop_primary('users_id_primary');`  |  Supprime une clé primaire de la table users.
+`$table->drop_unique('users_email_unique');`  |  Supprime un index unique sur la tables users.
+`$table->drop_fulltext('profile_description_fulltext');`  |  Supprime un index full-text de la table profile.
+`$table->drop_index('geo_state_index');`  |  Supprime un index basique de la table geo.
 
 <a name="foreign-keys"></a>
-## Foreign Keys
+## Clé étrangère
 
-You may easily add foreign key constraints to your table using Schema's fluent interface. For example, let's assume you have a **user_id** on a **posts** table, which references the **id** column of the **users** table. Here's how to add a foreign key constraint for the column:
+Vous pouvez ajouter facilement des clés étrangères à vos tables en utilisant le Schema builder. Par exemple, disons que vous avez une colonne **user_id** sur une table **posts**, qui représente la colonne **id** de la table **users**. Voici comment ajouter une contrainte de clé étrangère pour la colonne :
 
 	$table->foreign('user_id')->references('id')->on('users');
 
-You may also specify options for the "on delete" and "on update" actions of the foreign key:
+Vous pouvez également spécifié des options pour le "on delete" et le "on update" à la clé étrangère :
 
-	$table->foreign('user_id')->references('id')->on('users')->on_delete('restrict');
+	$table->foreign('user_id')->references('id')->on('users')->on_delete('restrict')->on_update('cascade');
 
-	$table->foreign('user_id')->references('id')->on('users')->on_update('cascade');
-
-You may also easily drop a foreign key constraint. The default foreign key names follow the [same convention](#dropping-indexes) as the other indexes created by the Schema builder. Here's an example:
+Vous pouvez facilement supprimer une clé étrangère en utilisant [la même convention de nommage](#dropping-indexes) que pour les autres index :
 
 	$table->drop_foreign('posts_user_id_foreign');
 
-> **Note:** The field referenced in the foreign key is very likely an auto increment and therefore automatically an unsigned integer. Please make sure to create the foreign key field with **unsigned()** as both fields have to be the exact same type, the engine on both tables has to be set to **InnoDB**, and the referenced table must be created **before** the table with the foreign key.
+> **Note:** Le champ référencé dans la clé étrangère sera sûrement un champ de type entier non signé, avec un autoincrement. Veuillez vous assurer de créer le champ de la clé étrangère avec la méthode **unsigned()** état donné que les deux champs doivent être exactement du même type, et que le moteur utilisé soir InnoDB, car c'est le seul qui supporte correctement les clé étrangères :
 
 	$table->engine = 'InnoDB';
 
