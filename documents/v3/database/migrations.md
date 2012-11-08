@@ -3,70 +3,70 @@
 ## Au menu
 
 - [Les bases](#the-basics)
-- [Prepping Your Database](#prepping-your-database)
-- [Creating Migrations](#creating-migrations)
-- [Running Migrations](#running-migrations)
-- [Rolling Back](#rolling-back)
+- [Préparation de la base de données](#prepping-your-database)
+- [Créer une migration](#creating-migrations)
+- [Lancer une migration](#running-migrations)
+- [Marche arrière](#rolling-back)
 
 <a name="the-basics"></a>
 ## Les bases
 
-Think of migrations as a type of version control for your database. Let's say your working on a team, and you all have local databases for development. Good ole' Eric makes a change to the database and checks in his code that uses the new column. You pull in the code, and your application breaks because you don't have the new column. What do you do? Migrations are the answer. Let's dig in deeper to find out how to use them!
+Pensez aux migrations comme un type de contrôle de version pour votre base de données. Disons que vous travaillez en équipe, and que vous avez une base de donnée locale pour le développement. Votre pote Eric fait un changeement dnas la base de donnée et vérifie que son code utilise la colonne nouvellement créée. Vous récuperez le nouveau code source, et là rien ne marche, car vous n'avez pas la nouvelle colonne. Que faire ? Les migrations sont la solution. Creusons un peu le sujet pour comprendre comment les utiliser.
 
 <a name="prepping-your-database"></a>
-## Prepping Your Database
+## Préparation de la base de données
 
-Before you can run migrations, we need to do some work on your database. Laravel uses a special table to keep track of which migrations have already run. To create this table, just use the Artisan command-line:
+Avant d'utiliser les migrations, vous devez effectuer une opération. Laravel utilise une table spéciale pour garder une trace des migrations qui ont déjà été exécutées. Pour créer cette table, utilisez Artisan en ligne de commande :
 
-**Creating the Laravel migrations table:**
+** Crée la table de migration de Laravel : **
 
 	php artisan migrate:install
 
 <a name="creating-migrations"></a>
-## Creating Migrations
+## Créer une migration
 
-You can easily create migrations through Laravel's "Artisan" CLI. It looks like this:
+Vous pouvez facilement créer une des migrations avec Artisan. Une simple commande suffit :
 
-**Creating a migration**
+** Création d'une migration **
 
 	php artisan migrate:make create_users_table
 
-Now, check your **application/migrations** folder. You should see your brand new migration! Notice that it also contains a timestamp. This allows Laravel to run your migrations in the correct order.
+Maintenant, direction le dossier **application/migrations**. Vous trouverez notre nouveau fichier de migration ! Le nom de ce fichier contient un timestamp, cela permet à Laravel d'exécuter les fichiers dans l'ordre de création.
 
-You may also create migrations for a bundle. 
+Vous pouvez également créer des migrations pour un bundle : 
 
-**Creating a migration for a bundle:**
+** Crée une migration pour un bundle :**
 
 	php artisan migrate:make bundle::create_users_table
 
-*Further Reading:*
+*VOir aussi:*
 
 - [Schema Builder](/guides/v3/database/schema)
 
 <a name="running-migrations"></a>
-## Running Migrations
+## Lancer une migration
 
-**Running all outstanding migrations in application and bundles:**
+** Exécute toutes les migrations pour l'application et les bundles :**
 
 	php artisan migrate
 
-**Running all outstanding migrations in the application:**
+**Exécute toutes les migrations pour l'application :**
 
 	php artisan migrate application
 
-**Running all outstanding migrations in a bundle:**
+**Exécute toutes les migrations pour les bundles :**
 
 	php artisan migrate bundle
 
 <a name="rolling-back"></a>
-## Rolling Back
+## Marche arrière
 
-When you roll back a migration, Laravel rolls back the entire migration "operation". So, if the last migration command ran 122 migrations, all 122 migrations would be rolled back.
+Lorsque vous effectuez un retour en arrière, Laravel défait entièrement toute la dernière opération de migration. Donc si votre migration était en réalisé un lot de 122 migrations, les 122 seront défaites.
 
-**Rolling back the last migration operation:**
+** Annulation de la dernière migration :**
 
 	php artisan migrate:rollback
 
-**Roll back all migrations that have ever run:**
+** Annulation de toutes les migrations :**
 
 	php artisan migrate:reset
