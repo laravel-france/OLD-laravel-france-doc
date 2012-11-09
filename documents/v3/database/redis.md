@@ -4,38 +4,36 @@
 
 - [Les bases](#the-basics)
 - [Configuration](#config)
-- [Usage](#usage)
+- [Utilisation](#usage)
 
 <a name="the-basics"></a>
 ## Les bases
 
-[Redis](http://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets).
+[Redis](http://redis.io) est un stockage clé/value open-source avancé. Nous en parlons souvent comme un serveur de structure de données car les clés peuvent contenir des [strings](http://redis.io/topics/data-types#strings), des [hashes](http://redis.io/topics/data-types#hashes), [listes](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et des [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
 <a name="config"></a>
 ## Configuration
 
-The Redis configuration for your application lives in the **application/config/database.php** file. Within this file, you will see a **redis** array containing the Redis servers used by your application:
+La configuration de Redis pour votre application se fait dans le fichier **application/config/database.php**. Dans ce fichier, vous trouverez un tableau **redis** qui contient les serveurs Redis utilisés par votre application :
 
 	'redis' => array(
-
 		'default' => array('host' => '127.0.0.1', 'port' => 6379),
-
 	),
 
-The default server configuration should suffice for development. However, you are free to modify this array based on your environment. Simply give each Redis server a name, and specify the host and port used by the server.
+La configuration du serveur par défaut devrait suffire pour le développement. Cependant, vous êtes libre de modifier ce tableau selon votre environnement. Donnez simplement un nom à chaque serveur, précisez une adresse et un port.
 
 <a name="usage"></a>
-## Usage
+## Utilisation
 
-You may get a Redis instance by calling the **db** method on the **Redis** class:
+Vous recevrez une instance de Redis en appellant la méthode **db** de la classe **Redis** :
 
 	$redis = Redis::db();
 
-This will give you an instance of the **default** Redis server. You may pass the server name to the **db** method to get a specific server as defined in your Redis configuration:
+Cela vous donnera une instance du serveur Redis par **default** Redis server. Vous pouvez passer le nom du serveur à la méthode **db** pour obtenir une instance de Redis définie dans votre fichier de configuration :
 
 	$redis = Redis::db('redis_2');
 
-Great! Now that we have an instance of the Redis client, we may issue any of the [Redis commands](http://redis.io/commands) to the instance. Laravel uses magic methods to pass the commands to the Redis server:
+Bien ! Maintenant que nous avons une instance du client Redis, nous pouvons exécuter une [commande Redis](http://redis.io/commands). Laravel utilise des méthodes magiques pour passer les commandes au serveur :
 
 	$redis->set('name', 'Taylor');
 
@@ -43,11 +41,12 @@ Great! Now that we have an instance of the Redis client, we may issue any of the
 
 	$values = $redis->lrange('names', 5, 10);
 
-Notice the arguments to the command are simply passed into the magic method. Of course, you are not required to use the magic methods, you may also pass commands to the server using the **run** method:
+
+Les arguments de la commande sont simplement passés à la méthode magique. Vous pouvez ne pas utiliser les méthodes magiques, en utilisant la méthode **run** :
 
 	$values = $redis->run('lrange', array(5, 10));
 
-Just want to execute commands on the default Redis server? You can just use static magic methods on the Redis class:
+Vous souhaitez exécuter le plus simplement possible des commandes sur le serveur par défaut ? Vous pouvez utiliser simplement les méthodes magiques directement sur la classe **Redis** :
 
 	Redis::set('name', 'Taylor');
 
@@ -55,4 +54,4 @@ Just want to execute commands on the default Redis server? You can just use stat
 
 	$values = Redis::lrange('names', 5, 10);
 
-> **Note:** Redis [cache](/guides/v3/cache/config#redis) and [session](/guides/v3/session/config#redis) drivers are included with Laravel.
+> **Note:** Des drivers Redis pour le [cache](/guides/v3/cache/config#redis) and les [sessions](/guides/v3/session/config#redis) sont inclus avec Laravel.
