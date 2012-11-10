@@ -1,38 +1,38 @@
-# Session Usage
+# Utilisation des sessions
 
 ## Au menu
 
-- [Storing Items](#put)
-- [Retrieving Items](#get)
-- [Removing Items](#forget)
-- [Flashing Items](#flash)
-- [Regeneration](#regeneration)
+- [Stockage d'éléments](#put)
+- [Récupération d'éléments](#get)
+- [Suppression d'élément](#forget)
+- [Flashage d'élément](#flash)
+- [Régénération de l'ID de session](#regeneration)
 
 <a name="put"></a>
-## Storing Items
+## Stockage d'éléments
 
-To store items in the session call the put method on the Session class:
+Pour stocker des éléments dans la la session, utilisez la méthode **put** de la classe **Session** :
 
 	Session::put('name', 'Taylor');
 
-The first parameter is the **key** to the session item. You will use this key to retrieve the item from the session. The second parameter is the **value** of the item.
+le premier paramètre est la **clé** de l'élément de session. le second paramètre est la **valeur** associée à la clé.
 
 <a name="get"></a>
-## Retrieving Items
+## Récupération d'éléments
 
-You can use the **get** method on the Session class to retrieve any item in the session, including flash data. Just pass the key of the item you wish to retrieve:
+Vous pouvez utiliser la méthode **get** sur la classe Session pour récuperer un élément dans la session, incluant les données flashées. Passez ensuite la clé dont la valeur associée vous interesse :
 
 	$name = Session::get('name');
 
-By default, NULL will be returned if the session item does not exist. However, you may pass a default value as a second parameter to the get method:
+Par défaut, NULL sera retourné si l'élément n'existe pas dans la session. Pour définir en paramètre par défaut, passez en second argument un chaîne de caractère, ou alors une function anonyme :
 
 	$name = Session::get('name', 'Fred');
 
 	$name = Session::get('name', function() {return 'Fred';});
 
-Now, "Fred" will be returned if the "name" item does not exist in the session.
+Maintenant, "Fred" sera retourné si l'élément ayant pour clé "name" n'existe pas.
 
-Laravel even provides a simple way to determine if a session item exists using the **has** method:
+Laravel fournit une manière simple de savoir si un element existe en dessions avec sa méthode **has** :
 
 	if (Session::has('name'))
 	{
@@ -40,40 +40,40 @@ Laravel even provides a simple way to determine if a session item exists using t
 	}
 
 <a name="forget"></a>
-## Removing Items
+## Suppression d'élément
 
-To remove an item from the session use the **forget** method on the Session class:
+Pour supprimer un élément, utilisez la méthode **forget** :
 
 	Session::forget('name');
 
-You can even remove all of the items from the session using the **flush** method:
+Et pour les supprimer tous, la méthode **flush** est la méthode qu'il vous faut :
 
 	Session::flush();
 
 <a name="flash"></a>
-## Flashing Items
+## Flashage d'élément
 
-The **flash** method stores an item in the session that will expire after the next request. It's useful for storing temporary data like status or error messages:
+La méthode **flash** stocke un élément dans la session, qui expirera lors de la prochaine requête. C'est utile pour stocké des données temporaires, tel que des messages d'erreurs :
 
 	Session::flash('status', 'Welcome Back!');
 	
-Flash items that are expiring in subsequent requests can be retained for another request by using one of the **reflash** or **keep** methods:
+Les données flashées qui devraient être effacées lors de la requête en cours, peuvent être reflasher grâce à la méthode **reflash** pour tous les éléments, ou **keep** préciser les éléments à conserver :
 
-Retain all items for another request:
+#### Renouvelle le flash de toutes les données :
 
 	Session::reflash();
 	
-Retain an individual item for another request:
+#### Renouvelle un seul élément du flash :
 	
 	Session::keep('status');
 	
-Retain several items for another request:
+#### Renouvelle plusieurs éléments du flash :
 	
 	Session::keep(array('status', 'other_item'));
 
 <a name="regeneration"></a>
-## Regeneration
+## Régénération de l'ID de session 
 
-Sometimes you may want to "regenerate" the session ID. This simply means that a new, random session ID will be assigned to the session. Here's how to do it:
+Pour regénérer l'ID d'une session, utilisez simplement la méthode **regenerate**, et un nouvel ID de session aléatoire sera attribué à la session :
 
 	Session::regenerate();

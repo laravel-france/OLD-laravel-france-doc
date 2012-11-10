@@ -94,7 +94,7 @@
 ### Sessions
 
 - [Configuration](/guides/v3/session/config)
-- [Usage](/guides/v3/session/usage)
+- [Utilisation](/guides/v3/session/usage)
 
 ### Authentication
 

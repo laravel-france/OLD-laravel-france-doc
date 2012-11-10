@@ -1,59 +1,57 @@
-# Session Configuration
+# Configuration des sessions
 
 ## Au menu
 
 - [Les bases](#the-basics)
-- [Cookie Sessions](#cookie)
-- [File System Sessions](#file)
-- [Database Sessions](#database)
-- [Memcached Sessions](#memcached)
-- [Redis Sessions](#redis)
-- [In-Memory Sessions](#memory)
+- [Sessions en cookie](#cookie)
+- [Sessions dans le système de fichier](#file)
+- [Sessions en base de données](#database)
+- [Sessions avec Memcached](#memcached)
+- [Session avec Redis](#redis)
+- [Sessions en mémoire](#memory)
 
 <a name="the-basics"></a>
 ## Les bases
 
-The web is a stateless environment. This means that each request to your application is considered unrelated to any previous request. However, **sessions** allow you to store arbitrary data for each visitor to your application. The session data for each visitor is stored on your web server, while a cookie containing a **session ID** is stored on the visitor's machine. This cookie allows your application to "remember" the session for that user and retrieve their session data on subsequent requests to your application.
+Le web est un environnement sans état. Cela signifie que chaque requête sur votre application est considérée comme n'ayant aucun lien avec aucune autre requête. Cependant, les **sessions** permettent de conserver des données arbitraires pour chaque visiteur de votre application, tandis qu'un **cookie** contenant votre **ID de session** est stocké sur la machine du client. Ce cookie permet à l'application de se souvenir de la session d'un utilisateur et de retrouver ses données d'un requête à l'autre.
 
-> **Note:** Before using sessions, make sure an application key has been specified in the **application/config/application.php** file.
+> **Note:** Avant d'utiliser les sessions, soyez sur d'avoir configuré une clé d'application dans le fichier **application/config/application.php**.
 
-Six session drivers are available out of the box:
+Il existe six drivers fournis avec Laravel :
 
 - Cookie
-- File System
-- Database
+- Système de fichier
+- Base de données
 - Memcached
 - Redis
-- Memory (Arrays)
+- Mémoire (Tableau)
 
 <a name="cookie"></a>
-## Cookie Sessions
+## Sessions en cookie
 
-Cookie based sessions provide a light-weight and fast mechanism for storing session information. They are also secure. Each cookie is encrypted using strong AES-256 encryption. However, cookies have a four kilobyte storage limit, so you may wish to use another driver if you are storing a lot of data in the session.
+Les sessions en cookie fournissent un mechanisme de stockage de session simple et rapide. Ils sont sécurisés, car chaque cookie est chiffrer en utilisant AES-256. Le seul inconvéniant est que les cookie sont une capacité de stockage de qutre kilo octet, Si vous avez une grande quantité d'informations à stocker, vous devriez envisager une autre solution.
 
-To get started using cookie sessions, just set the driver option in the **application/config/session.php** file:
+Pour utiliser les cookies, parametrez simplement le driver à utiliser dans le fichier **application/config/session.php** :
 
 	'driver' => 'cookie'
 
 <a name="file"></a>
-## File System Sessions
+## Sessions dans le système de fichier
 
-Most likely, your application will work great using file system sessions. However, if your application receives heavy traffic or runs on a server farm, use database or Memcached sessions.
+Votre application tournera bien avec les cookies en fichier. Cependant, si votre application reçoit un lourd traffic ou tourne sur une batterie de serveurs, alors utilisez la base de donnée ou Memcached
 
-To get started using file system sessions, just set the driver option in the **application/config/session.php** file:
+Pour commencer à utiliser le système de fichier en tant que stockage de session, indiquez simplement le mot clé **file** dans l'option driver du fichier **application/config/session.php** :
 
 	'driver' => 'file'
 
-That's it. You're ready to go!
-
-> **Note:** File system sessions are stored in the **storage/sessions** directory, so make sure it's writeable.
+> **Note:** Les sessions en fichiers sont stockés dans le dossier **storage/sessions**, veuillez vous assurer qu'il est inscriptible.
 
 <a name="database"></a>
-## Database Sessions
+## Sessions en base de données
 
-To start using database sessions, you will first need to [configure your database connection](/guides/v3/database/config).
+Pour commencer, vous devrez [configurer votre connexion à la base de données](/guides/v3/database/config).
 
-Next, you will need to create a session table. Below are some SQL statements to help you get started. However, you may also use Laravel's "Artisan" command-line to generate the table for you!
+Ensuite, vous devrez créer une table session. Vous trouverez ci dessous la commande Artisan pour générer la table, et en tant qu'alternative les requpetes SQL pour SQLite et MySQL. Nous vous recommandons bien entendu d'utilier Artisan pour générer les tables à votre place !
 
 ### Artisan
 
@@ -76,33 +74,33 @@ Next, you will need to create a session table. Below are some SQL statements to 
 	     PRIMARY KEY (`id`)
 	);
 
-If you would like to use a different table name, simply change the **table** option in the **application/config/session.php** file:
+Si vous utilisez un nom de table différent, précisez le simplement dans l'option **table** du fichier **application/config/session.php** :
 
 	'table' => 'sessions'
 
-All you need to do now is set the driver in the **application/config/session.php** file:
+Dans ce même fichier, il ne vous reste qu'à passer l'option **driver** à **database** :
 
 	'driver' => 'database'
 
 <a name="memcached"></a>
-## Memcached Sessions
+## Sessions avec Memcached
 
-Before using Memcached sessions, you must [configure your Memcached servers](/guides/v3/database/config#memcached).
+Avant d'utiliser les sessions avec Memcached, vous devez [configurer votre serveur Memcached](/guides/v3/database/config#memcached).
 
-Just set the driver in the **application/config/session.php** file:
+Réglez simplement le driver dans le fichier **application/config/session.php** :
 
 	'driver' => 'memcached'
 
 <a name="redis"></a>
-## Redis Sessions
+## Sessions avec Redis
 
-Before using Redis sessions, you must [configure your Redis servers](/guides/v3/database/redis#config).
+Avant d'utiliser les sessions avec Redis, vous devez [configurer votre serveur Redis](/guides/v3/database/redis#config).
 
-Just set the driver in the **application/config/session.php** file:
+Réglez simplement le driver dans le fichier **application/config/session.php** :
 
 	'driver' => 'redis'
 
 <a name="memory"></a>
-## In-Memory Sessions
+## Sessions en mémoire
 
-The "memory" session driver just uses a simple array to store your session data for the current request. This driver is perfect for unit testing your application since nothing is written to disk. It shouldn't ever be used as a "real" session driver.
+Le driver de session "memory" utilise simplement un tableau en mémoire pour stocker votre données de sessions pour la requête courrante. Ce driver est parfait pour les tests unitaires, mais ne devrait jamais être utilisé en tant que vrai driver de session.
