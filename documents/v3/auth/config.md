@@ -1,38 +1,38 @@
-# Auth Configuration
+# Configuration de l'authentification
 
 ## Au menu
 
 - [Les bases](#the-basics)
-- [The Authentication Driver](#driver)
-- [The Default "Username"](#username)
-- [Authentication Model](#model)
-- [Authentication Table](#table)
+- [Le driver d'authentification](#driver)
+- [Le champ de login](#username)
+- [Modèle d'Table d'authentification](#model)
+- [Table d'Table d'authentification](#table)
 
 <a name="the-basics"></a>
 ## Les bases
 
-Most interactive applications have the ability for users to login and logout. Laravel provides a simple class to help you validate user credentials and retrieve information about the current user of your application.
+La plupart des applications interactives permettent aux utilisateurs de se connecter et de se déconnecter. Laravel fournit une classe simple pour vous aider à valider les information d'authentification de l'utilisateur et retrouver ses informations dans la base de donnée.
 
-To get started, let's look over the **application/config/auth.php** file. The authentication configuration contains some basic options to help you get started with authentication.
+Pour commencer, regardons le fichier **application/config/auth.php**. La configuration de l'authentification contient quelques options basiques pour vous aider à commencer avec l'authentification.
 
 <a name="driver"></a>
-## The Authentication Driver
+## Le driver d'Table d'authentification
 
-Laravel's authentication is driver based, meaning the responsibility for retrieving users during authentication is delegated to various "drivers". Two are included out of the box: Eloquent and Fluent, but you are free to write your own drivers if needed!
+La table d'authentification de Laravel est basé sur des drivers, cela signifie que la responsabilité de retrouver l'utilisateur qui tente de se connecter est de la responsabilité de divers drivers. Deux sont inclus avec Laravel : Eloquent et Fluent, mais libre à vous d'écrire le votre si vous le souhaitez !
 
-The **Eloquent** driver uses the Eloquent ORM to load the users of your application, and is the default authentication driver. The **Fluent** driver uses the fluent query builder to load your users.
+Le driver **Eloquent** utilise l'ORM Eloquent pour charger l'utilisateur de l'application, et est le driver par défaut dans Laravel. Le driver **Fluent** utilise *fluent query builder* pour charger les utilisateurs.
 
 <a name="username"></a>
-## The Default "Username"
+## Le champ de login
 
-The second option in the configuration file determines the default "username" of your users. This will typically correspond to a database column in your "users" table, and will usually be "email" or "username".
+La seconde option dans le fichier de configuration détermine quel champ de dans votre table en base de donnée doit être utilisé en tant que "login". Cela sera souvent un champ du type "email" ou "username" ou encore "login" dans votre table "users".
 
 <a name="model"></a>
-## Authentication Model
+## Modèle d'Table d'authentification
 
-When using the **Eloquent** authentication driver, this option determines the Eloquent model that should be used when loading users.
+Si vous utilisez le driver **Eloquent**, cette option détermine quel modèle doit être utilisé pour charger les utilisateurs.
 
 <a name="table"></a>
-## Authentication Table
+## Table d'Table d'authentification
 
-When using the **Fluent** authentication drivers, this option determines the database table containing the users of your application.
+Lorsque vous utilisez le driver **Fluent**, cela détermine quelle table contient vos utilisateurs.

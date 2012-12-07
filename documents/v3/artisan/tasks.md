@@ -3,52 +3,52 @@
 ## Au menu
 
 - [Les bases](#the-basics)
-- [Creating & Running Tasks](#creating-tasks)
-- [Bundle Tasks](#bundle-tasks)
-- [CLI Options](#cli-options)
+- [Création et exécution de tâches](#creating-tasks)
+- [Tâches de bundles](#bundle-tasks)
+- [Options de la ligne de commandes](#cli-options)
 
 <a name="the-basics"></a>
 ## Les bases
 
-Laravel's command-line tool is called Artisan. Artisan can be used to run "tasks" such as migrations, cronjobs, unit-tests, or anything that want. 
+L'outil en ligne de commande de Laravel s'appelle Artistan. Artistan peut être utilisé pour exécuter des tâches comme des migrations, des tâches programmées, tests unitaires, ou ce que vous voulez.
 
 <a name="creating-tasks"></a>
-## Creating & Running Tasks
+## Création & exécution de tâches
 
-To create a task create a new class in your **application/tasks** directory. The class name should be suffixed with "_Task", and should at least have a "run" method, like this:
+Pour créer une tache, créez une nouvelle classe dans le dossier **application/tasks**. Le nom de la classe doit finir par "_Task", et doit avoir au minimum une méthode "run" :
 
-#### Creating a task class:
+#### Création d'une tâche :
 
 	class Notify_Task {
 
 		public function run($arguments)
 		{
-			// Do awesome notifying...
+			// faire quelque chose d'incroyable !
 		}
 
 	}
 
-Now you can call the "run" method of your task via the command-line. You can even pass arguments:
+Maintenant vous pouvez exécuter la méthode "run" via la ligne de commande. Vous pouvez aussi passer des arguments :
 
-#### Calling a task from the command line:
+#### Appel de la tâche en ligne de commande:
 
 	php artisan notify
 
-#### Calling a task and passing arguments:
+#### Appel de la tâche en lui passant un argument :
 
 	php artisan notify taylor
 
-#### Calling a task from your application:
+#### Appel de la tâche depuis l'application :
 
 	Command::run(array('notify'));
 
-#### Calling a task from your application with arguements:
+#### Appel de la tâche depuis l'application avec des arguments :
 
 	Command::run(array('notify', 'taylor'));
 
-Remember, you can call specific methods on your task, so, let's add an "urgent" method to the notify task:
+Souvenez vous, vous pouvez appeler une méthode spécifique de votre classe. Ajoutons une méthode "urgent" à la classe Notify_Task :
 
-#### Adding a method to the task:
+#### Ajout d'une méthode à notre tâche :
 
 	class Notify_Task {
 
@@ -64,45 +64,45 @@ Remember, you can call specific methods on your task, so, let's add an "urgent" 
 
 	}
 
-Now we can call our "urgent" method:
+Maintenant nous pouvons appeler la méthode "urgent" :
 
-#### Calling a specific method on a task:
+#### Appel d'une méthode spécifique :
 
 	php artisan notify:urgent
 
 <a name="bundle-tasks"></a>
-## Bundle Tasks
+## Tâches de bundle
 
-To create a task for your bundle just prefix the bundle name to the class name of your task. So, if your bundle was named "admin", a task might look like this:
+Pour créer une tache pour un bundle, prefixez le nom de votre tâche avec le nom de votre bundle. Donc si votre bundle s'appelle "admin", une tache ressemblera à cela : 
 
-#### Creating a task class that belongs to a bundle:
+#### Création d'une tâche qui appartient à un bundle :
 
 	class Admin_Generate_Task {
 
 		public function run($arguments)
 		{
-			// Generate the admin!
+			//  faire un truc d'admin
 		}
 
 	}
 
-To run your task just use the usual Laravel double-colon syntax to indicate the bundle:
+Pour lancer votre tâche, utilisez un double deux points ( :: ) pour indiquer le bundle, comme d'habitude avec Laravel :
 
-#### Running a task belonging to a bundle:
+#### Exécute une tâche d'un bundle :
 
 	php artisan admin::generate
 
-#### Running a specific method on a task belonging to a bundle:
+#### Exécute une méthode précise d'une tâche d'un bundle:
 
 	php artisan admin::generate:list
 
 <a name="cli-options"></a>
-## CLI Options
+## Options de la ligne de commandes
 
-#### Setting the Laravel environment:
+#### Définition de l'environnement :
 
 	php artisan foo --env=local
 
-#### Setting the default database connection:
+#### Définition de la base de donnée utilisée :
 
 	php artisan foo --database=sqlite

@@ -114,7 +114,7 @@ Cet exemple nous montre comment un filtre peut être executé uniquement lors de
 
 Les contrôleurs peuvent être placé dans des sous répertoires du dossier principal **application/controllers**.
 
-### Définition d'un contrôleur se trouvant dans le fichier **controllers/admin/panel.php**.
+#### Définition d'un contrôleur se trouvant dans le fichier **controllers/admin/panel.php**.
 
 	class Admin_Panel_Controller extends Base_Controller
 	{

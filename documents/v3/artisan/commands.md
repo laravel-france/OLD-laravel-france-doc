@@ -1,110 +1,110 @@
-# Artisan Commands
+# Commandes d'Artisan 
 
 ## Au menu
 
-- [Help](#help)
-- [Application Configuration](#application-configuration)
-- [Sessions](#sessions)
+- [Aide](#help)
+- [Configuration de l'application](#application-configuration)
+- [Sessions en base de données](#sessions)
 - [Migrations](#migrations)
 - [Bundles](#bundles)
-- [Tasks](#tasks)
-- [Unit Tests](#unit-tests)
-- [Routing](#routing)
-- [Application Keys](#keys)
-- [CLI Options](#cli-options)
+- [Tâches](#tasks)
+- [Tests unitaires](#unit-tests)
+- [Routage](#routing)
+- [Clé d'application](#keys)
+- [Options en ligne de commandes](#cli-options)
 
 <a name="help"></a>
-## Help
+## Aide
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-View a list of available artisan commands. | `php artisan help:commands`
+Affiche une liste de commandes disponibles. | `php artisan help:commands`
 
 <a name="application-configuration"></a>
-## Application Configuration <small>[(More Information)](/guides/v3/install#basic-configuration)</small>
+## Configuration de l'application <small>[(Plus d'infos)](/guides/v3/install#basic-configuration)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Generate a secure application key. An application key will not be generated unless the field in **config/application.php** is empty. | `php artisan key:generate`
+Génère une clé d'application sécurisée. Cette clé ne sera généré que si le champ est vide dans le fichier **config/application.php**. | `php artisan key:generate`
 
 <a name="sessions"></a>
-## Database Sessions <small>[(More Information)](/guides/v3/session/config#database)</small>
+## Sessions en base de données <small>[(Plus d'infos)](/guides/v3/session/config#database)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Create a session table  | `php artisan session:table`
+Crée la table de sessions | `php artisan session:table`
 
 <a name="migrations"></a>
-## Migrations <small>[(More Information)](/guides/v3/database/migrations)</small>
+## Migrations <small>[(Plus d'infos)](/guides/v3/database/migrations)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Create the Laravel migration table  | `php artisan migrate:install`
-Creating a migration  | `php artisan migrate:make create_users_table`
-Creating a migration for a bundle  |  `php artisan migrate:make bundle::tablename`
-Running outstanding migrations  |  `php artisan migrate`
-Running outstanding migrations in the application |  `php artisan migrate application`
-Running all outstanding migrations in a bundle  |  `php artisan migrate bundle`
-Rolling back the last migration operation | `php artisan migrate:rollback`
-Roll back all migrations that have ever run  |  `php artisan migrate:reset`
+Crée la table de migration | `php artisan migrate:install`
+Crée une migration | `php artisan migrate:make create_users_table`
+Crée une migration pour un bundle  |  `php artisan migrate:make bundle::tablename`
+Exécute les migrations en attentes  |  `php artisan migrate`
+Exécute les migrations en attentes de l'application |  `php artisan migrate application`
+Exécute les migrations en attentes d'un bundle  |  `php artisan migrate bundle`
+Annule le dernière opération de migration | `php artisan migrate:rollback`
+Annule toutes les opérations de migration  |  `php artisan migrate:reset`
 
 <a name="bundles"></a>
-## Bundles <small>[(More Information)](/guides/v3/bundles)</small>
+## Bundles <small>[(Plus d'infos)](/guides/v3/bundles)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Install a bundle  |  `php artisan bundle:install eloquent`
-Upgrade a bundle  |  `php artisan bundle:upgrade eloquent`
-Upgrade all bundles | `php artisan bundle:upgrade`
-Publish a bundle assets | `php artisan bundle:publish bundle_name`
-Publish all bundles assets | `php artisan bundle:publish`
+Installe un bundle  |  `php artisan bundle:install eloquent`
+Mise à jour d'un bundle  |  `php artisan bundle:upgrade eloquent`
+Mise à jour de tous les bundles | `php artisan bundle:upgrade`
+Publie les assets d'un bundle | `php artisan bundle:publish bundle_name`
+Publie les assets de tous les bundles | `php artisan bundle:publish`
 
 <br>
-> **Note:** After installing you need to [register the bundle](../bundles/#registering-bundles)
+> **Note:** Après l'avoir installé, vous devez [enregistrer le bundle](/guides/v3/bundles/#registering-bundles)
 
 <a name="tasks"></a>
-## Tasks <small>[(More Information)](/guides/v3/artisan/tasks)</small>
+## Tâches <small>[(Plus d'infos)](/guides/v3/artisan/tasks)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Calling a task  |  `php artisan notify`
-Calling a task and passing arguments  |  `php artisan notify taylor`
-Calling a specific method on a task  |  `php artisan notify:urgent`
-Running a task on a bundle | `php artisan admin::generate`
-Running a specific method on a bundle  |  `php artisan admin::generate:list`
+Appel une tâche  |  `php artisan notify`
+Appel une tâche and passing arguments  |  `php artisan notify taylor`
+Appel une une méthode spécifique d'une tâche  |  `php artisan notify:urgent`
+Appel une tâche d'un bundle | `php artisan admin::generate`
+Appel une une méthode spécifique d'une tâche de bundle  |  `php artisan admin::generate:list`
 
 <a name="unit-tests"></a>
-## Unit Tests <small>[(More Information)](/guides/v3/testing)</small>
+## Test unitaires <small>[(Plus d'infos)](/guides/v3/testing)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Running the application tests  |  `php artisan test`
-Running the bundle tests  |  `php artisan test bundle-name`
+Exécute les tests de l'application  |  `php artisan test`
+Exécute les tests unitaires d'un bundle  |  `php artisan test bundle-name`
 
 <a name="routing"></a>
-## Routing <small>[(More Information)](/guides/v3/routing)</small>
+## Routage <small>[(Plus d'infos)](/guides/v3/routing)</small>
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Calling a route  |  `php artisan route:call get api/user/1`
+Appel une route  |  `php artisan route:call get api/user/1`
 
 <br>
-> **Note:** You can replace get with post, put, delete, etc.
+> **Note:** vous pouvez remplacer get par post, put...
 
 <a name="keys"></a>
-## Application Keys
+## Clé d'application
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Generate an application key  |  `php artisan key:generate`
+Génère une clé d'application  |  `php artisan key:generate`
 
 <br>
-> **Note:** You can specify an alternate key length by adding an extra argument to the command.
+> **Note:** Vous pouvez spécifier en paramètre alternatif, une longueur pour la clé.
 
 <a name="cli-options"></a>
-## CLI Options
+## Options en ligne de commandes
 
-Description  | Command
+Description  | Commande
 ------------- | -------------
-Setting the Laravel environment  |  `php artisan foo --env=local`
-Setting the default database connection  |  `php artisan foo --database=sqlitename`
+Définition de l'environnement d'exécution  |  `php artisan foo --env=local`
+Définition de la base de données par défaut  |  `php artisan foo --database=sqlitename`

@@ -1,86 +1,86 @@
-# Authentication Usage
+# Utilisation de l'authentification
 
 ## Au menu
 
-- [Salting & Hashing](#hash)
-- [Logging In](#login)
-- [Protecting Routes](#filter)
-- [Retrieving The Logged In User](#user)
-- [Logging Out](#logout)
-- [Writing Custom Drivers](#drivers)
+- [Salage & cryptage](#hash)
+- [Connexion](#login)
+- [Protection de routes](#filter)
+- [Obtenir des infos sur l'utilisateur connecté](#user)
+- [Déconnexion](#logout)
 
-> **Note:** Before using the Auth class, you must [specify a session driver](/guides/v3/session/config).
+> **Note:** Avant d'utiliser les classe Auth, vous devez [configurer un driver de sessions](/guides/v3/session/config).
 
 <a name="hash"></a>
-## Salting & Hashing
+## Salage & chiffage Hashing
 
-If you are using the Auth class, you are strongly encouraged to hash and salt all passwords. Web development must be done responsibly. Salted, hashed passwords make a rainbow table attack against your user's passwords impractical.
+Si vous utilisez la classe Auth, nous vous recommandons fortement de crypter et salé vos mots de passes.
 
-Salting and hashing passwords is done using the **Hash** class. The Hash class is uses the **bcrypt** hashing algorithm. Check out this example:
+Le salage et le cryptage se fait en utilisant la classe **Hash**. La classe Hash utilise **bcrypt**. Jetez un oeil à cet exemple :
 
 	$password = Hash::make('secret');
 
-The **make** method of the Hash class will return a 60 character hashed string.
+La méthode **make** retournera une chaine crypter de 60 caractères.
 
-You can compare an unhashed value against a hashed one using the **check** method on the **Hash** class:
+Vous pouvez comparer une chaine crypter et une non crypter avec la méthode **check** de la classe **Hash** :
 
 	if (Hash::check('secret', $hashed_value))
 	{
-		return 'The password is valid!';
+		return 'Le mot de passe est valide !';
 	}
 
 <a name="login"></a>
-## Logging In
+## Connexion
 
-Logging a user into your application is simple using the **attempt** method on the Auth class. Simply pass the username and password of the user to the method. The credentials should be contained in an array, which allows for maximum flexibility across drivers, as some drivers may require a different number of arguments. The login method will return **true** if the credentials are valid. Otherwise, **false** will be returned:
+Connecter un utilisateur sur votre application est simple : il suffit d'utiliser la méthode **attempt** de la classe Auth. Passez simplement un tableau avec le nom d'utilisateur et le mot de passe, et le tour est joué. Les informations sont placé dans un tableau, car ce moyen de transport des données est très flexible, et permettra à certain drivers d'utiliser d'autre type de données. La méthode attempt retournera **true** si les informations sont valides. Sinon, elle retournera en tout logique false :
 
-	$credentials = array('username' => 'example@gmail.com', 'password' => 'secret');
+	$credentials = array('username' => 'exemple@gmail.com', 'password' => 'secret');
 
 	if (Auth::attempt($credentials))
 	{
 	     return Redirect::to('user/profile');
 	}
 
-If the user's credentials are valid, the user ID will be stored in the session and the user will be considered "logged in" on subsequent requests to your application.
+Si les informations sont valides, l'ID de l'utilisateur sera stocké en sessions et l'utilisateur sera considéré comme connecté pour les prochaines requêtes sur votre application.
 
-To determine if the user of your application is logged in, call the **check** method:
+Pour savoir si un utilisateur est connecté, utilisez la méthode **check** :
 
 	if (Auth::check())
 	{
-	     return "You're logged in!";
+	     return "Vous êtes connecté !";
 	}
 
-Use the **login** method to login a user without checking their credentials, such as after a user first registers to use your application. Just pass the user's ID:
+Utilisez la méthode **login** pour connecter un utilisateur sans utiliser ses identifiants, juste avec son id :
 
 	Auth::login($user->id);
 
 	Auth::login(15);
 
 <a name="filter"></a>
-## Protecting Routes
+## Protection de routes
 
-It is common to limit access to certain routes only to logged in users. In Laravel this is accomplished using the [auth filter](/guides/v3/routing#filters). If the user is logged in, the request will proceed as normal; however, if the user is not logged in, they will be redirected to the "login" [named route](/guides/v3/routing#named-routes).
+C'est une chose très commune de limiter l'accès à certaines parties du site aux anonymes. Avec Laravel, cela peut être fait très facilement en utilisant le [filtre auth](/guides/v3/routes#filters). Si l'utilisateur est connecté, la requête continue son execution, sinon il sera redirigé vers la [route nommée](/guides/v3/routes#named-routes) "login".
 
-To protect a route, simply attach the **auth** filter:
+Pour proteger une route, attachez simplement le filtre **auth** :
 
 	Route::get('admin', array('before' => 'auth', function() {}));
 
-> **Note:** You are free to edit the **auth** filter however you like. A default implementation is located in **application/routes.php**.
+> **Note:** Vous êtes libre de gérer le filtre auth à votre guise. Le comportement par défaut se trouve dans le fichier **application/routes.php**.
 
 <a name="user"></a>
-## Retrieving The Logged In User
+## Obtenir des infos sur l'utilisateur connecté
 
-Once a user has logged in to your application, you can access the user model via the **user** method on the Auth class:
+Lorsqu'un utilisateur est connecté, la méthode **user** vous retournera ses informations :
 
 	return Auth::user()->email;
 
-> **Note:** If the user is not logged in, the **user** method will return NULL.
+> **Note:** Si l'utilisateur n'est pas connecté, la méthode **user** retourne NULL.
 
 <a name="logout"></a>
-## Logging Out
+## Déconnexion
 
-Ready to log the user out of your application?
+Pour déconnecter un utilisateur :
 
-	Auth::logout();
+    Auth::logout();
 
-This method will remove the user ID from the session, and the user will no longer be considered logged in on subsequent requests to your application.
+Cette méthode supprime le Used ID de la session, l'utilisateur sera considéré comme déconnecter lors des requêtes futures.
+

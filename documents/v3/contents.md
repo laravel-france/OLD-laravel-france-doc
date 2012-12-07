@@ -99,19 +99,13 @@
 ### Authentication
 
 - [Configuration](/guides/v3/auth/config)
-- [Usage](/guides/v3/auth/usage)
+- [Utilisation](/guides/v3/auth/usage)
 
 ### Artisan CLI
 
-- [Tasks](/guides/v3/artisan/tasks)
+- [Tâches](/guides/v3/artisan/tasks)
 	- [Les bases](/guides/v3/artisan/tasks#the-basics)
-	- [Creating & Running Tasks](/guides/v3/artisan/tasks#creating-tasks)
-	- [Bundle Tasks](/guides/v3/artisan/tasks#bundle-tasks)
-	- [CLI Options](/guides/v3/artisan/tasks#cli-options)
-- [Commands](/guides/v3/artisan/commands)
-
-### Contributing
-
-- [Laravel on GitHub](/guides/v3/contrib/github)
-- [Command Line](/guides/v3/contrib/command-line)
-- [TortoiseGit](/guides/v3/contrib/tortoisegit)
+	- [Création et exécution de tâches](/guides/v3/artisan/tasks#creating-tasks)
+	- [Tâches de bundles](/guides/v3/artisan/tasks#bundle-tasks)
+	- [Options en ligne de commandes](/guides/v3/artisan/tasks#cli-options)
+- [Commandes](/guides/v3/artisan/commands)
