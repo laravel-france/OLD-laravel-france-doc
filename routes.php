@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Load the Markdown library.
- */
-require_once __DIR__.'/libraries/markdown.php';
 
 /**
  * Get the root path for the documentation Markdown.
@@ -23,7 +19,7 @@ function doc_root()
  */
 function document($page)
 {
-	return Markdown(file_get_contents(doc_root().$page.'.md'));
+	return MdParser\Markdown(file_get_contents(doc_root().$page.'.md'));
 }
 
 /**

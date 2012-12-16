@@ -18,7 +18,7 @@ Pensez aux migrations comme un type de contrôle de version pour votre base de d
 
 Avant d'utiliser les migrations, vous devez effectuer une opération. Laravel utilise une table spéciale pour garder une trace des migrations qui ont déjà été exécutées. Pour créer cette table, utilisez Artisan en ligne de commande :
 
-** Crée la table de migration de Laravel : **
+**Crée la table de migration de Laravel :**
 
 	php artisan migrate:install
 
@@ -27,7 +27,7 @@ Avant d'utiliser les migrations, vous devez effectuer une opération. Laravel ut
 
 Vous pouvez facilement créer une des migrations avec Artisan. Une simple commande suffit :
 
-** Création d'une migration **
+**Création d'une migration**
 
 	php artisan migrate:make create_users_table
 
@@ -35,18 +35,18 @@ Maintenant, direction le dossier **application/migrations**. Vous trouverez notr
 
 Vous pouvez également créer des migrations pour un bundle : 
 
-** Crée une migration pour un bundle :**
+**Crée une migration pour un bundle :**
 
 	php artisan migrate:make bundle::create_users_table
 
-*VOir aussi:*
+*Voir aussi:*
 
 - [Schema Builder](/guides/v3/database/schema)
 
 <a name="running-migrations"></a>
 ## Lancer une migration
 
-** Exécute toutes les migrations pour l'application et les bundles :**
+**Exécute toutes les migrations pour l'application et les bundles :**
 
 	php artisan migrate
 
@@ -63,10 +63,10 @@ Vous pouvez également créer des migrations pour un bundle :
 
 Lorsque vous effectuez un retour en arrière, Laravel défait entièrement toute la dernière opération de migration. Donc si votre migration était en réalisé un lot de 122 migrations, les 122 seront défaites.
 
-** Annulation de la dernière migration :**
+**Annulation de la dernière migration :**
 
 	php artisan migrate:rollback
 
-** Annulation de toutes les migrations :**
+**Annulation de toutes les migrations :**
 
 	php artisan migrate:reset
