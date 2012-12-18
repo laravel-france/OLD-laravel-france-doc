@@ -49,7 +49,7 @@ Pour commencer à utiliser le système de fichier en tant que stockage de sessio
 <a name="database"></a>
 ## Sessions en base de données
 
-Pour commencer, vous devrez [configurer votre connexion à la base de données](/guides/v3/database/config).
+Pour commencer, vous devrez [configurer votre connexion à la base de données](/guides/doc/v3/database/config).
 
 Ensuite, vous devrez créer une table session. Vous trouverez ci dessous la commande Artisan pour générer la table, et en tant qu'alternative les requpetes SQL pour SQLite et MySQL. Nous vous recommandons bien entendu d'utilier Artisan pour générer les tables à votre place !
 
@@ -85,7 +85,7 @@ Dans ce même fichier, il ne vous reste qu'à passer l'option **driver** à **da
 <a name="memcached"></a>
 ## Sessions avec Memcached
 
-Avant d'utiliser les sessions avec Memcached, vous devez [configurer votre serveur Memcached](/guides/v3/database/config#memcached).
+Avant d'utiliser les sessions avec Memcached, vous devez [configurer votre serveur Memcached](/guides/doc/v3/database/config#memcached).
 
 Réglez simplement le driver dans le fichier **application/config/session.php** :
 
@@ -94,7 +94,7 @@ Réglez simplement le driver dans le fichier **application/config/session.php** 
 <a name="redis"></a>
 ## Sessions avec Redis
 
-Avant d'utiliser les sessions avec Redis, vous devez [configurer votre serveur Redis](/guides/v3/database/redis#config).
+Avant d'utiliser les sessions avec Redis, vous devez [configurer votre serveur Redis](/guides/doc/v3/database/redis#config).
 
 Réglez simplement le driver dans le fichier **application/config/session.php** :
 

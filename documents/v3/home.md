@@ -1,4 +1,4 @@
-# Documentation de Laravel 3.x
+# Documentation de Laravel 3
 
 ## Au menu
 

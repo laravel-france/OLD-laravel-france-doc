@@ -68,7 +68,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
 *Voir également:*
 
-- [Filtres de routes](/guides/v3/routes#filters)
+- [Filtres de routes](/guides/doc/v3/routes#filters)
 - [Cross-Site Request Forgery](http://fr.wikipedia.org/wiki/Cross-site_request_forgery)
 
 <a name="labels"></a>
@@ -137,7 +137,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 <a name="custom-macros"></a>
 ## Macros
 
-Vous pouvez créer facilement des macros pour la classe Form, de la même manière que pour les [macros HTML](/guides/v3/vues/html#custom-macros) :
+Vous pouvez créer facilement des macros pour la classe Form, de la même manière que pour les [macros HTML](/guides/doc/v3/vues/html#custom-macros) :
 
 #### Enregistrement du macro :
 

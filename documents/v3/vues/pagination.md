@@ -16,7 +16,7 @@ La paginateur de Laravel est conçu pour réduire le charge de l'implémentation
 <a name="using-the-query-builder"></a>
 ## Utilisation du Query Builder
 
-Parcourons un exemple complet d'utilisation de la pagination en utilisant le [Fluent Query Builder](/guides/v3/database/fluent):
+Parcourons un exemple complet d'utilisation de la pagination en utilisant le [Fluent Query Builder](/guides/doc/v3/database/fluent):
 
 #### Obtenir le résultat paginé d'une requête :
 
@@ -50,7 +50,7 @@ Il est également possible de uniquement des liens "suivant" et "précédent" :
 
 *Voir aussi:*
 
-- *[Fluent Query Builder](/guides/v3/database/fluent)*
+- *[Fluent Query Builder](/guides/doc/v3/database/fluent)*
 
 <a name="appending-to-pagination-links"></a>
 ## Ajout de paramètres aux liens de pagination

@@ -41,7 +41,7 @@ Vous pouvez également créer des migrations pour un bundle :
 
 *Voir aussi:*
 
-- [Schema Builder](/guides/v3/database/schema)
+- [Schema Builder](/guides/doc/v3/database/schema)
 
 <a name="running-migrations"></a>
 ## Lancer une migration

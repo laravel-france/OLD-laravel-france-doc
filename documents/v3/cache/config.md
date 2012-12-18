@@ -62,7 +62,7 @@ Then, add your Memcached servers to the **servers** array:
 
 [Redis](http://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
-Before using the Redis cache driver, you must [configure your Redis servers](/guides/v3/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
+Before using the Redis cache driver, you must [configure your Redis servers](/guides/doc/v3/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
 
 	'driver' => 'redis'
 

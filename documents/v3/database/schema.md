@@ -17,7 +17,7 @@ Le Schema Builder fournit des méthodes pour créer et modifier les tables de vo
 
 *Voir aussi:*
 
-- [Migrations](/guides/v3/database/migrations)
+- [Migrations](/guides/doc/v3/database/migrations)
 
 <a name="creating-dropping-tables"></a>
 ## Création & suppression de tables

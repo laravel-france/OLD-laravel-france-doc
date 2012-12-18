@@ -45,7 +45,7 @@ Vous devrez parfois fournir à une route des arguments, pour ce faire, passez le
 
 *Voir aussi:*
 
-- [Route nommées](/guides/v3/routes#named-routes)
+- [Route nommées](/guides/doc/v3/routes#named-routes)
 
 <a name="urls-to-controller-actions"></a>
 ## URLs vers une action de contrôleur
