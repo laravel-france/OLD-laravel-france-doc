@@ -36,11 +36,12 @@ Pour utiliser Eloquent, vous devez savoir qu'il fera les hypothèses suivantes s
 - Chaque table doit avoir une clé primaire nommée **id**.
 - Chaque table a un nom qui correspond au pluriel du nom du modèle associé.
 
-Si vous souhaitez utiliser un nom de table qui n'est pas le pluriel du nom du modèle, ajoutez simplement une propriété statique **table** à votre modèle :
+Si vous souhaitez utiliser un nom de table qui n'est pas le pluriel du nom du modèle, ou choisir vous même le nom de la clé primaire, ajoutez simplement une propriété statique **table** et/ou **key** à votre modèle :
 
 	class User extends Eloquent {
 
 	     public static $table = 'my_users';
+         public static $key = 'my_user_id';
 
 	}
 
