@@ -98,7 +98,7 @@ La collection de méthodes **where_in** vous permet de construire facilement des
 
 ### where\_null, where\_not\_null, or\_where\_null, and or\_where\_not\_null
 
-La collection de méthodes **where_null** rendent la recherchent de valeur NULL vraiment facile :
+La collection de méthodes **where_null** rendent la recherche de valeur NULL vraiment facile :
 
 	return DB::table('users')->where_null('updated_at')->get();
 
@@ -113,6 +113,27 @@ La collection de méthodes **where_null** rendent la recherchent de valeur NULL 
 		->where('email', '=', 'example@gmail.com')
 		->or_where_not_null('updated_at')
 		->get();
+
+### where\_between, where\_not\_between, or\_where\_between, and or\_where\_not\_between
+
+La collection de méthodes **where_between** permet de savoir si une valeur se trouve entre un minimum et un maximum super facilement :
+    
+    return DB::table('users')->where_between($column, $min, $max)->get();   
+
+    return DB::table('users')->where_between('updated_at', '2000-10-10', '2012-10-10')->get();
+
+    return DB::table('users')->where_not_between('updated_at', '2000-10-10', '2012-01-01')->get();
+
+    return DB::table('users')
+        ->where('email', '=', 'example@gmail.com')
+        ->or_where_between('updated_at', '2000-10-10', '2012-01-01')
+        ->get();
+
+    return DB::table('users')
+        ->where('email', '=', 'example@gmail.com')
+        ->or_where_not_between('updated_at', '2000-10-10', '2012-01-01')
+        ->get();
+
 
 <a name="nested-where"></a>
 ## Clauses WHERE imbriquées
