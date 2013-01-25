@@ -55,6 +55,7 @@ Maintenant que vous êtes familié avec l'utilisation basique de la classe Valid
 - [Adresses E-Mail](#rule-email)
 - [URLs](#rule-url)
 - [Uploads](#rule-uploads)
+- [Tableaux](#rule-arrays)
 
 <a name="rule-required"></a>
 ### Requis
@@ -250,6 +251,30 @@ La règle *mimes* valide qu'un fichier uploadé à un MIME type donné. Cette r�
 #### Valide qu'un fichier est une image qui ne fait pas plus de 100 kilobytes:
 
 	'picture' => 'image|max:100'
+
+<a name="rule-arrays"></a>
+### Tableaux
+
+#### Valide qu'un attribut est un tableau
+
+    'categories' => 'array'
+
+#### Valide qu'un attribut est un tableau de 3 éléments
+
+    'categories' => 'array|count:3'
+
+#### Valide qu'un attribut est un tableau, et à entre 1 et 3 éléments
+
+    'categories' => 'array|countbetween:1,3'
+
+#### Valide qu'un attribut est un tableau, et à au moins 2 éléments
+
+    'categories' => 'array|countmin:2'
+
+#### Valide qu'un attribut est un tableau, et à au plus 2 éléments
+
+    'categories' => 'array|countmax:2'
+
 
 <a name="retrieving-error-messages"></a>
 ## Retrouver les messages d'erreurs
