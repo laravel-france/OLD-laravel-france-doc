@@ -58,6 +58,17 @@ Vous devrez parfois fournir à une route des arguments, pour ce faire, passez le
 
 	$url = URL::to_action('user@profile', array($username));
 
+<a name="urls-to-a-different-language"></a>
+## URLs vers un langage différent
+
+#### Génère une url vers la même page dans un langage différent :
+
+    $url = URL::to_language('fr');
+
+#### Génère une url vers la page d'accueil dans un langage différent:
+
+    $url = URL::to_language('fr', true);
+
 <a name="urls-to-assets"></a>
 ## URLs vers des assets
 

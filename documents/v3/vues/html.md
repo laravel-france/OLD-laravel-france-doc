@@ -55,7 +55,7 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 
 #### Generation d'un lien HTTPS :
 
-	echo HTML::secure_link('user/profile', 'Profil de l\'utilisateur');
+	echo HTML::link_to_secure('user/profile', 'Profil de l\'utilisateur');
 
 #### Génération d'un lien, avec des attributs HTML :
 
@@ -86,6 +86,17 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 ### Génération d'un lien vers une action d'un contrôleur avec des paramètres :
 
 	echo HTML::link_to_action('user@profile', 'Profil de l\'utilisateur', array($username));
+
+<a name="links-to-a-different-language"></a>
+## Liens vers un langage différent
+
+#### Génère un lien vers la même page dans un langage différent:
+
+    echo HTML::link_to_language('fr');
+
+#### Génère un lien vers la page d'accueil dans un langage différent
+
+    echo HTML::link_to_language('fr', true);
 
 <a name="mail-to-links"></a>
 ## Lien pour l'envoi d'email
