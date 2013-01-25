@@ -53,6 +53,12 @@ Vous avez maintenant une constructeur de requête fluide pour la table "users". 
 
 	$user = DB::table('users')->get(array('id', 'email as user_email'));
 
+#### Récupère un tableau avec les valeurs des colonnes données :
+
+    $users = DB::table('users')->take(10)->lists('email', 'id');
+
+> **Note:** Le second paramètre est optionnel.
+
 #### Sélectionne les résultats distinct de la table :
 
 	$user = DB::table('users')->distinct()->get();
