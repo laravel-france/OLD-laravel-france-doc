@@ -166,9 +166,9 @@ Blade ne fourni pas qu'une syntaxe claire et élégante pour les contrôle PHP l
 	<html>
 		<ul class="navigation">
 			@section('navigation')
-				<li>Nav Item 1</li>
-				<li>Nav Item 2</li>
-			@yield_section
+            <li>Example Item 1</li>
+            <li>Example Item 2</li>
+            @endsection
 		</ul>
 
 		<div class="content">
