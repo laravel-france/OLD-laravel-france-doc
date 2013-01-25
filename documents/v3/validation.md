@@ -202,6 +202,14 @@ Le cas de la mise à jour de données avec la règles d'unicité est particulier
 
 > **Note:** Les règles **before** et **after** utilisent la fonction PHP `strtotime` pour convertir votre date en en quelquechose de compréhensible pour la règle PHP function to convert your date to something the rule can understand.
 
+#### Valide qu'une date respecte un format donné :
+
+    'start_date' => 'date_format:H\\:i',
+
+> **Note:** Le backslash échape le deux points pour qu'il n'est pas considéré comme un séparateur de paramètre.
+
+Les options de formatages des dates sont définis dans la [documentation PHP](http://php.net/manual/fr/datetime.createfromformat.php#refsect1-datetime.createfromformat-parameters).
+
 <a name="rule-email"></a>
 ### Adresses E-Mail 
 
