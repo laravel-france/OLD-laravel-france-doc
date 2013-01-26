@@ -40,7 +40,7 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 
 #### Generation d'une référence à une fichier CSS, en précisant le media type :
 
-	echo HTML::style('css/common.css', 'print');
+	echo HTML::style('css/common.css', array('media' => 'print'));
 
 *Voir également:*
 
