@@ -9,6 +9,7 @@
 - [Clauses WHERE dynamiques](#dynamic)
 - [Jointure](#joins)
 - [Tri du résultat](#ordering)
+- [Groupage de résultats](#grouping)
 - [Passer & prendre](#limit)
 - [Agrégats](#aggregates)
 - [Expressions brutes](#expressions)
@@ -211,6 +212,13 @@ Bien sur, vous pouvez trier autant de colonnes que vous le souhaitez :
 		->order_by('email', 'desc')
 		->order_by('name', 'asc')
 		->get();
+
+<a name="grouping"></a>
+## Groupage de résultats
+
+Vous pouvez grouper les résultats de vos requêtes en utilisant la méthode **group_by** :
+
+    return DB::table(...)->group_by('email')->get();
 
 <a name="limit"></a>
 ## Passer & prendre
