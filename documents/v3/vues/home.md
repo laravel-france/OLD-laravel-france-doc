@@ -62,6 +62,10 @@ Parfois vous aurez besoin d'un petit plus de contrôle sur la réponse qui sera 
 
 	return Response::json(array('name' => 'Batman'));
 
+#### Retourne une réponse au format JSONP :
+
+    return Response::jsonp('myCallback', array('name' => 'Batman'));
+
 #### Retourne une modèle Eloquent au format JSON :
 
 	return Response::eloquent(User::find(1));
