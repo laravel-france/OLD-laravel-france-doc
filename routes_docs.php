@@ -8,6 +8,8 @@
  */
 Route::get('(:bundle)/doc/(:any?)', function($version="v3")
 {
+    if(!document_exists($version.DIRECTORY_SEPARATOR.'home')) return Response::error('404');
+
 
     $document = document($version.DIRECTORY_SEPARATOR.'home');
     $title = document_title($document);
