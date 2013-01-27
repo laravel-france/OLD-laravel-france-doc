@@ -2,8 +2,8 @@
 
 require 'functions.php';
 
-Route::any('(:bundle)', function(){
-    return View::make('guides::guide.home');
+Route::any('(:bundle)/(:any?)', function($version = 'v3'){
+    return View::make('guides::guide.home'.$version);
 });
 
 

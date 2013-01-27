@@ -1,13 +1,17 @@
 @layout('main')
 
 @section('title')
-    Guides - Laravel France
+    Guides Laravel 3 - Laravel France
 @endsection
 
 @section('content')
     <div id="guides">
       <div class="row">
         <div class="span3">
+
+            @include('guides::guide.selector')
+
+
           <div class="well">
             <h3>Laravel 3</h3>
             <h4>La documentation</h4>
@@ -87,9 +91,6 @@
               </li>
             </ul>
           </div>
-
-
-
         </div>
     </div>
 @endsection
