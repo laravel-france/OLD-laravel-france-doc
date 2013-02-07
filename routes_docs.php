@@ -18,6 +18,7 @@ Route::get('(:bundle)/(:any?)/doc', function($version="v3")
         ->with('title', $title)
         ->with('content', $document)
         ->with('isHome', true)
+        ->with('version', $version)
         ->with('bc_title', 'Documentation de Laravel '.$version)
         ->with('sidebar', document($version.DIRECTORY_SEPARATOR.'contents'));
 });
@@ -52,6 +53,7 @@ Route::get('(:bundle)/(:any)/doc/(:any)/(:any?)', function($version, $section, $
             ->with('title', $title)
             ->with('content', $document)
             ->with('section', $section)
+            ->with('version', $version)
             ->with('bc_title', 'Documentation de Laravel '.$version)
             ->with('sidebar', document($version.'/contents'));
     }
