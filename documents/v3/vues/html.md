@@ -21,71 +21,71 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 
 #### Convertion d'une chaine en sa représentation en tant qu'entité :
 
-	echo HTML::entities('<script>alert('hi');</script>');
+    echo HTML::entities('<script>alert('hi');</script>');
 
 #### En utiliant l'helper "e" :
 
-	echo e('<script>alert('hi');</script>');
+    echo e('<script>alert('hi');</script>');
 
 <a name="scripts-and-style-sheets"></a>
 ## Scripts et feuilles de style
 
 #### Génération d'une référence à un fichier javascript :
 
-	echo HTML::script('js/scrollTo.js');
+    echo HTML::script('js/scrollTo.js');
 
 #### Génération d'une référence à un fichier CSS :
 
-	echo HTML::style('css/common.css');
+    echo HTML::style('css/common.css');
 
 #### Generation d'une référence à une fichier CSS, en précisant le media type :
 
-	echo HTML::style('css/common.css', array('media' => 'print'));
+    echo HTML::style('css/common.css', array('media' => 'print'));
 
 *Voir également:*
 
-- *[Management des assets](/guides/doc/v3/vues/assets)*
+- *[Management des assets](/docs/v3/doc/vues/assets)*
 
 <a name="links"></a>
 ## Liens
 
 #### Generatiion d'un lien vers une URI:
 
-	echo HTML::link('user/profile', 'Profil de l\'utilisateur');
+    echo HTML::link('user/profile', 'Profil de l\'utilisateur');
 
 #### Generation d'un lien HTTPS :
 
-	echo HTML::link_to_secure('user/profile', 'Profil de l\'utilisateur');
+    echo HTML::link_to_secure('user/profile', 'Profil de l\'utilisateur');
 
 #### Génération d'un lien, avec des attributs HTML :
 
-	echo HTML::link('user/profile', 'Profil de l\'utilisateur', array('id' => 'profile_link'));
+    echo HTML::link('user/profile', 'Profil de l\'utilisateur', array('id' => 'profile_link'));
 
 <a name="links-to-named-routes"></a>
 ## Liens vers des routes nommées
 
 #### Génération d'un lien vers une route nommée :
 
-	echo HTML::link_to_route('profile', 'Profil de l\'utilisateur');
+    echo HTML::link_to_route('profile', 'Profil de l\'utilisateur');
 
 #### Génération d'un lien vers une route nommée avec des paramètres :
 
-	$url = HTML::link_to_route('profile', 'Profil de l\'utilisateur', array($username));
+    $url = HTML::link_to_route('profile', 'Profil de l\'utilisateur', array($username));
 
 *Voir aussi:*
 
-- *[Routes nommées](/guides/doc/v3/routes#named-routes)*
+- *[Routes nommées](/docs/v3/doc/routes#named-routes)*
 
 <a name="links-to-controller-actions"></a>
 ## Liens vers des actions de contrôleur
 
 #### Génération d'un lien vers une action d'un contrôleur:
 
-	echo HTML::link_to_action('home@index', 'Profil de l\'utilisateur');
+    echo HTML::link_to_action('home@index', 'Profil de l\'utilisateur');
 
 ### Génération d'un lien vers une action d'un contrôleur avec des paramètres :
 
-	echo HTML::link_to_action('user@profile', 'Profil de l\'utilisateur', array($username));
+    echo HTML::link_to_action('user@profile', 'Profil de l\'utilisateur', array($username));
 
 <a name="links-to-a-different-language"></a>
 ## Liens vers un langage différent
@@ -105,33 +105,33 @@ La méthode "mailto" de la classe HTML "crypte" l'adresse email donnée pour ne 
 
 #### Creation d'un lien "mailto" :
 
-	echo HTML::mailto('exemple@gmail.com', 'Contactez moi');
+    echo HTML::mailto('exemple@gmail.com', 'Contactez moi');
 
 #### Creation d'un lien "mailto" utilisant l'adresse email en tant que texte du lien :
 
-	echo HTML::mailto('exemple@gmail.com');
+    echo HTML::mailto('exemple@gmail.com');
 
 <a name="images"></a>
 ## Images
 
 #### Génération d'un tag HTML pour une image:
 
-	echo HTML::image('img/smile.jpg', $alt_text);
+    echo HTML::image('img/smile.jpg', $alt_text);
 
 #### Génération d'un tag HTML pour une image, avec des attributs HTML :
 
-	echo HTML::image('img/smile.jpg', $alt_text, array('id' => 'smile'));
+    echo HTML::image('img/smile.jpg', $alt_text, array('id' => 'smile'));
 
 <a name="lists"></a>
 ## Listes
 
 #### Création de listes depuis un tableau :
 
-	echo HTML::ol(array('Element 1', 'Element 2', 'Element 3'));
+    echo HTML::ol(array('Element 1', 'Element 2', 'Element 3'));
 
-	echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
-	
-	echo HTML::dl(array('Ubuntu' => 'Un système d\'exploitation de Canonical', 'Windows' => 'Un système d\'exploitation de Microsoft'));
+    echo HTML::ul(array('Ubuntu', 'Snow Leopard', 'Windows'));
+    
+    echo HTML::dl(array('Ubuntu' => 'Un système d\'exploitation de Canonical', 'Windows' => 'Un système d\'exploitation de Microsoft'));
 
 <a name="custom-macros"></a>
 ## Fonctions persos
@@ -140,13 +140,13 @@ Il est très facile de créer ses propres méthodes pour la classe HTML, nous ap
 
 #### Enregistrement d'un macro HTML:
 
-	HTML::macro('mon_element', function()
-	{
-		return '<article type="genial">';
-	});
+    HTML::macro('mon_element', function()
+    {
+        return '<article type="genial">';
+    });
 
 Maintenant, vous pouvez appeler votre macro par son nom : 
 
 #### Appel de notre macro :
 
-	echo HTML::mon_element();
+    echo HTML::mon_element();

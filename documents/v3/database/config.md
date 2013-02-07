@@ -23,11 +23,11 @@ Toutes les options de configurations des bases de données se trouvent dans le f
 
 Bien sur, si vous souhaitez que votre base de donnée ne s'appelle pas  "application", vous pouvez modifier l'option 'database' du fichier **application/config/database.php** :
 
-	'sqlite' => array(
-	     'driver'   => 'sqlite',
-	     'database' => 'your_database_name',
+    'sqlite' => array(
+         'driver'   => 'sqlite',
+         'database' => 'your_database_name',
          'prefix' => ''
-	)
+    )
 
 Si votre application reçoit moins de 100 000 hits par jour, SQLite est une bonne solution pour la production. Sinon, pensez à MySQL ou PostgreSQL.
 
@@ -41,9 +41,9 @@ Si vous utilisez MySQL, SQL Server, ou PostgreSQL, vous aurez besoin de modifier
 
 Comme vous avez pu le remarquer, chaque connexion définie dans le fichier **application/config/database.php** à un nom. Par défaut, il y a quates connexions définies : **sqlite**, **mysql**, **sqlsrv**, et **pgsql**. Vous êtes libre de changer ces noms de connexions. La connexion par défaut est spécifiée via l'option **default** :
 
-	'default' => 'sqlite'
+    'default' => 'sqlite'
 
-La connexion par défaut sera toujours utilisée par le [Fluent query builder](/guides/doc/v3/database/fluent). Si vous devez changer la connexion par défaut pour une requête, utilisez la méthode `Config::set`.
+La connexion par défaut sera toujours utilisée par le [Fluent query builder](/docs/v3/doc/database/fluent). Si vous devez changer la connexion par défaut pour une requête, utilisez la méthode `Config::set`.
 
 <a href="options"></a>
 ## Surcharge des options PDO
@@ -51,19 +51,19 @@ La connexion par défaut sera toujours utilisée par le [Fluent query builder](/
 La classe connector (**laravel/database/connectors/connector.php**) a un lot d'attributs PDO définis qui peuvent être surchargés dans le tableau de configuration de chaque système. Par exemple, l'un des attributs par défaut est de forcer le nom des colonnes en minuscule (**PDO::CASE_LOWER**) même si ils sont définis en majuscule ou en camelCase dans la table. Par conséquent, les variables des objets générés ne seront accessibles qu'en minuscule.
 Voici un exemple de configuration du système MySQL avec des attributs PDO ajoutés :
 
-	'mysql' => array(
-		'driver'   => 'mysql',
-		'host'     => 'localhost',
-		'database' => 'database',
-		'username' => 'root',
-		'password' => '',
-		'charset'  => 'utf8',
-		'prefix'   => '',
-		PDO::ATTR_CASE              => PDO::CASE_LOWER,
-		PDO::ATTR_ERRMODE           => PDO::ERRMODE_EXCEPTION,
-		PDO::ATTR_ORACLE_NULLS      => PDO::NULL_NATURAL,
-		PDO::ATTR_STRINGIFY_FETCHES => false,
-		PDO::ATTR_EMULATE_PREPARES  => false,
-	),
+    'mysql' => array(
+        'driver'   => 'mysql',
+        'host'     => 'localhost',
+        'database' => 'database',
+        'username' => 'root',
+        'password' => '',
+        'charset'  => 'utf8',
+        'prefix'   => '',
+        PDO::ATTR_CASE              => PDO::CASE_LOWER,
+        PDO::ATTR_ERRMODE           => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ORACLE_NULLS      => PDO::NULL_NATURAL,
+        PDO::ATTR_STRINGIFY_FETCHES => false,
+        PDO::ATTR_EMULATE_PREPARES  => false,
+    ),
 
 Plus d'informations à propos des attributs de connection PDO peuvent être trouvés [dans le manuel PHP](http://php.net/manual/fr/pdo.setattribute.php).

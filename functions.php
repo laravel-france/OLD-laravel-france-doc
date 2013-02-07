@@ -8,7 +8,7 @@
  */
 function doc_root()
 {
-    return Bundle::path('guides').'documents/';
+    return Bundle::path('docs').'documents/';
 }
 
 /**

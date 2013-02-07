@@ -1,27 +1,27 @@
 @layout('main')
 
 @section('title')
-    Guides Laravel 3 - Laravel France
+    docs Laravel 3 - Laravel France
 @endsection
 
 @section('content')
-    <div id="guides">
+    <div id="docs">
       <div class="row">
         <div class="span3">
 
-            @include('guides::guide.selector')
+            @include('docs::guide.selector')
 
 
           <div class="well">
             <h3>Laravel 3</h3>
             <h4>La documentation</h4>
             <ul>
-                <li><a href="/guides/doc/v3#general">Général</a></li>
-                <li><a href="/guides/doc/v3#base_de_donnees">Base de données</a></li>
-                <li><a href="/guides/doc/v3#caching">Caching</a></li>
-                <li><a href="/guides/doc/v3#sessions">Sessions</a></li>
-                <li><a href="/guides/doc/v3#authentication">Authentication</a></li>
-                <li><a href="/guides/doc/v3#artisan">Artisan CLI</a></li>
+                <li><a href="/docs/v3/doc#general">Général</a></li>
+                <li><a href="/docs/v3/doc#base_de_donnees">Base de données</a></li>
+                <li><a href="/docs/v3/doc#caching">Caching</a></li>
+                <li><a href="/docs/v3/doc#sessions">Sessions</a></li>
+                <li><a href="/docs/v3/doc#authentication">Authentication</a></li>
+                <li><a href="/docs/v3/doc#artisan">Artisan CLI</a></li>
             </ul>
 
             <h4>Les livres</h4>
@@ -36,7 +36,7 @@
         <div class="span9">
             <ul class="breadcrumb">
                 <li><a title="Retour à la page d'accueil" href="/"><i class="icon-home"></i></a> <span class="divider">/</a></li>
-                <li>Guides</li>
+                <li>Documentation & guides</li>
             </ul>
 
             <div class="well">
@@ -47,7 +47,7 @@
                 </p>
             
                 <p class="clearfix">
-                    <a href="/guides/doc/v3" class="btn btn-primary btn-large pull-right">
+                    <a href="/docs/v3/doc" class="btn btn-primary btn-large pull-right">
                         Accéder à la doc
                     </a>
                 </p>

@@ -3,7 +3,7 @@
 require 'functions.php';
 
 Route::any('(:bundle)/(:any?)', function($version = 'v3'){
-    return View::make('guides::guide.home'.$version);
+    return View::make('docs::guide.home'.$version);
 });
 
 

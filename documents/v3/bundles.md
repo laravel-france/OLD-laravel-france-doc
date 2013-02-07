@@ -25,11 +25,11 @@ La première étape pour créer un bundle est de créer un dossier pour ce derni
 
 #### Création du fichier start.php de note bundle:
 
-	<?php
+    <?php
 
-	Autoloader::namespaces(array(
-		'Admin' => Bundle::path('admin').'models',
-	));
+    Autoloader::namespaces(array(
+        'Admin' => Bundle::path('admin').'models',
+    ));
 
 Dans ce fichier de démarrage, nous informons l'autoloader que les classes du namespace Admin doivent être chargées dans le dossier models de notre bundle. Vous pouvez faire ce que vous souhaitez dans votre fichier de démarrage, mais en général il est utilisé pour enregistrer vos classes dans l'autoloader. **En fait, vous n'êtes même pas obligé de créer le fichier start.php.**
 
@@ -42,17 +42,17 @@ Maintenant que nous avons notre bundle "admin", nous devons le déclarer avec La
 
 #### Déclaration simple d'un bundle :
 
-	return array('admin'),
+    return array('admin'),
 
 Par convention, Laravel va charger le bundle directement à la racine du dossier bundles. Vous trouverez ci dessous un exemple montrant comment changer ce chemin pour votre bundle :
 
 #### Déclaration d'un bundle avec une chemin personnalisé :
 
-	return array(
+    return array(
 
-		'admin' => array('location' => 'userscape/admin'),
+        'admin' => array('location' => 'userscape/admin'),
 
-	);
+    );
 
 Maintenant, Laravel chargera ce bundle depuis **bundles/userscape/admin**.
 
@@ -63,25 +63,25 @@ Typiquement, le fichier **start.php** d'un bundle contient uniquement les décla
 
 #### Définition de l'autoloading dans l'enregistrement du bundle :
 
-	return array(
+    return array(
 
-		'admin' => array(
-			'autoloads' => array(
-				'map' => array(
-					'Admin' => '(:bundle)/admin.php',
-				),
-				'namespaces' => array(
-					'Admin' => '(:bundle)/lib',
-				),
-				'directories' => array(
-					'(:bundle)/models',
-				),
-			),
-		),
+        'admin' => array(
+            'autoloads' => array(
+                'map' => array(
+                    'Admin' => '(:bundle)/admin.php',
+                ),
+                'namespaces' => array(
+                    'Admin' => '(:bundle)/lib',
+                ),
+                'directories' => array(
+                    '(:bundle)/models',
+                ),
+            ),
+        ),
 
-	);
+    );
 
-Remarquez que chacune de ces options corréspond à une fonction de [l'autoloader](/guides/doc/v3/loading) Laravel. En fait, les valeurs de ces options seront automatiquement passées aux méthodes de l'autoloader.
+Remarquez que chacune de ces options corréspond à une fonction de [l'autoloader](/docs/v3/doc/loading) Laravel. En fait, les valeurs de ces options seront automatiquement passées aux méthodes de l'autoloader.
 
 Vous avez probablement remarqué le joker **(:bundle)**. Ceci sera automatiquement remplacé par le chemin du bundle. Un vrai jeu d'enfant !
 
@@ -92,7 +92,7 @@ Notre bundle est créé et déclaré, mais nous ne pouvons pas encore l'utiliser
 
 #### Démarrage d'un bundle :
 
-	Bundle::start('admin');
+    Bundle::start('admin');
 
 Cela demande à Laravel d'exécuter le fichier **start.php** du bundle, qui enregistrera les règles d'autoloading des classes. La méthode start chargement également le fichier **routes.php** s'il existe.
 
@@ -102,11 +102,11 @@ Si vous utilisez un bundle partout dans votre application, vous devrez alors le 
 
 #### Configuration d'un bundle pour un démarrage automatique :
 
-	return array(
+    return array(
 
-		'admin' => array('auto' => true),
+        'admin' => array('auto' => true),
 
-	);
+    );
 
 En vrai, vous n'avez pas besoin de le démarrer explicitement. Vous pouvez simplement partir du principe qu'il est démarré, et si vous essayez d'utiliser une vue, un fichier de configuration, de traduction, une route ou un filtre d'un bundle, Laravel le démarrera automatiquement pour vous !
 
@@ -114,21 +114,21 @@ Chaque fois qu'un bundle est démarré, un événement est lancé. Vous pouvez s
 
 #### Ecoute l'événement de démarrage d'un bundle :
 
-	Event::listen('laravel.started: admin', function()
-	{
-		// The "admin" bundle has started...
-	});
+    Event::listen('laravel.started: admin', function()
+    {
+        // The "admin" bundle has started...
+    });
 
 Il est également possible de désactiver un bundle, afin qu'il ne soit jamais démarré.
 
 #### Désactivé un bundle pour qu'il ne puisse pas être démarré :
 
-	Bundle::disable('admin');
+    Bundle::disable('admin');
 
 <a name="routing-to-bundles"></a>
 ## Routage de bundles
 
-Veuillez vous référer à la documentation sur [le routage de bundles](/guides/doc/v3/routes#bundle-routes) et [les contrôleurs de bundles](/guides/doc/v3/controleurs#bundle-controllers) pour plus d'informations.
+Veuillez vous référer à la documentation sur [le routage de bundles](/docs/v3/doc/routes#bundle-routes) et [les contrôleurs de bundles](/docs/v3/doc/controleurs#bundle-controllers) pour plus d'informations.
 
 <a name="using-bundles"></a>
 ## Utilisations de bundles
@@ -137,33 +137,33 @@ Comme indiqué précédemment, les bundles peuvent contenir des vues, des fichie
 
 #### Charge une vue d'un bundle :
 
-	return View::make('bundle::view');
+    return View::make('bundle::view');
 
 #### Charge une option d'un fichier de configuration d'un bundle :
 
-	return Config::get('bundle::file.option');
+    return Config::get('bundle::file.option');
 
 #### Charge une ligne d'un fichier de langue d'un bundle :
 
-	return Lang::line('bundle::file.line');
+    return Lang::line('bundle::file.line');
 
 Parfois vous souhaitez rassembler des informations "meta" à propos d'un bundle, tel que le fait qu'il existe, sa location, son tableau de configuration complet… voici comment faire :
 
 #### Détermine si un bundle existe :
 
-	Bundle::exists('admin');
+    Bundle::exists('admin');
 
 #### Retriouve la location d'un bundle :
 
-	$location = Bundle::path('admin');
+    $location = Bundle::path('admin');
 
 #### Retrouve le tableau de configuration d'un bundle :
 
-	$config = Bundle::get('admin');
+    $config = Bundle::get('admin');
 
 #### Retrouve le nom de tous les bundles installés :
 
-	$names = Bundle::names();
+    $names = Bundle::names();
 
 <a name="bundle-assets"></a>
 ## Assets de bundle
@@ -174,11 +174,11 @@ Mais, comment les rendre disponibles dans le dossier **public** de l'application
 
 #### Publie les assets d'un bundle dans le dossier public:
 
-	php artisan bundle:publish
+    php artisan bundle:publish
 
 Cette commande crée un dossier pour les assets du bundle dans le dossier **public/bundles** de l'application. Par exemple, si votre bundle s'appelle "admin", alors le dossier **public/bundles/admin** sera créé, et contiendra tous les fichiers du dossier public de votre bundle.
 
-Pour plus d'informations sur l'exploitation d'assets de bundle, référez vous à la documentation sur [le management d'assets](/guides/doc/v3/vues/assets#bundle-assets).
+Pour plus d'informations sur l'exploitation d'assets de bundle, référez vous à la documentation sur [le management d'assets](/docs/v3/doc/vues/assets#bundle-assets).
 
 <a name="installing-bundles"></a>
 ## Installation de bundles
@@ -187,7 +187,7 @@ Bien sûr, vous pouvez installer les bundles manuellement, nous avons appris com
 
 #### Installe un bundle via Artisan:
 
-	php artisan bundle:install eloquent
+    php artisan bundle:install eloquent
 
 Bien, maintenant que votre bundle est installé, vous êtes prêt pour [l'enregistrer](#registering-bundles) et [publier ses assets](#bundle-assets).
 
@@ -200,7 +200,7 @@ Quand vous mettez à jour un Bundle, Laravel va en fait supprimer la vieille ver
 
 #### Mise à jour via Artisan:
 
-	php artisan bundle:upgrade eloquent
+    php artisan bundle:upgrade eloquent
 
 > **Note:** Après la mise à jour d'un bundle, vous devez [republier ses assets](#bundle-assets).
 
@@ -208,7 +208,7 @@ Quand vous mettez à jour un Bundle, Laravel va en fait supprimer la vieille ver
 
 #### Ecoute pour l'événement de démarrage d'un bundle :
 
-	Event::listen('laravel.started: admin', function()
-	{
-		Config::set('admin::file.option', true);
-	});
+    Event::listen('laravel.started: admin', function()
+    {
+        Config::set('admin::file.option', true);
+    });

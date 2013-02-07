@@ -33,7 +33,7 @@ Les sessions en cookie fournissent un mechanisme de stockage de session simple e
 
 Pour utiliser les cookies, parametrez simplement le driver à utiliser dans le fichier **application/config/session.php** :
 
-	'driver' => 'cookie'
+    'driver' => 'cookie'
 
 <a name="file"></a>
 ## Sessions dans le système de fichier
@@ -42,63 +42,63 @@ Votre application tournera bien avec les cookies en fichier. Cependant, si votre
 
 Pour commencer à utiliser le système de fichier en tant que stockage de session, indiquez simplement le mot clé **file** dans l'option driver du fichier **application/config/session.php** :
 
-	'driver' => 'file'
+    'driver' => 'file'
 
 > **Note:** Les sessions en fichiers sont stockés dans le dossier **storage/sessions**, veuillez vous assurer qu'il est inscriptible.
 
 <a name="database"></a>
 ## Sessions en base de données
 
-Pour commencer, vous devrez [configurer votre connexion à la base de données](/guides/doc/v3/database/config).
+Pour commencer, vous devrez [configurer votre connexion à la base de données](/docs/v3/doc/database/config).
 
 Ensuite, vous devrez créer une table session. Vous trouverez ci dessous la commande Artisan pour générer la table, et en tant qu'alternative les requpetes SQL pour SQLite et MySQL. Nous vous recommandons bien entendu d'utilier Artisan pour générer les tables à votre place !
 
 ### Artisan
 
-	php artisan session:table
+    php artisan session:table
 
 ### SQLite
 
-	CREATE TABLE "sessions" (
-	     "id" VARCHAR PRIMARY KEY NOT NULL UNIQUE,
-	     "last_activity" INTEGER NOT NULL,
-	     "data" TEXT NOT NULL
-	);
+    CREATE TABLE "sessions" (
+         "id" VARCHAR PRIMARY KEY NOT NULL UNIQUE,
+         "last_activity" INTEGER NOT NULL,
+         "data" TEXT NOT NULL
+    );
 
 ### MySQL
 
-	CREATE TABLE `sessions` (
-	     `id` VARCHAR(40) NOT NULL,
-	     `last_activity` INT(10) NOT NULL,
-	     `data` TEXT NOT NULL,
-	     PRIMARY KEY (`id`)
-	);
+    CREATE TABLE `sessions` (
+         `id` VARCHAR(40) NOT NULL,
+         `last_activity` INT(10) NOT NULL,
+         `data` TEXT NOT NULL,
+         PRIMARY KEY (`id`)
+    );
 
 Si vous utilisez un nom de table différent, précisez le simplement dans l'option **table** du fichier **application/config/session.php** :
 
-	'table' => 'sessions'
+    'table' => 'sessions'
 
 Dans ce même fichier, il ne vous reste qu'à passer l'option **driver** à **database** :
 
-	'driver' => 'database'
+    'driver' => 'database'
 
 <a name="memcached"></a>
 ## Sessions avec Memcached
 
-Avant d'utiliser les sessions avec Memcached, vous devez [configurer votre serveur Memcached](/guides/doc/v3/database/config#memcached).
+Avant d'utiliser les sessions avec Memcached, vous devez [configurer votre serveur Memcached](/docs/v3/doc/database/config#memcached).
 
 Réglez simplement le driver dans le fichier **application/config/session.php** :
 
-	'driver' => 'memcached'
+    'driver' => 'memcached'
 
 <a name="redis"></a>
 ## Sessions avec Redis
 
-Avant d'utiliser les sessions avec Redis, vous devez [configurer votre serveur Redis](/guides/doc/v3/database/redis#config).
+Avant d'utiliser les sessions avec Redis, vous devez [configurer votre serveur Redis](/docs/v3/doc/database/redis#config).
 
 Réglez simplement le driver dans le fichier **application/config/session.php** :
 
-	'driver' => 'redis'
+    'driver' => 'redis'
 
 <a name="memory"></a>
 ## Sessions en mémoire

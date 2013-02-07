@@ -6,7 +6,7 @@
  *
  * This page contains the "introduction" to Laravel.
  */
-Route::get('(:bundle)/doc/(:any?)', function($version="v3")
+Route::get('(:bundle)/(:any?)/doc', function($version="v3")
 {
     if(!document_exists($version.DIRECTORY_SEPARATOR.'home')) return Response::error('404');
 
@@ -14,7 +14,7 @@ Route::get('(:bundle)/doc/(:any?)', function($version="v3")
     $document = document($version.DIRECTORY_SEPARATOR.'home');
     $title = document_title($document);
        
-    return View::make('guides::page')
+    return View::make('docs::page')
         ->with('title', $title)
         ->with('content', $document)
         ->with('isHome', true)
@@ -30,7 +30,7 @@ Route::get('(:bundle)/doc/(:any?)', function($version="v3")
  * @param  string  $page
  * @return mixed
  */
-Route::get('(:bundle)/doc/(:any)/(:any)/(:any?)', function($version, $section, $page = null)
+Route::get('(:bundle)/(:any)/doc/(:any)/(:any?)', function($version, $section, $page = null)
 {
     $file = rtrim(implode('/', func_get_args()), '/');
 
@@ -48,7 +48,7 @@ Route::get('(:bundle)/doc/(:any)/(:any)/(:any?)', function($version, $section, $
         $document = document($file);
         $title = document_title($document);
 
-        return View::make('guides::page')
+        return View::make('docs::page')
             ->with('title', $title)
             ->with('content', $document)
             ->with('section', $section)

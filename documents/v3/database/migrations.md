@@ -20,7 +20,7 @@ Avant d'utiliser les migrations, vous devez effectuer une opération. Laravel ut
 
 **Crée la table de migration de Laravel :**
 
-	php artisan migrate:install
+    php artisan migrate:install
 
 <a name="creating-migrations"></a>
 ## Créer une migration
@@ -29,7 +29,7 @@ Vous pouvez facilement créer une des migrations avec Artisan. Une simple comman
 
 **Création d'une migration**
 
-	php artisan migrate:make create_users_table
+    php artisan migrate:make create_users_table
 
 Maintenant, direction le dossier **application/migrations**. Vous trouverez notre nouveau fichier de migration ! Le nom de ce fichier contient un timestamp, cela permet à Laravel d'exécuter les fichiers dans l'ordre de création.
 
@@ -37,26 +37,26 @@ Vous pouvez également créer des migrations pour un bundle :
 
 **Crée une migration pour un bundle :**
 
-	php artisan migrate:make bundle::create_users_table
+    php artisan migrate:make bundle::create_users_table
 
 *Voir aussi:*
 
-- [Schema Builder](/guides/doc/v3/database/schema)
+- [Schema Builder](/docs/v3/doc/database/schema)
 
 <a name="running-migrations"></a>
 ## Lancer une migration
 
 **Exécute toutes les migrations pour l'application et les bundles :**
 
-	php artisan migrate
+    php artisan migrate
 
 **Exécute toutes les migrations pour l'application :**
 
-	php artisan migrate application
+    php artisan migrate application
 
 **Exécute toutes les migrations pour les bundles :**
 
-	php artisan migrate bundle
+    php artisan migrate bundle
 
 <a name="rolling-back"></a>
 ## Marche arrière
@@ -65,8 +65,8 @@ Lorsque vous effectuez un retour en arrière, Laravel défait entièrement toute
 
 **Annulation de la dernière migration :**
 
-	php artisan migrate:rollback
+    php artisan migrate:rollback
 
 **Annulation de toutes les migrations :**
 
-	php artisan migrate:reset
+    php artisan migrate:reset

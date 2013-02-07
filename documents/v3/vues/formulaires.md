@@ -18,31 +18,31 @@
 
 #### Ouverture d'un formulaire qui POST sur l'URL courante :
 
-	echo Form::open();
+    echo Form::open();
 
 #### Ouverture d'un formulaire utilisant une URI donnée avec un verbe HTTP donné :
 
-	echo Form::open('user/profile', 'PUT');
+    echo Form::open('user/profile', 'PUT');
 
 #### Ouverture d'un formulaire qui POST sur une URL HTTPS :
 
-	echo Form::open_secure('user/profile');
+    echo Form::open_secure('user/profile');
 
 #### Précisions d'attributs HTML à la balise form :
 
-	echo Form::open('user/profile', 'POST', array('class' => 'awesome'));
+    echo Form::open('user/profile', 'POST', array('class' => 'awesome'));
 
 #### Ouverture d'un formulaire qui accepte l'upload de fichiers :
 
-	echo Form::open_for_files('users/profile');
+    echo Form::open_for_files('users/profile');
 
 #### Ouverture d'un formulaire l'upload de fichier en HTTPS :
 
-	echo Form::open_secure_for_files('users/profile');
+    echo Form::open_secure_for_files('users/profile');
 
 #### Fermeture d'un formulaire:
 
-	echo Form::close();
+    echo Form::close();
 
 <a name="csrf-protection"></a>
 ## Protection contre les attaques CSRF
@@ -51,24 +51,24 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
 #### Génération d'un champ caché avec le jeton :
 
-	echo Form::token();
+    echo Form::token();
 
 #### Attachement du filtre CSRF à votre route :
 
-	Route::post('profile', array('before' => 'csrf', function()
-	{
-		//
-	}));
+    Route::post('profile', array('before' => 'csrf', function()
+    {
+        //
+    }));
 
 #### Retrouvez le jeton en session :
 
-	$token = Session::token();
+    $token = Session::token();
 
 > **Note:** Vous devez préciser un driver de session avant d'utiliser la solution anti-CSRF de Laravel.
 
 *Voir également:*
 
-- [Filtres de routes](/guides/doc/v3/routes#filters)
+- [Filtres de routes](/docs/v3/doc/routes#filters)
 - [Cross-Site Request Forgery](http://fr.wikipedia.org/wiki/Cross-site_request_forgery)
 
 <a name="labels"></a>
@@ -76,11 +76,11 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
 #### Génération d'un label:
 
-	echo Form::label('email', 'Adresse e-Mail');
+    echo Form::label('email', 'Adresse e-Mail');
 
 #### Ajout d'attributs HTML au label :
 
-	echo Form::label('email', 'Adresse e-Mail', array('class' => 'awesome'));
+    echo Form::label('email', 'Adresse e-Mail', array('class' => 'awesome'));
 
 > **Note:** Après avoir créé un label, n'importe quel élément de formulaire que vous crérez avec le même nom aura un ID, qui aura pour valeur ce même nom.
 
@@ -89,28 +89,28 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
 #### Génération d'un input de type 'text' :
 
-	echo Form::text('username');
+    echo Form::text('username');
 
 #### Précision d'une valeur par défault :
 
-	echo Form::text('email', 'exemple@gmail.com');
+    echo Form::text('email', 'exemple@gmail.com');
 
 > **Note:** Les méthodes *hidden* et *textarea* ont la même signature que la méthode *text*. Vous venez d'apprendre à utiliser trois méthode pour le prix d'une !
 
 #### Génération d'un input de type password :
 
-	echo Form::password('password');
+    echo Form::password('password');
 
 <a name="checkboxes-and-radio-buttons"></a>
 ## Checkboxes and boutons radio
 
 #### Générating d'un checkbox :
 
-	echo Form::checkbox('name', 'value');
+    echo Form::checkbox('name', 'value');
 
 #### Génération d'une checkbox cochée par défault:
 
-	echo Form::checkbox('name', 'value', true);
+    echo Form::checkbox('name', 'value', true);
 
 > **Note:** La méthode *radio* a la même signature que la méthode *checkbox*. Deux pour le prix d'un!
 
@@ -119,33 +119,33 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
 #### Génération d'une liste Select depuis un tableau :
 
-	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'));
+    echo Form::select('size', array('L' => 'Large', 'S' => 'Small'));
 
 #### Génération d'une liste Select avec un élément sélectionné par défaut :
 
-	echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
+    echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
 
 <a name="buttons"></a>
 ## Boutons
 
 #### Génération d'un bouton submit :
 
-	echo Form::submit('Click moi!');
+    echo Form::submit('Click moi!');
 
 > **Note:** Besoin de créer un simple bouton ? Essayez la méthode *button*. Elle a la même signature que *submit*.
 
 <a name="custom-macros"></a>
 ## Macros
 
-Vous pouvez créer facilement des macros pour la classe Form, de la même manière que pour les [macros HTML](/guides/doc/v3/vues/html#custom-macros) :
+Vous pouvez créer facilement des macros pour la classe Form, de la même manière que pour les [macros HTML](/docs/v3/doc/vues/html#custom-macros) :
 
 #### Enregistrement du macro :
 
-	Form::macro('mon_champ', function()
-	{
-		return '<input type="awesome">';
-	});
+    Form::macro('mon_champ', function()
+    {
+        return '<input type="awesome">';
+    });
 
 #### Appel du macro :
 
-	echo Form::mon_champ();
+    echo Form::mon_champ();

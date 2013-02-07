@@ -22,15 +22,15 @@ Les contrôleurs doivent être placés dans le dossier **application/controllers
 
 #### Création d'un simple contrôleur.
 
-	class Admin_Controller extends Base_Controller
-	{
+    class Admin_Controller extends Base_Controller
+    {
 
-		public function action_index()
-		{
-			//
-		}
+        public function action_index()
+        {
+            //
+        }
 
-	}
+    }
 
 Les **Actions** sont le nom donnés aux méthode qui doivent être accessible via le web. Les actions doivent toujours commencé le préfixe "action\_". Toutes les autres méthodes, peu importe qu'elles sont public ou privée, ne seront pas accessible via le web.
 
@@ -43,36 +43,36 @@ Il est important de comprendre que dans Laravel, toutes les routes possibles doi
 
 Cela signifie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas** accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
 
-Regardez la [page sur le routage](/guides/doc/v3/routes#controller-routing) pour plus d'informations.
+Regardez la [page sur le routage](/docs/v3/doc/routes#controller-routing) pour plus d'informations.
 
 <a name="bundle-controllers"></a>
 ## Contrôleurs de Bundle
 
-Les Bundles sont le sytèmes de paquets modulaires de Laravel. Les bundles peuvent facilement être configuré pour réagir à certaines requêtes, nous reviendrons sur les [bundles plus en détail](/guides/doc/v3/bundles) plus tard.
+Les Bundles sont le sytèmes de paquets modulaires de Laravel. Les bundles peuvent facilement être configuré pour réagir à certaines requêtes, nous reviendrons sur les [bundles plus en détail](/docs/v3/doc/bundles) plus tard.
 
 Créer un contrôleur qui appartient à un bundle est quasiment identique au fait de créer un contrôleur pour votre application. Il faut préfixer le nom du contrôleur avec le nom du bundle, si vous souhaitez créer un contrôleur Home dans le bundle admin, votre classe ressemblera à cela : 
 
 #### Création d'un contrôleur de bundle :
 
-	class Admin_Home_Controller extends Base_Controller
-	{
+    class Admin_Home_Controller extends Base_Controller
+    {
 
-		public function action_index()
-		{
-			return "Bonjour Admin!";
-		}
+        public function action_index()
+        {
+            return "Bonjour Admin!";
+        }
 
-	}
+    }
 
 Mais, comment enregistrer un contrôleur de bundle dans le routeur ? , En fait, c'est assez simple, voyez par vous même : 
 
 #### Enregistrement d'un contrôleur de bundle avec le routeur :
 
-	Route::controller('admin::home');
+    Route::controller('admin::home');
 
 Bien, nous pouvons maintenant acceder à notre contrôleur de bundle via le web !
 
-> **Note:** Avec Laravel, les doubles deux points sont utilisés pour désigner les bundles. Plus d'informations sur les bundles peuvent être trouvés dans la [documentation des bundles](/guides/doc/v3/bundles).
+> **Note:** Avec Laravel, les doubles deux points sont utilisés pour désigner les bundles. Plus d'informations sur les bundles peuvent être trouvés dans la [documentation des bundles](/docs/v3/doc/bundles).
 
 <a name="action-filters"></a>
 ## Filtre d'actions
@@ -83,31 +83,31 @@ Vous pouvez assigner un filtre "before" ou "after" aux actions d'un contrôleur 
 
 #### Atachement d'un filtre sur toutes les actions :
 
-	$this->filter('before', 'auth');
+    $this->filter('before', 'auth');
 
 Dans cet exemple; le filtre 'auth' sera exécuté avant chaque action de ce contrôleur. Le filtre 'auth' est fourni d'origine par Laravel et peut être trouvé dans **application/routes.php**.  Il vérifie qu'un utilisateur est connecté et les redirige vers 'login' si ils ne le sont pas.
 
 #### Attachement d'un filtre pour quelques actions :
 
-	$this->filter('before', 'auth')->only(array('index', 'list'));
+    $this->filter('before', 'auth')->only(array('index', 'list'));
 
 Dans cet exemple, le filtre 'auth' sera exécuté avant que `action_index()` ou `action_list()` ne le soit. Les utilisateurs doivent être connectés pour accéder à ces pages. Cependant, les autres actions de ce contrôleur sont accessible à tout le monde.
 
 #### Attachement d'un filtre à tous les méthodes, sauf quelques une :
 
-	$this->filter('before', 'auth')->except(array('add', 'posts'));
+    $this->filter('before', 'auth')->except(array('add', 'posts'));
 
 Cette fois ci, le filtre 'auth' sera exécuté sur toutes les actions, sauf sur les action `action_add()` et `action_posts()`. Parfois il est plus sûr d'utiliser 'except()', notamment si l'on ajoute une nouvelle action et que l'on oublie de la placer dans 'only()'. Cela pourrait rendre certaines action accessibles à des utilisateurs qui ne sont pas identifiés.
 
 #### Attachement d'un first qui s'exécute lors d'une requête POST :
 
-	$this->filter('before', 'csrf')->on('post');
+    $this->filter('before', 'csrf')->on('post');
 
 Cet exemple nous montre comment un filtre peut être executé uniquement lors de l'utilisation d'un verbe HTTP précis. Dans ce cas, nous utilisons le filtre csrf seulement lorsqu'une requête POST est effectuée. Le filtre csrf, qui est également fourni par défaut, et visible dans le fichier **application/routes.php**. Il est conçu pour empêcher des requêtes POST qui proviennent de systèmes externes (bot de spam par exemple).
 
 *Voir également:*
 
-- *[Filtres de routes](/guides/doc/v3/routes#filters)*
+- *[Filtres de routes](/docs/v3/doc/routes#filters)*
 
 <a name="nested-controllers"></a>
 ## Contrôleurs imbriqués
@@ -116,25 +116,25 @@ Les contrôleurs peuvent être placé dans des sous répertoires du dossier prin
 
 #### Définition d'un contrôleur se trouvant dans le fichier **controllers/admin/panel.php**.
 
-	class Admin_Panel_Controller extends Base_Controller
-	{
+    class Admin_Panel_Controller extends Base_Controller
+    {
 
-		public function action_index()
-		{
-			//
-		}
+        public function action_index()
+        {
+            //
+        }
 
-	}
+    }
 
 #### Enregistrement du contrôleur imbriqué dans le routeur en utilisant la syntaxe "point" : 
 
-	Route::controller('admin.panel');
+    Route::controller('admin.panel');
 
 > **Note:** Quand vous utilisez les contrôleurs imbriqués, enregistrez les toujours du plus imbriqué au moins imbriqué, afin d'éviter que certaines route ne soient intercepté par le mauvais contrôleur.
 
 #### Accès à l'action "index" du contrôleur :
 
-	http://localhost/admin/panel(/index)
+    http://localhost/admin/panel(/index)
 
 <a name="restful-controllers"></a>
 ## Contrôleur RESTful
@@ -143,47 +143,47 @@ Grâce aux contrôleurs RESTful, plutôt que de préfixer vos actions avec "acti
 
 #### ajout de la propriété $restful au contrôleur :
 
-	class Home_Controller extends Base_Controller
-	{
+    class Home_Controller extends Base_Controller
+    {
 
-		public $restful = true;
+        public $restful = true;
 
-	}
+    }
 
 #### Construction d'un contrôleur RESTful :
 
-	class Home_Controller extends Base_Controller
-	{
+    class Home_Controller extends Base_Controller
+    {
 
-		public $restful = true;
+        public $restful = true;
 
-		public function get_index()
-		{
-			//
-		}
+        public function get_index()
+        {
+            //
+        }
 
-		public function post_index()
-		{
-			//
-		}
+        public function post_index()
+        {
+            //
+        }
 
-	}
+    }
 
 Ceci est particulièrement pratique lorsque vous construisez des méthodes CRUD ( Create, Read, Update, Delete ), car vous pouvez séparer la logique selon le verbes HTTP, et avoir pour une même route, une méthode qui fourni le formulaire et une qui valide les données.
 
 <a name="dependency-injection"></a>
 ## Injection de dépendance
 
-Si vous souhaitez écrire des tests unitaires, vous allez probablement avoir besoin d'utiliser l'injection de dépendance dans le constructeur de votre contrôleur. Pas de problème, enregistrez juste votre contrôleur dans le  conteneur IoC [IoC container](/guides/doc/v3/ioc). Lorsque vous enregistrez votre contrôleur dans le conteneur, préfixez le avec la clé **controller**. Dans votre fichier **application/start.php**, vous pouvez enregistrer nos contrôleurs de la manière suivante :
+Si vous souhaitez écrire des tests unitaires, vous allez probablement avoir besoin d'utiliser l'injection de dépendance dans le constructeur de votre contrôleur. Pas de problème, enregistrez juste votre contrôleur dans le  conteneur IoC [IoC container](/docs/v3/doc/ioc). Lorsque vous enregistrez votre contrôleur dans le conteneur, préfixez le avec la clé **controller**. Dans votre fichier **application/start.php**, vous pouvez enregistrer nos contrôleurs de la manière suivante :
 
-	IoC::register('controller: user', function()
-	{
-		return new User_Controller;
-	});
+    IoC::register('controller: user', function()
+    {
+        return new User_Controller;
+    });
 
 Lorsqu'une requête vers un contrôleur  entre dans votre application, Laravel va automatiquement déterminer si le contrôleur est enregistré dans le conteneur, et si il l'est, va utiliser le conteneur pour résoudre une instance du contrôleur.
 
-> **Note:** Avant de vous lancer dans l'injection de dépendance de contrôleurs, vous pouvez lire un peu la documentation du superbe [IoC container](/guides/doc/v3/ioc) de Laravel.
+> **Note:** Avant de vous lancer dans l'injection de dépendance de contrôleurs, vous pouvez lire un peu la documentation du superbe [IoC container](/docs/v3/doc/ioc) de Laravel.
 
 <a name="controller-factory"></a>
 ## Usine de contrôleur
@@ -192,9 +192,9 @@ Si vous souhaitez encore plus de contrôle lors de l'instanciation de vos contr�
 
 **Enregistrement d'un événement qui gère l'instanciation de contrôleurs :**
 
-	Event::listen(Controller::factory, function($controller)
-	{
-		return new $controller;
-	});
+    Event::listen(Controller::factory, function($controller)
+    {
+        return new $controller;
+    });
 
 L’événement va recevoir le nom de la classe qui doit être résolue. Tout ce que avez à faire est de retourner une instance du contrôleur.

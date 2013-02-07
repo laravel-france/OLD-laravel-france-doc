@@ -17,51 +17,51 @@
 
 #### Obtient le contenu d'un fichier :
 
-	$contents = File::get('chemin/vers/fichier');
+    $contents = File::get('chemin/vers/fichier');
 
 <a name="put"></a>
 ## Écriture
 
 #### Ecrit dans un fichier :
 
-	File::put('chemin/vers/fichier', 'contenu du fichier');
+    File::put('chemin/vers/fichier', 'contenu du fichier');
 
 #### Ajout dans un fichier :
 
-	File::append('chemin/vers/fichier', 'ajout au fichier');
+    File::append('chemin/vers/fichier', 'ajout au fichier');
 
 <a name="delete"></a>
 ## Suppression
 
 #### Supprime un fichier :
 
-	File::delete('chemin/vers/fichier');
+    File::delete('chemin/vers/fichier');
 
 <a name="upload"></a>
 ## Upload d'un fichier
 
 #### Déplace un fichier du tableau $_FILE vers un emplacement permanent :
 
-	Input::upload('picture', 'chemin/vers/img', 'fichier.ext');
+    Input::upload('picture', 'chemin/vers/img', 'fichier.ext');
 
-> **Note:** Vous pouvez facilement valider l'image mise en ligne grâce à la [classe Validator](/guides/doc/v3/validation).
+> **Note:** Vous pouvez facilement valider l'image mise en ligne grâce à la [classe Validator](/docs/v3/doc/validation).
 
 <a name="ext"></a>
 ## Extension d'un fichier
 
 #### Obtient l'extension d'un fichier :
 
-	File::extension('picture.png');
+    File::extension('picture.png');
 
 <a name="is"></a>
 ## Vérifier le type d'un fichier
 
 #### Détermine si un fichier est du type donné :
 
-	if (File::is('jpg', 'chemin/vers/fichier.jpg'))
-	{
-		//
-	}
+    if (File::is('jpg', 'chemin/vers/fichier.jpg'))
+    {
+        //
+    }
 
 La méthode **is** ne regarde pas uniquement l'extension. Elle vérifie aussi le type MIME grâce à l'extension Fileinfo de PHP.
 
@@ -73,7 +73,7 @@ La méthode **is** ne regarde pas uniquement l'extension. Elle vérifie aussi le
 
 #### Obtient le type MIME associé à une extension :
 
-	echo File::mime('gif'); // retourne 'image/gif'
+    echo File::mime('gif'); // retourne 'image/gif'
 
 > **Note:** Cette méthode retourne simplement le type MIME défini dans le fichier **application/config/mimes.php**.
 
@@ -82,11 +82,11 @@ La méthode **is** ne regarde pas uniquement l'extension. Elle vérifie aussi le
 
 #### Copie récursivement un dossier vers une emplacement donné :
 
-	File::cpdir($dossier, $destination);
+    File::cpdir($dossier, $destination);
 
 <a name="rmdir"></a>
 ## Suppression de dossier
 
 #### Supprime récursivement un dossier :
 
-	File::rmdir($dossier);
+    File::rmdir($dossier);

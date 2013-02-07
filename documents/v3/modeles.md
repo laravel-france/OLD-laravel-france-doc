@@ -40,4 +40,4 @@ Vous pouvez maintenant appeler Printer::write('Ce texte sera écrit depuis ma bi
 <a name="auto-loading"></a>
 ## Auto Loading
 
-Les bibliothèques et les modèles sont vraiment facile à utiliser grâce à l'auto-loader de Laravel. Pour en apprendre plus sur l'auto-loader, regardez la [documentation de l'Autoloading](/guides/doc/v3/loading).
+Les bibliothèques et les modèles sont vraiment facile à utiliser grâce à l'auto-loader de Laravel. Pour en apprendre plus sur l'auto-loader, regardez la [documentation de l'Autoloading](/docs/v3/doc/loading).

@@ -15,7 +15,7 @@ La classe **Asset** fournie une manière simple de gérer le CSS et le Javascrip
 
 #### Enregistrement d'un asset :
 
-	Asset::add('jquery', 'js/jquery.js');
+    Asset::add('jquery', 'js/jquery.js');
 
 La méthode **add** accepte trois paramètres. Le premier est le nom de l'asset, le second est le chemin de l'asset relatif au dossier **public**, et le troisième est une liste des dépendances de l'asset ( nous y reviendrons plus tard ). Remarquez que nous n'avons pas indiqué à la méthode qu'il s agissait d'un fichier Javascript ou CSS. En fait, la méthode *add** regardera l'extension du fichier pour déterminer son type.
 
@@ -26,10 +26,10 @@ Quand vous serez prêt à écrire les liens des assets enregistrés dans votre v
 
 #### Écriture des assets dans une vue :
 
-	<head>
-		<?php echo Asset::styles(); ?>
-		<?php echo Asset::scripts(); ?>
-	</head>
+    <head>
+        <?php echo Asset::styles(); ?>
+        <?php echo Asset::scripts(); ?>
+    </head>
 
 <a name="asset-dependencies"></a>
 ## Dépendances des assets
@@ -38,13 +38,13 @@ Vous pouvez spécifié lors de l'ajout d'un asset que ce dernier à des dépenda
 
 #### Enregistrement d'un asset qui a une dépendance :
 
-	Asset::add('jquery-ui', 'js/jquery-ui.js', 'jquery');
+    Asset::add('jquery-ui', 'js/jquery-ui.js', 'jquery');
 
 Dans cet exemple, nous enregistrons l'asset **jquery-ui** In this example, we are registering the **jquery-ui** et nous indiquons que ce dernier est dépendant de jquery. jQuery sera donc toujours déclaré dans notre vue **avant** jQuery UI. Besoin de déclaré plus d'une dépendance ? Pas de problèmes : 
 
 #### Enregistrement d'un asset qui a de multiples dépendances :
 
-	Asset::add('jquery-ui', 'js/jquery-ui.js', array('first', 'second'));
+    Asset::add('jquery-ui', 'js/jquery-ui.js', array('first', 'second'));
 
 <a name="asset-containers"></a>
 ## Conteneur d'assets
@@ -53,21 +53,21 @@ Pour augmenter le temps de réponse, les règles de bonnes pratiques nous indiqu
 
 #### Ajout d'un asset dans le conteneur d'assets footer :
 
-	Asset::container('footer')->add('example', 'js/example.js');
+    Asset::container('footer')->add('example', 'js/example.js');
 
 #### Affichage des assets de type Javascript du conteneur 'footer' :
 
-	echo Asset::container('footer')->scripts();
+    echo Asset::container('footer')->scripts();
 
 <a name="bundle-assets"></a>
 ## Assets de bundle
 
-Avant d'apprendre comment ajouter et afficher les assets d'un bundle, vous devriez lire la documentation sur [la création et la publication d'assets de bundle](/guides/doc/v3/bundles#bundle-assets).
+Avant d'apprendre comment ajouter et afficher les assets d'un bundle, vous devriez lire la documentation sur [la création et la publication d'assets de bundle](/docs/v3/doc/bundles#bundle-assets).
 
 Lorsque vous enregistrez des assets, le chemin est relatif au dossier  **public**. Cependant, ceci n'est pas pratique lorsque l'on gère des assets de bundle, puisqu'ils se trouvent dans le dossier **public/bundles**. Laravel est là pour vous rendre la tache plus facile ! Vous pouvez créer un conteneur qui gérera les assets d'un de vos bundles :
 
 #### Précise que le conteneur foo gère les assets du bundle admin:
 
-	Asset::container('foo')->bundle('admin');
+    Asset::container('foo')->bundle('admin');
 
 Maintenant, vous pouvez utiliser des chemins relative au dossier public du bundle, Laravel générera les chemins corrects.

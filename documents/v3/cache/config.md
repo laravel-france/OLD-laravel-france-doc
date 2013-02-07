@@ -32,7 +32,7 @@ By default, Laravel is configured to use the **file** system cache driver. It's 
 
 The database cache driver uses a given database table as a simple key-value store. To get started, first set the name of the database table in **application/config/cache.php**:
 
-	'database' => array('table' => 'laravel_cache'),
+    'database' => array('table' => 'laravel_cache'),
 
 Next, create the table on your database. The table should have three columns:
 
@@ -49,29 +49,29 @@ That's it. Once your configuration and table is setup, you're ready to start cac
 
 Once Memcached is installed on your server you must set the **driver** in the **application/config/cache.php** file:
 
-	'driver' => 'memcached'
+    'driver' => 'memcached'
 
 Then, add your Memcached servers to the **servers** array:
 
-	'servers' => array(
-	     array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
-	)
+    'servers' => array(
+         array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
+    )
 
 <a name="redis"></a>
 ## Redis
 
 [Redis](http://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
-Before using the Redis cache driver, you must [configure your Redis servers](/guides/doc/v3/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
+Before using the Redis cache driver, you must [configure your Redis servers](/docs/v3/doc/database/redis#config). Now you can just set the **driver** in the **application/config/cache.php** file:
 
-	'driver' => 'redis'
+    'driver' => 'redis'
 
 <a name="keys"></a>
 ### Cache Keys
 
 To avoid naming collisions with other applications using APC, Redis, or a Memcached server, Laravel prepends a **key** to each item stored in the cache using these drivers. Feel free to change this value:
 
-	'key' => 'laravel'
+    'key' => 'laravel'
 
 <a name="memory"></a>
 ### In-Memory Cache

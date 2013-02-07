@@ -1,2 +1,2 @@
 ### General
-- [Accueil](/guides/doc/v4/home)
+- [Accueil](/docs/v4/doc/home)

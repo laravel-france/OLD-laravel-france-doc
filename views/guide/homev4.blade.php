@@ -1,15 +1,15 @@
 @layout('main')
 
 @section('title')
-    Guides Laravel 4 beta - Laravel France
+    docs Laravel 4 beta - Laravel France
 @endsection
 
 @section('content')
-    <div id="guides">
+    <div id="docs">
       <div class="row">
         <div class="span3">
 
-            @include('guides::guide.selector')
+            @include('docs::guide.selector')
 
           <div class="well">
             <h3>Laravel 4 beta</h3>
@@ -19,7 +19,7 @@
         <div class="span9">
             <ul class="breadcrumb">
                 <li><a title="Retour à la page d'accueil" href="/"><i class="icon-home"></i></a> <span class="divider">/</a></li>
-                <li>Guides</li>
+                <li>Documentation & guides</li>
             </ul>
 
             <div class="well">

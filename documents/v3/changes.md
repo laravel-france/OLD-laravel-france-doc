@@ -165,13 +165,13 @@
 <a name="3.2"></a>
 ## Laravel 3.2
 
-- [Added `to_array` method to the base Eloquent model](/guides/doc/v3/database/eloquent#to-array).
-- [Added `$hidden` static variable to the base Eloquent model](/guides/doc/v3/database/eloquent#to-array).
-- [Added `sync` method to has\_many\_and\_belongs\_to Eloquent relationship](/guides/doc/v3/database/eloquent#sync-method).
-- [Added `save` method to has\_many Eloquent relationship](/guides/doc/v3/database/eloquent#has-many-save).
-- [Added `unless` structure to Blade template engine](/guides/doc/v3/views/templating#blade-unless).
-- [Added Blade comments](/guides/doc/v3/views/templating#blade-comments).
-- [Added simpler environment management](/guides/doc/v3/install#environments).
+- [Added `to_array` method to the base Eloquent model](/docs/v3/doc/database/eloquent#to-array).
+- [Added `$hidden` static variable to the base Eloquent model](/docs/v3/doc/database/eloquent#to-array).
+- [Added `sync` method to has\_many\_and\_belongs\_to Eloquent relationship](/docs/v3/doc/database/eloquent#sync-method).
+- [Added `save` method to has\_many Eloquent relationship](/docs/v3/doc/database/eloquent#has-many-save).
+- [Added `unless` structure to Blade template engine](/docs/v3/doc/views/templating#blade-unless).
+- [Added Blade comments](/docs/v3/doc/views/templating#blade-comments).
+- [Added simpler environment management](/docs/v3/doc/install#environments).
 - Added `Blade::extend()` method to define custom blade compilers.
 - Added `View::exists` method.
 - Use [Memcached](http://php.net/manual/en/book.memcached.php) API instead of older [Memcache](http://php.net/manual/en/book.memcache.php) API.
@@ -222,14 +222,14 @@
 
 Add the following entry to the `aliases` array in `config/application.php`..
 
-	'Profiler'   => 'Laravel\\Profiling\\Profiler',
+    'Profiler'   => 'Laravel\\Profiling\\Profiler',
 
 Add the following code above `Blade::sharpen()` in `application/start.php`..
 
-	if (Config::get('application.profiler'))
-	{
-	    Profiler::attach();
-	}
+    if (Config::get('application.profiler'))
+    {
+        Profiler::attach();
+    }
 
 - Upgrade the **paths.php** file.
 - Replace the **laravel** folder.
@@ -383,8 +383,8 @@ If you have created indexes on tables using the Laravel migration system and you
 
 Add the following to the **aliases** array in your **application/config/application.php** file:
 
-	'Eloquent' => 'Laravel\\Database\\Eloquent\\Model',
-	'Blade' => 'Laravel\\Blade',
+    'Eloquent' => 'Laravel\\Database\\Eloquent\\Model',
+    'Blade' => 'Laravel\\Blade',
 
 #### Update Eloquent many-to-many tables.
 
@@ -406,10 +406,10 @@ A new **fetch** option allows you to specify in which format you receive your da
 
 If you are using Redis, add the "database" option to your Redis connection configurations. The "database" value can be zero by default.
 
-	'redis' => array(
-		'default' => array(
-			'host' => '127.0.0.1',
-			'port' => 6379,
-			'database' => 0
-		),
-	),
+    'redis' => array(
+        'default' => array(
+            'host' => '127.0.0.1',
+            'port' => 6379,
+            'database' => 0
+        ),
+    ),

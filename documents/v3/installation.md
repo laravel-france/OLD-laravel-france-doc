@@ -52,10 +52,10 @@ Pout cet exemple, imaginons que vous ayez installer Laravel dans le dossier **/U
 
 Voici un exemple de VirtualHost Apache pour MonSite ressemblerai à cela :
 
-	<VirtualHost *:80>
-		DocumentRoot /Users/Jean/Sites/MonSite/public
-		ServerName monsite.dev
-	</VirtualHost>
+    <VirtualHost *:80>
+        DocumentRoot /Users/Jean/Sites/MonSite/public
+        ServerName monsite.dev
+    </VirtualHost>
 
 Remarquez que nous avons installer le site dans le dossier **/Users/Jean/Sites/MonSite**, mais que notre DocumentRoot pointe sur **/Users/Jean/Sites/MonSite/public**.
 
@@ -66,7 +66,7 @@ Pointer le DocumentRoot vers le dossier **public** est une bonne pratique, à ut
 
 Tous les fichiers de configurations fournies se trouvent dans le dossier config/ de votre application. Nous vous recommendons d'y jeter un oeil, afin de voir et de comprendre basiquement les options qui s'offrent à vous. Vous pouvez porter une attention spécial au fichier **application/config/application.php**, car il contient les options de configuration basique de votre application.
 
-Il est **extrêmement** important de changer l'option **key** avant de commencer à travailler, ou même de visiter votre site. Cette clé est utilisée par le framework pour le cryptage, le chiffrage, ect... L'option se trouve dans le fichier **application/config/application.php** et doit être défini en tant que chaine de 32 caractères. Pour généré facilement une clé qui respecte le standard, vous pouvez utiliser l'outil en ligne de commande Artistan. Plus d'informations sur la page des [commandes d'Artisan](/guides/doc/v3/artisan/commands).
+Il est **extrêmement** important de changer l'option **key** avant de commencer à travailler, ou même de visiter votre site. Cette clé est utilisée par le framework pour le cryptage, le chiffrage, ect... L'option se trouve dans le fichier **application/config/application.php** et doit être défini en tant que chaine de 32 caractères. Pour généré facilement une clé qui respecte le standard, vous pouvez utiliser l'outil en ligne de commande Artistan. Plus d'informations sur la page des [commandes d'Artisan](/docs/v3/doc/artisan/commands).
 
 > **Note:** Si vous utilisez le mod_rewrite, vous devez définir dans l'option **index** une chaine de caractères vide.
 
@@ -75,21 +75,21 @@ Il est **extrêmement** important de changer l'option **key** avant de commencer
 
 Souvent, les options de configurations que vous souhaitez pour votre environnement de développement ne sont pas les mêmes que les options pour la production. Laravel fourni un système de gestion d'environnements, qui se base par défaut sur les URL. Ouvrez le fichier `paths.php` qui se trouve à la racine de votre installation. Vous trouverez un tableau qui ressemble à cela : 
 
-	$environments = array(
+    $environments = array(
 
-		'local' => array('http://localhost*', '*.dev'),
+        'local' => array('http://localhost*', '*.dev'),
 
-	);
+    );
 
 Vous avez sans doute saisi le principe, cela indique au framework que toute les uls avec "http://localhost" ou finissant par ".dev" doivent être considéré comme étant dans l'environnement appellé "local".
 
 Maintenant, créez un dossier **application/config/local**. Tous fichiers et toutes options qui se trouverons dans ce dossier écraseront les options de bases qui se situent dans le dossier de base **application/config** ; si vous êtes en environnement local. Par exemple, vous pourriez créer un fichier **application.php** avec votre configuration pour l'environnement **local** :
 
-	return array(
+    return array(
 
-		'url' => 'http://localhost/laravel/public',
+        'url' => 'http://localhost/laravel/public',
 
-	);
+    );
 
 Dans cet exemple, l'option **url** de l'environnement local écrasera la valeur existante dans le fichier **application/config/application.php**. Notez que vous pouvez inscrire uniquement une partie des options, les autres prendront les valeurs par défaut.
 
@@ -100,24 +100,24 @@ Alors, plutôt simple non ? Bien sûr, vous pouvez créer autant d'environnement
 
 Vous ne souhaitez probablement pas que toutes les URLs de votre application contiennent "index.php". Vous pouvez supprimer ce comportement en utilisant des règles de réécritures HTTP. Si vous utilisez Apache en tant que serveur web, assurez vous que le mode rewrite soit activé, et créez un fichier **.htaccess** avec ce contenu dans le dossier **public** :
 
-	<IfModule mod_rewrite.c>
-	     RewriteEngine on
+    <IfModule mod_rewrite.c>
+         RewriteEngine on
 
-	     RewriteCond %{REQUEST_FILENAME} !-f
-	     RewriteCond %{REQUEST_FILENAME} !-d
+         RewriteCond %{REQUEST_FILENAME} !-f
+         RewriteCond %{REQUEST_FILENAME} !-d
 
-	     RewriteRule ^(.*)$ index.php/$1 [L]
-	</IfModule>
+         RewriteRule ^(.*)$ index.php/$1 [L]
+    </IfModule>
 
 Le fichier htaccess ne marche pas pour vous ? Essayez celui ci :
 
-	Options +FollowSymLinks
-	RewriteEngine on
+    Options +FollowSymLinks
+    RewriteEngine on
 
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
 
-	RewriteRule . index.php [L]
+    RewriteRule . index.php [L]
 
 après avoir mis en place la réécriture HTTP, vous devrez mettre une chaine de caractères vide dans l'option **index** du fichier **application/config/application.php**.
 

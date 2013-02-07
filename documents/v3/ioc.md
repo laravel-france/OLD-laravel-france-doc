@@ -1,8 +1,8 @@
 # IoC Container
 
-- [Definition](/guides/doc/v3/ioc#definition)
-- [Registering Objects](/guides/doc/v3/ioc#register)
-- [Resolving Objects](/guides/doc/v3/ioc#resolve)
+- [Definition](/docs/v3/doc/ioc#definition)
+- [Registering Objects](/docs/v3/doc/ioc#register)
+- [Resolving Objects](/docs/v3/doc/ioc#resolve)
 
 <a name="definition"></a>
 ## Definition
@@ -16,34 +16,34 @@ IoC containers help make your application more flexible and testable. Since you 
 
 #### Registering a resolver in the IoC container:
 
-	IoC::register('mailer', function()
-	{
-		$transport = Swift_MailTransport::newInstance();
+    IoC::register('mailer', function()
+    {
+        $transport = Swift_MailTransport::newInstance();
 
-		return Swift_Mailer::newInstance($transport);
-	});
+        return Swift_Mailer::newInstance($transport);
+    });
 
 
 Great! Now we have registered a resolver for SwiftMailer in our container. But, what if we don't want the container to create a new mailer instance every time we need one? Maybe we just want the container to return the same instance after the initial instance is created. Just tell the container the object should be a singleton:
 
 #### Registering a singleton in the container:
 
-	IoC::singleton('mailer', function()
-	{
-		//
-	});
+    IoC::singleton('mailer', function()
+    {
+        //
+    });
 
 You may also register an existing object instance as a singleton in the container.
 
 #### Registering an existing instance in the container:
 
-	IoC::instance('mailer', $instance);
+    IoC::instance('mailer', $instance);
 
 <a name="resolve"></a>
 ## Resolving Objects
 
 Now that we have SwiftMailer registered in the container, we can resolve it using the **resolve** method on the **IoC** class:
 
-	$mailer = IoC::resolve('mailer');
+    $mailer = IoC::resolve('mailer');
 
-> **Note:** You may also [register controllers in the container](/guides/doc/v3/controllers#dependency-injection).
+> **Note:** You may also [register controllers in the container](/docs/v3/doc/controllers#dependency-injection).

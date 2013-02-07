@@ -16,9 +16,9 @@
 
 La configuration de Redis pour votre application se fait dans le fichier **application/config/database.php**. Dans ce fichier, vous trouverez un tableau **redis** qui contient les serveurs Redis utilisés par votre application :
 
-	'redis' => array(
-		'default' => array('host' => '127.0.0.1', 'port' => 6379),
-	),
+    'redis' => array(
+        'default' => array('host' => '127.0.0.1', 'port' => 6379),
+    ),
 
 La configuration du serveur par défaut devrait suffire pour le développement. Cependant, vous êtes libre de modifier ce tableau selon votre environnement. Donnez simplement un nom à chaque serveur, précisez une adresse et un port.
 
@@ -27,31 +27,31 @@ La configuration du serveur par défaut devrait suffire pour le développement. 
 
 Vous recevrez une instance de Redis en appellant la méthode **db** de la classe **Redis** :
 
-	$redis = Redis::db();
+    $redis = Redis::db();
 
 Cela vous donnera une instance du serveur Redis par **default** Redis server. Vous pouvez passer le nom du serveur à la méthode **db** pour obtenir une instance de Redis définie dans votre fichier de configuration :
 
-	$redis = Redis::db('redis_2');
+    $redis = Redis::db('redis_2');
 
 Bien ! Maintenant que nous avons une instance du client Redis, nous pouvons exécuter une [commande Redis](http://redis.io/commands). Laravel utilise des méthodes magiques pour passer les commandes au serveur :
 
-	$redis->set('name', 'Taylor');
+    $redis->set('name', 'Taylor');
 
-	$name = $redis->get('name');
+    $name = $redis->get('name');
 
-	$values = $redis->lrange('names', 5, 10);
+    $values = $redis->lrange('names', 5, 10);
 
 
 Les arguments de la commande sont simplement passés à la méthode magique. Vous pouvez ne pas utiliser les méthodes magiques, en utilisant la méthode **run** :
 
-	$values = $redis->run('lrange', array(5, 10));
+    $values = $redis->run('lrange', array(5, 10));
 
 Vous souhaitez exécuter le plus simplement possible des commandes sur le serveur par défaut ? Vous pouvez utiliser simplement les méthodes magiques directement sur la classe **Redis** :
 
-	Redis::set('name', 'Taylor');
+    Redis::set('name', 'Taylor');
 
-	$name = Redis::get('name');
+    $name = Redis::get('name');
 
-	$values = Redis::lrange('names', 5, 10);
+    $values = Redis::lrange('names', 5, 10);
 
-> **Note:** Des drivers Redis pour le [cache](/guides/doc/v3/cache/config#redis) and les [sessions](/guides/doc/v3/session/config#redis) sont inclus avec Laravel.
+> **Note:** Des drivers Redis pour le [cache](/docs/v3/doc/cache/config#redis) and les [sessions](/docs/v3/doc/session/config#redis) sont inclus avec Laravel.

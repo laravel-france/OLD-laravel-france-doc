@@ -21,46 +21,46 @@ Toutes les vues sont stockées dans le dossier **application/views** et utilisen
 
 #### Création d'une vue :
 
-	<html>
-		Je suis stocké dans views/home/index.php!
-	</html>
+    <html>
+        Je suis stocké dans views/home/index.php!
+    </html>
 
 #### Envoi de la vue depuis une route :
 
-	Route::get('/', function()
-	{
-		return View::make('home.index');
-	});
+    Route::get('/', function()
+    {
+        return View::make('home.index');
+    });
 
 #### Envoi de la vue depuis un contrôleur :
 
-	public function action_index()
-	{
-		return View::make('home.index');
-	});
+    public function action_index()
+    {
+        return View::make('home.index');
+    });
 
 #### Détermine si une vue existe :
 
-	$exists = View::exists('home.index');
+    $exists = View::exists('home.index');
 
 Parfois vous aurez besoin d'un petit plus de contrôle sur la réponse qui sera envoyé au navigateur. Par exemple, vous pourriez avoir besoin de mettre certaines entête, ou de changer le code de status HTTP. Voici comment faire :
 
 #### Retourne une réponse personnalisée:
 
-	Route::get('/', function()
-	{
-		$headers = array('foo' => 'bar');
+    Route::get('/', function()
+    {
+        $headers = array('foo' => 'bar');
 
-		return Response::make('Hello World!', 200, $headers);
-	});
+        return Response::make('Hello World!', 200, $headers);
+    });
 
 #### Retourne une réponse personnalisée contenant une vue, avec des données liées :
 
-	return Response::view('home', array('foo' => 'bar'));
+    return Response::view('home', array('foo' => 'bar'));
 
 #### Retourne une réponse au format JSON :
 
-	return Response::json(array('name' => 'Batman'));
+    return Response::json(array('name' => 'Batman'));
 
 #### Retourne une réponse au format JSONP :
 
@@ -68,7 +68,7 @@ Parfois vous aurez besoin d'un petit plus de contrôle sur la réponse qui sera 
 
 #### Retourne une modèle Eloquent au format JSON :
 
-	return Response::eloquent(User::find(1));
+    return Response::eloquent(User::find(1));
 
 <a name="binding-data-to-views"></a>
 ## Attacher des données à une vue
@@ -77,36 +77,36 @@ Typiquement, une route ou un contrôleur va demander à un modèle de lui fourni
 
 #### Attache des données à une vue:
 
-	Route::get('/', function()
-	{
-		return View::make('home')->with('name', 'Jean');
-	});
+    Route::get('/', function()
+    {
+        return View::make('home')->with('name', 'Jean');
+    });
 
 #### Accès aux données attachées depuis la vue :
 
-	<html>
-		Bonjour, <?php echo $name; ?>.
-	</html>
+    <html>
+        Bonjour, <?php echo $name; ?>.
+    </html>
 
 #### Enchaînement d'attachement de données à une vue :
 
-	View::make('home')
-		->with('name', 'Jean')
-		->with('votes', 25);
+    View::make('home')
+        ->with('name', 'Jean')
+        ->with('votes', 25);
 
 #### Passage d'un tableau pour attacher les données :
 
-	View::make('home', array('name' => 'James'));
+    View::make('home', array('name' => 'James'));
 
 #### En utilisant les propriétés "magiques" :
 
-	$view->name  = 'Jean';
-	$view->email = 'exemple@exemple.fr';
+    $view->name  = 'Jean';
+    $view->email = 'exemple@exemple.fr';
 
 #### En utilisant l'interface ArrayAccess :
 
-	$view['name']  = 'Jean';
-	$view['email'] = 'exemple@exemple.exemple';
+    $view['name']  = 'Jean';
+    $view['email'] = 'exemple@exemple.exemple';
 
 <a name="nesting-views"></a>
 ## Imbriquement de vues
@@ -115,29 +115,29 @@ Vous serez souvent amené à inclure une vue dans une autre. Les vues imbriquée
 
 #### Attachement d'une vue imbriquée en utilisant la méthode "nest" :
 
-	View::make('home')->nest('footer', 'partials.footer');
+    View::make('home')->nest('footer', 'partials.footer');
 
 #### Passage d'arguments à une vue imbriquée :
 
-	$view = View::make('home');
+    $view = View::make('home');
 
-	$view->nest('content', 'orders', array('orders' => $orders));
+    $view->nest('content', 'orders', array('orders' => $orders));
 
 Vous pouvez également inclure une vue directement dans votre vue, grâce à la méthode "helper" **render** :
 
 #### Utilisation de l'helper "render" pour inclure une vue :
 
-	<div class="content">
-		<?php echo render('user.profile'); ?>
-	</div>
+    <div class="content">
+        <?php echo render('user.profile'); ?>
+    </div>
 
 Il arrive aussi également que l'on veuille inclure une vue qui serait responsable de l'affiche d'un élément d'une liste. Cela se fait simplement grâce à l'helper **render_each** :
 
 #### Affiche une vue partiel pour chaque éléments d'un tableau :
 
-	<div class="orders">
-		<?php echo render_each('partials.order', $orders, 'order');
-	</div>
+    <div class="orders">
+        <?php echo render_each('partials.order', $orders, 'order');
+    </div>
 
 Le premier argument est le nom de la vue, le second est le tableau de données, et le troisième est le nom de la variable qui sera utilisée dans la vue partielle.
 
@@ -148,15 +148,15 @@ Les vues nommées existent pour rendre votre code plus expressif et organisé. L
 
 #### Enregistrement d'une vue nommée :
 
-	View::name('layouts.default', 'layout');
+    View::name('layouts.default', 'layout');
 
 #### Obtenir une instance d'une vue nommée :
 
-	return View::of('layout');
+    return View::of('layout');
 
 #### Attachement de données à une vue nommée :
 
-	return View::of('layout', array('orders' => $orders));
+    return View::of('layout', array('orders' => $orders));
 
 <a name="view-composers"></a>
 ## Composeur de vue
@@ -165,19 +165,19 @@ Chaque fois qu'une vue est crée, un événement "composer" est lancé pour cett
 
 #### Enregistre un composeur de vue pour la vue "home" :
 
-	View::composer('home', function($view)
-	{
-		$view->nest('footer', 'partials.footer');
-	});
+    View::composer('home', function($view)
+    {
+        $view->nest('footer', 'partials.footer');
+    });
 
 Maintenant, chaque fois que la vue "home" sera créée, l'instance de la classe View sera passée à la fonction anonyme, vous permettant de préparrer la vue comme vous le souhaitez.
 
 #### Enregistrement d'un composeur qui gère plusieurs vues :
 
-	View::composer(array('home', 'profile'), function($view)
-	{
-		//
-	});
+    View::composer(array('home', 'profile'), function($view)
+    {
+        //
+    });
 
 > **Note:** Une vue peut avoir plus d'un composeur !
 
@@ -188,67 +188,67 @@ Vous avez sans doute remarqué que les routes et les contrôleurs doivent retour
 
 #### Redirection vers une autre URI :
 
-	return Redirect::to('user/profile');
+    return Redirect::to('user/profile');
 
 #### Redirectiion avec une status HTTP spécifique :
 
-	return Redirect::to('user/profile', 301);
+    return Redirect::to('user/profile', 301);
 
 #### Redirectinon vers une URI HTTPS:
 
-	return Redirect::to_secure('user/profile');
+    return Redirect::to_secure('user/profile');
 
 #### Redirection vers la racine de votre application :
 
-	return Redirect::home();
+    return Redirect::home();
 
 #### Redirection vers l'action précédente :
 
-	return Redirect::back();
+    return Redirect::back();
 
 #### Redirection vers une route nommée :
 
-	return Redirect::to_route('profile');
+    return Redirect::to_route('profile');
 
 #### Redirection vers une action d'un contrôleur :
 
-	return Redirect::to_action('home@index');
+    return Redirect::to_action('home@index');
 
 Parfois, vous devez redirigé vers une route nommée, mais également lui passer des paramètres. Voici comment faire :
 
 #### Redirection vers une route nommée avec des valeurs :
 
-	return Redirect::to_route('profile', array($username));
+    return Redirect::to_route('profile', array($username));
 
 #### Redirection vers une action avec des paramètres :
 
-	return Redirect::to_action('user@profile', array($username));
+    return Redirect::to_action('user@profile', array($username));
 
 <a name="redirecting-with-flash-data"></a>
 ## Redirection avec des données temporaires
 
 Après qu'un utilisateur ai créé son compte, ou qu'il se soit connécté à votre application, il arrive souvent qu'il tombe sur une page qui lui souhaite le bienvenu. Mais, commenter passer ce message pour qu'il soit disponible lors de la prochaine requête ? Utilisez ma méthode with() pour envoyer des données temporaires lors de la redirection :
 
-	return Redirect::to('profile')->with('status', 'Bienvenue !');
+    return Redirect::to('profile')->with('status', 'Bienvenue !');
 
 Vous aurez alors accès au message grâce à la méthode get de la classe Session : 
 
-	$status = Session::get('status');
+    $status = Session::get('status');
 
 *Voir aussi:*
 
-- *[Sessions](/guides/doc/v3/session/config)*
+- *[Sessions](/docs/v3/doc/session/config)*
 
 <a name="downloads"></a>
 ## Téléchargement
 
 #### Envoi un fichier à télécharger:
 
-	return Response::download('file/path.jpg');
+    return Response::download('file/path.jpg');
 
 #### Envoi un fichier à télécharger, avec le nom donné :
 
-	return Response::download('file/path.jpg', 'photo.jpg');
+    return Response::download('file/path.jpg', 'photo.jpg');
 
 <a name="errors"></a>
 ## Erreurs
@@ -257,8 +257,8 @@ Pour générer une réponse d'erreur propre, utilisez la méthode error de la cl
 
 #### Génère une erreur 404:
 
-	return Response::error('404');
+    return Response::error('404');
 
 #### Génère une erreur 500:
 
-	return Response::error('500');
+    return Response::error('500');

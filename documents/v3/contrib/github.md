@@ -42,5 +42,5 @@ In order to keep the codebase clean, stable and at high quality, even with so ma
 
 *Further Reading*
 
- - [Contributing to Laravel via Command-Line](/guides/doc/v3/contrib/command-line)
- - [Contributing to Laravel using TortoiseGit](/guides/doc/v3/contrib/tortoisegit)
+ - [Contributing to Laravel via Command-Line](/docs/v3/doc/contrib/command-line)
+ - [Contributing to Laravel using TortoiseGit](/docs/v3/doc/contrib/tortoisegit)
