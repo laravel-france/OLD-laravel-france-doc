@@ -1,7 +1,7 @@
 @layout('main')
 
 @section('title')
-    docs Laravel 4 beta - Laravel France
+    Documentation Laravel 4 beta - Laravel France
 @endsection
 
 @section('content')
