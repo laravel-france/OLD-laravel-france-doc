@@ -22,7 +22,7 @@
 
 1. [Télécharger Laravel](/telecharger)
 2. Extraire le contenu de l'archive et le mettre sur votre serveur web, ou poste de developpement.
-3. Renseignez la valeur de l'option **key** dans le fichier **application/config/application.php** pour y placer une chaine de de 32 caractères aléatoires. Vous pouvez faire ceci depuis la ligne de commande grâce à **Artisan** : `php artistan key:generate`
+3. Renseignez la valeur de l'option **key** dans le fichier **application/config/application.php** pour y placer une chaine de de 32 caractères aléatoires. Vous pouvez faire ceci depuis la ligne de commande grâce à **Artisan** : `php artisan key:generate`
 4. Verifiez les droits d'écriture sur le dossier **storage** et ses sous dossiers.
 5. Naviguez vers la page web.
 
