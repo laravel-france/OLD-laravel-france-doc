@@ -1,2 +1,38 @@
-### General
-- [Accueil](/docs/v4/doc/home)
+### Préface
+ - [Introduction](/docs/v4/doc/introduction)
+ - [Apporter sa contribution à Laravel](/docs/v4/doc/contributing)
+### Les premiers pas
+ - [Installation (en)](/docs/v4/doc/installation)
+ - [Configuration (en)](/docs/v4/doc/configuration)
+ - [Cycle de vie d'une requête](/docs/v4/doc/lifecycle)
+ - [Le routage (en)](/docs/v4/doc/routing)
+ - [Les requêtes et les entrées](/docs/v4/doc/requests)
+ - [Les vues et les réponses (en)](/docs/v4/doc/responses)
+ - [Les contrôleurs (en)](/docs/v4/doc/controllers)
+ - [Les erreurs et la journalisation (en)](/docs/v4/doc/errors)
+### Continuons la découverte de Laravel
+ - [La gestion du cache](/docs/v4/doc/cache)
+ - [Les événements (en)](/docs/v4/doc/events)
+ - [Les conteneurs de dépendances (en)](/docs/v4/doc/ioc)
+ - [La régionalisation (en)](/docs/v4/doc/localization)
+ - [La messagerie](/docs/v4/doc/mail)
+ - [Le développement de packages (en)](/docs/v4/doc/packages)
+ - [La pagination](/docs/v4/doc/pagination)
+ - [Les files de travaux](/docs/v4/doc/queues)
+ - [La sécurité (en)](/docs/v4/doc/security)
+ - [Les sessions](/docs/v4/doc/session)
+ - [Les templates (en)](/docs/v4/doc/templates)
+ - [Les tests unitaires (en)](/docs/v4/doc/testing)
+ - [La validation (en)](/docs/v4/doc/validation)
+### Base de données
+ - [Les bases](/docs/v4/doc/database)
+ - [Le requêteur (en)](/docs/v4/doc/queries)
+ - [L'ORM Eloquent (en)](/docs/v4/doc/eloquent)
+ - [La construction du schéma (en)](/docs/v4/doc/schema)
+ - [Les migrations & et les chargements (en)](/docs/v4/doc/migrations)
+ - [Redis (en)](/docs/v4/doc/redis)
+### Artisan CLI
+ - [Présentation](/docs/v4/doc/artisan)
+ - [Développement (en)](/docs/v4/doc/commands)
+### Éléments avancés
+ - [Architecture](#)
