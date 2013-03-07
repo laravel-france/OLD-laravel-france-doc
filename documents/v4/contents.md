@@ -4,7 +4,7 @@
  - [Apporter sa contribution à Laravel](/docs/v4/doc/contributing)
 ### Les premiers pas
  - [Installation](/docs/v4/doc/installation)
- - [Configuration (en)](/docs/v4/doc/configuration)
+ - [Configuration](/docs/v4/doc/configuration)
  - [Cycle de vie d'une requête](/docs/v4/doc/lifecycle)
  - [Le routage (en)](/docs/v4/doc/routing)
  - [Les requêtes et les entrées](/docs/v4/doc/requests)
