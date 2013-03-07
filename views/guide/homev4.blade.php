@@ -13,9 +13,9 @@
 
           <div class="well">
             <h3>Laravel 4 beta</h3>
-            <strong>Il n'y a rien à voir...</strong>
-          </div><!--/.well -->
-        </div><!--/span-->
+            <strong>Work in progress</strong>
+          </div>
+        </div>
         <div class="span9">
             <ul class="breadcrumb">
                 <li><a title="Retour à la page d'accueil" href="/"><i class="icon-home"></i></a> <span class="divider">/</a></li>
@@ -23,10 +23,10 @@
             </ul>
 
             <div class="well">
-                <h2>La documentation [en]</h2>
+                <h2>La documentation</h2>
 
                 <p>
-                    <em>Laravel v4 étant actuellement en beta, et la documentation évoluant sans cesse, nous attendrons une certain niveau de stabilisation avant d'attaquer la traduction.</em>
+                    <em>Laravel v4 est actuellement en beta, et la documentation évolue énormement. Cependant, nous avons commencé les travaux de traduction et tentons de garder les parties traduites autant à jour que possible.</em>
                 </p>
 
                 <p>
@@ -34,7 +34,7 @@
                 </p>
             
                 <p class="clearfix">
-                    <a href="http://four.laravel.com/" class="btn btn-primary btn-large pull-right">
+                    <a href="/docs/v4/doc" class="btn btn-primary btn-large pull-right">
                         Accéder à la doc
                     </a>
                 </p>

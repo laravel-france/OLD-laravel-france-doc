@@ -1,47 +1,48 @@
 # Installation
 
-- [Install Composer](#install-composer)
-- [Install Laravel](#install-laravel)
-- [Server Requirements](#server-requirements)
+- [Installation de Composer](#install-composer)
+- [Installation de Laravel](#install-laravel)
+- [Prérequis](#server-requirements)
 - [Configuration](#configuration)
-- [Pretty URLs](#pretty-urls)
+- [Permissions](#permissions)
+- [Des URLs propres](#pretty-urls)
 
 <a name="install-composer"></a>
-## Install Composer
+## Installation de Composer
 
-Laravel utilizes [Composer](http://getcomposer.org) to manage its dependencies. First, download a copy of the `composer.phar`. Once you have the PHAR archive, you can either keep it in your local project directory or move to `usr/local/bin` to use it globally on your system. On Windows, you can use the Composer [Windows installer](https://getcomposer.org/Composer-Setup.exe).
+Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances. Premièrement, Téléchargez une copie de `composer.phar`. Une fois que vous avez l'archive PHAR, vous pouvez soit le laisser dans le dossier local de votre projet, soit le déplacer vers `usr/local/bin` pour l'utiliser de manière globale sur votre système. Sur Windows, vous pouvez l'installeur de Composer [pour Windows](https://getcomposer.org/Composer-Setup.exe).
 
 <a name="install-laravel"></a>
-## Install Laravel
+## Installation de Laravel
 
-Once Composer is installed, download the [latest version](https://github.com/laravel/laravel/archive/develop.zip) of the Laravel framework and extract its contents into a directory on your server. Next, in the root of your Laravel application, run the `php composer.phar install` command to install all of the framework's dependencies. This process requires Git to be installed on the server to successfully complete the installation.
+Une fois que Composer est installé, téléchargez la [dernière version](https://github.com/laravel/laravel/archive/develop.zip) du framework, et extrayez son contenu dans un dossier sur votre serveur. Ensuite, à la racine de votre application Laravel, lancez la commande `php composer.phar install` pour installer toutes les dépendances du framework. Ce process requis que git soit installé sur le serveur pour terminer l'installation.
 
 
 <a name="server-requirements"></a>
-## Server Requirements
+## Prérequis
 
-The Laravel framework has a few system requirements:
+Le framework Laravel à quelques prérequis système :
 
 - PHP >= 5.3.7
-- MCrypt PHP Extension
+- L'extension PHP MCrypt
 
 <a name="configuration"></a>
 ## Configuration
 
-Laravel needs almost no configuration out of the box. You are free to get started developing! However, you may wish to review the `app/config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
+Laravel n'a presque pas besoin de configuration pour fonctionner. En fait, vous êtes libre de commencer à développer ! Cependant, vous devriez au minimum jeter un oeil au fichier `app/config/app.php` et à ça documentation. Il contient plusieurs options comme `timezone` et `locale` que vous pourriez vouloir changer pour votre application.
 
-> **Note:** One configuration option you should be sure to set is the `key` option within `app/config/app.php`. This value should be set to a 32 character, random string. This key is used when encrypting values, and encrypted values will not be safe until it is properly set. You can set this value quickly by using the following artisan command `php artisan key:generate`.
+> **Note:** Une option de configuration doit à tout prix avoir une valeur, il s'agit de l'option `key` du fichier `app/config/app.php`. Cette valeur  doit être une chaine de 32 caractères aléatoires. Cette clé est utlisée pour chiffrer des valeurs, et les valeurs chiffrées ne seront pas sûres tant que cette clé n'est pas définie. Vous pouvez définir une clé aléatoire rapidement en lançant la commande Artisan suivante : `php artisan key:generate`.
 
 <a name="permissions"></a>
 ### Permissions
-Laravel requires one set of permissions to be configured - folders within app/storage require write access by the web server.
+Laravel a besoin que le serveur web ai un accès en écriture sur les dossiers à l'intérieur de app/storage.
 
 <a name="pretty-urls"></a>
-## Pretty URLs
+## Des URLs propres
 
-The framework ships with a `public/.htaccess` file that is used to allow URLs without `index.php`. If you use Apache to serve your Laravel application, be sure to enable the `mod_rewrite` module.
+Le framework est fourni avec un fichier `public/.htaccess` qui est utilisé pour autoriser les URLs sans `index.php`. Si vous utilisez Apache pour servir votre application Laravel, veuillez vous assurer que le module `mod_rewrite` est actif.
 
-If the `.htaccess` file that ships with Laravel does not work with your Apache installation, try this one:
+Si le fichier `.htaccess` fourni avec Laravel ne fonctionne pas, essayez celui ci :
 
 	Options +FollowSymLinks
 	RewriteEngine on
