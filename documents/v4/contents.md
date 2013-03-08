@@ -9,7 +9,7 @@
  - [Le routage](/docs/v4/doc/routing)
  - [Les requêtes et les entrées](/docs/v4/doc/requests)
  - [Les vues et les réponses](/docs/v4/doc/responses)
- - [Les contrôleurs (en)](/docs/v4/doc/controllers)
+ - [Les contrôleurs](/docs/v4/doc/controllers)
  - [Les erreurs et la journalisation (en)](/docs/v4/doc/errors)
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)

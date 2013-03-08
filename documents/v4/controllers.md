@@ -1,19 +1,19 @@
-# Controllers
+# Contrôleurs
 
-- [Basic Controllers](#basic-controllers)
-- [Controller Filters](#controller-filters)
-- [RESTful Controllers](#restful-controllers)
-- [Resource Controllers](#resource-controllers)
-- [Handling Missing Methods](#handling-missing-methods)
+- [Contrôleurs basiques](#basic-controllers)
+- [Filtres de contrôleurs](#controller-filters)
+- [Contrôleurs RESTful](#restful-controllers)
+- [Contrôleurs de resource](#resource-controllers)
+- [Gestion de méthodes manquantes](#handling-missing-methods)
 
 <a name="basic-controllers"></a>
-## Basic Controllers
+## Contrôleurs basiques
 
-Instead of defining all of your route-level logic in a single `routes.php` file, you may wish to organize this behavior using Controller classes. Controllers can group related route logic into a class, as well as take advantage of more advanced framework features such as automatic [dependency injection](/docs/ioc).
+Plutôt que de définir toute la logique de votre application au niveau des routes dans le fichier `routes.php`,  il est d'usage de déplacer le comportement de votre application dans des contrôleurs. Les contrôleurs permettent de regrouper en une classe, la logique de routes connexes, et aussi de prendre avantage des fonctionnalités avancées du framework comme [l'injection de dépendences](/docs/v4/doc/ioc).
 
-Controllers are typically stored in the `app/controllers` directory, and this directory is registered in the `classmap` option of your `composer.json` file by default.
+Les contrôleurs sont stockés dans le dossier `app/controllers`, et ce dossier est enregistré dans l'option `classmap` de votre fichier `composer.json` par défaut.
 
-Here is an example of a basic controller class:
+Voici un exemple d'un contrôleur basique :
 
 	class UserController extends BaseController {
 
@@ -29,30 +29,30 @@ Here is an example of a basic controller class:
 
 	}
 
-All controllers should extend the `BaseController` class. The `BaseController` is also stored in the `app/controllers` directory, and may be used as a place to put shared controller logic. The `BaseController` extends the framework's `Controller` class. Now, We can route to this controller action like so:
+Tous les contrôleurs doivent hérité de la classe `BaseController`. La classe `BaseController` est également présente dans le dossier `app/controllers`, et peut être utilisée pour placer pour placer des élémenents partagés. `BaseController` héritede la classe `Controller` du framework. Maintenant, nous pouvons router vers notre contrôleur de la manière suivante :
 
 	Route::get('user/{id}', 'UserController@showProfile');
 
-If you choose to nest or organize your controller using PHP namespaces, simply use the fully qualified class name when defining the route:
+Si vous organiser votre code avec des namespaces PHP, utilisez simplement le nom complet de la classe lors de la définition de la route :
 
 	Route::get('foo', 'Namespace\FooController@method');
 
-You may also specify names on controller routes:
+Vous pouvez également nommer ces routes avec la propriété `as` :
 
 	Route::get('foo', array('uses' => 'FooController@method',
 											'as' => 'name'));
 
-> **Note:** After creating a new class, make sure to run `composer dump-autoload` from the command line. This will allow the framework to automatically load your class.
+> **Note:** Après avoir créé une nouvelle classe, pensez à lancer `composer dump-autoload` depuis la ligne de commande. Cela permettra au framework de charger automatiquement votre classe.
 
 <a name="controller-filters"></a>
-## Controller Filters
+## Filtres de contrôleurs
 
-[Filters](/docs/routing#route-filters) may be specified on controller routes similar to "regular" routes:
+[Les filtres](/docs/v4/doc/routing#route-filters) peuvent être spécifié sur les routes de contrôleurs comme pour toutes les autres routes :
 
 	Route::get('profile', array('before' => 'auth',
 				'uses' => 'UserController@showProfile'));
 
-However, you may also specify filters from within your controller:
+Cependant, vous pouvez également spécifier des filtres à l'intérieur de votre contrôleurs :
 
 	class UserController extends BaseController {
 
@@ -71,7 +71,7 @@ However, you may also specify filters from within your controller:
 
 	}
 
-You may also specify controller filters inline using a Closure:
+Vous pouvez également spécifié des filtres directement avec une fonction anonyme :
 
 	class UserController extends BaseController {
 
@@ -89,52 +89,52 @@ You may also specify controller filters inline using a Closure:
 	}
 
 <a name="restful-controllers"></a>
-## RESTful Controllers
+## Contrôleurs RESTful
 
-Laravel allows you to easily define a single route to handle every action in a controller using simple, REST naming conventions. First, define the route using the `Route::controller` method:
+Laravel vous permet de définir une seule route pour gérer toutes les actions d'un contrôleur en utilisant une simple convention de nommage REST. Premièrement, définissez la route en utilisant la méthode `Route::controller` :
 
-**Defining A RESTful Controller**
+**Définition d'un contrôleur RESTful**
 
 	Route::controller('users', 'UserController');
 
-The `controller` method accepts two arguments. The first is the base URI the controller handles, while the second is the class name of the controller. Next, just add methods to your controller, prefixed with the HTTP verb they respond to:
+la méthode `controller` prends deux arguments. Le premier est la base d'URI qui conduit au contrôleur, le second est le nom de la classe du contrôleur. Ensuite, ajoutez simplement des méthodes à votre contrôleur, préfixés par le verbe HTTP auquel ils doivent répondre :
 
 	class UserController extends BaseController {
 
 		public function getIndex()
 		{
-			//
+			// répond à GET /users
 		}
 
 		public function postProfile()
 		{
-			//
+			// répond à POST /users/profile
 		}
 
 	}
 
-The `index` methods will respond to the root URI handled by the controller, which, in this case, is `users`.
+La méthode `index` répondra à la racine de l'URI défini dans la route, qui dans notre cas est `users`.
 
-If your controller action contains multiple words, you may access the action using "dash" syntax in the URI. For example, the following controller action on our `UserController` would respond to the `users/admin-profile` URI:
+Si votre méthode de contrôleur contient plusieurs mots, vous devrez accéder à l'action en utilisant un "tiret" entre les mots dans l'URI. Par exemple, la méthode de contrôleur dans notre `UserController` répondra à l'URI `users/admin-profile` :
 
 	public function getAdminProfile() {}
 
 <a name="resource-controllers"></a>
-## Resource Controllers
+## Contrôleurs de resource
 
-Resource controllers make it easier to build RESTful controllers around resources. For example, you may wish to create a controller that manages "photos" stored by your application. Using the `controller:make` command via the Artisan CLI and the `Route::resource` method, we can quickly create such a controller.
+Les contrôleurs de resource rendent plus facile la construction de contrôleur RESTful autour d'une resource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
 
-To create the controller via the command line, execute the following command:
+Pour créer le contrôleur en ligne de commande, executez la commande suivante :
 
 	php artisan controller:make PhotoController
 
-Now we can register a resourceful route to the controller:
+Maintenant nous pouvons enregistrer une route "resourceful" vers notre contrôleur :
 
 	Route::resource('photo', 'PhotoController');
 
-This single route declaration creates multiple routes to handle a variety of RESTful actions on the photo resource. Likewise, the generated controller will already have stubbed methods for each of these actions with notes informing you which URIs and verbs they handle.
+Cette simple déclaration de route crée de multiples routes pour gérer une variété d'actions RESTful sur notre resource "photo". De plus, le contrôleur généré contiendra déjà des méthodes pour chacunes de ces actions avec une note vous informant à quelles URIs et à quels verbes HTTP ils répondent.
 
-**Actions Handled By Resource Controller**
+**Actions gérées par un contrôleur de resource**
 
 Verb      | Path                  | Action
 ----------|-----------------------|--------------
@@ -146,23 +146,23 @@ GET       | /resource/{id}/edit   | edit
 PUT/PATCH | /resource/{id}        | update
 DELETE    | /resource/{id}        | destroy
 
-Sometimes you may only need to handle a subset of the resource actions:
+Parfois vous aurez seulement besoin d'une partie des méthodes du contrôleur de resource :
 
 	php artisan controller:make PhotoController --only=index,show
 
 	php artisan controller:make PhotoController --except=index
 
-And, you may also specify a subset of actions to handle on the route:
+Et, vous pouvez aussi spécifier quelles méthodes doivent être disponible via le routage:
 
 	Route::resource('photo', 'PhotoController',
 					array('only' => array('index', 'show')));
 
 <a name="handling-missing-methods"></a>
-## Handling Missing Methods
+## Gestion de méthodes manquantes
 
-A catch-all method may be defined which will be called when no other matching method is found on a given controller. The method should be named `missingMethod`, and receives the parameter array for the request as its only argument:
+Une méthode attrape tout peut être créée, elle sera appelé quand aucune autre méthode n'est trouvé dans un contrôleur donné. La méthode doit s'appeller `missingMethod`, et elle reçoit le tableau de paramètres de la requête en tant que seul argument :
 
-**Defining A Catch-All Method**
+**Définition d'une méthode attrape tout**
 
 	public function missingMethod($parameters)
 	{
