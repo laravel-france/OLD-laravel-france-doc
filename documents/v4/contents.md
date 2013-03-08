@@ -6,9 +6,9 @@
  - [Installation](/docs/v4/doc/installation)
  - [Configuration](/docs/v4/doc/configuration)
  - [Cycle de vie d'une requête](/docs/v4/doc/lifecycle)
- - [Le routage (en)](/docs/v4/doc/routing)
+ - [Le routage](/docs/v4/doc/routing)
  - [Les requêtes et les entrées](/docs/v4/doc/requests)
- - [Les vues et les réponses (en)](/docs/v4/doc/responses)
+ - [Les vues et les réponses](/docs/v4/doc/responses)
  - [Les contrôleurs (en)](/docs/v4/doc/controllers)
  - [Les erreurs et la journalisation (en)](/docs/v4/doc/errors)
 ### Aller plus loin

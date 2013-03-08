@@ -1,43 +1,43 @@
-# Routing
+# Routage
 
-- [Basic Routing](#basic-routing)
-- [Route Parameters](#route-parameters)
-- [Route Filters](#route-filters)
-- [Named Routes](#named-routes)
-- [Route Groups](#route-groups)
-- [Sub-Domain Routing](#sub-domain-routing)
-- [Route Prefixing](#route-prefixing)
-- [Route Model Binding](#route-model-binding)
-- [Throwing 404 Errors](#throwing-404-errors)
-- [Resource Controllers](#resource-controllers)
+- [Routage basique](#basic-routing)
+- [Paramètres de routes](#route-parameters)
+- [Filtre de routes](#route-filters)
+- [Routes nommées](#named-routes)
+- [Routes groupées](#route-groups)
+- [Routage de sous domaine](#sub-domain-routing)
+- [Prefixage de routes](#route-prefixing)
+- [Liaison de modèle à une route](#route-model-binding)
+- [Lancer une erreur 404](#throwing-404-errors)
+- [Contrôleurs de resources](#resource-controllers)
 
 <a name="basic-routing"></a>
-## Basic Routing
+## Routage basique
 
-Most of the routes for your application will be defined in the `app/routes.php` file. The simplest Laravel routes consist of a URI and a Closure callback.
+La plupart des routes de votre application seront définis dans le fichier `app/routes.php`. La route la plus simple sur Laravel consiste en une URI et un fonction de retour anonyme.
 
-**Basic GET Route**
+**Route GET basique**
 
 	Route::get('/', function()
 	{
 		return 'Hello World';
 	});
 
-**Basic POST Route**
+**Route POST basique**
 
 	Route::post('foo/bar', function()
 	{
 		return 'Hello World';
 	});
 
-**Registering A Route Responding To Any HTTP Verb**
+**Enregistrement d'une route répondant à tous les verbes HTTP**
 
 	Route::any('foo', function()
 	{
 		return 'Hello World';
 	});
 
-**Forcing A Route To Be Served Over HTTPS**
+**Force une route à utiliser HTTPS**
 
 	Route::get('foo', array('https', function()
 	{
@@ -45,28 +45,28 @@ Most of the routes for your application will be defined in the `app/routes.php` 
 	}));
 
 <a name="route-parameters"></a>
-## Route Parameters
+## Paramètres de routes
 
 	Route::get('user/{id}', function($id)
 	{
 		return 'User '.$id;
 	});
 
-**Optional Route Parameters**
+**Paramètre optionnel de routes**
 
 	Route::get('user/{name?}', function($name = null)
 	{
 		return $name;
 	});
 
-**Optional Route Parameters With Defaults**
+**Paramètre optionnel de routes avec une valeur par défaut**
 
 	Route::get('user/{name?}', function($name = 'John')
 	{
 		return $name;
 	});
 
-**Regular Expression Route Constraints**
+**Routes avec paramètre contraint par une expression régulière**
 
 	Route::get('user/{name}', function($name)
 	{
@@ -81,11 +81,11 @@ Most of the routes for your application will be defined in the `app/routes.php` 
 	->where('id', '[0-9]+');
 
 <a name="route-filters"></a>
-## Route Filters
+## Filtres de routes
 
-Route filters provide a convenient way of limiting access to a given route, which is useful for creating areas of your site which require authentication. There are several filters included in the Laravel framework, including an `auth` filter, a `guest` filter, and a `csrf`filter. These are located in the `app/filters.php` file.
+Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, une filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
 
-**Defining A Route Filter**
+**Définition d'un filtre de route**
 
 	Route::filter('old', function()
 	{
@@ -95,23 +95,23 @@ Route filters provide a convenient way of limiting access to a given route, whic
 		}
 	});
 
-If a response is returned from a filter, that response will be considered the response to the request and the route will not be executed.
+Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée.
 
-**Attaching A Filter To A Route**
+**Attachement d'un filtre à une route**
 
 	Route::get('user', array('before' => 'old', function()
 	{
 		return 'You are over 200 years old!';
 	}));
 
-**Attaching Multiple Filters To A Route**
+**Attachement de plusieurs filtres à une route**
 
 	Route::get('user', array('before' => 'auth|old', function()
 	{
 		return 'You are authenticated and over 200 years old!';
 	}));
 
-**Specifying Filter Parameters**
+**Spéfification des paramètres de filtres**
 
 	Route::filter('age', function($route, $request, $value)
 	{
@@ -123,9 +123,9 @@ If a response is returned from a filter, that response will be considered the re
 		return 'Hello World';
 	}));
 
-**Pattern Based Filters**
+**Filtres basés sur un patron de route**
 
-You may also specify that a filter applies to an entire set of routes based on their URI.
+Vous pouvez aussi spéficier qu'un filtre s'applique sur un jeu entier de routes en se basant sur leurs URIs.
 
 	Route::filter('admin', function()
 	{
@@ -134,13 +134,13 @@ You may also specify that a filter applies to an entire set of routes based on t
 
 	Route::when('admin/*', 'admin');
 
-In the example above, the `admin` filter would be applied to all routes beginning with `admin/`. The asterisk is used as a wildcard, and will match any combination of characters.
+Dans l'exemple ci dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
 
-**Filter Classes**
+**Classes de filtres**
 
-For advanced filtering, you may wish to use a class instead of a Closure. Since filter classes are resolved out of the application [IoC container](/docs/ioc), you will be able to utilize dependency injection in these filters for greater testability.
+Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonction anonyme. Comme les filtres de classes sont résolus par [le conteneur IoC](/docs/v4/doc/ioc), vous serez en mesure d'utiliser l'injection de dépendence dans ces filtres pour une meilleure testabilité.
 
-**Defining A Filter Class**
+**Définition d'une classe de filtre**
 
 	class FooFilter {
 
@@ -151,30 +151,30 @@ For advanced filtering, you may wish to use a class instead of a Closure. Since 
 
 	}
 
-**Registering A Class Based Filter**
+**Enregistrement d'un filtre basé sur une classe**
 
 	Route::filter('foo', 'FooFilter');
 
 <a name="named-routes"></a>
-## Named Routes
+## Routes nommées
 
-Named routes make referring to routes when generating redirects or URLs more convenient. You may specify a name for a route like so:
+Les routes nommées rendent le agréable le référencement d'une route lors de la génération d'un lien ou d'une redirection. Pour spécifier un nom à une route, faites de la manière suivante :
 
 	Route::get('user/profile', array('as' => 'profile', function()
 	{
 		//
 	}));
 
-Now, you may use the route's name when generating URLs or redirects:
+Mantenant, vous pouvez utiliser le nom de la route lorsque vous générez une URL ou redirigez l'utilisateur :
 
 	$url = URL::route('profile');
 
 	$redirect = Redirect::route('profile');
 
 <a name="route-groups"></a>
-## Route Groups
+## Routes groupées
 
-Sometimes you may need to apply filters to a group of routes. Instead of specifying the filter on each route, you may use a route group:
+Parfois, vous pourriez avoir besoin d'appliquer un filtre sur tout un groupe de route. Plutôt que de définir l'appel à ce filtre route par route, vous pouvez utiliser les groupes de routes :
 
 	Route::group(array('before' => 'auth'), function()
 	{
@@ -190,9 +190,9 @@ Sometimes you may need to apply filters to a group of routes. Instead of specify
 	});
 
 <a name="sub-domain-routing"></a>
-## Sub-Domain Routing
+## Routage de sous domaine
 
-Laravel routes are also able to handle wildcard sub-domains, and pass you wildcard parameters from the domain:
+Les routes de Laravel permettent également de router à partir d'un sous domaine. En utilisant un un paramètre de routes en sous domaine, ce dernier sera alors passé en tant que paramètre à la route :
 
 **Registering Sub-Domain Routes**
 
@@ -206,11 +206,11 @@ Laravel routes are also able to handle wildcard sub-domains, and pass you wildca
 
 	});
 <a name="route-prefixing"></a>
-## Route Prefixing
+## Préfixage de routes
 
-A group of routes may be prefixed by using the `prefix` option in the attributes array of a group:
+Un groupe de route peut être préfixé en utilisant l'option `prefix` dans le tableau d'attribut d'un groupe de routes:
 
-**Prefixing Grouped Routes**
+**Préfixage d'un groupe de routes**
 
 	Route::group(array('prefix' => 'admin'), function()
 	{
@@ -223,26 +223,26 @@ A group of routes may be prefixed by using the `prefix` option in the attributes
 	});
 
 <a name="route-model-binding"></a>
-## Route Model Binding
+## Liaison d'un modèle à une route
 
-Model binding provides a convenient way to inject model instances into your routes. For example, instead of injecting a user's ID, you can inject the entire User model instance that matches the given ID. First, use the `Route::model` method to specify the model that should be used for a given parameter:
+La liaison de modèle fournit une manière agréable d'injecter l'instance d'un modèle à l'intérieur d'une route. Par exemple, plutôt que d'injecter un ID d'utilisateur, Vous pouvez injecter le modèle entier qui correspond à l'ID. Premièrement, utilisez la méthode `Route::model` pour spécifier le modèle qui doit être utilisé pour un paramètre spécifique :
 
-**Binding A Parameter To A Model**
+**Liaison d'un paramètre à un modèle**
 
 	Route::model('user', 'User');
 
-Next, define a route that contains a `{user}` parameter:
+Ensuite, définissez une route qui contient le paramètre `{user}` :
 
 	Route::get('profile/{user}', function(User $user)
 	{
 		//
 	});
 
-Since we have bound the `{user}` parameter to the `User` model, a `User` instance will be injected into the route. So, for example, a request to `profile/1` will inject the `User` instance which has an ID of 1.
+Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une instance de `User` sera injectée à la route. Donc, par exemple, une requête sur `profile/1` injectera  une instance `User` qui a un ID de 1.
 
-> **Note:** If a matching model instance is not found in the database, a 404 error will be thrown.
+> **Note:** Si un une instance d'un modèle n'est pas trouvée dans la base de données, alors une erreur 404 est lancée.
 
-Sometimes you may wish to use your own resolver for route parameters. Simply use the `Route::bind` method:
+Si vous avez besoin de résoudre vous même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
 
 	Route::bind('user', function($value, $route)
 	{
@@ -250,19 +250,19 @@ Sometimes you may wish to use your own resolver for route parameters. Simply use
 	});
 
 <a name="throwing-404-errors"></a>
-## Throwing 404 Errors
+## Lancer une erreur 404
 
-There are two ways to manually trigger a 404 error from a route. First, you may use the `App::abort` method:
+Il y a deux manières de lancer une erreur 404 depuis une route. Première méthode, utilisez la méthode `App::abort` :
 
 	App::abort(404);
 
-Second, you may throw an instance of `Symfony\Component\HttpKernel\Exception\NotFoundHttpException`.
+Secondem méthode, vous pouvez lever une exception de type `Symfony\Component\HttpKernel\Exception\NotFoundHttpException`.
 
-More information on handling 404 exceptions and using custom responses for these errors may be found in the [errors](/docs/errors#handling-404-errors) section of the documentation.
+Plus d'informations sur la gestion des exceptions 404 et l'utilisation de réponses personalisées pour ces erreurs peuvent être trouvées dans la section [erreurs](/docs/v4/doc/errors#handling-404-errors) de la documentation.
 
 <a name="resource-controllers"></a>
-## Resource Controllers
+## Contrôleurs de resources
 
-Resource controllers make it easier to build RESTful controllers around resources. 
+Les contrôleurs de resources rendent plus facile la construction de contrôleurs RESTful autour d'une resource. 
 
-See [Controllers](/docs/controllers#resource-controllers) documentation for more information.
+Voir la documentation des [contrôleurs](/docs/v4/doc/controllers#resource-controllers) pour plus d'informations.
