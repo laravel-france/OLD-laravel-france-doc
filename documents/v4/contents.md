@@ -13,7 +13,7 @@
  - [Les erreurs et la journalisation](/docs/v4/doc/errors)
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
- - [Les événements (en)](/docs/v4/doc/events)
+ - [Les événements](/docs/v4/doc/events)
  - [Les conteneurs de dépendances (en)](/docs/v4/doc/ioc)
  - [La régionalisation (en)](/docs/v4/doc/localization)
  - [La messagerie](/docs/v4/doc/mail)
