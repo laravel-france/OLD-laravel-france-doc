@@ -10,7 +10,7 @@
  - [Les requêtes et les entrées](/docs/v4/doc/requests)
  - [Les vues et les réponses](/docs/v4/doc/responses)
  - [Les contrôleurs](/docs/v4/doc/controllers)
- - [Les erreurs et la journalisation (en)](/docs/v4/doc/errors)
+ - [Les erreurs et la journalisation](/docs/v4/doc/errors)
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
  - [Les événements (en)](/docs/v4/doc/events)

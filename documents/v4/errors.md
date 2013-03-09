@@ -1,32 +1,33 @@
-# Errors & Logging
+# Erreurs & Journalisations
 
-- [Error Detail](#error-detail)
-- [HTTP Exceptions](#http-exceptions)
+- [Détail des erreurs](#error-detail)
+- [Exceptions HTTP](#http-exceptions)
 - [Handling Errors](#handling-errors)
-- [Handling 404 Errors](#handling-404-errors)
+- [Gestion des erreurs 404](#handling-404-errors)
 - [Logging](#logging)
 
-## Error Detail
+<a name="error-detail"></a>
+## Détail des erreurs
 
-By default, error detail is enabled for your application. This means that when an error occurs you will be showed an error page with a detailed stack trace and error message. You may turn off error details by setting the `debug` option in your `app/config/app.php` file to `false`. **It is strongly recommended that you turn off error detail in a production environment.**
+Par défaut, les détails des erreurs sont autorisés par votre application. Cela signifie que quand une erreur se déroule, une page d'erreur vous sera affichée avec la pile d'execution et un message d'erreur. Vous pouvez désactiver cela en mettant l'option `debug` du fichier `app/config/app.php` à `false`. **Il est fortement recommandé de passer cette option à false dans un environnement de production.**
 
-## Handling Errors
+## Gestion des erreurs
 
-By default, the `app/start/global.php` file contains an error handler for all exceptions:
+Par défaut, le fichier `app/start/global.php` contient un gestionnaire d'erreur pour toutes les exceptions :
 
 	App::error(function(Exception $exception)
 	{
 		Log::error($exception);
 	});
 
-This is the most basic error handler. However, you may specify more handlers if needed. Handlers are called based on the type-hint of the Exception they handle. For example, you may create a handler that only handles `RuntimeException` instances:
+C'est le gestionnaire d'erreur le plus basique. Cependant, vous pouvez spécifier plus de gestionnaires si besoin. Les gestionnaires sont appellés en se basant sur le type d'exception qu'ils gèrent. Par exemple, si vous créez un gestionnaire qui gère une instance de `RuntimeException` :
 
 	App::error(function(RuntimeException $exception)
 	{
 		// Handle the exception...
 	});
 
-If an exception handler returns a response, that response will be sent to the browser and no other error handlers will be called:
+Si un gestionnaire d'exception retourne une réponse, cette reponse sera envoyée au navigateur et aucun autre gestionnaire d'erreur ne sera appellé :
 
 	App::error(function(InvalidUserException $exception)
 	{
@@ -35,7 +36,7 @@ If an exception handler returns a response, that response will be sent to the br
 		return 'Sorry! Something is wrong with this account!';
 	});
 
-To listen for PHP fatal errors, you may use the `App::fatal` method:
+Pour écouter une erreur fatal PHP, vous devez utiliser la méthode `App::fatal` :
 
 	App::fatal(function($exception)
 	{
@@ -43,24 +44,24 @@ To listen for PHP fatal errors, you may use the `App::fatal` method:
 	});
 
 <a name="http-exceptions"></a>
-## HTTP Exceptions
+## Exceptions HTTP
 
-Exceptions in respect to HTTP, refer to errors that may occur during a client request. This may be a page not found error (404), an authorized error (401) or even a generated 500 error. In order to return such a response, use the following:
+Les exceptions HTTP sont des erreurs qui peuvent intervenir pendant une requête d'un client. Cela peut être une page non trouvée (404), un problème d'autorisation (401) ou même une erreur 500. Pour retourner une erreur de la sorte, utilisez la méthode suivante :
 
 	App::abort(404, 'Page not found');
 
-The first argument, is the HTTP status code, with the following being a custom message you'd like to show with the error.
+Le premier argument est le code HTTP, suivi d'un message d'erreur personnalisé que vous aimeriez montrer
 
-In order to raise a 401 Unauthorized exception, just do the following:
+Pour lever une erreur 401 "non autorisé", faites comme ceci :
 
 	App::abort(401, 'You are not authorized.');
 
-These exceptions can be executed at any time during the request's lifecycle.
+Ces exceptions peuvent être exécutées n'importe quand durant le cycle de vie de la requête.
 
 <a name="handling-404-errors"></a>
-## Handling 404 Errors
+## Gestion des erreurs 404
 
-You may register an error handler that handles all "404 Not Found" errors in your application, allowing you to return custom 404 error pages:
+Vous pouvez enregistrer un gestionnaire qui gère toutes les erreurs 404 de votre application, vous permettant de retourner une page d'erreur 404 personnalisée :
 
 	App::missing(function($exception)
 	{
@@ -70,7 +71,7 @@ You may register an error handler that handles all "404 Not Found" errors in you
 <a name="logging"></a>
 ## Logging
 
-The Laravel logging facilities provide a simple layer on top of the powerful [Monolog](http://github.com/seldaek/monolog). By default, Laravel is configured to create daily log files for your application, and these files are stored in `app/storage/logs`. You may write information to these logs like so:
+Laravel vous fournit une une classe pour faire de la journalisation, qui se base sur le puissant [Monolog](http://github.com/seldaek/monolog). Par défaut, Laravel est configuré pour créer des fichiers journaliers pour votre application, et ils seront stockés dans `app/storage/logs`. Vous pouvez écrire dans ces fichiers de logs de la manière suivante :
 
 	Log::info('This is some useful information.');
 
@@ -78,8 +79,8 @@ The Laravel logging facilities provide a simple layer on top of the powerful [Mo
 
 	Log::error('Something is really going wrong.');
 
-The logger provides the seven logging levels defined in [RFC 5424](http://tools.ietf.org/html/rfc5424): **debug**, **info**, **notice**, **warning**, **error**, **critical**, and **alert**.
+Le journaliseur fournit les 7 niveaux de journalisations définis dans la [RFC 5424](http://tools.ietf.org/html/rfc5424): **debug**, **info**, **notice**, **warning**, **error**, **critical**, et **alert**.
 
-Monolog has a variety of additional handlers you may use for logging. If needed, you may access the underlying Monolog instance being used by Laravel:
+Monolog a une multitude de gestionnaire supplémentaires que vous pouvez utiliser pour faire de la journalisation. Si besoin, vous pouvez accéder directement à l'objet Monolog utilisé par Laravel :
 
 	$monolog = Log::getMonolog();
