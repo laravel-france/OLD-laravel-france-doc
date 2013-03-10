@@ -13,7 +13,17 @@
 
           <div class="well">
             <h3>Laravel 4 beta</h3>
-            <strong>Work in progress</strong>
+            <ul>
+                <li><a href="/docs/v4/doc/#preface">Préface</a></li>
+                <li><a href="/docs/v4/doc/#premiers-pas">Les premiers pas</a></li>
+                <li><a href="/docs/v4/doc/#aller-plus-loin">Aller plus loin</a></li>
+                <li><a href="/docs/v4/doc/#base-de-donnees">Base de données</a></li>
+                <li><a href="/docs/v4/doc/#artisan-cli">Artisan CLI</a></li>
+                <li><a href="/docs/v4/doc/#elements-avances">Éléments avancés</a></li>
+            </ul>
+
+
+
           </div>
         </div>
         <div class="span9">

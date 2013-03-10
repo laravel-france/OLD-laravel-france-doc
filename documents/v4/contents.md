@@ -1,16 +1,19 @@
  - [Acceuil](/docs/v4/doc/home)
+ <a name="preface"></a>
 ### Préface
  - [Introduction](/docs/v4/doc/introduction)
- - [Apporter sa contribution à Laravel](/docs/v4/doc/contributing)
-### Les premiers pas
+ - [Contribuer à Laravel](/docs/v4/doc/contributing)
+ <a name="premiers-pas"></a>
+### Premiers pas
  - [Installation](/docs/v4/doc/installation)
  - [Configuration](/docs/v4/doc/configuration)
  - [Cycle de vie d'une requête](/docs/v4/doc/lifecycle)
  - [Le routage](/docs/v4/doc/routing)
- - [Les requêtes et les entrées](/docs/v4/doc/requests)
+ - [Requêtes et entrées](/docs/v4/doc/requests)
  - [Les vues et les réponses](/docs/v4/doc/responses)
  - [Les contrôleurs](/docs/v4/doc/controllers)
  - [Les erreurs et la journalisation](/docs/v4/doc/errors)
+ <a name="aller-plus-loin"></a>
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
  - [Les événements](/docs/v4/doc/events)
@@ -25,6 +28,7 @@
  - [Les templates (en)](/docs/v4/doc/templates)
  - [Les tests unitaires (en)](/docs/v4/doc/testing)
  - [La validation (en)](/docs/v4/doc/validation)
+ <a name="base-de-donnees"></a>
 ### Base de données
  - [Les bases](/docs/v4/doc/database)
  - [Le requêteur (en)](/docs/v4/doc/queries)
@@ -32,8 +36,10 @@
  - [La construction du schéma (en)](/docs/v4/doc/schema)
  - [Les migrations & et les chargements (en)](/docs/v4/doc/migrations)
  - [Redis (en)](/docs/v4/doc/redis)
+ <a name="artisan-cli"></a>
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)
  - [Développement (en)](/docs/v4/doc/commands)
+ <a name="elements-avances"></a>
 ### Éléments avancés
  - [Architecture](#)
