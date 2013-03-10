@@ -15,7 +15,7 @@
         <div class="span9">
             <ul class="breadcrumb">
                 <li><a title="Retour à la page d'accueil" href="/"><i class="icon-home"></i></a> <span class="divider">/</a></li>
-                <li><a href="/docs">Documentation & guides</a> <span class="divider">/</span></li>
+                <li><a href="/docs/{{ $version }}">Documentation & guides</a> <span class="divider">/</span></li>
                 <li><a href="/docs/{{ $version }}/doc">{{ $bc_title }}</a>
                 @if( (isset($isHome) and $isHome === false) || (isset($section) and $section != "home"))
                     <span class="divider">/</span></li>  <li class="active">{{ $title }}</li>
