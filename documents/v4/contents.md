@@ -14,7 +14,7 @@
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
  - [Les événements](/docs/v4/doc/events)
- - [Les conteneurs de dépendances (en)](/docs/v4/doc/ioc)
+ - [Le conteneur de dépendances](/docs/v4/doc/ioc)
  - [La régionalisation (en)](/docs/v4/doc/localization)
  - [La messagerie](/docs/v4/doc/mail)
  - [Le développement de packages (en)](/docs/v4/doc/packages)
