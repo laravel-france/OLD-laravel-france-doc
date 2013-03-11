@@ -20,7 +20,7 @@
  - [Le conteneur de dépendances](/docs/v4/doc/ioc)
  - [Traduction & Localisation](/docs/v4/doc/localization)
  - [Email](/docs/v4/doc/mail)
- - [Le développement de packages (en)](/docs/v4/doc/packages)
+ - [Développement de packages](/docs/v4/doc/packages)
  - [La pagination](/docs/v4/doc/pagination)
  - [Les files de travaux](/docs/v4/doc/queues)
  - [La sécurité (en)](/docs/v4/doc/security)
