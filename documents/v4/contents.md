@@ -23,7 +23,7 @@
  - [Développement de packages](/docs/v4/doc/packages)
  - [La pagination](/docs/v4/doc/pagination)
  - [Les files de travaux](/docs/v4/doc/queues)
- - [La sécurité (en)](/docs/v4/doc/security)
+ - [La sécurité](/docs/v4/doc/security)
  - [Les sessions](/docs/v4/doc/session)
  - [Les templates (en)](/docs/v4/doc/templates)
  - [Les tests unitaires (en)](/docs/v4/doc/testing)
