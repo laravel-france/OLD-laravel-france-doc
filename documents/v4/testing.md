@@ -1,24 +1,24 @@
-# Unit Testing
+# Les tests unitaires
 
 - [Introduction](#introduction)
-- [Defining & Running Tests](#defining-and-running-tests)
-- [Test Environment](#test-environment)
-- [Calling Routes From Tests](#calling-routes-from-tests)
-- [Helper Methods](#helper-methods)
+- [Définition et exécution des tests](#defining-and-running-tests)
+- [Environnement de test](#test-environment)
+- [Appel de routes depuis un test](#calling-routes-from-tests)
+- [Méthodes "Helper"](#helper-methods)
 
 <a name="introduction"></a>
 ## Introduction
 
-Laravel is built with unit testing in mind. In fact, support for testing with PHPUnit is included out of the box, and a `phpunit.xml` file is already setup for your application. In addition to PHPUnit, Laravel also utilizes the Symfony HttpKernel, DomCrawler, and BrowserKit components to allow you to inspect and manipulate your views while testing, allowing to simulate a web browser.
+Laravel est construit avec les tests unitaire en tête. En fait, le support des tests avec PHPUnit est inclus dans Laravel. et un fichier `phpunit.xml` est déjé configuré pour votre application. En plus de PHPUnit, Laravel utilise également les composants HttpKernel, DomCrawler, et BrowserKit de Symfony pour vous permettre d'inspecter et manipuler vos vues lors des tests, et de simuler un navigateur web.
 
-An example test file is provided in the `app/tests` directory. After installing a new Laravel application, simply run `phpunit` on the command line to run your tests.
+Un fichier de test d'exemple est fourni dans le dossier `app/tests`. Après avoir installé une nouvelle application Laravel, lancez simplement la commande `phpunit` sur la ligne de commande pour lancer vos tests.
 
 <a name="defining-and-running-tests"></a>
-## Defining & Running Tests
+## Définition et exécution des tests
 
-To create a test case, simply create a new test file in the `app/tests` directory. The test class should extend `TestCase`. You may then define test methods as you normally would when using PHPUnit.
+Pour créer un cas de test, créez simplement un nouveau fichier de test dans le dossier `app/tests`. La classe pour tester doit hériter de `TestCase`. Vous pouvez ensuite définir vos méthodes de test comme vous le feriez d'habitude avec PHPUnit.
 
-**An Example Test Class**
+**Exemple de classe de test**
 
 	class FooTest extends TestCase {
 
@@ -29,47 +29,47 @@ To create a test case, simply create a new test file in the `app/tests` director
 
 	}
 
-You may run all of the tests for your application by executing the `phpunit` command from your terminal.
+Vous pouvez exécuter tous vos tests e lançant la commande `phpunit` dans votre terminal.
 
-> **Note:** If you define your own `setUp` method, be sure to call `parent::setUp`.
+> **Note:** Si vous avez défini votre propre méthode `setUp`, n'oubliez pas d'appeler `parent::setUp`.
 
 <a name="test-environment"></a>
-## Test Environment
+## Environnement de test
 
-When running unit tests, Laravel will automatically set the configuration environment to `testing`. Also, Laravel includes configuration files for `session` and `cache` in the test environment. Both of these drivers are set to `array` while in the test environment, meaning no session or cache data will be persisted while testing. You are free to create other testing environment configurations as necessary.
+Lors de l'exécution de vos tests unitaires, Laravel va automatiquement définir que l'environnement de votre application est `testing`. Aussi, Laravel fournit des fichiers de configurations pour `session` et `cache` pour l'environnement de test. Ces deux drivers sont régler à `array` dans l'environnement de test, ce qui signifie qu'aucune session et qu'aucune donnée en cache ne sera persistée durant les tests. Vous pouvez créer plusieurs environnements de tests si vous le souhaitez.
 
 <a name="calling-routes-from-tests"></a>
-## Calling Routes From Tests
+## Appel de routes depuis un test
 
-You may easily call one of your routes for a test using the `call` method:
+Vous pouvez facilement appeler une de vos routes pour un test en utilisant la méthode `call` :
 
-**Calling A Route From A Test**
+**Appel d'une route depuis un test**
 
 	$response = $this->call('GET', 'user/profile');
 
 	$response = $this->call($method, $uri, $parameters, $files, $server, $content);
 
-You may then inspect the `Illuminate\Http\Response` object:
+Vous pouvez ensuite inspecter l'objet `Illuminate\Http\Response` retourné :
 
 	$this->assertEquals('Hello World', $response->getContent());
 
-You may also call a controller from a test:
+Vous pouvez également appeler un contrôleur depuis un test :
 
-**Calling A Controller From A Test**
+**Appel d'un contrôleur depuis un test**
 
 	$response = $this->action('GET', 'HomeController@index');
 
 	$response = $this->action('GET', 'UserController@profile', array('user' => 1));
 
-The `getContent` method will return the evaluated string contents of the response. If your route returns a `View`, you may access it using the `original` property:
+La méthode `getContent` retournera le contenu de la chaîne évaluée de la réponse. Si votre route retourne une instance de la classe `View`, vous pouvez accéder à la vue en utilisant la propriété `original` :
 
 	$view = $response->original;
 
 	$this->assertEquals('John', $view['name']);
 
-### DOM Crawler
+### Inspecteur de DOM
 
-You may also call a route and receive a DOM Crawler instance that you may use to inspect the content:
+Vous pouvez également appeler une route et recevoir une instance de l'inspecteur de DOM que vous pouvez utiliser pour regarder le contenu :
 
 	$crawler = $this->client->request('GET', '/');
 
@@ -77,27 +77,27 @@ You may also call a route and receive a DOM Crawler instance that you may use to
 
 	$this->assertCount(1, $crawler->filter('h1:contains("Hello World!")'));
 
-For more information on how to use the crawler, refer to its [official documentation](http://symfony.com/doc/master/components/dom_crawler.html).
+Pour plus d'information sur l'utilisateur de l'inspecteur de DOM, visitez sa [documentation officielle](http://symfony.com/doc/master/components/dom_crawler.html).
 
 <a name="helper-methods"></a>
-## Helper Methods
+## Méthodes "Helper"
 
-The `TestCase` class contains several helper methods to make testing your application easier.
+la classe `TestCase` contient plusieurs "Helper" pour le faciliter test de vos applications.
 
-You may set the currently authenticated user using the `be` method:
+Vous pouvez définir l'utilisateur actuellement connecté avec la méthode `be` :
 
-**Setting The Currently Authenticated User**
+**Défini un utilisateur comme étant connecté**
 
 	$user = new User(array('name' => 'John'));
 
 	$this->be($user);
 
-You may re-seed your database from a test using the `seed` method:
+Vous pouvez repopuler votre base de donnée depuis les tests unitaires en utilisateur la méthode `seed` :
 
-**Re-Seeding Database From Tests**
+**Repopule la base de donnée depuis les tests**
 
 	$this->seed();
 
 	$this->seed($connection);
 
-More information on creating seeds may be found in the [migrations and seeding](/docs/migrations#database-seeding) section of the documentation.
+Plus d'information sur la population de base de donnée dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.
