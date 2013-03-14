@@ -4,6 +4,7 @@ Guide laravel France
 Ce repository contient le guide du site laravel France. Vous pouvez apporter facilement vos corrections de la manière suivante :
 
 - Sur github, faites un fork du projet
+- **Placez vous sur la branche develop si ce n'est pas déjà le cas**
 - Trouvez le document concerné dans le dossier documents. Vous pouvez le retrouver facilement en analysant l'url de la page. Par exemple, le contenu de http://laravel.fr/docs/v3/doc/routes se trouve dans /documents/v3/routes.md
 - Une fois sur le document, cliquez sur Edit.
 - Faites vos modifications, puis en bas de la page, ajouter un message de commit et validez.
