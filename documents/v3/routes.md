@@ -18,13 +18,13 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Laravel les dernières fonctionnalités de PHP 5.3 pour rendre le routage simple et expressif. L'important étant de rendre l'écrite de route aussi simple que possible, autant pour une simple API que pour un site web complet et complexe. Les routes sont généralement définies dans le fichier **application/routes.php**.
+Laravel utilise les dernières fonctionnalités de PHP 5.3 pour rendre le routage simple et expressif. L'important étant de rendre l'écriture de routes aussi simple que possible, autant pour une simple API que pour un site web complet et complexe. Les routes sont généralement définies dans le fichier **application/routes.php**.
 
-Contrairement aux autres frameworks, Laravel permet deux modes de fonctionnement pour l'exécution de code applicatif. La manière classique que vous connaissez dans d'autres framework, c'est l'écriture de code dans un contrôleur, mais Laravel permet également l'écriture de code directement dans les routes. Ceci est **extrêmement** pratique pour les petits sites qui ne contiennent que peu de pages, car vous n'avez pas à créer tout un tas de contrôleur pour écrire au plus une ou deux méthodes à l'intérieur.
+Contrairement aux autres frameworks, Laravel permet deux modes de fonctionnement pour l'exécution de code applicatif. La manière classique que vous connaissez dans d'autres frameworks, c'est l'écriture de code dans un contrôleur, mais Laravel permet également l'écriture de code directement dans les routes. Ceci est **extrêmement** pratique pour les petits sites qui ne contiennent que peu de pages, car vous n'avez pas à créer tout un tas de contrôleurs pour écrire au plus une ou deux méthodes à l'intérieur.
 
-Dans l'exemple suivant, le premier paramètre est une route que nous enregistrons dans le routeur. Le second paramètre est la fonction qui contient la logique applicative pour cette route. Les routes sont définies sans slash devant. La seule exception est la route par défaut, qui est représenté **uniquement** par un slash.
+Dans l'exemple suivant, le premier paramètre est une route que nous enregistrons dans le routeur. Le second paramètre est la fonction qui contient la logique applicative pour cette route. Les routes sont définies sans slash devant. La seule exception est la route par défaut, qui est représentée **uniquement** par un slash.
 
-> **Note:** Les routes sont évaluées dans l'ordre où elles sont enregistrées, enregistrez donc les routes "attrapent tout" à la fin de votre fichier **routes.php**.
+> **Note:** Les routes sont évaluées dans l'ordre où elles sont enregistrées, enregistrez donc les routes "attrape tout" à la fin de votre fichier **routes.php**.
 
 #### Enregistrement d'une route résolvant un appel à "GET /":
 
@@ -71,7 +71,7 @@ Dans l'exemple suivant, le premier paramètre est une route que nous enregistron
         //
     });
 
-#### Autoriser une partie de de l'URI à être n'importe quel chaîne de caractères alphanumérique :
+#### Autoriser une partie de l'URI à être n'importe quelle chaîne de caractères alphanumériques :
 
     Route::get('post/(:any)', function($title)
     {
@@ -113,7 +113,7 @@ Libre à vous de charger cela pour que cela corresponde à ce que vous désirez 
 <a name="filters"></a>
 ## Filtres
 
-Les filtres de routes peuvent être exécuter avant ou après l'exécution d'une route. Si un filtre est exécuté "avant" la route retourne une valeur, alors cette valeur sera considéré comme une réponse, et la route ne sera pas exécutée, ce qui peut s'avérer pratique lorsque l'on implémente un système d'authentification par exemple. Les filtres sont généralement définis dans le fichier **application/routes.php**.
+Les filtres de routes peuvent être exécutés avant ou après l'exécution d'une route. Si un filtre est exécuté "avant", la route retourne une valeur, alors cette valeur sera considérée comme une réponse, et la route ne sera pas exécutée, ce qui peut s'avérer pratique lorsque l'on implémente un système d'authentification par exemple. Les filtres sont généralement définis dans le fichier **application/routes.php**.
 
 #### Enregistrement d'un filtre:
 
@@ -143,7 +143,7 @@ Les filtres de routes peuvent être exécuter avant ou après l'exécution d'une
         //
     }));
 
-#### Passage de paramètre à une filtre : 
+#### Passage de paramètre à un filtre : 
 
     Route::get('panel', array('before' => 'role:admin', function()
     {
@@ -178,7 +178,7 @@ Laravel a deux filtres globaux qui s'exécutent **avant** et **après** toutes l
 <a name="route-groups"></a>
 ## Routes groupées
 
-Les routes groupées servent à attacher un certains nombres d'attributs à un groupe de routes, vous permettant de garder votre code propre et léger.
+Les routes groupées servent à attacher un certain nombre d'attributs à un groupe de routes, vous permettant de garder votre code propre et léger.
 
     Route::group(array('before' => 'auth'), function()
     {
@@ -196,7 +196,7 @@ Les routes groupées servent à attacher un certains nombres d'attributs à un g
 <a name="named-routes"></a>
 ## Route nommées
 
-Écrire soit même ses liens et faire des redirections sur des URLs "hardcodé peut poser des problèmes si vous décidez un jour de changer le pattern de votre route. Laravel apporte une solution simple à ce problème : donner un nom à votre route. Ainsi dans votre application, vous pouvez faire référence à une route par son nom, et un changement de pattern sera alors immédiatement effectif. 
+Écrire soit même ses liens et faire des redirections sur des URLs "hardcodées peut poser des problèmes si vous décidez un jour de changer le pattern de votre route. Laravel apporte une solution simple à ce problème : donner un nom à votre route. Ainsi dans votre application, vous pouvez faire référence à une route par son nom, et un changement de pattern sera alors immédiatement effectif. 
 
 #### Enregistrement d'une route nommée :
 
@@ -213,7 +213,7 @@ Les routes groupées servent à attacher un certains nombres d'attributs à un g
 
     return Redirect::to_route('home');
 
-Une fois que vous avez donné un nom à une route, vous pouvez facilement vérifié si la requête courante répond à une une route donnée : 
+Une fois que vous avez donné un nom à une route, vous pouvez facilement vérifier si la requête courante répond à une une route donnée : 
 
 #### Détermine si une route répond à la route nommée fournie :
 
@@ -244,7 +244,7 @@ Lorsque vous définissez une route, vous pouvez utiliser l'attribut https pour i
 <a name="bundle-routes"></a>
 ## Route de bundles
 
-Les Bundles sont le sytèmes de paquets modulaires de Laravel. Les bundles peuvent facilement être configuré pour réagir à certaines requêtes, nous reviendrons sur les [bundles plus en détail](/docs/v3/doc/bundles) plus tard. Pour l'instant, lisez cette section et gardez en tête que vous pouvez enregistrer des routes pour mener aux fonctionnalités d'un bundle, mais vous pouvez également enregistrer vos routes directement dans le bundle.
+Les Bundles sont le système de paquets modulaires de Laravel. Les bundles peuvent facilement être configurés pour réagir à certaines requêtes, nous reviendrons sur les [bundles plus en détail](/docs/v3/doc/bundles) plus tard. Pour l'instant, lisez cette section et gardez en tête que vous pouvez enregistrer des routes pour mener aux fonctionnalités d'un bundle, mais vous pouvez également enregistrer vos routes directement dans le bundle.
 
 Ouvrez le fichier **application/bundles.php** et ajoutez ceci :
 
@@ -269,7 +269,7 @@ Maintenant, vous êtes prêt à enregistrer quelques routes pour votre bundle. A
 
 Concentrons nous sur cet exemple. Vous voyez le joker **(:bundle)** ? Cela sera remplacé par la valeur de l'option **handles** que vous définissez lors de l'enregistrement de votre bundle. Cela conserve votre code [D.R.Y.](http://fr.wikipedia.org/wiki/Ne_vous_r%C3%A9p%C3%A9tez_pas) et permet à ceux qui utilisent votre bundle de changer la base de l'URI savoir avoir à casser les routes ! Génial non ?
 
-Bien sur, vous pouvez utiliser le joker **(:bundle)** dans toutes vos routes, pas uniquemement dans la route de base : 
+Bien sûr, vous pouvez utiliser le joker **(:bundle)** dans toutes vos routes, pas uniquemement dans la route de base : 
 
 #### Enregistrement d'une route du bundle :
 
@@ -281,21 +281,21 @@ Bien sur, vous pouvez utiliser le joker **(:bundle)** dans toutes vos routes, pa
 <a name="controller-routing"></a>
 ## Routage de contrôleur
 
-Les contrôleurs fournissent une autre manière de géré la logique applicative. Si vous n'êtes pas familiarisé avec  ce principe, vous devriez [vous renseignez sur les contrôleurs](/docs/v3/doc/controleurs) puis revenir ici.
+Les contrôleurs fournissent une autre manière de géré la logique applicative. Si vous n'êtes pas familiarisé avec ce principe, vous devriez [vous renseigner sur les contrôleurs](/docs/v3/doc/controleurs) puis revenir ici.
 
-Il est important de comprendre que dans Laravel, toutes les routes possibles doivent être définies, même les routes vers les contrôleurs. Cela signifie que les méthodes d'un contrôleurs qui ne sont pas liées à une route **ne seront pas* accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
+Il est important de comprendre que dans Laravel, toutes les routes possibles doivent être définies, même les routes vers les contrôleurs. Cela signifie que les méthodes d'un contrôleur qui ne sont pas liées à une route **ne seront pas** accessibles. Il est possible d'exposer automatiquement toutes les méthodes d'un contrôleur dans Laravel, grâce au système d'enregistrement de routes de contrôleur. Comme toujours jusqu'ici pour les routes, toutes ces routes se trouvent par défaut dans **application/routes.php**.
 
-En général, vous enregistrerez vos contrôleur dans le dossier "controllers" de votre application. Pour exposer tous vos contrôleurs, vous pouvez utiliser la méthode suivante :
+En général, vous enregistrerez vos contrôleurs dans le dossier "controllers" de votre application. Pour exposer tous vos contrôleurs, vous pouvez utiliser la méthode suivante :
 
 #### Enregistre tous les contrôleurs de l'application:
 
     Route::controller(Controller::detect());
 
-La méthode *Controller::detect** retourne simplement un tableau de tous les contrôleurs qui se trouvent dans votre application.
+La méthode **Controller::detect** retourne simplement un tableau de tous les contrôleurs qui se trouvent dans votre application.
 
-Si vous souhaitez faire la même chose pour les contrôleurs d'un bundle, passez en argument à la méthode `detect` le nom du bundle. Si aucun bundle n'est spécifié, ce sont les contrôleurs  du dossier **application/controllers** qui seront pris en compte ( comme dans l'exemple ci dessus ).
+Si vous souhaitez faire la même chose pour les contrôleurs d'un bundle, passez en argument à la méthode `detect` le nom du bundle. Si aucun bundle n'est spécifié, ce sont les contrôleurs du dossier **application/controllers** qui seront pris en compte ( comme dans l'exemple ci dessus ).
 
-> **Note:** Il est important de noté que cette méthode ne vous donne **aucun** contrôle sur l'ordre dans lequel les contrôleurs seront chargés. Controller::detect() ne devrait être utilisé que sur des petits sites. Le routage "manuel" de contrôleurs vous donne beaucoup plus de maitrise, est plus facile à maintenir et est plutôt conseillé.
+> **Note:** Il est important de noter que cette méthode ne vous donne **aucun** contrôle sur l'ordre dans lequel les contrôleurs seront chargés. Controller::detect() ne devrait être utilisé que sur des petits sites. Le routage "manuel" de contrôleurs vous donne beaucoup plus de maitrises, est plus facile à maintenir et est plutôt conseillé.
 
 #### Enregistrement de tous les contrôleurs du bundle "admin" :
 
@@ -309,11 +309,11 @@ Si vous souhaitez faire la même chose pour les contrôleurs d'un bundle, passez
 
     Route::controller(array('dashboard.panel', 'admin'));
 
-Une fois qu'un contrôleur est enregistré, vous pouvez y acceder en respectant une convention d'URI simple :
+Une fois qu'un contrôleur est enregistré, vous pouvez y accéder en respectant une convention d'URI simple :
 
     http://votresite.tld/controller/method/arguments
 
-Cette convention est similaire à celle employée par CodeIgniter et bien d'autres framework, où le premier segment correspond au nom du contrôleur, le second au nom de la méthode, et tous les segments suivants sont passés à la méthode en tant qu'arguments. Si aucun segment de méthode n'est utilisé, alors le comportement par défaut sera d'appeler la méthode "index".
+Cette convention est similaire à celle employée par CodeIgniter et bien d'autres frameworks, où le premier segment correspond au nom du contrôleur, le second au nom de la méthode, et tous les segments suivants sont passés à la méthode en tant qu'arguments. Si aucun segment de méthode n'est utilisé, alors le comportement par défaut sera d'appeler la méthode "index".
 
 Cette convention de routage peut ne pas convenir à toutes les situations, vous pouvez alors écrire des routes manuelles avec une syntaxe simple et intuitive :
 
@@ -332,7 +332,7 @@ Cette convention de routage peut ne pas convenir à toutes les situations, vous 
 <a name="cli-route-testing"></a>
 ## Test de route en CLI
 
-Vous pouvez tester vos routes en utilisant l'outil CLI "Artisan" de Laravel. Vous aurez à préciser le verbe HTTP désiré ainsi que l'URI désirée, et la reponse vous sera **var_dump**é en réponse directement dans votre console : 
+Vous pouvez tester vos routes en utilisant l'outil CLI "Artisan" de Laravel. Vous aurez à préciser le verbe HTTP désiré ainsi que l'URI désirée, et la réponse vous sera **var_dump**ée en réponse directement dans votre console : 
 
 #### Appel d'une route via Artisan :
 
