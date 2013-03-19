@@ -11,7 +11,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-La paginateur de Laravel est conçu pour réduire le charge de l'implémentation de la pagination.
+Le paginateur de Laravel est conçu pour réduire la charge de l'implémentation de la pagination.
 
 <a name="using-the-query-builder"></a>
 ## Utilisation du Query Builder
@@ -22,7 +22,7 @@ Parcourons un exemple complet d'utilisation de la pagination en utilisant le [Fl
 
     $orders = DB::table('orders')->paginate($nb_par_page);
 
-Vous pouvez également passé une tableau optionnel avec les colonnes de la table que vous souhaitez sélectionner dans votre requête :
+Vous pouvez également passer un tableau optionnel avec les colonnes de la table que vous souhaitez sélectionner dans votre requête :
 
     $orders = DB::table('orders')->paginate($nb_par_page, array('id', 'name', 'created_at'));
 
@@ -32,17 +32,17 @@ Vous pouvez également passé une tableau optionnel avec les colonnes de la tabl
         <?php echo $order->id; ?>
     <?php endforeach; ?>
 
-#### Génération des liens de paginations :
+#### Génération des liens de pagination :
 
     <?php echo $orders->links(); ?>
 
-la méthodes **links** va créer une liste de pages très plaisante, qui pourrait ressembler à cela :
+la méthodes **links** va créer une liste de pages très plaisantes, qui pourrait ressembler à cela :
 
     Précédente 1 2 ... 24 25 26 27 28 29 30 ... 78 79 Suivante
 
-Le paginateur va automatique déterminé sur quel page vous vous trouvez, et mettre à jour le résultat et les liens.
+Le paginateur va automatiquement déterminer sur quelle page vous vous trouvez, et mettre à jour le résultat et les liens.
 
-Il est également possible de uniquement des liens "suivant" et "précédent" :
+Il est également possible d'avoir uniquement des liens "suivante" et "précédente" :
 
 #### Génération de liens "Suivante" et "Précédente" :
 
@@ -55,7 +55,7 @@ Il est également possible de uniquement des liens "suivant" et "précédent" :
 <a name="appending-to-pagination-links"></a>
 ## Ajout de paramètres aux liens de pagination
 
-Vous pouvez ajouter plusieurs éléments aux liens de paginations, tel que la colonne sur laquelle s'effectue le tri.
+Vous pouvez ajouter plusieurs éléments aux liens de pagination, telle que la colonne sur laquelle s'effectue le tri.
 
 #### Ajout du critère de tri aux liens de pagination :
 
@@ -77,7 +77,7 @@ Vous pouvez créer une instance de la classe Paginator afin de gérer vous même
 <a name="pagination-styling"></a>
 ## Appliquer un style à la pagination
 
-Tous les éléments peuvent être stylisé en utilisant grâce aux classes. Voici un exemple de code HTML généré par la méthode links() :
+Tous les éléments peuvent être stylisé grâce aux classes. Voici un exemple de code HTML généré par la méthode links() :
 
     <div class="pagination">
         <ul>
@@ -105,6 +105,6 @@ Tous les éléments peuvent être stylisé en utilisant grâce aux classes. Voic
         </ul>
     </div>
 
-Quand vous êtes sur la premi_re page de résultat, le "Précédente" sera désactivé. A l'inverse, quand vous serez sur la dernière page, le "Suivante" sera désactivé. Cela se traduit pour l'ajout de la classe "disabled". Voici le code HTML généré :
+Quand vous êtes sur la première page de résultat, le lien "Précédente" sera désactivé. A l'inverse, quand vous serez sur la dernière page, le lien "Suivante" sera désactivé. Cela se traduit par l'ajout de la classe "disabled". Voici le code HTML généré :
 
     <li class="disabled previous_page"><a href="#">Précédente</a></li>
