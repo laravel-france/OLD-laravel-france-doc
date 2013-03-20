@@ -10,12 +10,12 @@
 <a name="the-basics"></a>
 ## Les bases
 
-L'outil en ligne de commande de Laravel s'appelle Artistan. Artistan peut être utilisé pour exécuter des tâches comme des migrations, des tâches programmées, tests unitaires, ou ce que vous voulez.
+L'outil en ligne de commande de Laravel s'appelle Artisan. Artisan peut être utilisé pour exécuter des tâches comme des migrations, des tâches programmées, tests unitaires, ou ce que vous voulez.
 
 <a name="creating-tasks"></a>
 ## Création & exécution de tâches
 
-Pour créer une tache, créez une nouvelle classe dans le dossier **application/tasks**. Le nom de la classe doit finir par "_Task", et doit avoir au minimum une méthode "run" :
+Pour créer une tâche, créez une nouvelle classe dans le dossier **application/tasks**. Le nom de la classe doit finir par "_Task", et doit avoir au minimum une méthode "run" :
 
 #### Création d'une tâche :
 
@@ -46,7 +46,7 @@ Maintenant vous pouvez exécuter la méthode "run" via la ligne de commande. Vou
 
 	Command::run(array('notify', 'taylor'));
 
-Souvenez vous, vous pouvez appeler une méthode spécifique de votre classe. Ajoutons une méthode "urgent" à la classe Notify_Task :
+Souvenez-vous, vous pouvez appeler une méthode spécifique de votre classe. Ajoutons une méthode "urgent" à la classe Notify_Task :
 
 #### Ajout d'une méthode à notre tâche :
 
@@ -73,7 +73,7 @@ Maintenant nous pouvons appeler la méthode "urgent" :
 <a name="bundle-tasks"></a>
 ## Tâches de bundle
 
-Pour créer une tache pour un bundle, prefixez le nom de votre tâche avec le nom de votre bundle. Donc si votre bundle s'appelle "admin", une tache ressemblera à cela : 
+Pour créer une tâche pour un bundle, préfixez le nom de votre tâche avec le nom de votre bundle. Donc si votre bundle s'appelle "admin", une tâche ressemblera à cela : 
 
 #### Création d'une tâche qui appartient à un bundle :
 
@@ -97,7 +97,7 @@ Pour lancer votre tâche, utilisez un double deux points ( :: ) pour indiquer le
 	php artisan admin::generate:list
 
 <a name="cli-options"></a>
-## Options de la ligne de commandes
+## Options de la ligne de commande
 
 #### Définition de l'environnement :
 
