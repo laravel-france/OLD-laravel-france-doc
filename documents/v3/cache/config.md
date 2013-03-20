@@ -12,20 +12,20 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Imagine your application displays the ten most popular songs as voted on by your users. Do you really need to look up these ten songs every time someone visits your site? What if you could store them for 10 minutes, or even an hour, allowing you to dramatically speed up your application? Laravel's caching makes it simple.
+Imaginez que votre application affiche les dix chansons les plus populaires pour votre visiteurs. Avez-vous vraiment besoin de remonter ces 10 chansons chaque fois que quelqu'un visite votre site ? Et si vous les stockiez pour 10 minutes, ou même une heure, vous permettant d'accélérer fortement votre application ? Le système de cache de Laravel le fait simplement.
 
-Laravel provides five cache drivers out of the box:
+Laravel propose cinq drivers de cache par défaut :
 
-- File System
-- Database
+- Système de fichier
+- Base de données
 - Memcached
 - APC
 - Redis
-- Memory (Arrays)
+- Memory (Tableaux)
 
-By default, Laravel is configured to use the **file** system cache driver. It's ready to go out of the box with no configuration. The file system driver stores cached items as files in the **cache** directory. If you're satisfied with this driver, no other configuration is required. You're ready to start using it.
+Par défaut, Laravel est configuré pour utiliser le driver **file** comme système de cache. C'est disponible de suite sans configuration. Ce système stocke les éléments à mettre en cache comme des fichiers dans le répertoire **cache**. Si vous êtes satisfait par ce driver, aucune autre configuration n'est requise. Vous êtes prêt à l'utiliser.
 
-> **Note:** Before using the file system cache driver, make sure your **storage/cache** directory is writeable.
+> **Note:** Avant d'utiliser le système de cache par fichiers, soyez sûr que le répertoire **storage/cache** est en mode écriture.
 
 <a name="database"></a>
 ## Database
