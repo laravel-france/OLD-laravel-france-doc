@@ -7,7 +7,7 @@
 - [Suppression](#delete)
 - [Upload d'un fichier](#upload)
 - [Extension d'un fichier](#ext)
-- [Vérifier ](#is)le type d'un fichier
+- [Vérifier le type d'un fichier](#is)
 - [Obtention du type MIME](#mime)
 - [Copie de dossier](#cpdir)
 - [Suppression de dossier](#rmdir)

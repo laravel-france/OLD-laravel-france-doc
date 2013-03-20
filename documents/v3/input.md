@@ -13,7 +13,7 @@
 <a name="input"></a>
 ## Input
 
-La classe **Input** gère les entrées qui viennent dans à notre application via les requêtes GET, POST, PUT ou DELETE. Voici quelques exemples qui montrent comment accéder aux entrées avec la classe Input :
+La classe **Input** gère les entrées qui viennent à notre application via les requêtes GET, POST, PUT ou DELETE. Voici quelques exemples qui montrent comment accéder aux entrées avec la classe Input :
 
 #### Retourne une valeur depuis le tableau d'entrée :
 
@@ -39,7 +39,7 @@ Par défaut, *null* sera retourné si la clé n'existe pas. Vous pouvez passer e
 
     $name = Input::get('name', function() {return 'Fred';});
 
-#### Détermine si l'entée contient la clé donnée :
+#### Détermine si l'entrée contient la clé donnée :
 
     if (Input::has('name')) ...
 
@@ -48,7 +48,7 @@ Par défaut, *null* sera retourné si la clé n'existe pas. Vous pouvez passer e
 <a name="json"></a>
 ## Entrées en JSON
 
-Quand vous travaillez avec des framework javascript MVC tel que Backbone.js, vous aurez besoin de récupérer le JSON envoyé par l'application. Pour vous facilité la bien nous avons inclus la méthode `Input::json` :
+Quand vous travaillez avec des frameworks javascript MVC tel que Backbone.js, vous aurez besoin de récupérer le JSON envoyé par l'application. Pour vous faciliter la vie, nous avons inclus la méthode `Input::json` :
 
 #### Récupère l'entrée JSON :
 
@@ -65,14 +65,14 @@ Quand vous travaillez avec des framework javascript MVC tel que Backbone.js, vou
 
     $picture = Input::file('picture');
 
-#### Retourne une information précis du tableau $_FILES :
+#### Retourne une information précise du tableau $_FILES :
 
     $size = Input::file('picture.size');
 
 <a name="old-input"></a>
 ## Vieilles entrées
 
-Vous aurez couramment besoin de repeuplé vos formulaires après qu'ils aient été refusé lors d'une soumission. La classe Input de Laravel a été conçue avec ce problème dans l'esprit. Voici un exemple de comment vous pouvez facilement retrouver les entrées de la requête précédente. Premièrement, vous avez besoin de "flasher" les entrées dans une session :
+Vous aurez couramment besoin de repeupler vos formulaires après qu'ils aient été refusés lors d'une soumission. La classe Input de Laravel a été conçue avec ce problème dans l'esprit. Voici un exemple de comment vous pouvez facilement retrouver les entrées de la requête précédente. Premièrement, vous avez besoin de "flasher" les entrées dans une session :
 
 #### Insertion des entrées en session "flash" :
 
@@ -97,7 +97,7 @@ Vous aurez couramment besoin de repeuplé vos formulaires après qu'ils aient é
 <a name="redirecting-with-old-input"></a>
 ## Redirection avec de vieilles entrées
 
-Maintenant que vous savez comment flashes vos entrées en session, voici un raccourci qui vous permet de faire le flash automatiquement lors d'une redirection :
+Maintenant que vous savez comment flasher vos entrées en session, voici un raccourci qui vous permet de faire le flash automatiquement lors d'une redirection :
 
 #### Flash des entrées dans une instance de redirection :
 
@@ -112,7 +112,7 @@ Maintenant que vous savez comment flashes vos entrées en session, voici un racc
 <a name="cookies"></a>
 ## Cookies
 
-Laravel fournit une couche de gestion des cookies vraiment simple à utiliser. Il y a cependant certaines choses à savoir avant de l'utiliser. Premièrement, tous les cookies Laravel contiennent une signature cryptée. Cela permet au framework de vérifier que le cookie n'a pas été modifié sur le poste du client. Secondement, lorsque vous posez une cookie, le cookie n'est pas immédiatement envoyé au navigateur, mais est mis en attente et est envoyé en même temps que la réponse. Cela signifie que vous ne pouvez pas déclaré un cookie et l'exploité dans la même requête.
+Laravel fournit une couche de gestion des cookies vraiment simple à utiliser. Il y a cependant certaines choses à savoir avant de l'utiliser. Premièrement, tous les cookies Laravel contiennent une signature cryptée. Cela permet au framework de vérifier que le cookie n'a pas été modifié sur le poste du client. Secondement, lorsque vous posez un cookie, le cookie n'est pas immédiatement envoyé au navigateur, mais est mis en attente et est envoyé en même temps que la réponse. Cela signifie que vous ne pouvez pas déclarer un cookie et l'exploiter dans la même requête.
 
 #### Retrouve la valeur d'un cookie :
 

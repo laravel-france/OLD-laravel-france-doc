@@ -61,7 +61,7 @@ Command  | Description
 `$table->increments('id');`  |  ID incrémental
 `$table->string('email');`  |  colonne de type VARCHAR
 `$table->string('name', 100);`  |  colonne de type VARCHAR avec une taille
-`$table->integer('votes');`  |  colonne de type INTERGER
+`$table->integer('votes');`  |  colonne de type INTEGER
 `$table->float('amount');`  |  colonne de type FLOAT
 `$table->decimal('amount', 5, 2);`  |  colonne de type DECIMAL avec une précision et une échelle
 `$table->boolean('confirmed');`  |  colonne de type BOOLEAN
@@ -103,7 +103,7 @@ Command  | Description
 <a name="adding-indexes"></a>
 ## Ajout d'index
 
-Le Schema builder supporte plusieurs type d'index. Il y a deux manières d'ajouter des index. Chaque type d'index à sa propre méthode, cependant vous pouvez aussi définir de manière fluide un index sur la même ligne que l'ajout de la colonne :
+Le Schema builder supporte plusieurs type d'index. Il y a deux manières d'ajouter des index. Chaque type d'index a sa propre méthode, cependant vous pouvez aussi définir de manière fluide un index sur la même ligne que l'ajout de la colonne :
 
 #### Crée de manière fluide une colonne avec un index:
 
@@ -114,15 +114,15 @@ Si vous préférez définir vos clés sur une ligne à part, alors voici comment
 Command  | Description
 ------------- | -------------
 `$table->primary('id');`  |  Ajoute une clé primaire
-`$table->primary(array('fname', 'lname'));`  |  Ajout une clé primaire sur plusieurs colonnes
-`$table->unique('email');`  |  Ajout un index d'unicité
-`$table->fulltext('description');`  |  ajoute un index full-text
-`$table->index('state');`  |  ajout un index basique
+`$table->primary(array('fname', 'lname'));`  |  Ajoute une clé primaire sur plusieurs colonnes
+`$table->unique('email');`  |  Ajoute un index d'unicité
+`$table->fulltext('description');`  | Ajoute un index full-text
+`$table->index('state');`  |  Ajoute un index basique
 
 <a name="dropping-indexes"></a>
 ## Suppression d'index :
 
-Pour supprimer un index, vous devez spécifié son nom. Laravel assigne un nom cohérent à tous les index. concaténez simplement le nom de la table, et le nom des colonnes, ensuite ajoutez le type d'index. 
+Pour supprimer un index, vous devez spécifier son nom. Laravel assigne un nom cohérent à tous les index. concaténez simplement le nom de la table, et le nom des colonnes, ensuite ajoutez le type d'index. 
 
 Command  | Description
 ------------- | -------------
@@ -138,7 +138,7 @@ Vous pouvez ajouter facilement des clés étrangères à vos tables en utilisant
 
     $table->foreign('user_id')->references('id')->on('users');
 
-Vous pouvez également spécifié des options pour le "on delete" et le "on update" à la clé étrangère :
+Vous pouvez également spécifier des options pour le "on delete" et le "on update" à la clé étrangère :
 
     $table->foreign('user_id')->references('id')->on('users')->on_delete('restrict')->on_update('cascade');
 
@@ -146,7 +146,7 @@ Vous pouvez facilement supprimer une clé étrangère en utilisant [la même con
 
     $table->drop_foreign('posts_user_id_foreign');
 
-> **Note:** Le champ référencé dans la clé étrangère sera sûrement un champ de type entier non signé, avec un autoincrement. Veuillez vous assurer de créer le champ de la clé étrangère avec la méthode **unsigned()** état donné que les deux champs doivent être exactement du même type, et que le moteur utilisé soir InnoDB, car c'est le seul qui supporte correctement les clé étrangères :
+> **Note:** Le champ référencé dans la clé étrangère sera sûrement un champ de type entier non signé, avec un autoincrement. Veuillez vous assurer de créer le champ de la clé étrangère avec la méthode **unsigned()** étant donné que les deux champs doivent être exactement du même type, et que le moteur utilisé soit InnoDB, car c'est le seul qui supporte correctement les clé étrangères :
 
     $table->engine = 'InnoDB';
 

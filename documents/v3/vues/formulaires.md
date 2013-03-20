@@ -36,7 +36,7 @@
 
     echo Form::open_for_files('users/profile');
 
-#### Ouverture d'un formulaire l'upload de fichier en HTTPS :
+#### Ouverture d'un formulaire d'upload de fichier en HTTPS :
 
     echo Form::open_secure_for_files('users/profile');
 
@@ -47,7 +47,7 @@
 <a name="csrf-protection"></a>
 ## Protection contre les attaques CSRF
 
-Laravel fourni une méthode simple pour protéger vos application d'une attaque de type cross-site request forgeries. Premièrement, une jeton généré aléatoirement est placé dans la session de vos utilisateurs. Ceci est totalement automatique. Ensuite, utilisez la méthode token pour généré un champs caché qui contient le jeton aléatoire dans votre formulaire :
+Laravel fournit une méthode simple pour protéger vos applications d'une attaque de type cross-site request forgeries. Premièrement, un jeton généré aléatoirement est placé dans la session de vos utilisateurs. Ceci est totalement automatique. Ensuite, utilisez la méthode token pour générer un champs caché qui contient le jeton aléatoire dans votre formulaire :
 
 #### Génération d'un champ caché avec le jeton :
 
@@ -74,7 +74,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 <a name="labels"></a>
 ## Labels
 
-#### Génération d'un label:
+#### Génération d'un label :
 
     echo Form::label('email', 'Adresse e-Mail');
 
@@ -82,7 +82,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
     echo Form::label('email', 'Adresse e-Mail', array('class' => 'awesome'));
 
-> **Note:** Après avoir créé un label, n'importe quel élément de formulaire que vous crérez avec le même nom aura un ID, qui aura pour valeur ce même nom.
+> **Note:** Après avoir créé un label, n'importe quel élément de formulaire que vous crérez avec le même nom aura un ID qui aura pour valeur ce même nom.
 
 <a name="text"></a>
 ## Texte, Textarea, Mot de passes & champs cachés
@@ -95,7 +95,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
     echo Form::text('email', 'exemple@gmail.com');
 
-> **Note:** Les méthodes *hidden* et *textarea* ont la même signature que la méthode *text*. Vous venez d'apprendre à utiliser trois méthode pour le prix d'une !
+> **Note:** Les méthodes *hidden* et *textarea* ont la même signature que la méthode *text*. Vous venez d'apprendre à utiliser trois méthodes pour le prix d'une !
 
 #### Génération d'un input de type password :
 
@@ -108,7 +108,7 @@ Laravel fourni une méthode simple pour protéger vos application d'une attaque 
 
     echo Form::checkbox('name', 'value');
 
-#### Génération d'une checkbox cochée par défault:
+#### Génération d'un checkbox coché par défault:
 
     echo Form::checkbox('name', 'value', true);
 

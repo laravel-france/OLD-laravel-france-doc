@@ -17,12 +17,12 @@
 
 Les vues contiennent le code HTML qui sera envoyé à l'utilisateur de votre application. En séparant la vue des données métiers de votre application, votre code sera beaucoup plus clair et facile à maintenir.
 
-Toutes les vues sont stockées dans le dossier **application/views** et utilisent l'extension .php . La classe **View** fournie une manière simple de retrouver vos vues et de les retourner à l'utilisateur, depuis votre logique applicative. Voyons un exemple :
+Toutes les vues sont stockées dans le dossier **application/views** et utilisent l'extension .php . La classe **View** fournit une manière simple de retrouver vos vues et de les retourner à l'utilisateur, depuis votre logique applicative. Voyons un exemple :
 
 #### Création d'une vue :
 
     <html>
-        Je suis stocké dans views/home/index.php!
+        Je suis stocké dans views/home/index.php !
     </html>
 
 #### Envoi de la vue depuis une route :
@@ -43,7 +43,7 @@ Toutes les vues sont stockées dans le dossier **application/views** et utilisen
 
     $exists = View::exists('home.index');
 
-Parfois vous aurez besoin d'un petit plus de contrôle sur la réponse qui sera envoyé au navigateur. Par exemple, vous pourriez avoir besoin de mettre certaines entête, ou de changer le code de status HTTP. Voici comment faire :
+Parfois vous aurez besoin d'un peu plus de contrôle sur la réponse qui sera envoyée au navigateur. Par exemple, vous pourriez avoir besoin de mettre certaines entêtes, ou de changer le code de status HTTP. Voici comment faire :
 
 #### Retourne une réponse personnalisée:
 
@@ -73,7 +73,7 @@ Parfois vous aurez besoin d'un petit plus de contrôle sur la réponse qui sera 
 <a name="binding-data-to-views"></a>
 ## Attacher des données à une vue
 
-Typiquement, une route ou un contrôleur va demander à un modèle de lui fournir des données à afficher. Une fois ces données en sa possession, il faudra les transmettre à la vue. Il y a plusieurs manière de faire cela avec Laravel, choisissez celle de que préférez !
+Typiquement, une route ou un contrôleur va demander à un modèle de lui fournir des données à afficher. Une fois ces données en sa possession, il faudra les transmettre à la vue. Il y a plusieurs manières de faire cela avec Laravel, choisissez celle que vous préférez !
 
 #### Attache des données à une vue:
 
@@ -131,9 +131,9 @@ Vous pouvez également inclure une vue directement dans votre vue, grâce à la 
         <?php echo render('user.profile'); ?>
     </div>
 
-Il arrive aussi également que l'on veuille inclure une vue qui serait responsable de l'affiche d'un élément d'une liste. Cela se fait simplement grâce à l'helper **render_each** :
+Il arrive aussi également que l'on veuille inclure une vue qui serait responsable de l'affichage d'un élément d'une liste. Cela se fait simplement grâce à l'helper **render_each** :
 
-#### Affiche une vue partiel pour chaque éléments d'un tableau :
+#### Affiche une vue partielle pour chaque élément d'un tableau :
 
     <div class="orders">
         <?php echo render_each('partials.order', $orders, 'order');
@@ -161,7 +161,7 @@ Les vues nommées existent pour rendre votre code plus expressif et organisé. L
 <a name="view-composers"></a>
 ## Composeur de vue
 
-Chaque fois qu'une vue est crée, un événement "composer" est lancé pour cette vue. Vous pouvez utiliser cet événement pour attacher des assets, ou des données communes chaque fois que la vue est créée. Une utilisation pratique de cette fonctionnalité pourrait être d'attacher à notre vue une vue partielle avec une liste de billets de blog choisis au hasard. Vous pouvez inclure votre vue partielle en la chargeant dans votre layout. Ensuite, mettre en place un composeur pour cette vue partielle. Le composeur peut déclencher une requête via le modèle et rassembler toutes les données nécéssaires à l'affichage de votre vue. Les composeurs sont généralement définis dans le fichier **application/routes.php**. Voici un exemple :
+Chaque fois qu'une vue est créée, un événement "composer" est lancé pour cette vue. Vous pouvez utiliser cet événement pour attacher des assets, ou des données communes chaque fois que la vue est créée. Une utilisation pratique de cette fonctionnalité pourrait être d'attacher à notre vue une vue partielle avec une liste de billets de blog choisis au hasard. Vous pouvez inclure votre vue partielle en la chargeant dans votre layout. Ensuite, mettre en place un composeur pour cette vue partielle. Le composeur peut déclencher une requête via le modèle et rassembler toutes les données nécessaires à l'affichage de votre vue. Les composeurs sont généralement définis dans le fichier **application/routes.php**. Voici un exemple :
 
 #### Enregistre un composeur de vue pour la vue "home" :
 
@@ -170,7 +170,7 @@ Chaque fois qu'une vue est crée, un événement "composer" est lancé pour cett
         $view->nest('footer', 'partials.footer');
     });
 
-Maintenant, chaque fois que la vue "home" sera créée, l'instance de la classe View sera passée à la fonction anonyme, vous permettant de préparrer la vue comme vous le souhaitez.
+Maintenant, chaque fois que la vue "home" sera créée, l'instance de la classe View sera passée à la fonction anonyme, vous permettant de préparer la vue comme vous le souhaitez.
 
 #### Enregistrement d'un composeur qui gère plusieurs vues :
 
@@ -184,17 +184,17 @@ Maintenant, chaque fois que la vue "home" sera créée, l'instance de la classe 
 <a name="redirects"></a>
 ## Redirections
 
-Vous avez sans doute remarqué que les routes et les contrôleurs doivent retourné une réponse via la directive php `return`. Pour faire une redirection, ce sera la même chose. Ainsi, plutôt que d’appeler "Redirect::to()" n'importe où et n'importe quand, vous devrez utiliser "return Redirect::to()". Cette distinction est importante car il en est autrement dans la plupart des autres framework PHP.
+Vous avez sans doute remarqué que les routes et les contrôleurs doivent retourner une réponse via la directive php `return`. Pour faire une redirection, ce sera la même chose. Ainsi, plutôt que d'appeler "Redirect::to()" n'importe où et n'importe quand, vous devrez utiliser "return Redirect::to()". Cette distinction est importante car il en est autrement dans la plupart des autres frameworks PHP.
 
 #### Redirection vers une autre URI :
 
     return Redirect::to('user/profile');
 
-#### Redirectiion avec une status HTTP spécifique :
+#### Redirection avec un statut HTTP spécifique :
 
     return Redirect::to('user/profile', 301);
 
-#### Redirectinon vers une URI HTTPS:
+#### Redirection vers une URI HTTPS:
 
     return Redirect::to_secure('user/profile');
 
@@ -214,7 +214,7 @@ Vous avez sans doute remarqué que les routes et les contrôleurs doivent retour
 
     return Redirect::to_action('home@index');
 
-Parfois, vous devez redirigé vers une route nommée, mais également lui passer des paramètres. Voici comment faire :
+Parfois, vous devez rediriger vers une route nommée, mais également lui passer des paramètres. Voici comment faire :
 
 #### Redirection vers une route nommée avec des valeurs :
 
@@ -227,7 +227,7 @@ Parfois, vous devez redirigé vers une route nommée, mais également lui passer
 <a name="redirecting-with-flash-data"></a>
 ## Redirection avec des données temporaires
 
-Après qu'un utilisateur ai créé son compte, ou qu'il se soit connécté à votre application, il arrive souvent qu'il tombe sur une page qui lui souhaite le bienvenu. Mais, commenter passer ce message pour qu'il soit disponible lors de la prochaine requête ? Utilisez ma méthode with() pour envoyer des données temporaires lors de la redirection :
+Après qu'un utilisateur ait créé son compte, ou qu'il se soit connecté à votre application, il arrive souvent qu'il tombe sur une page qui lui souhaite la bienvenue. Mais, comment passer ce message pour qu'il soit disponible lors de la prochaine requête ? Utilisez ma méthode with() pour envoyer des données temporaires lors de la redirection :
 
     return Redirect::to('profile')->with('status', 'Bienvenue !');
 
@@ -253,7 +253,7 @@ Vous aurez alors accès au message grâce à la méthode get de la classe Sessio
 <a name="errors"></a>
 ## Erreurs
 
-Pour générer une réponse d'erreur propre, utilisez la méthode error de la classe  Response en lui spécifiant le numéro de status HTTP de l'erreur. La vue correspondante stockée dans **views/error** sera automatiquement retournée.
+Pour générer une réponse d'erreur propre, utilisez la méthode error de la classe Response en lui spécifiant le numéro de statut HTTP de l'erreur. La vue correspondante stockée dans **views/error** sera automatiquement retournée.
 
 #### Génère une erreur 404:
 

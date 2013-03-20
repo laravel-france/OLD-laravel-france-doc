@@ -9,7 +9,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Parfois vous devez obtenir et définir des options lors de l'execution de votre application. Pour cela, utilisez la classe **Config**, qui utilise la syntaxe "point" pour accéder aux fichiers de configuration et à leurs éléments.
+Parfois vous devez obtenir et définir des options lors de l'exécution de votre application. Pour cela, utilisez la classe **Config**, qui utilise la syntaxe "point" pour accéder aux fichiers de configuration et à leurs éléments.
 
 <a name="retrieving-options"></a>
 ## Obtention d'options
@@ -22,13 +22,13 @@ Parfois vous devez obtenir et définir des options lors de l'execution de votre 
 
 	$value = Config::get('application.timezone', 'UTC');
 
-#### Retourne un tableau avec toutes les valeurs de configurations :
+#### Retourne un tableau avec toutes les valeurs de configuration :
 
 	$options = Config::get('database');
 
 <a name="setting-options"></a>
 ## Définition d'options
 
-#### Défini une option de configuration :
+#### Définit une option de configuration :
 
 	Config::set('cache.driver', 'apc');

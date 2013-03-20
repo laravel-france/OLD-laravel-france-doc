@@ -20,7 +20,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Laravel est fourni avec un [ORM](http://fr.wikipedia.org/wiki/Mapping_objet-relationnel), qui vous adorerez utiliser ! Son nom est "Eloquent" car il vous permet de travailler avec des objets de base de données et des relations en utilisant une syntaxe éloquente et expressive. En general, vous définirez un modèle Eloquent pour chaque table de votre base de données. Pour démarrer, définissez un modèle simple : 
+Laravel est fourni avec un [ORM](http://fr.wikipedia.org/wiki/Mapping_objet-relationnel), qui vous adorerez utiliser ! Son nom est "Eloquent" car il vous permet de travailler avec des objets de base de données et des relations en utilisant une syntaxe éloquente et expressive. En général, vous définirez un modèle Eloquent pour chaque table de votre base de données. Pour démarrer, définissez un modèle simple : 
 
     class User extends Eloquent {}
 
@@ -67,7 +67,7 @@ Besoin de récupérer une table entière ? Utilisez la méthode statique **all**
          echo $user->email;
     }
 
-Bien sur, récupérer une table entière n'est pas très utile. Heureusement, **toutes les méthode du Fluent Query Builder sont disponibles avec Eloquent**. Commencez à requêter votre modèle avec une méthode statique disponible avec le [constructeur de requête fluide](/docs/v3/doc/database/fluent), et exécutez la requête avec les méthodes **get** ou **first**. La méthode get retournera un tableau de modèles, tandis que first retournera un simple modèle :
+Bien sûr, récupérer une table entière n'est pas très utile. Heureusement, **toutes les méthode du Fluent Query Builder sont disponibles avec Eloquent**. Commencez à requêter votre modèle avec une méthode statique disponible avec le [constructeur de requête fluide](/docs/v3/doc/database/fluent), et exécutez la requête avec les méthodes **get** ou **first**. La méthode get retournera un tableau de modèles, tandis que first retournera un simple modèle :
 
     $user = User::where('email', '=', $email)->first();
 
@@ -94,7 +94,7 @@ Besoin d'utiliser **MIN**, **MAX**, **AVG**, **SUM**, ou **COUNT** ? Passez le n
 
     $count = User::count();
 
-Bien sur, vous pouvez limiter la requête en plaçant une clause WHERE d'abord :
+Bien sûr, vous pouvez limiter la requête en plaçant une clause WHERE d'abord :
 
     $count = User::where('id', '>', 10)->count();
 
@@ -111,7 +111,7 @@ L'insertion d'un modèle Eloquent dans vos tables ne pourrait pas être plus fac
 
     $user->save();
 
-Vous pouvez alternativement utiliser la méthode **create**, qui insérera une nouvelle ligne dans la base de données et retournera une nouvelle instance de modèle pour la ligne nouvellement insérées, ou **false** si l 'insertion échoue.
+Vous pouvez alternativement utiliser la méthode **create**, qui insérera une nouvelle ligne dans la base de données et retournera une nouvelle instance de modèle pour la ligne nouvellement insérée, ou **false** si l'insertion échoue.
 
     $user = User::create(array('email' => 'example@gmail.com'));
 
@@ -124,7 +124,7 @@ La mise à jour est tout aussi simple. Seule la première étape change : au lie
 
     $user->save();
 
-Besoin de maintenir une date de création et de mise à jour pous vos enregistrements ? Avec Eloquent, nous n'avez pas en vous en occuper. Ajoutez simplement une propriété statique **timestamps** à votre modèle :
+Besoin de maintenir une date de création et de mise à jour pous vos enregistrements ? Avec Eloquent, vous n'avez pas en vous en occuper. Ajoutez simplement une propriété statique **timestamps** à votre modèle :
 
     class User extends Eloquent {
 
@@ -132,7 +132,7 @@ Besoin de maintenir une date de création et de mise à jour pous vos enregistre
 
     }
 
-Ensuite, ajoutez les clonnes **created_at** et **updated_at** de type DateTime à vos tables. Maintenant, dès que vous sauvegarderez le modèle, la date de création et de modification seront automatiquement mis à jour. Ne nous remerciez pas, c'est tout naturel :-)
+Ensuite, ajoutez les clonnes **created_at** et **updated_at** de type DateTime à vos tables. Maintenant, dès que vous sauvegarderez le modèle, la date de création et de modification seront automatiquement mises à jour. Ne nous remerciez pas, c'est tout naturel :-)
 
 > **Note  :** la propriété `$timestamps` est à true par défaut. Donc si à l'inverse vous n'en avez pas besoin, placez la à false pour éviter des erreurs lors de l'insertion et la modification de vos lignes.
 
@@ -152,7 +152,7 @@ Vous pouvez aussi utiliser la méthode **timestamp**, qui elle ne fera pas de sa
 <a name="relationships"></a>
 ## Relations
 
-Vos tables auront probablement des relations avec d'autres. Par exemple, une commande appartient à un utilisateur. Ou, un post peut avoir plusieurs commentaires.Eloquent rend la définition des relations et la récupération des modèles liés simple et intuitive. Laravel supporte trois types de relations :
+Vos tables auront probablement des relations avec d'autres. Par exemple, une commande appartient à un utilisateur. Ou, un post peut avoir plusieurs commentaires. Eloquent rend la définition des relations et la récupération des modèles liés simple et intuitive. Laravel supporte trois types de relations :
 
 - [One-To-One](#one-to-one)
 - [One-To-Many](#one-to-many)
@@ -163,7 +163,7 @@ Pour définir une relation dans un modèle Eloquent, vous créez simplement une 
 <a name="one-to-one"></a>
 ### One-To-One
 
-Une relation un vers un est la plus basique de toute. Par exemple, disons qu'un utilisateur à un téléphone. Décrivez cette relation avec Eloquent :
+Une relation `un vers un` est la plus basique de toute. Par exemple, disons qu'un utilisateur a un téléphone. Décrivez cette relation avec Eloquent :
 
     class User extends Eloquent {
 
@@ -178,7 +178,7 @@ Remarquez que le nom du modèle lié est passé à la méthode **has_one**. Vous
 
     $phone = User::find(1)->phone()->first();
 
-Examinons les requêtes SQL générées. Deux requêtes sont exécutées : une pour retrouvé l'utilisateur, et une pour retrouvé le téléphone de l'utilisateur 
+Examinons les requêtes SQL générées. Deux requêtes sont exécutées : une pour retrouver l'utilisateur, et une pour retrouver le téléphone de l'utilisateur 
 
     SELECT * FROM "users" WHERE "id" = 1
 
@@ -188,11 +188,11 @@ Notez qu'Eloquent assume que la clé étrangère sera **user\_id**. La plupart d
 
     return $this->has_one('Phone', 'my_foreign_key');
 
-Si vous souhaitez récupérer le les téléphone de l'utilisateur sans appelé la méthode `first()`, utilisez la **propriété dynamique phone**. Eloquent créera automatiquement le chargement de la relation pour vous, et est assez malin pour deviner si il doit appelé la méthode get (pour les relations one-to-many) ou first (pour les relations one-to-one) :
+Si vous souhaitez récupérer le téléphone de l'utilisateur sans appelé la méthode `first()`, utilisez la **propriété dynamique phone**. Eloquent créera automatiquement le chargement de la relation pour vous, et est assez malin pour deviner s'il doit appelé la méthode get (pour les relations one-to-many) ou first (pour les relations one-to-one) :
 
     $phone = User::find(1)->phone;
 
-Et maintenant, comment retrouver l'utilisateur d'un téléphone ? Étant donné que la clé étrangère (**user\_id**) est sur la table phone, nous devons décrire cette relation en utilisant la méthode **belongs\_to** ( appartient à ). Ce fait du sens, non ? Les téléphones appartiennent aux utilisateurs. Lorsque l'on utilise la méthode **belongs\_to**, le nom de la méthode de relation doit correspondre au nom de la clé étrangère sans le **\_id**. Étant donné que la clé étrangère est  **user\_id**, votre méthode de relation doit s'appeler **user**:
+Et maintenant, comment retrouver l'utilisateur d'un téléphone ? Étant donné que la clé étrangère (**user\_id**) est sur la table phone, nous devons décrire cette relation en utilisant la méthode **belongs\_to** ( appartient à ). C'est logique, non ? Les téléphones appartiennent aux utilisateurs. Lorsque l'on utilise la méthode **belongs\_to**, le nom de la méthode de relation doit correspondre au nom de la clé étrangère sans le **\_id**. Étant donné que la clé étrangère est  **user\_id**, votre méthode de relation doit s'appeler **user**:
 
     class Phone extends Eloquent {
 
@@ -212,7 +212,7 @@ Bien, nous pouvons accéder à l'utilisateur depuis le modèle Phone en utilisan
 <a name="one-to-many"></a>
 ### One-To-Many
 
-Disons qu'un post de blog à plusieurs commentaires. C'est facile de définir cette relation avec la méthode **has_many** :
+Disons qu'un post de blog a plusieurs commentaires. C'est facile de définir cette relation avec la méthode **has_many** :
 
     class Post extends Eloquent {
 
@@ -228,7 +228,7 @@ Maintenant, accédez simplement aux commentaires d'un post depuis la méthode de
     $comments = Post::find(1)->comments()->get();
     $comments = Post::find(1)->comments;
 
-Ces deux instructions exécuterons les requêtes suivantes : 
+Ces deux instructions exécuteront les requêtes suivantes : 
 
     SELECT * FROM "posts" WHERE "id" = 1
     SELECT * FROM "comments" WHERE "post_id" = 1
@@ -244,7 +244,7 @@ Vous devez vous demander : _Si la propriété dynamique retourne la relation, à
 <a name="many-to-many"></a>
 ### Many-To-Many
 
-Les relations plusieurs vers plusieurs sont les plus compliqués des trois. Mais ne vous inquiétez pas, nous allons le faire ! Par exemple, disons qu'un utilisateur a plusieurs rôles. et bien sûr, un rôle peut être attribué à plusieurs utilisateurs. Trois tables doivent être créées pour accomplir cette relation :
+Les relations `plusieurs vers plusieurs` sont les plus compliqués des trois. Mais ne vous inquiétez pas, nous allons le faire ! Par exemple, disons qu'un utilisateur a plusieurs rôles, et bien sûr, un rôle peut être attribué à plusieurs utilisateurs. Trois tables doivent être créées pour accomplir cette relation :
 
 **users:**
 
@@ -262,7 +262,7 @@ Les relations plusieurs vers plusieurs sont les plus compliqués des trois. Mais
     user_id - INTEGER
     role_id - INTEGER
 
-Les tables contiennent plusieurs enregistrements et sont donc au pluriel. La table de pivot utilisée dans par la  méthode **has\_many\_and\_belongs\_to** est nommée en combinant le singulier du nom des deux modèles trié alphabétiquement et concaténé ensemble avec un underscore.
+Les tables contiennent plusieurs enregistrements et sont donc au pluriel. La table de pivot utilisée par la méthode **has\_many\_and\_belongs\_to** est nommée en combinant le singulier du nom des deux modèles trié alphabétiquement et concaténé ensemble avec un underscore.
 
 Maintenant vous êtes prêt à définir la relation dans vos modèles en utilisant la méthode **has\_many\_and\_belongs\_to** :
 
@@ -294,7 +294,7 @@ Si votre nom de table ne suit pas la convention de nommage, passez le nom de la 
 
     }
 
-Par défaut, uniquement certain champs de la table pivot seront retournés (les deux champs **id** et les timestamps). Si votre table pivot contient des colonnes additionnelles, vous pouvez les récupérer également, en utilisant la méthode **with()** :
+Par défaut, uniquement certains champs de la table pivot seront retournés (les deux champs **id** et les timestamps). Si votre table pivot contient des colonnes additionnelles, vous pouvez les récupérer également, en utilisant la méthode **with()** :
 
     class User extends Eloquent {
 
@@ -330,15 +330,15 @@ Lorsque vous travaillez avec des relations `has_many`, vous pouvez utiliser la m
 
 ### Insertion de modèles liés (Many-To-Many)
 
-C'est encore plus utile lorsque vous avez une relation many-to-many. Par exemple, imaginez un modèle **User** qui a plusieurs rôles. De la même manière, le modèle **Role** peut avoir plusieurs utilisateurs. Le table intermédiaire contient les colonnes "user_id" et "role_id". Maintenant, insérez un nouveau rôle à un utilisateur :
+C'est encore plus utile lorsque vous avez une relation `many-to-many`. Par exemple, imaginez un modèle **User** qui a plusieurs rôles. De la même manière, le modèle **Role** peut avoir plusieurs utilisateurs. Le table intermédiaire contient les colonnes "user_id" et "role_id". Maintenant, insérez un nouveau rôle à un utilisateur :
 
     $role = new Role(array('title' => 'Admin'));
     $user = User::find(1);
     $role = $user->roles()->insert($role);
 
-Le rôle est maintenant créé dans dans la table "roles", et un enregistrement dans la table pivot est créé pour vous. 
+Le rôle est maintenant créé dans la table "roles", et un enregistrement dans la table pivot est créé pour vous. 
 
-Cependant, dans la plupart des cas, vous souhaiterez uniquement inséré une relation, sans créer le rôle cas il existe déjà. Utilisez alors la méthode `attach` :
+Cependant, dans la plupart des cas, vous souhaiterez uniquement insérer une relation, sans créer le rôle car il existe déjà. Utilisez alors la méthode `attach` :
 
     $user->roles()->attach($role_id);
 
@@ -347,7 +347,7 @@ Il est également possible d'attacher des données pour les colonnes de la table
     $user->roles()->attach($role_id, array('expires' => $expires));
 
 <a name="sync-method"></a>
-Alternativement, vous pouvez utiliser la méthode `sync` qui accepte un tableau avec les ID à synchroniser dans la table intermédiaire. Après que cette opération est effectuée, seul les ID contenus dans le tableau seront dans la table intermédiaire.
+Alternativement, vous pouvez utiliser la méthode `sync` qui accepte un tableau avec les ID à synchroniser dans la table intermédiaire. Après que cette opération soit effectuée, seuls les ID contenus dans le tableau seront dans la table intermédiaire.
 
     $user->roles()->sync(array(1, 2, 3));
 
@@ -384,7 +384,7 @@ Pour supprimer toutes les relations d'un modèle donné, vous pouvez utiliser la
 
     $user->roles()->delete();
 
-Ceci ne supprime pas les rôles ! Cela supprime les relations entre l'utilisateur et ses rôles dans ma table pivot.
+Ceci ne supprime pas les rôles ! Cela supprime les relations entre l'utilisateur et ses rôles dans la table pivot.
 
 <a name="eager"></a>
 ## Chargements liés
@@ -422,7 +422,7 @@ Dans cet exemple, **seulement deux requêtes seront exécutées**!
 
     SELECT * FROM "authors" WHERE "id" IN (1, 2, 3, 4, 5, ...)
 
-Évidement, l'utilisateur des chargements liés augmentera énormément les performances de votre application. Dans cet exemple, le temps d'exécution du script est divisé par deux.
+Évidement, l'utilisation des chargements liés augmentera énormément les performances de votre application. Dans cet exemple, le temps d'exécution du script est divisé par deux.
 
 Besoin de charger plus d'une relation ? C'est facile :
 
@@ -430,11 +430,11 @@ Besoin de charger plus d'une relation ? C'est facile :
 
 > **Note:** Lorsque vous utilisez des chargements liés, l'appel à la méthode statique **with** doit toujours se faire au début de la requête.
 
-Vous pouvez également faire du chargement lié imbriqué. Par exemple, disons que que modèle **Author** a une relation nommée "contacts". Nous pouvons charger de manière liée et l'auteur d'un livre, et ses contacts :
+Vous pouvez également faire du chargement lié imbriqué. Par exemple, disons que le modèle **Author** a une relation nommée "contacts". Nous pouvons charger de manière liée l'auteur d'un livre, et ses contacts :
 
     $books = Book::with(array('author', 'author.contacts'))->get();
 
-Si vous liez souvent le même modèle, alors placez la dans un tableau, que vous attribuerez à la propriété **$includes** du modèle.
+Si vous liez souvent le même modèle, alors placez le dans un tableau, que vous attribuerez à la propriété **$includes** du modèle.
 
     class Book extends Eloquent {
 
@@ -447,7 +447,7 @@ Si vous liez souvent le même modèle, alors placez la dans un tableau, que vous
 
     }
 
-**$includes** prend les même arguments que la méthode **with**. Dans l'exemple suivant, qui utilise le modèle ci dessus, l'auteur sera chargé de manière liée.
+**$includes** prend les même arguments que la méthode **with**. Dans l'exemple suivant qui utilise le modèle ci-dessus, l'auteur sera chargé de manière liée.
 
     foreach (Book::all() as $book)
     {
@@ -472,7 +472,7 @@ Dans cet exemple, nous chargeons de manière liée les posts d'un auteur, seulem
 <a name="getter-and-setter-methods"></a>
 ## Getter & Setter
 
-Les 'Setters' vous permette de gérer l'assignement d'une valeur à un attribut grâce à une méthode personnalisée. Définissez un setter en créant une méthode qui aura le même nom que l'attribut, mais précédé par "set_".
+Les 'Setters' vous permettent de gérer l'assignement d'une valeur à un attribut grâce à une méthode personnalisée. Définissez un setter en créant une méthode qui aura le même nom que l'attribut, mais précédé par "set_".
 
     public function set_password($password)
     {
@@ -483,7 +483,7 @@ Appelez une méthode setter comme une propriété (sans parenthèses), en utilis
 
     $this->password = "my new password";
 
-Les Getters sont très similaires. Ils peuvent être utilisé pour modifié un attribut avant qu'il ne soit retourné. Définissez un getter en créant une méthode qui aura le même nom que l'attribut, mais précédé par "get_"
+Les Getters sont très similaires. Ils peuvent être utilisés pour modifier un attribut avant qu'il ne soit retourné. Définissez un getter en créant une méthode qui aura le même nom que l'attribut, mais précédé par "get_"
 
     public function get_published_date()
     {
@@ -517,9 +517,9 @@ Ou, grâce à la méthode **fill** :
 
     $user->save();
 
-Par défaut, tous les attributs seront remplis durant l'opération d'assignement de masse. Cependant, il est possible de créer un liste blanche des attributs qui  sont autorisés. Si l'attribut `$accessible` est défini, alors aucun autre attribut que ceux présents dans le tableau ne seront lié durant l'assignement de masse.
+Par défaut, tous les attributs seront remplis durant l'opération d'assignement de masse. Cependant, il est possible de créer un liste blanche des attributs qui sont autorisés. Si l'attribut `$accessible` est défini, alors aucun autre attribut que ceux présents dans le tableau ne seront liés durant l'assignement de masse.
 
-Vous pouvez spécifié les attributs en assignant un tableau static dans **$accessible**. Chaque élément contient le nom d'un attribut autorisé.
+Vous pouvez spécifier les attributs en assignant un tableau static dans **$accessible**. Chaque élément contient le nom d'un attribut autorisé.
 
     public static $accessible = array('email', 'password', 'name');
 
@@ -529,12 +529,12 @@ Alternativement, vous pouvez utiliser la méthode **accessible** depuis votre mo
 
 Sans paramètres, cette méthode retournera le contenu de la variable **$accessible**
 
-> **Note:** La plus grande prudence doit être prises lors l'assignement d'entrée d'utilisateurs. En effet, des oublies techniques pourraient causer de gros problèmes de sécurité.
+> **Note:** La plus grande prudence doit être prises lors l'assignement d'entrée d'utilisateurs. En effet, des oublis techniques pourraient causer de gros problèmes de sécurité.
 
 <a name="to-array"></a>
 ## Conversion d'un modèle en tableau
 
-Lorsque que l'on construit une API avec JSON, vous allez devoir convertir vos modèles en tableau pour qu'ils puissent être sérialisé facilement. 
+Lorsque que l'on construit une API avec JSON, vous allez devoir convertir vos modèles en tableau pour qu'ils puissent être sérialisés facilement. 
 
 #### Converti un modèle en tableau :
 
