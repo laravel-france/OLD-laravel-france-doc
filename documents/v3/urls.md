@@ -39,7 +39,7 @@
     $url = URL::to_route('profile');
 
 Vous devrez parfois fournir à une route des arguments, pour ce faire, passez les en tant que tableau en second argument :
-#### Génére une URL vers une route nommée avec des arguments :
+#### Génère une URL vers une route nommée avec des arguments :
 
     $url = URL::to_route('profile', array($username));
 
@@ -50,59 +50,59 @@ Vous devrez parfois fournir à une route des arguments, pour ce faire, passez le
 <a name="urls-to-controller-actions"></a>
 ## URLs vers une action de contrôleur
 
-#### Genere une URL vers une action de contrôleur :
+#### Génère une URL vers une action de contrôleur :
 
     $url = URL::to_action('user@profile');
 
-#### Genere une URL vers une action de contrôleur avec des paramètres :
+#### Génère une URL vers une action de contrôleur avec des paramètres :
 
     $url = URL::to_action('user@profile', array($username));
 
 <a name="urls-to-a-different-language"></a>
-## URLs vers un langage différent
+## URLs vers une langue différente
 
-#### Génère une url vers la même page dans un langage différent :
+#### Génère une url vers la même page dans une langue différente :
 
     $url = URL::to_language('fr');
 
-#### Génère une url vers la page d'accueil dans un langage différent:
+#### Génère une url vers la page d'accueil dans une langue différente :
 
     $url = URL::to_language('fr', true);
 
 <a name="urls-to-assets"></a>
 ## URLs vers des assets
 
-Les URLs générés generated for assets will not contain the "application.index" configuration option.
+Les URLs générées pour les assets ne contiendront pas l'option de configuration **application.index**.
 
-#### Generating a URL to an asset:
+#### Génère une URL d'un asset :
 
     $url = URL::to_asset('js/jquery.js');
 
 <a name="url-helpers"></a>
 ## URL Helpers
 
-There are several global functions for generating URLs designed to make your life easier and your code cleaner:
+Il y a plusieurs fonctions globales pour générer des URLs, afin de vous rendre la vie plus simple et votre code plus propre :
 
-#### Generating a URL relative to the base URL:
+#### Génère une URL relative à la base de l'application :
 
     $url = url('user/profile');
 
-#### Generating a URL to an asset:
+#### Génère une URL vers un asset :
 
     $url = asset('js/jquery.js');
 
-#### Generating a URL to a named route:
+#### Génère une URL vers une route nommée :
 
     $url = route('profile');
 
-#### Generating a URL to a named route with wildcard values:
+#### Génère une URL vers une route nommée avec des arguments :
 
     $url = route('profile', array($username));
 
-#### Generating a URL to a controller action:
+#### Génère une URL vers une action de contrôleur :
 
     $url = action('user@profile');
 
-#### Generating a URL to an action with wildcard values:
+#### Génère une URL vers une action de contrôleur avec des arguments :
 
     $url = action('user@profile', array($username));
