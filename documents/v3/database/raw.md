@@ -9,13 +9,13 @@
 <a name="the-bascis"></a>
 ## Les bases
 
-La méthode **query** est utilisée pour exécuter des des requêtes SQL brutes sur votre base de données. 
+La méthode **query** est utilisée pour exécuter des requêtes SQL brutes sur votre base de données. 
 
-#### Sélection d'enregistrement depuis la base de donnée :
+#### Sélection d'enregistrement depuis la base de données :
 
 	$users = DB::query('select * from users');
 
-#### Sélection d'enregistrement depuis la base de donnée utilisant des paramètres :
+#### Sélection d'enregistrement depuis la base de données utilisant des paramètres :
 
 	$users = DB::query('select * from users where name = ?', array('test'));
 
@@ -23,18 +23,18 @@ La méthode **query** est utilisée pour exécuter des des requêtes SQL brutes 
 
 	$success = DB::query('insert into users values (?, ?)', $bindings);
 
-#### Mise à jour des enregistrements d'une table, et retour du nombres de lignes affectées :
+#### Mise à jour des enregistrements d'une table, et retour du nombre de lignes affectées :
 
 	$affected = DB::query('update users set name = ?', $bindings);
 
-#### Suppression de lignes d'une table et obtient le nombre de lignes supprimées :
+#### Suppression de lignes d'une table et obtention du nombre de lignes supprimées :
 
 	$affected = DB::query('delete from users where id = ?', array(1));
 
 <a name="other-query-methods"></a>
 ## Autres méthodes de requêtes
 
-Larvel fournit quelques autres méthode pour rendre le requêtage plus simple :
+Larvel fournit quelques autres méthodes pour rendre le requêtage plus simple :
 
 #### Exécute une requête SELECT et obtient uniquement le premier résultat :
 
