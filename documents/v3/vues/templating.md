@@ -11,9 +11,9 @@
 <a name="the-basics"></a>
 ## Les base
 
-Votre application utilise probablement un layout global, qui se retrouve sur toutes vos pages. Créer manuellement ce layout pour chaque vues peut être une vrai plaie. Préciser à un contrôleur un layout spécifique va rendre votre développement plus jouissif. Voilà comment faire :
+Votre application utilise probablement un layout global, qui se retrouve sur toutes vos pages. Créer manuellement ce layout pour chaque vue peut être une vrai plaie. Préciser à un contrôleur un layout spécifique va rendre votre développement plus jouissif. Voilà comment faire :
 
-#### Spécifie le propriété "layout" à votre contrôleur :
+#### Spécifie la propriété "layout" à votre contrôleur :
 
 	class Base_Controller extends Controller {
 
@@ -28,7 +28,7 @@ Votre application utilise probablement un layout global, qui se retrouve sur tou
 		$this->layout->nest('content', 'user.profile');
 	}
 
-> **Note:** Quand vous utilisez les layouts dans vos contrôleurs, les action n'ont pas besoin de retourné quoi que ce soit.
+> **Note:** Quand vous utilisez les layouts dans vos contrôleurs, les action n'ont pas besoin de retourner quoi que ce soit.
 
 <a name="sections"></a>
 ## Sections
@@ -60,7 +60,7 @@ Les sections de vues fournissent une manière simple d'injecter du contenu dans 
 <a name="blade-template-engine"></a>
 ## Le moteur de template Blade
 
-Avec Blade, l'écriture de vos vues sera un pur bonheur ! Pour créez une vue blade, mettez simplement en extension de fichier ".blade.php". Blade vous autoriser à utiliser une syntaxe magnifique et légère pour écrire des structure de contrôle PHP et pour afficher des données. Voici un exemple :
+Avec Blade, l'écriture de vos vues sera un pur bonheur ! Pour créez une vue blade, mettez simplement en extension de fichier ".blade.php". Blade vous autorise à utiliser une syntaxe magnifique et légère pour écrire des structures de contrôle PHP et pour afficher des données. Voici un exemple :
 
 #### Affichage d'une variable avec Blade :
 
@@ -70,7 +70,7 @@ Avec Blade, l'écriture de vos vues sera un pur bonheur ! Pour créez une vue bl
 
 	{{ Asset::styles() }}
 
-#### Inclusions d'une vue:
+#### Inclusions d'une vue :
 
 Vous pouvez utiliser **@include** pour inclure une vue dans une autre. La vue incluse a accès à toutes les variables de la vue actuelle.
 
@@ -91,7 +91,7 @@ De la même manière, vous pouvez utiliser **@render**, qui a le même comportem
 		comment.
 	--}}
 
-> **Note:** Les commentaires Blade ne sont pas des commentaires HTML : ils n'apparaissent pas dans les source HTML.
+> **Note:** Les commentaires Blade ne sont pas des commentaires HTML : ils n'apparaissent pas dans les sources HTML.
 
 <a name='blade-control-structures'></a>
 ## Les structures de contrôles
@@ -138,7 +138,7 @@ De la même manière, vous pouvez utiliser **@render**, qui a le même comportem
 		Est-ce que ça a marché ?
 	@endif
 
-#### Foreach & Empty:
+#### Forelse & Empty:
 
 	@forelse ($posts as $post)
 		{{ $post->body }}
@@ -161,7 +161,7 @@ De la même manière, vous pouvez utiliser **@render**, qui a le même comportem
 <a name="blade-layouts"></a>
 ## Les layouts avec Blade
 
-Blade ne fourni pas qu'une syntaxe claire et élégante pour les contrôle PHP les plus communs, il fourni également une méthode merveilleuse pour utiliser des layouts pour nos vues. Par exemple, votre application pourrait utiliser une vue "master" qui contient le *look and feel* global de votre application. Cela donnerai quelque chose comme ça :
+Blade ne fournit pas qu'une syntaxe claire et élégante pour les contrôles PHP les plus communs, il fournit également une méthode merveilleuse pour utiliser des layouts pour nos vues. Par exemple, votre application pourrait utiliser une vue "master" qui contient le *look and feel* global de votre application. Cela donnerait quelque chose comme ça :
 
 	<html>
 		<ul class="navigation">
@@ -176,7 +176,7 @@ Blade ne fourni pas qu'une syntaxe claire et élégante pour les contrôle PHP l
 		</div>
 	</html>
 
-Remarquez la section "content", celle ci contiendra le contenu de votre vue. Pour remplir cette section, créez une vue qui utilise "master" en tant que layout :
+Remarquez la section "content", celle-ci contiendra le contenu de votre vue. Pour remplir cette section, créez une vue qui utilise "master" en tant que layout :
 
 	@layout('master')
 
@@ -188,13 +188,13 @@ Maintenant, nous pouvons simplement retourner la vue "profile" via notre route, 
 
 	return View::make('profile');
 
-La vue "profile" utilisera automatique "master" en tant que layout grâce à la fonction **@layout** de Blade.
+La vue "profile" utilisera automatiquement "master" en tant que layout grâce à la fonction **@layout** de Blade.
 
-> **Important:** La fonction **@layout** doit TOUJOURS être appelé à la toute première ligne de code du fichier.
+> **Important:** La fonction **@layout** doit TOUJOURS être appelée à la toute première ligne de code du fichier.
 
 #### Ajout de contenu à une section avec @parent
 
-Parfois, vous pouvez ajouter du contenu à une section, plutôt que de l'écraser entièrement. Par exemple, regardez la section "navigation" dans notre layout "master". Disons que nous souhaitons simplement y ajouter du contenu. Voilà à quoi ressemblerai au final notre vue profile :
+Parfois, vous pouvez ajouter du contenu à une section, plutôt que de l'écraser entièrement. Par exemple, regardez la section "navigation" dans notre layout "master". Disons que nous souhaitons simplement y ajouter du contenu. Voilà à quoi ressemblerait au final notre vue profile :
 
 	@layout('master')
 

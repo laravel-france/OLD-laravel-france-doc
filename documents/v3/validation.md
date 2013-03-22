@@ -12,7 +12,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Presque toutes les applications web interactives ont besoin de valider des données. Par exemple, pour l'enregistrement d'un utilisateur, vous devez vérifier que le mot de passe est bien confirmé, que l'adresse email doit être unique. Valider des données pour être un processus lourd. Heureusement, ce n'est pas le cas avec Laravel. La classe `Validator` fournie un tableau de validation génial, qui transforme la validation en un jeu d'enfant. Voyons cela en exemple :
+Presque toutes les applications web interactives ont besoin de valider des données. Par exemple, pour l'enregistrement d'un utilisateur, vous devez vérifier que le mot de passe est bien confirmé, que l'adresse email doit être unique. Valider des données peut être un processus lourd. Heureusement, ce n'est pas le cas avec Laravel. La classe `Validator` fournit un tableau de validation génial, qui transforme la validation en un jeu d'enfant. Voyons cela en exemple :
 
 #### Obtient un tableau avec toutes les données que l'on souhaite valider :
 
@@ -25,7 +25,7 @@ Presque toutes les applications web interactives ont besoin de valider des donn�
 		'email' => 'required|email|unique:users',
 	);
 
-#### Création d'un instance de Validator et validation des données :
+#### Création d'une instance de Validator et validation des données :
 
 	$validation = Validator::make($input, $rules);
 
@@ -34,9 +34,9 @@ Presque toutes les applications web interactives ont besoin de valider des donn�
 		return $validation->errors;
 	}
 
-Avec la propriété *errors*, vous pouvez accéder simplement à une collection de la classe Message qui facilite le travail avec les messages d'erreurs. Bien sur, des messages d'erreurs par défaut existent pour les toutes les règles de validations existantes. Les messages par défaut se trouvent dans **language/fr/validation.php**.
+Avec la propriété *errors*, vous pouvez accéder simplement à une collection de la classe Message qui facilite le travail avec les messages d'erreurs. Bien sûr, des messages d'erreurs par défaut existent pour toutes les règles de validation existantes. Les messages par défaut se trouvent dans **language/fr/validation.php**.
 
-Maintenant que vous êtes familié avec l'utilisation basique de la classe Validator, nous pouvons creuser le sujet et en savoir plus à propos des règles de validation qui vous sont offertes par défaut avec Laravel
+Maintenant que vous êtes familiarisé avec l'utilisation basique de la classe Validator, nous pouvons creuser le sujet et en savoir plus à propos des règles de validation qui vous sont offertes par défaut avec Laravel
 
 <a name="validation-rules"></a>
 ## Règles de validation
@@ -99,7 +99,7 @@ Maintenant que vous êtes familié avec l'utilisation basique de la classe Valid
 
 	'payment' => 'min:10'
 
-#### Valide qu'un attribut ne sont pas plus grand que la taille donnée :
+#### Valide qu'un attribut ne soit pas plus grand que la taille donnée :
 
 	'payment' => 'max:50'
 
@@ -128,7 +128,7 @@ Maintenant que vous êtes familié avec l'utilisation basique de la classe Valid
 <a name="rule-confirmation"></a>
 ### Confirmation
 
-La règle *confirmed* valide que pour un attribut donné (disons password) , un second attribut nommé *password_confirmation* existe.
+La règle *confirmed* valide que pour un attribut donné (disons password), un second attribut nommé *password_confirmation* existe.
 
 #### Valide que l'attribut est confirmé :
 
@@ -139,7 +139,7 @@ La règle *confirmed* valide que pour un attribut donné (disons password) , un 
 
 La règle *accepted* valide qu'un attribut est égal à *yes* ou à *1*. Cette règle est utile pour valider les checkbox d'acceptation des "conditions générales d'utilisations" par exemple :
 
-#### Valide qu'un attribut est accépté :
+#### Valide qu'un attribut est accepté :
 
 	'terms' => 'accepted'
 
@@ -170,15 +170,15 @@ La règle *match* vérifie qu'un attribut correspond à l'expression régulière
 
 	'email' => 'unique:users'
 
-Dans l'exemple ci dessus, l'unicité de l'attribut email sera vérifié dans la table *users*.  Si le nombre de l'attribut ne correspond pas au nom de la colonne dans votre table, utilisez la syntaxe suivante :
+Dans l'exemple ci dessus, l'unicité de l'attribut email sera vérifiée dans la table *users*. Si le nom de l'attribut ne correspond pas au nom de la colonne dans votre table, utilisez la syntaxe suivante :
 
 #### Spécifie un nom de colonne personnalisé pour la règle d'unicité :
 
 	'email' => 'unique:users,email_address'
 
-Le cas de la mise à jour de données avec la règles d'unicité est particulier. En effet, si un utilisateur met à jour son profil, et ne change pas son adresse email, le système détectera celle ci comme un doublon, étant donné qu'elle se trouve déjà dans la base. Pour résoudre ce problème, indiqué à la règle l'ID que vous souhaitez ignoré.
+Le cas de la mise à jour de données avec la règle d'unicité est particulier. En effet, si un utilisateur met à jour son profil, et ne change pas son adresse email, le système détectera celle-ci comme un doublon, étant donné qu'elle se trouve déjà dans la base. Pour résoudre ce problème, indiqué à la règle l'ID que vous souhaitez ignoré.
 
-#### Force la règle 'unique' à ignoré l'ID donné :
+#### Force la règle 'unique' à ignorer l'ID donné :
 
 	'email' => 'unique:users,email_address,10'
 
@@ -201,15 +201,15 @@ Le cas de la mise à jour de données avec la règles d'unicité est particulier
 
 	'birthdate' => 'after:1986-28-05';
 
-> **Note:** Les règles **before** et **after** utilisent la fonction PHP `strtotime` pour convertir votre date en en quelquechose de compréhensible pour la règle PHP function to convert your date to something the rule can understand.
+> **Note:** Les règles de validation **before** et **after** utilisent la fonction PHP `strtotime` pour convertir votre date en quelque chose que la règle peut comprendre.
 
 #### Valide qu'une date respecte un format donné :
 
     'start_date' => 'date_format:H\\:i',
 
-> **Note:** Le backslash échape le deux points pour qu'il n'est pas considéré comme un séparateur de paramètre.
+> **Note:** Le backslash échape le deux points pour qu'il ne soit pas considéré comme un séparateur de paramètre.
 
-Les options de formatages des dates sont définis dans la [documentation PHP](http://php.net/manual/fr/datetime.createfromformat.php#refsect1-datetime.createfromformat-parameters).
+Les options de formatage des dates sont définies dans la [documentation PHP](http://php.net/manual/fr/datetime.createfromformat.php#refsect1-datetime.createfromformat-parameters).
 
 <a name="rule-email"></a>
 ### Adresses E-Mail 
@@ -242,7 +242,7 @@ La règle *mimes* valide qu'un fichier uploadé à un MIME type donné. Cette r�
 
 	'picture' => 'mimes:jpg,gif'
 
-> **Note:** Lorsque vous validez un fichier, soyez sur d'utiliser Input::file() ou Input::all() pour rassembler des données.
+> **Note:** Lorsque vous validez un fichier, soyez sûr d'utiliser Input::file() ou Input::all() pour rassembler des données.
 
 #### Valide qu'un fichier est une image :
 
@@ -263,15 +263,15 @@ La règle *mimes* valide qu'un fichier uploadé à un MIME type donné. Cette r�
 
     'categories' => 'array|count:3'
 
-#### Valide qu'un attribut est un tableau, et à entre 1 et 3 éléments
+#### Valide qu'un attribut est un tableau, et a entre 1 et 3 éléments
 
     'categories' => 'array|countbetween:1,3'
 
-#### Valide qu'un attribut est un tableau, et à au moins 2 éléments
+#### Valide qu'un attribut est un tableau, et a au moins 2 éléments
 
     'categories' => 'array|countmin:2'
 
-#### Valide qu'un attribut est un tableau, et à au plus 2 éléments
+#### Valide qu'un attribut est un tableau, et a au plus 2 éléments
 
     'categories' => 'array|countmax:2'
 
@@ -279,20 +279,20 @@ La règle *mimes* valide qu'un fichier uploadé à un MIME type donné. Cette r�
 <a name="retrieving-error-messages"></a>
 ## Retrouver les messages d'erreurs
 
-Laravel rend le travail avec les messages d'erreur agréable en une classe de collection d'erreur simple. Après avoir appelé les méthodes `passes` ou `fails` sur une instance de Validator, vous pourrez accéder aux messages d'erreurs via la propriété  *errors*. Le collecteur d'erreur a plusieurs fonctions simples pour retrouver les messages d'erreurs :
+Laravel rend le travail avec les messages d'erreur agréable grâce à une classe de collection d'erreur simple. Après avoir appelé les méthodes `passes` ou `fails` sur une instance de Validator, vous pourrez accéder aux messages d'erreur via la propriété *errors*. Le collecteur d'erreur a plusieurs fonctions simples pour retrouver les messages d'erreurs :
 
-#### Détermine si un attribut à un message d'erreur :
+#### Détermine si un attribut a un message d'erreur :
 
 	if ($validation->errors->has('email'))
 	{
-		// l'attribut email à des erreurs ...
+		// l'attribut email a des erreurs ...
 	}
 
-#### Retrouve le premier message d'erreurs pour un attribut :
+#### Retrouve le premier message d'erreur pour un attribut :
 
 	echo $validation->errors->first('email');
 
-Parfois il est nécessaire de formater le message d'erreur en le plaçant dans du code HTML. Avec le joker :message, passez le format de votre message en second argument à la méthode .
+Parfois il est nécessaire de formater le message d'erreur en le plaçant dans du code HTML. Avec le joker :message, passez le format de votre message en second argument à la méthode.
 
 #### Formate un message d'erreur :
 
@@ -302,15 +302,15 @@ Parfois il est nécessaire de formater le message d'erreur en le plaçant dans d
 
 	$messages = $validation->errors->get('email');
 
-#### Formate tous les messages d'erreurs d'un attribut donné :
+#### Formate tous les messages d'erreur d'un attribut donné :
 
 	$messages = $validation->errors->get('email', '<p>:message</p>');
 
-#### Retourne tous les messages d'erreurs pour tous les attributs :
+#### Retourne tous les messages d'erreur pour tous les attributs :
 
 	$messages = $validation->errors->all();
 
-#### Formate tous les messages d'erreurs pour tous les attributs :
+#### Formate tous les messages d'erreur pour tous les attributs :
 
 	$messages = $validation->errors->all('<p>:message</p>');
 
@@ -336,11 +336,11 @@ Une fois que vous avez réalisé votre validation, vous avez besoin d'un moyen s
 		}
 	});
 
-Bien, nous avons deux routes d'enregistrement simples : une pour afficher le formulaire, et une pour poster les données. Dans la route POST, nous exécutons quelques règles de validation sur les entrées. Si la validation échoue, nous redirigeons l'utilisateur vers le formulaire, et nous flashons les erreurs de validations dans la session, il seront donc disponible pour être affichés.
+Bien, nous avons deux routes d'enregistrement simples : une pour afficher le formulaire, et une pour poster les données. Dans la route POST, nous exécutons quelques règles de validation sur les entrées. Si la validation échoue, nous redirigeons l'utilisateur vers le formulaire, et nous flashons les erreurs de validation dans la session, ils seront donc disponibles pour être affichés.
 
-**Mais, remarquez que nous ne n'attachons à aucun moment les erreurs à la vue**. Cependant, une variable $errors sera disponible dans la vue. Laravel détermine intelligemment si une erreur existe dans la session, et si elle existe, elle sera automatiquement attaché à la vue pour vous. Si aucune erreur n'existe, la variable existera tout de même mais le conteneur sera vide. Cela nous permet de s'assurer que dans notre vue, une variable erreur existe quoi qu'il arrive. Nous aimons vous simplifier la vie !
+**Mais, remarquez que nous ne n'attachons à aucun moment les erreurs à la vue**. Cependant, une variable $errors sera disponible dans la vue. Laravel détermine intelligemment si une erreur existe dans la session, et si elle existe, elle sera automatiquement attachée à la vue pour vous. Si aucune erreur n'existe, la variable existera tout de même mais le conteneur sera vide. Cela nous permet de s'assurer que dans notre vue, une variable erreur existe quoi qu'il arrive. Nous aimons vous simplifier la vie !
 
-Par exemple; si notre adresse email n'était pas valide, nous pouvons vérifié que le conteneur d'erreur à une erreur pour l'attribut 'email' :
+Par exemple, si notre adresse email n'est pas valide, nous pouvons vérifier que le conteneur d'erreur a une erreur pour l'attribut 'email' :
 
 	$errors->has('email')
 
@@ -348,7 +348,7 @@ Avec Blade, nous pouvons alors afficher un message d'erreur de manière conditio
 
 	{{ $errors->has('email') ? 'Adresse email invalide' : 'Pas d'erreur, nous devrions ne rien écrire ici' }}
 
-Ceci est également super quand nous avous besoin d'ajouter une classe lorsque nous utilisons par exemple Twitter Bootsrap : 
+Ceci est également super quand nous avons besoin d'ajouter une classe lorsque nous utilisons par exemple Twitter Bootstrap : 
 
 	<div class="control-group {{ $errors->has('email') ? 'error' : '' }}">
 	
@@ -357,13 +357,12 @@ Lorsque la validation échoue, le class *error* sera ajoutée au div :
 	<div class="control-group error">
 	
 
-
 <a name="custom-error-messages"></a>
 ## Messages d'erreur personnalisés
 
-Vous ne souhaitez pas utiliser les messages d'erreur par défaut ? Peut-être que vous souhaitez utiliser un message d'erreur personnalisé pour un attribut et une règle précis. Avec ma classe Validator, c'est vraiment facile.
+Vous ne souhaitez pas utiliser les messages d'erreur par défaut ? Peut-être que vous souhaitez utiliser un message d'erreur personnalisé pour un attribut et une règle précise. Avec la classe Validator, c'est vraiment facile.
 
-#### Crée un tableau avec un message d'erreur perso pour le validateur :
+#### Crée un tableau avec un message d'erreur personnel pour le validateur :
 
 	$messages = array(
 		'required' => 'Le champ :attribute field est requis.',
@@ -371,11 +370,11 @@ Vous ne souhaitez pas utiliser les messages d'erreur par défaut ? Peut-être qu
 
 	$validation = Validator::make(Input::get(), $rules, $messages);
 
-Maintenant notre message d'erreur sera utilisé lorsque la validation échouera . Pour rendre votre vie plus facile, la classe Validator remplacera le joker **:attribute** par le nom de l'attribut. Il supprimera même les underscores par des espaces.
+Maintenant notre message d'erreur sera utilisé lorsque la validation échouera. Pour rendre votre vie plus facile, la classe Validator remplacera le joker **:attribute** par le nom de l'attribut. Il supprimera même les underscores par des espaces.
 
-Il existe d'autres joker : **:other**, **:size**, **:min**, **:max**, et **:values**. Voilà comment les utiliser :
+Il existe d'autres jokers : **:other**, **:size**, **:min**, **:max**, et **:values**. Voilà comment les utiliser :
 
-#### Other validation message place-holders:
+#### Autres messages de validation :
 
 	$messages = array(
 		'same'    => 'Les attributs :attribute et :other doivent être identiques.',
@@ -384,7 +383,7 @@ Il existe d'autres joker : **:other**, **:size**, **:min**, **:max**, et **:valu
 		'in'      => 'Le :attribute doit avoir un des types suivants : :values',
 	);
 
-Comment faire pour avoir un message d'erreur précis précis pour le faire que le champ email soit requis ? Ajoutez le message au tableau en utilisant la convention **nomDeLattribut_nomDeLaRegle** :
+Comment faire pour avoir un message d'erreur précis pour faire que le champ email soit requis ? Ajoutez le message au tableau en utilisant la convention **nomDeLattribut_nomDeLaRegle** :
 
 #### Spécifie un message d'erreur personnalisé pour un attribut et une règle donnés :
 
@@ -392,9 +391,9 @@ Comment faire pour avoir un message d'erreur précis précis pour le faire que l
 		'email_required' => 'Nous avons besoin de votre adresse email !',
 	);
 
-Dans l'exemple ci dessus, le message personnalisé sera utilisé pour l'attribut email, alors que tous les autres attributs auront la message par défaut.
+Dans l'exemple ci-dessus, le message personnalisé sera utilisé pour l'attribut email, alors que tous les autres attributs auront le message par défaut.
 
-Si vous allez utiliser une message d'erreur personnalisé dans plusieurs endroits de votre application, vous pouvez l'inséré dans l'élément **custom** du tableau se trouvant dans le fichier de de langue : 
+Si vous allez utiliser un message d'erreur personnalisé dans plusieurs endroits de votre application, vous pouvez l'insérer dans l'élément **custom** du tableau se trouvant dans le fichier de la langue : 
 
 #### Ajoute un message d'erreur personnalisé dans le fichier de langue :
 
@@ -405,7 +404,7 @@ Si vous allez utiliser une message d'erreur personnalisé dans plusieurs endroit
 <a name="custom-validation-rules"></a>
 ## Règles de validation personnalisées
 
-Laravel fourni un grand nombre de règles puissantes, cependant il est fort probable que vous ayez besoin d'écrire des règles propres à votre application. Il y a deux méthodes simples pour créer des règles de validations. Les deux méthodes sont efficaces, utilisez donc celle qui est la plus appropriée pour votre projet.
+Laravel fourni un grand nombre de règles puissantes, cependant il est fort probable que vous ayez besoin d'écrire des règles propres à votre application. Il y a deux méthodes simples pour créer des règles de validation. Les deux méthodes sont efficaces, utilisez donc celle qui est la plus appropriée pour votre projet.
 
 #### Enregistre une règle de validation personnalisée :
 
@@ -416,13 +415,13 @@ Laravel fourni un grand nombre de règles puissantes, cependant il est fort prob
 
 Dans cet exemple, nous enregistrons une nouvelle règle de validation dans le Validator. La règle reçoit trois arguments : le premier est le nom de l'attribut qui est validé, le second est le valeur de l'attribut qui est validé, et le troisième est un tableau des paramètres passés à la règle.
 
-Vous utiliserez votre règle personnalisée comme n'importe quel autre règle : 
+Vous utiliserez votre règle personnalisée comme n'importe quelle autre règle : 
 
 	$rules = array(
     	'username' => 'required|awesome',
 	);
 
-Et bien sur, vous devrez définir un message d'erreur par défaut pour votre règle. 
+Et bien sîr, vous devrez définir un message d'erreur par défaut pour votre règle. 
 
 	$messages = array(
     	'awesome' => 'L\'attribut n'est pas génial !',
@@ -449,23 +448,23 @@ Comment mentionné ci dessus, vous pouvez recevoir une liste d'arguments :
 	    return $value == $parameters[0];
 	});
 
-Dans ce cas, l'argument parameters de votre règle de validation contiendra un tableau avec un seul element : 'yes'.
+Dans ce cas, l'argument parameters de votre règle de validation contiendra un tableau avec un seul élément : 'yes'.
 
-Une autre méthode pour créer un stocker des règles de validations personnalisées est d'hériter de la classe Validator. En héritant votre classe de la classe Validator, vous pourrez profiter de toutes les règles existantes, des votres, et vous pourrez même réécrire certaines règles ! Voyons cela ensemble : 
+Une autre méthode pour créer et stocker des règles de validation personnalisées est d'hériter de la classe Validator. En héritant votre classe de la classe Validator, vous pourrez profiter de toutes les règles existantes, des vôtres, et vous pourrez même réécrire certaines règles ! Voyons cela ensemble : 
 
 Premièrement, créez une classe qui hérite de **Laravel\Validator** et placez la dans votre dossier **application/libraries** :
 
-#### Definie une classe de validation personnalisée :
+#### Définie une classe de validation personnalisée :
 
 	<?php
 
 	class Validator extends Laravel\Validator {}
 
-Ensuite, supprimez l'alias Validator de votre fichier **config/application.php**. Cela est necessaire pour ne pas avoir deux classes Validator dans votre espace de travail.
+Ensuite, supprimez l'alias Validator de votre fichier **config/application.php**. Cela est nécessaire pour ne pas avoir deux classes Validator dans votre espace de travail.
 
-Ensuite, insérons nous règle "genial" : 
+Ensuite, insérons notre règle "genial" : 
 
-#### Ajout d'une règle perso dans notre classe de validation :
+#### Ajout d'une règle personnelle dans notre classe de validation :
 
 	<?php
 
@@ -480,4 +479,4 @@ Ensuite, insérons nous règle "genial" :
 
 Remarquez que le nom de la règle respecte une convention : **validate_nomDeLaRegle**. Cette règle s'appelle "genial" alors la méthode doit s'appeler "validate_genial".
 
-Gardez en tête que dans ce cas précis, vous devez également écrire vos messages d'erreurs par défaut. La méthode pour le faire est la même, qu'importe où la règle est déclarée !
+Gardez en tête que dans ce cas précis, vous devez également écrire vos messages d'erreurs par défaut. La méthode pour le faire est la même, qu'importe où la règle soit déclarée !

@@ -15,11 +15,11 @@
 <a name="entities"></a>
 ## Entités HTML
 
-Lors que l'on affiche le résultat d'une entrée utilisateur dans notre vue, c'est important de convertir tous les caractères qui ont un sens en HTML en leur représentation en tant qu'entité HTML.
+Lorsque l'on affiche le résultat d'une entrée utilisateur dans notre vue, c'est important de convertir tous les caractères qui ont un sens en HTML en leur représentation en tant qu'entité HTML.
 
-Par exemple, les symboles < et > doivent être représenté en tant que tel, et non interprété en tant que "tag" d'ouverture et de fermeture de balise. Cela vous protège du notamment du cross-site scripting:
+Par exemple, les symboles < et > doivent être représentés en tant que tel, et non interprétés en tant que "tag" d'ouverture et de fermeture de balise. Cela vous protège notamment du cross-site scripting:
 
-#### Convertion d'une chaine en sa représentation en tant qu'entité :
+#### Convertion d'une chaine en sa représentation en tant qu'entité HTML :
 
     echo HTML::entities('<script>alert('hi');</script>');
 
@@ -38,7 +38,7 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 
     echo HTML::style('css/common.css');
 
-#### Generation d'une référence à une fichier CSS, en précisant le media type :
+#### Génération d'une référence à un fichier CSS, en précisant le media type :
 
     echo HTML::style('css/common.css', array('media' => 'print'));
 
@@ -49,11 +49,11 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 <a name="links"></a>
 ## Liens
 
-#### Generatiion d'un lien vers une URI:
+#### Génération d'un lien vers une URI :
 
     echo HTML::link('user/profile', 'Profil de l\'utilisateur');
 
-#### Generation d'un lien HTTPS :
+#### Génération d'un lien HTTPS :
 
     echo HTML::link_to_secure('user/profile', 'Profil de l\'utilisateur');
 
@@ -101,13 +101,13 @@ Par exemple, les symboles < et > doivent être représenté en tant que tel, et 
 <a name="mail-to-links"></a>
 ## Lien pour l'envoi d'email
 
-La méthode "mailto" de la classe HTML "crypte" l'adresse email donnée pour ne pas qu'elle soit aspiré par des robots.
+La méthode "mailto" de la classe HTML "crypte" l'adresse email donnée pour ne pas qu'elle soit aspirée par des robots.
 
-#### Creation d'un lien "mailto" :
+#### Création d'un lien "mailto" :
 
     echo HTML::mailto('exemple@gmail.com', 'Contactez moi');
 
-#### Creation d'un lien "mailto" utilisant l'adresse email en tant que texte du lien :
+#### Création d'un lien "mailto" utilisant l'adresse email en tant que texte du lien :
 
     echo HTML::mailto('exemple@gmail.com');
 
@@ -136,9 +136,9 @@ La méthode "mailto" de la classe HTML "crypte" l'adresse email donnée pour ne 
 <a name="custom-macros"></a>
 ## Fonctions persos
 
-Il est très facile de créer ses propres méthodes pour la classe HTML, nous appelons ces méthodes des "macros". Voilà comment ça marche : Premièrement, enregistrer le macro avec un nom donné et une fonction anonyme :
+Il est très facile de créer ses propres méthodes pour la classe HTML, nous appelons ces méthodes des "macros". Voilà comment ça marche : Premièrement, enregistrer la macro avec un nom donné et une fonction anonyme :
 
-#### Enregistrement d'un macro HTML:
+#### Enregistrement d'une macro HTML:
 
     HTML::macro('mon_element', function()
     {

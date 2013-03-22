@@ -9,7 +9,7 @@
 <a name="models"></a>
 ## Modèles
 
-Les modèles sont le cœur de votre application. Votre logique applicative et vos vues sont juste les moyens par lesquels l'utilisateur interagit avec vos modèles. Il est responsable du traitements des données, des interactions avec la base de données, etc. Il contient également les règles métiers.
+Les modèles sont le cœur de votre application. Votre logique applicative et vos vues sont juste les moyens par lesquels l'utilisateur interagit avec vos modèles. Il est responsable du traitement des données, des interactions avec la base de données, etc. Il contient également les règles métiers.
 
 *Quelques exemples de fonctionnalités qui doivent se trouver dans un modèle:*
 
@@ -22,9 +22,9 @@ Prenons l'exemple d'un blog. Vous aurez certainement un modèle "Post". Les util
 <a name="libraries"></a>
 ## Bibliothèque
 
-Les bibliothèque sont de classes qui exécutent des taches qui ne sont pas spécifiques à votre application. Par exemple, vous pourriez avoir une bibliothèque qui converti du code HTML en PDF. cette tâche n'est pas spécifique à votre application, alors il faut la considéré comme une bibliothèque. 
+Les bibliothèques sont de classes qui exécutent des tâches qui ne sont pas spécifiques à votre application. Par exemple, vous pourriez avoir une bibliothèque qui convertit du code HTML en PDF. Cette tâche n'est pas spécifique à votre application, alors il faut la considérer comme une bibliothèque. 
 
-Créer une bibliothèque, c'est simplement créer une classe et la stocker dans le dossier **libraries**. Dans l'exemple suivant, nous allons créer une bibliothèque avec une méthode qui écrire à l'écran le text qui lui aura été fourni. Nous créons le fichier **printer.php** dans le dossier **libraries** avec le code suivant :
+Créer une bibliothèque, c'est simplement créer une classe et la stocker dans le dossier **libraries**. Dans l'exemple suivant, nous allons créer une bibliothèque avec une méthode qui écrit à l'écran le texte qui lui aura été fourni. Nous créons le fichier **printer.php** dans le dossier **libraries** avec le code suivant :
 
     <?php
 
@@ -40,4 +40,4 @@ Vous pouvez maintenant appeler Printer::write('Ce texte sera écrit depuis ma bi
 <a name="auto-loading"></a>
 ## Auto Loading
 
-Les bibliothèques et les modèles sont vraiment facile à utiliser grâce à l'auto-loader de Laravel. Pour en apprendre plus sur l'auto-loader, regardez la [documentation de l'Autoloading](/docs/v3/doc/loading).
+Les bibliothèques et les modèles sont vraiment faciles à utiliser grâce à l'auto-loader de Laravel. Pour en apprendre plus sur l'auto-loader, regardez la [documentation de l'Autoloading](/docs/v3/doc/loading).

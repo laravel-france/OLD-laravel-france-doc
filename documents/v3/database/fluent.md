@@ -60,7 +60,7 @@ Vous avez maintenant une constructeur de requête fluide pour la table "users". 
 
 > **Note:** Le second paramètre est optionnel.
 
-#### Sélectionne les résultats distinct de la table :
+#### Sélectionne les résultats distincts de la table :
 
 	$user = DB::table('users')->distinct()->get();
 
@@ -76,7 +76,7 @@ Il y a une variété de méthodes pour vous assister à construire votre clause 
 		->or_where('email', '=', 'example@gmail.com')
 		->first();
 
-Bien sur, vous n'êtes pas limité à une simple vérification d'égalité. Vous pouvez également utiliser **plus grand que**, **plus petit que**, **différent**, et **like**:
+Bien sûr, vous n'êtes pas limité à une simple vérification d'égalité. Vous pouvez également utiliser **plus grand que**, **plus petit que**, **différent**, et **like**:
 
 	return DB::table('users')
 		->where('id', '>', 1)
@@ -156,14 +156,14 @@ Vous aurez parfois besoin de regrouper des portions d'une clause WHERE entre par
 		})
 		->get();
 
-L'exemple ci dessus génère la requêtes suivante : :
+L'exemple ci-dessus génère la requête suivante : :
 
 	SELECT * FROM "users" WHERE "id" = ? OR ("age" > ? AND "votes" > ?)
 
 <a name="dynamic"></a>
 ## Clauses WHERE dynamiques
 
-les méthodes where dynamiques sont un bon moyen d'**améliorer considérablement la lisibilité de votre code**. Voici quelques exemples :
+Les méthodes where dynamiques sont un bon moyen d'**améliorer considérablement la lisibilité de votre code**. Voici quelques exemples :
 
 	$user = DB::table('users')->where_email('example@gmail.com')->first();
 
@@ -181,7 +181,7 @@ Besoin de joindre deux tables ? Essayez les méthodes **join** et **left\_join**
 		->join('phone', 'users.id', '=', 'phone.user_id')
 		->get(array('users.email', 'phone.number'));
 
-La **table** que vous souhaitez joindre est passé en tant que premier paramètre. les trois autres paramètres sont utilisés pour construire la clause ON de la jointure.
+La **table** que vous souhaitez joindre est passée en tant que premier paramètre, les trois autres paramètres sont utilisés pour construire la clause ON de la jointure.
 
 Une fois que vous savez utiliser la méthode join, vous savez comment utiliser la méthode **left_join**. Cette méthode à la même signature que la précédente :
 
@@ -206,7 +206,7 @@ Vous pouvez trier facilement les résultats en utilisant la méthode **order_by*
 
 	return DB::table('users')->order_by('email', 'desc')->get();
 
-Bien sur, vous pouvez trier autant de colonnes que vous le souhaitez :
+Bien sûr, vous pouvez trier autant de colonnes que vous le souhaitez :
 
 	return DB::table('users')
 		->order_by('email', 'desc')
@@ -246,14 +246,14 @@ Besoin d'utiliser **MIN**, **MAX**, **AVG**, **SUM**, ou **COUNT** ? Passez le n
 
 	$count = DB::table('users')->count();
 
-Bien sur, vous pouvez limiter la requête en plaçant une clause WHERE d'abord :
+Bien sûr, vous pouvez limiter la requête en plaçant une clause WHERE d'abord :
 
 	$count = DB::table('users')->where('id', '>', 10)->count();
 
 <a name="expressions"></a>
 ## Expressions brutes
 
-Vous pourez avoir besoin d'utiliser  des functions MySQL telle que **NOW()**. En écrivant simplement NOW() dans une méthode, des guillemets seraient placées autour et NOW() serait considéré comme une simple chaîne. Pour éviter cela, il faut utiliser la méthode **raw** de la classe **DB**. Voilà à quoi cela ressemble :
+Vous pourrez avoir besoin d'utiliser des functions MySQL telle que **NOW()**. En écrivant simplement NOW() dans une méthode, des guillemets seraient placées autour et NOW() serait considéré comme une simple chaîne. Pour éviter cela, il faut utiliser la méthode **raw** de la classe **DB**. Voilà à quoi cela ressemble :
 
 	DB::table('users')->update(array('updated_at' => DB::raw('NOW()')));
 
@@ -261,7 +261,7 @@ La méthode **raw** indique à la requête que le contenu de l'expression doit �
 
 	DB::table('users')->update(array('votes' => DB::raw('votes + 1')));
 
-Mais, sachez que le Fluent Query Builder de Laravel founrnit des méthodes **increment** et **decrement** :
+Mais, sachez que le Fluent Query Builder de Laravel fournit des méthodes **increment** et **decrement** :
 
 	DB::table('users')->increment('votes');
 
@@ -270,11 +270,11 @@ Mais, sachez que le Fluent Query Builder de Laravel founrnit des méthodes **inc
 <a name="insert"></a>
 ## Insertion de lignes
 
-La méthode insert attend un tableau de donnée à insérer. Elle retourne true si l'insertion s'est bien déroulée, et false dans le cas contraire :
+La méthode insert attend un tableau de données à insérer. Elle retourne true si l'insertion s'est bien déroulée, et false dans le cas contraire :
 
 	DB::table('users')->insert(array('email' => 'example@gmail.com'));
 
-Si vous inséré une ligne qui contient un ID qui s'auto-incrémente, vous pouvez utiliser la méthode **insert\_get\_id** pour insérer une entrée et récupérer l'ID de la ligne :
+Si vous insérez une ligne qui contient un ID qui s'auto-incrémente, vous pouvez utiliser la méthode **insert\_get\_id** pour insérer une entrée et récupérer l'ID de la ligne :
 
 	$id = DB::table('users')->insert_get_id(array('email' => 'example@gmail.com'));
 
@@ -283,11 +283,11 @@ Si vous inséré une ligne qui contient un ID qui s'auto-incrémente, vous pouve
 <a name="update"></a>
 ## Mise à jour d'enregistrements
 
-Pour mettre à jour des enregistrement, passez simplement une tableau de données à la méthode **update** :
+Pour mettre à jour des enregistrements, passez simplement un tableau de données à la méthode **update** :
 
 	$affected = DB::table('users')->update(array('email' => 'new_email@gmail.com'));
 
-Bien sur, si vous souhaitez ne mettre à jour que quelques enregistrements, vous pouvez utiliser des clauses WHERE avant la méthode update :
+Bien sûr, si vous souhaitez ne mettre à jour que quelques enregistrements, vous pouvez utiliser des clauses WHERE avant la méthode update :
 
 	$affected = DB::table('users')
 		->where('id', '=', 1)

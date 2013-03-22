@@ -22,17 +22,17 @@ Pour lancer un événement, dites juste à la méthode **fire** de la classe **E
 
 	$responses = Event::fire('loaded');
 
-Remarquez que nous avons assigné le résultat de la méthode **fire** à une varabile. Cette méthode retournera un tableau qui contiendra les réponses de tous les "écouteurs" d'événements.
+Remarquez que nous avons assigné le résultat de la méthode **fire** à une variable. Cette méthode retournera un tableau qui contiendra les réponses de tous les "écouteurs" d'événement.
 
 Pour lancer un événement et obtenir uniquement la première réponse, il vous faudra utiliser ~~la force~~ la méthode **first** :
 
-#### Lancé un événement et obtient la première réponse :
+#### Lance un événement et obtient la première réponse :
 
 	$response = Event::first('loaded');
 
 > **Note:** La méthode **first** va tout de même exécuter tous les "écoutera" qui gèrent cet événement, mais il retournera que la première réponse.
 
-La méthode **Event::until** va exécuter tous les gestionnaires d'événements jusqu'à ce qu'une réponse différente de null lui est retournée.
+La méthode **Event::until** va exécuter tous les gestionnaires d'événements jusqu'à ce qu'une réponse différente de null lui soit retournée.
 
 #### Lance un événement jusqu'à une réponse différente de null :
 
@@ -41,7 +41,7 @@ La méthode **Event::until** va exécuter tous les gestionnaires d'événements 
 <a name="listening-to-events"></a>
 ## Ecouter un événement
 
-A quoi bon lancer des événements si personne ne les écoute ? Enregistrer un écouteur d'événement  qui sera appellé quand un événement set déclenché :
+A quoi bon lancer des événements si personne ne les écoute ? Enregistrer un écouteur d'événement qui sera appelé quand un événement est déclenché :
 
 #### Enregistre un écouteur d'événement :
 
@@ -50,7 +50,7 @@ A quoi bon lancer des événements si personne ne les écoute ? Enregistrer un �
 		// I'm executed on the "loaded" event!
 	});
 
-La fonction anonyme fournie à la méthode sera exécuté cheque fois que l'événement "loader" sera lancé.
+La fonction anonyme fournie à la méthode sera exécutée chaque fois que l'événement "loader" sera lancé.
 
 <a name="queued-events"></a>
 ## Queue d'événements
@@ -72,7 +72,7 @@ Maintenant, enregistrer un déclencheur pour la queue `foo` :
 		//
 	});
 
-Notez que le videur de queue d'événements reçoit deux arguments. Le premier est l'identifiant unique de de l'événement en queue, qui dand notre cas sera l'identifiant de l'utilisateur. Le second ( et les suivant en général ) correspond à l'argument passé lors de l'enregistrement de l'événement dans la queue. 
+Notez que le videur de queue d'événements reçoit deux arguments. Le premier est l'identifiant unique de l'événement en queue, qui dans notre cas sera l'identifiant de l'utilisateur. Le second ( et les suivants en général ) correspond à l'argument passé lors de l'enregistrement de l'événement dans la queue. 
 
 Pour finir, nous pouvons déclencher notre videur et lancer tous les événements grâce à la méthode `flush` :
 
@@ -81,7 +81,7 @@ Pour finir, nous pouvons déclencher notre videur et lancer tous les événement
 <a name="laravel-events"></a>
 ## Les événements Laravel
 
-Il y a plusieurs événements qui sont lancé par le coeur du framework Laravel, les voici :
+Il y a plusieurs événements qui sont lancés par le coeur du framework Laravel, les voici :
 
 #### Événement lancé quand un bundle est démarré :
 
