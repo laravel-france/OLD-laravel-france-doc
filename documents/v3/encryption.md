@@ -9,7 +9,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-La classe **Crypter** de Laravel fournie une interface simple pour gérer du chiffrement sécurisé. Par défaut, la classe Crypter fournie la possibilité de chiffrer et déchiffrer des données avec AES-256 grâce à l'extension PHP mcrypt.
+La classe **Crypter** de Laravel fournit une interface simple pour gérer du chiffrement sécurisé. Par défaut, la classe Crypter fournit la possibilité de chiffrer et déchiffrer des données avec AES-256 grâce à l'extension PHP mcrypt.
 
 > **Note:** N'oubliez pas d'installer l'extension mcrypt sur votre serveur.
 
@@ -27,4 +27,4 @@ La classe **Crypter** de Laravel fournie une interface simple pour gérer du chi
 
 	$decrypted = Crypter::decrypt($encrypted);
 
-> **Note:** Il est important de noter que cette méthode ne peut déchiffrer que des chaîne qui ont été chiffrées avec **votre** application key.
+> **Note:** Il est important de noter que cette méthode ne peut déchiffrer que des chaînes qui ont été chiffrées avec **votre** application key.

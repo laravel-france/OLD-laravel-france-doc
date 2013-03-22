@@ -11,7 +11,7 @@
 <a name="put"></a>
 ## Stockage d'éléments
 
-Pour stocker des éléments dans la la session, utilisez la méthode **put** de la classe **Session** :
+Pour stocker des éléments dans la session, utilisez la méthode **put** de la classe **Session** :
 
 	Session::put('name', 'Taylor');
 
@@ -24,7 +24,7 @@ Vous pouvez utiliser la méthode **get** sur la classe Session pour récuperer u
 
 	$name = Session::get('name');
 
-Par défaut, NULL sera retourné si l'élément n'existe pas dans la session. Pour définir en paramètre par défaut, passez en second argument un chaîne de caractère, ou alors une function anonyme :
+Par défaut, NULL sera retourné si l'élément n'existe pas dans la session. Pour définir un paramètre par défaut, passez en second argument une chaîne de caractères, ou alors une fonction anonyme :
 
 	$name = Session::get('name', 'Fred');
 
@@ -32,7 +32,7 @@ Par défaut, NULL sera retourné si l'élément n'existe pas dans la session. Po
 
 Maintenant, "Fred" sera retourné si l'élément ayant pour clé "name" n'existe pas.
 
-Laravel fournit une manière simple de savoir si un element existe en dessions avec sa méthode **has** :
+Laravel fournit une manière simple de savoir si un élément existe en sessions avec la méthode **has** :
 
 	if (Session::has('name'))
 	{
@@ -53,7 +53,7 @@ Et pour les supprimer tous, la méthode **flush** est la méthode qu'il vous fau
 <a name="flash"></a>
 ## Flashage d'élément
 
-La méthode **flash** stocke un élément dans la session, qui expirera lors de la prochaine requête. C'est utile pour stocké des données temporaires, tel que des messages d'erreurs :
+La méthode **flash** stocke un élément dans la session, qui expirera lors de la prochaine requête. C'est utile pour stocker des données temporaires, telles que des messages d'erreurs :
 
 	Session::flash('status', 'Welcome Back!');
 	
