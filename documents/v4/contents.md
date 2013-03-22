@@ -27,7 +27,7 @@
  - [Les sessions](/docs/v4/doc/session)
  - [Les templates](/docs/v4/doc/templates)
  - [Les tests unitaires](/docs/v4/doc/testing)
- - [La validation (en)](/docs/v4/doc/validation)
+ - [La validation](/docs/v4/doc/validation)
  <a name="base-de-donnees"></a>
 ### Base de données
  - [Les bases](/docs/v4/doc/database)
