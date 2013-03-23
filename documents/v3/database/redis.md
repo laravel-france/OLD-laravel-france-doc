@@ -9,7 +9,7 @@
 <a name="the-basics"></a>
 ## Les bases
 
-[Redis](http://redis.io) est un stockage clé/value open-source avancé. Nous en parlons souvent comme un serveur de structure de données car les clés peuvent contenir des [strings](http://redis.io/topics/data-types#strings), des [hashes](http://redis.io/topics/data-types#hashes), [listes](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et des [sorted sets](http://redis.io/topics/data-types#sorted-sets).
+[Redis](http://redis.io) est un stockage clé/value open-source avancé. Nous en parlons souvent comme un serveur de structure de données car les clés peuvent contenir des [strings](http://redis.io/topics/data-types#strings), des [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et des [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
 <a name="config"></a>
 ## Configuration
@@ -29,7 +29,7 @@ Vous recevrez une instance de Redis en appellant la méthode **db** de la classe
 
     $redis = Redis::db();
 
-Cela vous donnera une instance du serveur Redis par **default** Redis server. Vous pouvez passer le nom du serveur à la méthode **db** pour obtenir une instance de Redis définie dans votre fichier de configuration :
+Cela vous donnera une instance du serveur Redis par **default**. Vous pouvez passer le nom du serveur à la méthode **db** pour obtenir une instance de Redis définie dans votre fichier de configuration :
 
     $redis = Redis::db('redis_2');
 
@@ -54,4 +54,4 @@ Vous souhaitez exécuter le plus simplement possible des commandes sur le serveu
 
     $values = Redis::lrange('names', 5, 10);
 
-> **Note:** Des drivers Redis pour le [cache](/docs/v3/doc/cache/config#redis) and les [sessions](/docs/v3/doc/session/config#redis) sont inclus avec Laravel.
+> **Note:** Des drivers Redis pour le [cache](/docs/v3/doc/cache/config#redis) et les [sessions](/docs/v3/doc/session/config#redis) sont inclus avec Laravel.

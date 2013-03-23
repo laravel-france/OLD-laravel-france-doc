@@ -25,7 +25,7 @@ Affiche une liste de commandes disponibles. | `php artisan help:commands`
 
 Description  | Commande
 ------------- | -------------
-Génère une clé d'application sécurisée. Cette clé ne sera généré que si le champ est vide dans le fichier **config/application.php**. | `php artisan key:generate`
+Génère une clé d'application sécurisée. Cette clé ne sera générée que si le champs est vide dans le fichier **config/application.php**. | `php artisan key:generate`
 
 <a name="sessions"></a>
 ## Sessions en base de données <small>[(Plus d'infos)](/docs/v3/doc/session/config#database)</small>
@@ -42,10 +42,10 @@ Description  | Commande
 Crée la table de migration | `php artisan migrate:install`
 Crée une migration | `php artisan migrate:make create_users_table`
 Crée une migration pour un bundle  |  `php artisan migrate:make bundle::tablename`
-Exécute les migrations en attentes  |  `php artisan migrate`
-Exécute les migrations en attentes de l'application |  `php artisan migrate application`
-Exécute les migrations en attentes d'un bundle  |  `php artisan migrate bundle`
-Annule le dernière opération de migration | `php artisan migrate:rollback`
+Exécute les migrations en attente  |  `php artisan migrate`
+Exécute les migrations en attente de l'application |  `php artisan migrate application`
+Exécute les migrations en attente d'un bundle  |  `php artisan migrate bundle`
+Annule la dernière opération de migration | `php artisan migrate:rollback`
 Annule toutes les opérations de migration  |  `php artisan migrate:reset`
 
 <a name="bundles"></a>
@@ -67,11 +67,11 @@ Publie les assets de tous les bundles | `php artisan bundle:publish`
 
 Description  | Commande
 ------------- | -------------
-Appel une tâche  |  `php artisan notify`
-Appel une tâche and passing arguments  |  `php artisan notify taylor`
-Appel une une méthode spécifique d'une tâche  |  `php artisan notify:urgent`
-Appel une tâche d'un bundle | `php artisan admin::generate`
-Appel une une méthode spécifique d'une tâche de bundle  |  `php artisan admin::generate:list`
+Appelle une tâche  |  `php artisan notify`
+Appelle une tâche avec arguments |  `php artisan notify taylor`
+Appelle une une méthode spécifique d'une tâche  |  `php artisan notify:urgent`
+Appelle une tâche d'un bundle | `php artisan admin::generate`
+Appelle une méthode spécifique d'une tâche de bundle  |  `php artisan admin::generate:list`
 
 <a name="unit-tests"></a>
 ## Test unitaires <small>[(Plus d'infos)](/docs/v3/doc/testing)</small>

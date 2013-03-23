@@ -1,131 +1,131 @@
-# Artisan Development
+# Développement de commandes
 
 - [Introduction](#introduction)
-- [Building A Command](#building-a-command)
-- [Registering Commands](#registering-commands)
-- [Calling Other Commands](#calling-other-commands)
+- [Construction d'une commande](#building-a-command)
+- [Enregistrement d'une commande](#registering-commands)
+- [Appel d'autres commandes](#calling-other-commands)
 
 <a name="introduction"></a>
 ## Introduction
 
-In addition to the commands provided with Artisan, you may also build your own custom commands for working with your application. You may store your custom commands in the `app/commands` directory; however, you are free to choose your own storage location as long as your commands can be autoloaded based on your `composer.json` settings.
+En plus des commandes fournient par Laravel, vous pouvez aussi créer vos propres commandes pour votre application. Vous pouvez les stocker dans le dossier `app/commands`; Cependant, vous êtes libre des choisir votre propre endroit de stockage tant qu'il peut être chargé automatiquement selon la configuration de votre fichier `composer.json`.
 
 <a name="building-a-command"></a>
-## Building A Command
+## Construction d'une commande
 
-### Generating The Class
+### Génération d'une commande
 
-To create a new command, you may use the `command:make` Artisan command, which will generate a command stub to help you get started:
+Pour créer une nouvelle commande, vous pouvez utiliser la commande Artisan `command:make`, qui va génerer un modèle de commande pour vous aider à démarrer :
 
-**Generate A New Command Class**
+**Génération d'une nouvelle commande**
 
 	php artisan command:make FooCommand
 
-By default, generated commands will be stored in the `app/commands` directory; however, you may specify custom path or namespace:
+Par défaut, la commande générée sera placer dans le dossier `app/commands`; Vous pouvez cependant préciser un chemin personnaliser et un namespace :
 
 	php artisan command:make FooCommand --path="app/classes" --namespace="Classes"
 
-### Writing The Command
+### Ecriture de la commande
 
-Once your command is generated, you should fill out the `name` and `description` properties of the class, which will be used when displaying your command on the `list` screen.
+Une fois que votre commande est générée, vous devez remplir les propriétés nom et description de la classe, qui seront affichés dans le listing des commandes.
 
-The `fire` method will be called when your command is executed. You may place any command logic in this method.
+La méthode `fire` sera appelée quand votre commande est executée. Vous devez placer le contenu de votre commande dans cette méthode.
 
 ### Arguments & Options
 
-The `getArguments` and `getOptions` methods are where you may define any arguments or options your command receives. Both of these methods return an array of commands, which are described by a list of array options.
+Les méthodes `getArguments` et `getOptions` sont l'endroit où vous devez définir les arguments et les options de votre commande. Ces deux méthodes retournent un tableau qui contient la liste des arguments/options, ainsi que leur description.
 
-When defining `arguments`, the array definition values represent the following:
+Lors de la définition des `arguments`, la tableau de définition des valeurs se présente de la manière suivante :
 
 	array($name, $mode, $description, $defaultValue)
 
-The argument `mode` may be any of the following: `InputArgument::REQUIRED` or `InputArgument::OPTIONAL`.
+L'argument `mode` peut être n'importe laquelle de ces valeurs : `InputArgument::REQUIRED` ou `InputArgument::OPTIONAL`.
 
-When defining `options`, the array definition values represent the following:
+Lors de la définition des `options`, la tableau de définition des valeurs se présente de la manière suivante :
 
 	array($name, $shortcut, $mode, $description, $defaultValue)
 
-For options, the argument `mode` may be: `InputOption::VALUE_REQUIRED`, `InputOption::VALUE_OPTIONAL`, `InputOption::VALUE_IS_ARRAY`, `InputOption::VALUE_NONE`.
+Par les options, l'argument `mode` peut être : `InputOption::VALUE_REQUIRED`, `InputOption::VALUE_OPTIONAL`, `InputOption::VALUE_IS_ARRAY`, `InputOption::VALUE_NONE`.
 
-The `VALUE_IS_ARRAY` mode indicates that the switch may be used multiple times when calling the command:
+Le mode `VALUE_IS_ARRAY` indique que l'option peut être utilisée plusieurs fois lors de l'appel à la commande :
 
 	php artisan foo --option=bar --option=baz
 
-The `VALUE_NONE` option indicates that the option is simply used as a "switch":
+L'option `VALUE_NONE` indique que l'option est utilisé comme un "interrupteur":
 
 	php artisan foo --option
 
-### Retrieving Input
+### Récupération des entrées
 
-While your command is executing, you will obviously need to access the values for the arguments and options accepted by your application. To do so, you may use the `argument` and `option` methods:
+Tandis que votre commande est executée, vous aurez évidement besoin d'accéder aux valeurs des arguments et des options accéptées par votre commande. Pour ce faire, vous devez utiliser les méthodes `argument` et `option` :
 
-**Retrieving The Value Of A Command Argument**
+**Récupère la valeur d'un argument**
 
 	$value = $this->argument('name');
 
-**Retrieving All Arguments**
+**Récupère tous les arguments**
 
 	$arguments = $this->argument();
 
-**Retrieving The Value Of A Command Option**
+**Récupère la valeur d'une option**
 
 	$value = $this->option('name');
 
-**Retrieving All Options**
+**Récupère toutes les options**
 
 	$options = $this->option();
 
-### Writing Output
+### Ecrire des messages
 
-To send output to the console, you may use the `info`, `comment`, `question` and `error` methods. Each of these methods will use the appropriate ANSI colors for their purpose.
+Pour envoyer des messages à la console, vous pouvez utiliser les méthodes `info`, `comment`, `question` et `error`. Chacune de ces méthodes utilisera la color AINSI appropriée pour leur rôle.
 
-**Sending Information To The Console**
+**Envoi d'information à la console**
 
 	$this->info('Display this on the screen');
 
-**Sending An Error Message To The Console**
+**Envoi d'un message d'erreur à la console**
 
 	$this->error('Something went wrong!');
 
-### Asking Questions
+### Poser des questions
 
-You may also use the `ask` and `confirm` methods to prompt the user for input:
+Vous pouvez également utiliser les méthodes `ask` et`confirm` pour demander des entrées à l'utilisateur :
 
-**Asking The User For Input**
+**Demandes des infos à l'utilisateur**
 
 	$name = $this->ask('What is your name?');
 
-**Asking The User For Confirmation**
+**Demande une confirmation à l'utilisateur**
 
 	if ($this->confirm('Do you wish to continue? [yes|no]'))
 	{
 		//
 	}
 
-You may also specify a default value to the `confirm` method, which should be `true` or `false`:
+Vous pouvez également spécifier une valeur par défaut à la méthode `confirm`, qui doit être `true` ou `false`:
 
 	$this->confirm($question, true);
 
 <a name="registering-commands"></a>
-## Registering Commands
+## Enregistrement d'une commande
 
-Once your command is finished, you need to register it with Artisan so it will be available for use. This is typically done in the `app/start/artisan.php` file. Within this file, you may use the `Artisan::add` method to register the command:
+Une fois que le développement de votre commande est terminée, vous devez l'enregistrer auprès d'Artisan pour être capable de l'utiliser. Cette opération est généralement réalisée dans le fichier `app/start/artisan.php`. dans ce fichier, vous devez utiliser la méthode `Artisan::add` pour enregistrer votre commande :
 
-**Registering An Artisan Command**
+**Enregistre une commande Artisan**
 
 	Artisan::add(new CustomCommand);
 
-If your command is registered in the application [IoC container](/docs/ioc), you may use the `Artisan::resolve` method to make it available to Artisan:
+Si votre commande est enregistrée dans le [conteneur IoC](/docs/v4/ioc) de votre application, vous pouvez utiliser la méthode `Artisan::resolve` pour la rendre disponible à Artisan :
 
-**Registering A Command That Is In The IoC Container**
+**Enregistre une commande qui se trouve dans le conteneur IoC**
 
 	Artisan::resolve('binding.name');
 
 <a name="calling-other-commands"></a>
-## Calling Other Commands
+## Appel d'autres commandes
 
-Sometimes you may wish to call other commands from your command. You may do so using the `call` method:
+Si vous avez besoin d'appeller une autre commande depuis votre commande, vous pouvez le faire en utilisant la méthode `call` :
 
-**Calling Another Command**
+**Appel d'une autre commande**
 
 	$this->call('command.name', array('argument' => 'foo', '--option' => 'bar'));

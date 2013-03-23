@@ -16,12 +16,12 @@
 <a name="the-basics"></a>
 ## Les bases
 
-Les bundles sont le coeur des améliorations apportées à Laravel 3.0. Ils sont un moyen simple de grouper du qui appartient à un même module. Un bundle peut avoir ses propres vues, sa configuration, ses routes, ses migrations, ses tâches, etc…  Un bundle peut être tout ce que vous souhaitez, d'un ORM à un système complet d'authentification. La modularité est un aspect important qui a virtuellement conduit toutes les décisions de conception de Laravel. En fait, vous pouvez imaginez que le dossier application est un bundle spécial fourni par Laravel, qui est pré-programmé et prêt à être utilisé.
+Les bundles sont le coeur des améliorations apportées à Laravel 3.0. Ils sont un moyen simple de grouper ce qui appartient à un même module. Un bundle peut avoir ses propres vues, sa configuration, ses routes, ses migrations, ses tâches, etc…  Un bundle peut être tout ce que vous souhaitez, d'un ORM à un système complet d'authentification. La modularité est un aspect important qui a virtuellement conduit toutes les décisions de conception de Laravel. En fait, vous pouvez imaginer que le dossier application est un bundle spécial fourni par Laravel, qui est pré-programmé et prêt à être utilisé.
 
 <a name="creating-and-registering"></a>
 ## Création de bundles
 
-La première étape pour créer un bundle est de créer un dossier pour ce dernier dans le répertoire **bundles**. Pour cet exemple, créons un bundle "admin", dans lequel sera logé le backend de notre application. Le fichier **application/start.php** fournit quelques options de configurations qui nous aide à définir comment va fonctionner notre application. De la même manière, nous allons créer un fichier **start.php** à la racine de notre bundle, qui aura le même rôle. Ce fichier est exécuté chaque fois que notre bundle est chargé.
+La première étape pour créer un bundle est de créer un dossier pour ce dernier dans le répertoire **bundles**. Pour cet exemple, créons un bundle "admin", dans lequel sera logé le backend de notre application. Le fichier **application/start.php** fournit quelques options de configuration qui nous aide à définir comment va fonctionner notre application. De la même manière, nous allons créer un fichier **start.php** à la racine de notre bundle, qui aura le même rôle. Ce fichier est exécuté chaque fois que notre bundle est chargé.
 
 #### Création du fichier start.php de note bundle:
 
@@ -81,9 +81,9 @@ Typiquement, le fichier **start.php** d'un bundle contient uniquement les décla
 
     );
 
-Remarquez que chacune de ces options corréspond à une fonction de [l'autoloader](/docs/v3/doc/loading) Laravel. En fait, les valeurs de ces options seront automatiquement passées aux méthodes de l'autoloader.
+Remarquez que chacune de ces options correspond à une fonction de [l'autoloader](/docs/v3/doc/loading) Laravel. En fait, les valeurs de ces options seront automatiquement passées aux méthodes de l'autoloader.
 
-Vous avez probablement remarqué le joker **(:bundle)**. Ceci sera automatiquement remplacé par le chemin du bundle. Un vrai jeu d'enfant !
+Vous avez probablement remarqué le joker **(:bundle)**. Celui-ci sera automatiquement remplacé par le chemin du bundle. Un vrai jeu d'enfant !
 
 <a name="starting-bundles"></a>
 ## Démarrage de bundles
@@ -94,11 +94,11 @@ Notre bundle est créé et déclaré, mais nous ne pouvons pas encore l'utiliser
 
     Bundle::start('admin');
 
-Cela demande à Laravel d'exécuter le fichier **start.php** du bundle, qui enregistrera les règles d'autoloading des classes. La méthode start chargement également le fichier **routes.php** s'il existe.
+Cela demande à Laravel d'exécuter le fichier **start.php** du bundle, qui enregistrera les règles d'autoloading des classes. La méthode start charge également le fichier **routes.php** s'il existe.
 
 > **Note:** Le bundle ne peut être démarré qu'une fois. Si vous effectuez d'autres appels, ils seront ignorés.
 
-Si vous utilisez un bundle partout dans votre application, vous devrez alors le démarrer à chaque requêtes. Dans ce cas, vous pouvez configurer le bundle pour qu'il démarre automatiquement dans votre fichier **application/bundles.php** :
+Si vous utilisez un bundle partout dans votre application, vous devrez alors le démarrer à chaque requête. Dans ce cas, vous pouvez configurer le bundle pour qu'il démarre automatiquement dans votre fichier **application/bundles.php** :
 
 #### Configuration d'un bundle pour un démarrage automatique :
 
@@ -121,7 +121,7 @@ Chaque fois qu'un bundle est démarré, un événement est lancé. Vous pouvez s
 
 Il est également possible de désactiver un bundle, afin qu'il ne soit jamais démarré.
 
-#### Désactivé un bundle pour qu'il ne puisse pas être démarré :
+#### Désactive un bundle pour qu'il ne puisse pas être démarré :
 
     Bundle::disable('admin');
 
@@ -147,13 +147,13 @@ Comme indiqué précédemment, les bundles peuvent contenir des vues, des fichie
 
     return Lang::line('bundle::file.line');
 
-Parfois vous souhaitez rassembler des informations "meta" à propos d'un bundle, tel que le fait qu'il existe, sa location, son tableau de configuration complet… voici comment faire :
+Parfois vous souhaitez rassembler des informations "meta" à propos d'un bundle, tel que le fait qu'il existe, sa localisation, son tableau de configuration complet… voici comment faire :
 
 #### Détermine si un bundle existe :
 
     Bundle::exists('admin');
 
-#### Retriouve la location d'un bundle :
+#### Retrouve la localisation d'un bundle :
 
     $location = Bundle::path('admin');
 
@@ -168,7 +168,7 @@ Parfois vous souhaitez rassembler des informations "meta" à propos d'un bundle,
 <a name="bundle-assets"></a>
 ## Assets de bundle
 
-Si votre bundle contient des vues, il est possible que vous ayez des assets, tel que des fichiers javascripts et des images que vous avez besoin de rendre disponible dans le dossier **public** de l'application. Pas de problèmes, créez simplement un dossier public dans votre bundle et placez vos bundles à l'intérieur.
+Si votre bundle contient des vues, il est possible que vous ayez des assets, tel que des fichiers javascripts et des images que vous avez besoin de rendre disponibles dans le dossier **public** de l'application. Pas de problème, créez simplement un dossier public dans votre bundle et placez vos bundles à l'intérieur.
 
 Mais, comment les rendre disponibles dans le dossier **public** de l'application ? L'outil en ligne de commande "Artisan" fournit une commande simple pour copier tous les assets de votre bundle vers le dossier public.
 
@@ -204,7 +204,7 @@ Quand vous mettez à jour un Bundle, Laravel va en fait supprimer la vieille ver
 
 > **Note:** Après la mise à jour d'un bundle, vous devez [republier ses assets](#bundle-assets).
 
-**Important:** Etant donné que lors d'une mise à jour, le bundle est complètement supprimé, les changement que vous avez apporté seront perdu. Il arrive parfois qu'il faille mettre à jour le fichier de configuration d'un bundle. Plutôt que de modifier le bundle directement, utilisez l'événement start pour configurer vos options. Placez quelque chose comme cela dans le fichier  **application/start.php** :
+**Important:** Etant donné que lors d'une mise à jour, le bundle est complètement supprimé, les changements que vous avez apporté seront perdus. Il arrive parfois qu'il faille mettre à jour le fichier de configuration d'un bundle. Plutôt que de modifier le bundle directement, utilisez l'événement start pour configurer vos options. Placez quelque chose comme cela dans le fichier  **application/start.php** :
 
 #### Ecoute pour l'événement de démarrage d'un bundle :
 

@@ -1,15 +1,15 @@
 # Templates
 
-- [Controller Layouts](#controller-layouts)
+- [Layouts de contrôleur](#controller-layouts)
 - [Blade Templating](#blade-templating-engine)
 - [Other Blade Control Structures](#other-blade-control-structures)
 
 <a name="controller-layouts"></a>
-## Controller Layouts
+## Layouts de contrôleur
 
-One method of using templates in Laravel is via controller layouts. By specifying the `layout` property on the controller, the view specified will be created for you and will be the assumed response that should be returned from actions.
+Une méthode pour utiliser les templates dans Laravel est d'utiliser les layouts de contrôleur. En spécifiant la propriété `layout` sur un contrôleur, la vue spécifiée sera créée pour vous et sera utilisée en tant que réponse aux actions.
 
-**Defining A Layout On A Controller**
+**Définition d'un layout sur un contrôleur**
 
 	class UserController extends BaseController {
 
@@ -29,13 +29,13 @@ One method of using templates in Laravel is via controller layouts. By specifyin
 	}
 
 <a name="blade-template-engine"></a>
-## Blade Templating
+## Le moteur de template Blade
 
-Blade is a simple, yet powerful templating engine provided with Laravel. Unlike controller layouts, Blade is driven by _template inheritance_ and _sections_. All Blade templates should use the `.blade.php` extension.
+Blade est un moteur de template simple et puissant fournit par Laravel. A la différence des layoyts de contrôleurs, Blade est conduit par _l'héritage de template_ et _les sections_. Les templates Blade doivent avoir comme extension `.blade.php`.
 
-**Defining A Blade Layout**
+**Définition d'un layout Blade**
 
-	<!-- Stored in app/views/layouts/master.blade.php -->
+	<!-- app/views/layouts/master.blade.php -->
 
 	<html>
 		<body>
@@ -49,7 +49,7 @@ Blade is a simple, yet powerful templating engine provided with Laravel. Unlike 
 		</body>
 	</html>
 
-**Using A Blade Layout**
+**Utilisation d'un layout Blade**
 
 	@extends('layouts.master')
 
@@ -63,22 +63,22 @@ Blade is a simple, yet powerful templating engine provided with Laravel. Unlike 
 		<p>This is my body content.</p>
 	@stop
 
-Note that views which `extend` a Blade layout simply override sections from the layout. Content of the layout can be included in a child view using the `@parent` directive in a section, allowing you to append to the contents of a layout section such as a sidebar or footer.
+Notez que les vues qui `extend` un layout Blade surchargent simplement les section du layout. Le contenu du layout peut être inclu dans une vue enfant en utilisant la directive `@parent` dans une section, vous permettant d'ajouter dans le contenu du layout votre propre contenu, pour par exemple ajouter des liens dans la sidebar ou dans le footer.
 
 <a name="other-blade-control-structures"></a>
-## Other Blade Control Structures
+## Structures de contrôle Blade
 
-**Echoing Data**
+**Affichage de données**
 
 	Hello, {{ $name }}.
 
 	The current UNIX timestamp is {{ time() }}.
 
-Blade will automatically escape data that it outputs. If you wish to output raw data without escaping, you may use the triple curly brace syntax:
+Blade va échapper automatiquement le contenu qu'il va afficher. Si vous souhaitez afficher le contenu original, utilisez trois accollades :
 
 	Hello, {{{ $name }}}.
 
-**If Statements**
+**Déclaration If**
 
 	@if (count($records) > 0)
 		I have records!
@@ -90,7 +90,7 @@ Blade will automatically escape data that it outputs. If you wish to output raw 
 		You are not signed in.
 	@endunless
 
-**Loops**
+**Boucles**
 
 	@for ($i = 0; $i < 10; $i++)
 		The current value is {{ $i }}
@@ -104,10 +104,10 @@ Blade will automatically escape data that it outputs. If you wish to output raw 
 		<p>I'm looping forever.</p>
 	@endwhile
 
-**Including Sub-Views**
+**Inclusion d'une sous-vue**
 
 	@include('view.name')
 
-**Comments**
+**Commentaires**
 
 	{{-- This comment will not be in the rendered HTML --}}

@@ -11,7 +11,7 @@
 <a name="capitalization"></a>
 ## Gestion de la casse
 
-La classe **Str** fournie des raccourcis intelligents vers des fonctions PHP, afin de faciliter la mise en majuscule, minuscule, et en mode "titre" ( première lettres de chaque mots en majuscule ). Ces méthodes sont plus intelligentes que les fonctions [strtoupper](http://php.net/manual/fr/function.strtoupper.php), [strtolower](http://php.net/manual/fr/function.strtolower.php), et [ucwords](http://php.net/manual/fr/function.ucwords.php) car ils gèrent l'UTF-8 si l'extension [multi-byte string](http://php.net/manual/fr/book.mbstring.php) PHP est installée. Pour les utiliser, passez juste une chaîne aux méthodes :
+La classe **Str** fournit des raccourcis intelligents vers des fonctions PHP, afin de faciliter la mise en majuscule, minuscule, et en mode "titre" ( première lettres de chaque mot en majuscule ). Ces méthodes sont plus intelligentes que les fonctions [strtoupper](http://php.net/manual/fr/function.strtoupper.php), [strtolower](http://php.net/manual/fr/function.strtolower.php), et [ucwords](http://php.net/manual/fr/function.ucwords.php) car ils gèrent l'UTF-8 si l'extension [multi-byte string](http://php.net/manual/fr/book.mbstring.php) PHP est installée. Pour les utiliser, passez juste une chaîne aux méthodes :
 
 	echo Str::lower('Je suis une chaîne.');
     // je suis une chaîne.
@@ -41,9 +41,9 @@ La classe **Str** fournie des raccourcis intelligents vers des fonctions PHP, af
     // Lorem ipsum dolor...
 
 <a name="random"></a>
-## Génération de chaîne aléatoires
+## Génération de chaînes aléatoires
 
-#### Génère une chaîne alpha-numerique :
+#### Génère une chaîne alpha-numérique :
 
 	echo Str::random(32);
 

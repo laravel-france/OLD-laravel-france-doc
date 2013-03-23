@@ -23,23 +23,23 @@
  - [Développement de packages](/docs/v4/doc/packages)
  - [La pagination](/docs/v4/doc/pagination)
  - [Les files de travaux](/docs/v4/doc/queues)
- - [La sécurité (en)](/docs/v4/doc/security)
+ - [La sécurité](/docs/v4/doc/security)
  - [Les sessions](/docs/v4/doc/session)
- - [Les templates (en)](/docs/v4/doc/templates)
- - [Les tests unitaires (en)](/docs/v4/doc/testing)
- - [La validation (en)](/docs/v4/doc/validation)
+ - [Les templates](/docs/v4/doc/templates)
+ - [Les tests unitaires](/docs/v4/doc/testing)
+ - [La validation](/docs/v4/doc/validation)
  <a name="base-de-donnees"></a>
 ### Base de données
  - [Les bases](/docs/v4/doc/database)
- - [Le requêteur (en)](/docs/v4/doc/queries)
- - [L'ORM Eloquent (en)](/docs/v4/doc/eloquent)
- - [La construction du schéma (en)](/docs/v4/doc/schema)
- - [Les migrations & et les chargements (en)](/docs/v4/doc/migrations)
- - [Redis (en)](/docs/v4/doc/redis)
+ - [Query Builder](/docs/v4/doc/queries)
+ - [L'ORM Eloquent](/docs/v4/doc/eloquent)
+ - [Le constructeur de schéma](/docs/v4/doc/schema)
+ - [Les migrations & et la population](/docs/v4/doc/migrations)
+ - [Redis](/docs/v4/doc/redis)
  <a name="artisan-cli"></a>
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)
- - [Développement (en)](/docs/v4/doc/commands)
+ - [Développement de commandes](/docs/v4/doc/commands)
  <a name="elements-avances"></a>
 ### Éléments avancés
  - [Architecture](#)

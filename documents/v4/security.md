@@ -1,31 +1,31 @@
-# Security
+# Sécurité
 
 - [Configuration](#configuration)
-- [Storing Passwords](#storing-passwords)
-- [Authenticating Users](#authenticating-users)
-- [Protecting Routes](#protecting-routes)
-- [Password Reminders & Reset](#password-reminders-and-reset)
-- [Encryption](#encryption)
+- [Stockage de mot de passe](#storing-passwords)
+- [Identifier les utilisateurs](#authenticating-users)
+- [Protection de routes](#protecting-routes)
+- [Réinitialisation du mot de passe](#password-reminders-and-reset)
+- [Chiffrage](#encryption)
 
 <a name="configuration"></a>
 ## Configuration
 
-Laravel aims to make implementing authentication very simple. In fact, almost everything is configured for you out of the box. The authentication configuration file is located at `app/config/auth.php`, which contains several well documented options for tweaking the behavior of the authentication facilities.
+Laravel cherche à rendre l'authentification très simple. En fait, presque tout est déjà configuré pour vous dès le début. Le fichier de configuration de l'authentification se situe dans  `app/config/auth.php`, il contient plusieurs options bien documentées pour personnaliser le comporter de la solution d'authentification.
 
-By default, Laravel includes a `User` model in your `app/models` directory which may be used with the default Eloquent authentication driver. Please remember when building the Schema for this Model to ensure that the password field is a minimum of 60 characters.
+Par défaut, Laravel inclus un modèle `User` dans votre dossier `app/models` qui peut être utilisé avec le driver par défaut : Eloquent. Souvenez vous lorsque vous construisez la table pour ce modèle que le champs mot de passe doit faire au minimum 60 caractères.
 
-If your application is not using Eloquent, you may use the `database` authentication driver which uses the Laravel query builder.
+Si votre application n'utilise pas, vous pouvez utiliser le driver d'authentification `database` qui utilise le constructeur de requête Laravel.
 
 <a name="storing-passwords"></a>
-## Storing Passwords
+## Stockage de mot de passe
 
-The Laravel `Hash` class provides secure Bcrypt hashing:
+La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 
-**Hashing A Password Using Bcrypt**
+**Cryptage d'un mot de passe en utilisant Bcrypt**
 
 	$password = Hash::make('secret');
 
-**Verifying A Password Against A Hash**
+**Vérification d'un mot de passe contre son équivalent crypté**
 
 	if (Hash::check('secret', $hashedPassword))
 	{
@@ -33,86 +33,86 @@ The Laravel `Hash` class provides secure Bcrypt hashing:
 	}
 
 <a name="authenticating-users"></a>
-## Authenticating Users
+## Identifier les utilisateurs
 
-To log a user into your application, you may use the `Auth::attempt` method.
+Pour connecter un utilisateur dans votre application, vous devez utiliser la méthode `Auth::attempt`.
 
 	if (Auth::attempt(array('email' => $email, 'password' => $password)))
 	{
 		// The user's credentials are valid...
 	}
 
-Take note that `email` is not a required option, it is merely used for example. You should use whatever column name corresponds to a "username" in your database.
+Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées.
 
-If you would like to provide "remember me" functionality in your application, you may pass `true` as the second argument to the `attempt` method, which will keep the user authenticated indefinitely (or until they manually logout):
+Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connécté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
-**Authenticating A User And "Remembering" Them**
+**Identifier un utiliser et se souvenir de lui**
 
 	if (Auth::attempt(array('email' => $email, 'password' => $password), true))
 	{
 		// The user is being remembered...
 	}
 
-**Note:** If the `attempt` method returns `true`, the user is considered logged into the application.
+**Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connécté à votre application.
 
-**Authenticating A User with extra conditions**
+**Connecter un utilisateur avec des conditions particulières**
 
-You may add in extra conditions to ensure that the user is (for example) 'active', or 'not suspended':
+Vous pouvez ajouter des conditions particulières pour vous assurer qu'un utiliseur est par exemple actif, et non suspendu :
 
     if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1, 'suspended' => 0)))
     {
         // The user is active, not suspended, and exists.
     }
 
-Once a user is authenticated, you may access the User model / record:
+Une fois qu'un utilisateur est connécté, vous pouvez accéder à son modèle/enregistrement :
 
-**Accessing The Logged In User**
+**Accès à l'utilisateur connécté**
 
 	$email = Auth::user()->email;
 
-The `validate` method allows you to validate a user's credentials without actually logging them into the application:
+La méthode `validate` vous permet de valider que les identifiants d'un utilisateur sont corrects sans le connecter à l'application :
 
-**Validating User Credentials Without Login**
+**Valide les identifiants d'un utilisateur sans le connecter**
 
 	if (Auth::validate($credentials))
 	{
 		//
 	}
 
-You may also use the `stateless` method to log a user into the application for a single request. No sessions or cookies will be utilized.
+Vous pouvez également utiliser la méthode `stateless` pour connecter un utilisateur le temps d'une seule requête. Il n'y aura ni session ni cookie pour cet utilisateur.
 
-**Logging A User In For A Single Request**
+**Connecte un utilisateur pour une seule requête**
 
 	if (Auth::stateless($credentials))
 	{
 		//
 	}
 
-**Logging A User Out Of The Application**
+**Déconnecte un utilisateur**
 
 	Auth::logout();
 
 <a name="protecting-routes"></a>
-## Protecting Routes
+## Protection de routes
 
-Route filters may be used to allow only authenticated users to access a given route. Laravel provides the `auth` filter by default, and it is defined in `app/filters.php`.
+Les filtres de routes peuvent être utilisés pour autoriser uniquement les utilisateurs connéctés à acceder à certaines routes. Laravel fournit un filtre `auth` par défaut, qui se situe dans le fichier `app/filters.php`.
 
-**Protecting A Route**
+**Protection d'une route**
 
 	Route::get('profile', array('before' => 'auth', function()
 	{
 		// Only authenticated users may enter...
 	}));
 
-### CSRF Protection
+### Protection CSRF
 
-Laravel provides an easy method of protecting your application from cross-site request forgeries.
+Laravel fournit une méthode simple de proteger votre application contre les attaques de type [CSRF](http://fr.wikipedia.org/wiki/Cross-site_request_forgery).
 
-**Insert the CSRF token into your form ** using `csrf_token()` or `Session::getToken()`
+**Insertion du jeton CSRF dans votre formulaire** en utilisant `csrf_token()` ou `Session::getToken()`
 
-    <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-**Validate the submitted CSRF token**
+**Validation du jeton CSRF envoyé**
 
     Route::post('register', array('before' => 'csrf', function()
     {
@@ -120,13 +120,13 @@ Laravel provides an easy method of protecting your application from cross-site r
     }));
 
 <a name="password-reminders-and-reset"></a>
-## Password Reminders & Reset
+## Réinitialisation du mot de passe
 
-### Sending Password Reminders
+### Réinitialiser un mot de passe
 
-Most web applications provide a way for users to reset their forgotten passwords. Rather than forcing you to re-implement this on each application, Laravel provides convenient methods for sending password reminders and performing password resets. To get started, verify that your `User` model implements the `Illuminate\Auth\RemindableInterface` contract. Of course, the `User` model included with the framework already implements this interface.
+La plupart des sites fournissent la possibilité à l'utilisateur de réinitialiser son mot de passe. Plutôt que de vous forcer à réimplémenter cela sur chaque application, Laravel fournit des méthodes pratiques pour envoyer un rappel de mot de passe ou réinitialiser ce dernier. Pour commencer, vérifiez que votre modèle `User` implémente l'interface `Illuminate\Auth\RemindableInterface`. Bien sur, le modèle par défaut `User` inclut dans le framework l'implémente déjà.
 
-**Implementing The RemindableInterface**
+**Implémentation de l'interface RemindableInterface**
 
 	class User extends Eloquent implements RemindableInterface {
 
@@ -137,17 +137,17 @@ Most web applications provide a way for users to reset their forgotten passwords
 
 	}
 
-Next, a table must be created to store the password reset tokens. To generate a migration for this table, simply execute the `auth:reminders` Artisan command:
+Ensuite, une table doit être créée pour stocker le jeton de réinitialisation du mot de passe. Pour généré une migration pour cette table, executez simplement la commande artisan `auth:reminders` :
 
-**Generating The Reminder Table Migration**
+**Génération de la migration pour la table de rappel**
 
 	php artisan auth:reminders
 
 	php artisan migrate
 
-To send a password reminder, we can use the `Password::remind` method:
+Pour envoyer un rappel de mot de passe, nous pouvons utiliser la méthode `Password::remind` :
 
-**Sending A Password Reminder**
+**Envoi d'un rappel de mot de passe**
 
 	Route::post('password/remind', function()
 	{
@@ -156,18 +156,18 @@ To send a password reminder, we can use the `Password::remind` method:
 		return Password::remind($credentials);
 	});
 
-Note that the arguments passed to the `remind` method are similar to the `Auth::attempt` method. This method will retrieve the `User` and send them a password reset link via e-mail. The e-mail view will be passed a `token` variable which may be used to construct the link to the password reset form.
+Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyé un un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe.
 
-> **Note:** You may specify which view is used as the e-mail message by changing the `auth.reminder.email` configuration option. Of course, a default view is provided out of the box.
+> **Note:** Vous pouvez spécifié la vue qui sera utilisée dans l'email en changeant l'option de configuration `auth.reminder.email`. Bien entendu, une vue par défaut vous est fournie.
 
-You may modify the message instance that is sent to the user by passing a Closure as the second argument to the `remind` method:
+Vous pouvez modifier l'instance du message qui va être envoyé en passant une fonction anonyme en tant que second argument de la méthode `remind` :
 
 	return Password::remind($credentials, function($m)
 	{
 		$m->subject('Your Password Reminder');
 	});
 
-You may also have noticed that we are returning the results of the `remind` method directly from a route. By default, the `remind` method will return a `Redirect` to the current URI. If an error occurred while attempting to reset the password, an `error` variable will be flashed to the session, as well as a `reason`, which can be used to extract a language line from the `reminders` language file. So, your password reset form view could look something like this:
+Vous pouvez également remarqué que nous avons retourné le résultat de la méthode `remind` directement depuis une route. Par défaut, la méthode `remind` retournera un `Redirect` vers l'URI courante. Si une erreur se produit durant l'essai de réinitialisation du mot de passe, une variable `error` sera mise en session pour la requête suivante uniquement, ainsi qu'une variable `reason`, qui peut être utilisée pour extraire une ligne de langue depuis la fichier de langue `reminders`. Donc, votre formulaire de réinitialisation de mot de passe peut ressembler à cela s:
 
 	@if (Session::has('error'))
 		{{ trans(Session::get('reason')) }}
@@ -176,16 +176,16 @@ You may also have noticed that we are returning the results of the `remind` meth
 	<input type="text" name="email">
 	<input type="submit" value="Send Reminder">
 
-### Resetting Passwords
+### Réinitialisation du mot de passe
 
-Once a user has clicked on the reset link from the reminder e-mail, they should be directed to a form that includes a hidden `token` field, as well as a `password` and `password_confirmation` field. Below is an example route for the password reset form:
+Une fois qu'un utilisateur à cliqué sur le lien de réinitialisation de l'email de rappel, ils sont redirigé vers un formulaire qui inclut un champ caché `token`, ainsi que les champs `password` et `password_confirmation`. Vous trouverez ci dessous un exemple de route pour un formulaire de réinitialisation de mot de passe :
 
 	Route::get('password/reset/{token}', function($token)
 	{
 		return View::make('auth.reset')->with('token', $token);
 	});
 
-And, a password reset form might look like this:
+Et, un formulaire de réinitialisation peut ressembler à cela :
 
 	@if (Session::has('error'))
 		{{ trans(Session::get('reason')) }}
@@ -196,7 +196,7 @@ And, a password reset form might look like this:
 	<input type="password" name="password">
 	<input type="password" name="password_confirmation">
 
-Again, notice we are using the `Session` to display any errors that may be detected by the framework while resetting passwords. Next, we can define a `POST` route to handle the reset:
+Une fois de plus, remarquez que nous utilisons `Session` pour afficher les erreurs qui pourraient être détéctées par le framework lors de la procédure de réinitialisation du mot de passe. Ensuite, nous pouvons définir une route `POST` pour gérer la réinitialisation :
 
 	Route::post('password/reset/{token}', function()
 	{
@@ -212,21 +212,21 @@ Again, notice we are using the `Session` to display any errors that may be detec
 		});
 	});
 
-If the password reset is successful, the `User` instance and the password will be passed to your Closure, allowing you to actually perform the save operation. Then, you may return a `Redirect` or any other type of response from the Closure which will be returned by the `reset` method. Note that the `reset` method automatically checks for a valid `token` in the request, valid credentials, and matching passwords.
+Si le password est correctement réinitialisé, une instance de `User` et le mot de passe vous serons fournis dans la fonction anonyme, vous permettant d'effectuer la sauvegarde. Ensuite, vous pouvez retourner un `Redirect` ou ce que vous souhaitez, le contenu sera renvoyé par la méthode `reset`. Notez que la méthode `reset` vérifiera automatiquement pour un jeton valide dans la requête, un utilisateur valide, ainsi que des mots de passes identiques.
 
-Also, similarly to the `remind` method, if an error occurs while resetting the password, the `reset` method will return a `Redirect` to the current URI with an `error` and `reason`.
+Pour finir, de la même manière que la méthode `remind`, si une erreur se produit, la méthode `reset` retournera un `Redirect` vers l'URI en cours avec les variables `error` et `reason`.
 
 <a name="encryption"></a>
-## Encryption
+## Chiffrage
 
-Laravel provides facilities for strong AES-256 encryption via the mcrypt PHP extension:
+Laravel fournit une solution pour du chiffrage fort AES-256 avec l'extension PHP mcrypt:
 
-**Encrypting A Value**
+**Chiffrage d'une valeur**
 
 	$encrypted = Crypt::encrypt('secret');
 
-> **Note:** Be sure to set a 32 character, random string in the `key` option of the `app/config/app.php` file. Otherwise, encrypted values will not be secure.
+> **Note:** Veuillez vous assurer d'avoir défini une clé de 32 caractères aléatoires dans l'option `key` du fichier de configuration `app/config/app.php`. Sans cela, la chiffrage ne sera pas assez fort.
 
-**Decrypting A Value**
+**Déchiffrage d'une valeur**
 
 	$decrypted = Crypt::decrypt($encryptedValue);
