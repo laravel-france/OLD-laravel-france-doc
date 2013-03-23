@@ -110,7 +110,7 @@ Laravel fournit une méthode simple de proteger votre application contre les att
 
 **Insertion du jeton CSRF dans votre formulaire** en utilisant `csrf_token()` ou `Session::getToken()`
 
-    <input type="hidden" name="csrf_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 **Validation du jeton CSRF envoyé**
 
