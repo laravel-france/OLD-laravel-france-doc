@@ -39,7 +39,7 @@
  <a name="artisan-cli"></a>
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)
- - [Développement (en)](/docs/v4/doc/commands)
+ - [Développement de commandes](/docs/v4/doc/commands)
  <a name="elements-avances"></a>
 ### Éléments avancés
  - [Architecture](#)
