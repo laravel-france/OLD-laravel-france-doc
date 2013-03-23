@@ -35,7 +35,7 @@
  - [L'ORM Eloquent](/docs/v4/doc/eloquent)
  - [Le constructeur de schéma](/docs/v4/doc/schema)
  - [Les migrations & et la population](/docs/v4/doc/migrations)
- - [Redis (en)](/docs/v4/doc/redis)
+ - [Redis](/docs/v4/doc/redis)
  <a name="artisan-cli"></a>
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)

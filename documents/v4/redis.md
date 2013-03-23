@@ -55,4 +55,4 @@ Pour exécuter des commandes sans utiliser la connexion par défaut, utilisez le
 
 	$values = Redis::lrange('names', 5, 10);
 
-> **Note:** Les drivers [cache](/docs/cache) et [session](/docs/session) de Redis sont fournis avec Laravel.
+> **Note:** Les drivers [cache](/docs/v4/doc/cache) et [session](/docs/v4/doc/session) de Redis sont fournis avec Laravel.
