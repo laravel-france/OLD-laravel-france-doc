@@ -32,7 +32,7 @@
 ### Base de données
  - [Les bases](/docs/v4/doc/database)
  - [Query Builder](/docs/v4/doc/queries)
- - [L'ORM Eloquent (en)](/docs/v4/doc/eloquent)
+ - [L'ORM Eloquent](/docs/v4/doc/eloquent)
  - [La construction du schéma (en)](/docs/v4/doc/schema)
  - [Les migrations & et la population (en)](/docs/v4/doc/migrations)
  - [Redis (en)](/docs/v4/doc/redis)
