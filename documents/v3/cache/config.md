@@ -47,7 +47,7 @@ C'est tout. Une fois votre configuration et votre table configurées, vous pouve
 
 [Memcached](http://memcached.org) est un système d'usage général servant à gérer la mémoire cache distribuée, gérant les données et les objets en RAM, utilisé par des sites comme Wikipedia et Facebook. Avant d'utiliser le driver Memcached de Laravel, vous devrez installer et configurer Memcached et l'extension PHP Memcache sur votre serveur.
 
-Une fois que Memcached est installé sur votre serveur, vous devez modifier le paramètre **driver** dans le fichier **application/config/cache.php** :
+Une fois que Memcached est installé sur votre serveur, vous devez modifier l'option **driver** dans le fichier **application/config/cache.php** :
 
     'driver' => 'memcached'
 
@@ -62,7 +62,7 @@ Ensuite, ajoutez vos serveurs Memcached dans le tableau **servers** :
 
 [Redis](http://redis.io) est un système de gestion de base de données clef-valeur scalable, très hautes performances, sur la mouvance NoSQL, pouvant contenir [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
-Avant d'utiliser le driver de cache pour Redis, vous devez [configurer vos serveurs Redis](/docs/v3/doc/database/redis#config). Maintenant vous pouvez modifier le paramètre **driver** du fichier **application/config/cache.php** :
+Avant d'utiliser le driver de cache pour Redis, vous devez [configurer vos serveurs Redis](/docs/v3/doc/database/redis#config). Maintenant vous pouvez modifier l'option **driver** du fichier **application/config/cache.php** :
 
     'driver' => 'redis'
 
