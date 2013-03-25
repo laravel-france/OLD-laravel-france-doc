@@ -6,9 +6,9 @@
 - [Pourquoi Laravel ?](#pourquoi-Laravel)
 - [Laravel est différent](#Laravel-est-different)
 - [Structure de l'application](#structure-de-l-application)
-- [Laravel's Community](#Laravel-community)
+- [La communauté Laravel](#Laravel-community)
     - [Laravel France](#Laravel-France)
-- [License Information](#Laravel-license)
+- [Licence](#Laravel-license)
 
 <a name="le-choix-d-un-framework"></a>
 ## Le choix d'un framework
@@ -67,6 +67,6 @@ Si vous êtes Francophone et que vous souhaitez participer au projet, n'hésitez
 
 
 <a name="Laravel-license"></a>
-## License
+## Licence
 
-Laravel est une application open source sous [license MIT](http://www.opensource.org/licenses/mit-license.php).
+Laravel est une application open source sous [licence MIT](http://www.opensource.org/licenses/mit-license.php).
