@@ -39,4 +39,12 @@ Créez simplement dans un dossier dans votre dossier `config`  qui correspond au
 
 Notez que vous n'avez pas à spécifier _toutes_ les options qui se trouvent dans le fichier de base, mais seilement celles que vous souhaitez réécrire. Les fichiers de configuration des environnements sont en cascade vis à vis du fichier de base.
 
-Ensuite, nous devons indiquer au framework comment determiner sur quel environnement il tourne actuellement. Par défaut, l'environnement sera toujours `production`. Cependant, vous pouvez configurer d'autres environnements dans le fichier `start.php` qui se trouve à la racine de votre installation. Dans ce fichier, vous trouverez un appel à `$app->detectEnvironment`. Le tableau passé à cette méthode est utilisé pour déterminé l'environnement courant. Vous pouvez ajouter d'autres environnements et noms de machines dans le tableau au besoin.
+Ensuite, nous devons indiquer au framework comment determiner sur quel environnement il tourne actuellement. Par défaut, l'environnement sera toujours `production`. Cependant, vous pouvez configurer d'autres environnements dans le fichier `bootstrap/start.php` depuis la racine de votre installation. Dans ce fichier, vous trouverez un appel à `$app->detectEnvironment`. Le tableau passé à cette méthode est utilisé pour déterminer l'environnement courant. Vous pouvez ajouter d'autres environnements et noms de machines dans le tableau au besoin.
+
+    <?php
+
+    $env = $app->detectEnvironment(array(
+
+        'local' => array('your-machine-name'),
+
+    ));
