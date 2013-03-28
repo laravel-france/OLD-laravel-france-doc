@@ -5,6 +5,7 @@
 - [Résolution automatique](#automatic-resolution)
 - [Usage pratique](#practical-usage)
 - [Fournisseur de services](#service-providers)
+- [Evénements du conteneur](#container-events)
 
 <a name="introduction"></a>
 ## Introduction
@@ -148,3 +149,17 @@ Pour créer un fournisseur de service, votre classe doit hériter de la classe `
 	}
 
 Notez quand dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
+
+<a name="container-events"></a>
+## Evénements du conteneur
+
+Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pouvez écouter à cet événement en utilisant la méthod `resolving` :
+
+**Enregistrement d'un écouteur de résolution**
+
+  App::resolving(function($object)
+  {
+    //
+  });
+
+Note that the object that was resolved will be passed to the callback.

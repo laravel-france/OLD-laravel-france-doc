@@ -11,6 +11,7 @@
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
 - [Assignement de masse](#mass-assignment)
+- [Evenements de modèle](#model-events)
 - [Conversion en tableau / JSON](#converting-to-arrays-or-json)
 
 <a name="introduction"></a>
@@ -612,6 +613,18 @@ Dans l'exemple ci dessus, les attributs `id` et `password` **ne peuvent pas** ê
 **Bloque tous les attributs lors de l'assignement de masse**
 
 	protected $guarded = array('*');
+
+<a name="model-events"></a>
+## Evenements de modèle
+
+Les modèles Eloquent lancent plusieurs événements, vous permettant de d'intéragir avec le modèle durant son cycle de vie en utilisant les méthodes : `creating` (avant la création), `created` (une fois créé), `updating` (avant la mise à jour), `updated` (une fois mis à jour), `saving` (avant l'enregistrement), `saved` (une fois enregistré), `deleting` (avant la suppression), `deleted` (une fois supprimé). Si `false` est retourné par la méthode `creating`, `updating`, ou `saving`, alors l'action est annulée :
+
+**Annulation de la création d'un modèle**
+
+  User::creating(function($user)
+  {
+    if ( ! $user->isValid()) return false;
+  });
 
 <a name="converting-to-arrays-or-json"></a>
 ## Conversion en tableau / JSON

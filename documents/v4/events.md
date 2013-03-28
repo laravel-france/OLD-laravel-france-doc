@@ -2,6 +2,7 @@
 
 - [Utilisation basique](#basic-usage)
 - [Utilisation de classes en tant qu'écouteur](#using-classes-as-listeners)
+- [Mise en attente d'un événement](#queued-events)
 - [Classes d'abonnements](#event-subscribers)
 
 <a name="basic-usage"></a>
@@ -68,6 +69,26 @@ Si vous ne souhaitez pas utiliser la méthode par défaut `handle`, vous pouvez 
 **Spécifie quelle méthode doit être utilisée**
 
 	Event::listen('user.login', 'LoginHandler@onLogin');
+
+<a name="queued-events"></a>
+## Mise en attente d'un événement
+
+En utilisant les méthodes `queue` et `flush`, vous pouvez mettre en attente un événement à déclarer, mais sans le lancer tout de suite :
+
+**Enregistrement d'un événement en attente**
+
+  Event::queue('foo', array($user));
+
+**Enregistrement d'un videur**
+
+  Event::flusher('foo', function($user)
+  {
+    //
+  });
+
+Finallement, vous pouvez executer le "videur" et vider tous les événement en attente avec la méthode `flush` :
+
+  Event::flush('foo');
 
 <a name="event-subscribers"></a>
 ## Classes d'abonnements
