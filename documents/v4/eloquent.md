@@ -626,6 +626,22 @@ Les modèles Eloquent lancent plusieurs événements, vous permettant de d'inté
     if ( ! $user->isValid()) return false;
   });
 
+Les modèles Eloquent contiennent également une méthode static `boot`, qui peut être l'endroit idéal pour s'abonner aux événements 
+
+**Mise en place de la méthode boot d'un modèle**
+
+  class User extends Eloquent {
+
+    public static function boot()
+    {
+      parent::boot();
+
+      // Setup event bindings...
+    }
+
+  }
+
+
 <a name="converting-to-arrays-or-json"></a>
 ## Conversion en tableau / JSON
 

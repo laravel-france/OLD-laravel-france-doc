@@ -70,6 +70,12 @@ Commande  | Description
 `->default($value)`  |  Déclare une valeur par défaut pour la colonne
 `->unsigned()`  |  Défini un INTEGER comme étant UNSIGNED
 
+Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `after` pour spécifier l'ordre des colonnes :
+
+**Utilisation de after sur MySQL**
+
+  $table->string('name')->after('email');
+
 <a name="dropping-columns"></a>
 ## Suppression de colonnes
 

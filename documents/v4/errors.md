@@ -84,3 +84,12 @@ Le journaliseur fournit les 7 niveaux de journalisations définis dans la [RFC 5
 Monolog a une multitude de gestionnaire supplémentaires que vous pouvez utiliser pour faire de la journalisation. Si besoin, vous pouvez accéder directement à l'objet Monolog utilisé par Laravel :
 
 	$monolog = Log::getMonolog();
+
+Vous pouvez également enregistrer un événement pour attraper tous les messages passés à la journalisation :
+
+**Enregistrement d'un écouteur de journalisation**
+
+  Log::listen(function($level, $message, $context)
+  {
+    //
+  });
