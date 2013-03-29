@@ -76,6 +76,8 @@ Laravel fournit également une manière simple de populer votre base de donnée 
 		public function run()
 		{
 			$this->call('UserTableSeeder');
+
+            $this->command->info('User table seeded!');
 		}
 
 	}

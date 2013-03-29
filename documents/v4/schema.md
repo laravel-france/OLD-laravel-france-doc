@@ -17,35 +17,35 @@ La classe `Schema` de Laravel fournit une manière indépendante du type de base
 
 Pour créer une nouvelle table, la méthode `Schema::create` est utilisée :
 
-	Schema::create('users', function($table)
-	{
-		$table->increments('id');
-	});
+    Schema::create('users', function($table)
+    {
+        $table->increments('id');
+    });
 
 Le premier argument passé à la méthode `create` est le nom de la tabnle, et le second argument est une fonction anonyme, qui va recevoir un objet objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
 
 Pour spécifier quelle connexion doit être utilisée par le constructeur de schéma, Utilisez la méthode `Schema::connection` :
 
-	Schema::connection('foo')->create('users', function($table)
-	{
-		$table->increments('id'):
-	});
+    Schema::connection('foo')->create('users', function($table)
+    {
+        $table->increments('id'):
+    });
 
 Pour supprimer une table, vous pouvez utiliser la méthode `Schema::drop` :
 
-	Schema::drop('users');
+    Schema::drop('users');
 
-	Schema::dropIfExists('users');
+    Schema::dropIfExists('users');
 
 <a name="adding-columns"></a>
 ## Ajout de colonnes
 
 Pour éditer une table existante, nous utiliserons la méthode `Schema::table` :
 
-	Schema::table('users', function($table)
-	{
-		$table->string('email');
-	});
+    Schema::table('users', function($table)
+    {
+        $table->string('email');
+    });
 
 Le constructeur de table contient une variété de type de colonne qui vous pouvez utiliser pour construire vos tables :
 
@@ -70,15 +70,21 @@ Commande  | Description
 `->default($value)`  |  Déclare une valeur par défaut pour la colonne
 `->unsigned()`  |  Défini un INTEGER comme étant UNSIGNED
 
+Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `after` pour spécifier l'ordre des colonnes :
+
+**Utilisation de after sur MySQL**
+
+    $table->string('name')->after('email');
+
 <a name="dropping-columns"></a>
 ## Suppression de colonnes
 
 **Suppression d'une colonne d'une table**
 
-	Schema::table('users', function($table)
-	{
-		$table->dropColumn('votes');
-	});
+    Schema::table('users', function($table)
+    {
+        $table->dropColumn('votes');
+    });
 
 <a name="adding-indexes"></a>
 ## Ajout d'index
@@ -87,7 +93,7 @@ Le constructeur de schema supporte plusieurs types d'indices. Il y a deux maniè
 
 **Crée de manière fluide une colonne et un index**
 
-	$table->string('email')->unique();
+    $table->string('email')->unique();
 
 Ou, vous pouvez choisir d'ajouter les indices sur des lignes séparés. Vous trouverez ci dessous une liste des types d'index:
 

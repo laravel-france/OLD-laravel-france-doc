@@ -40,6 +40,15 @@ La méthode `select` retourne un tableau de lignes.
 
 	DB::statement('drop table users');
 
+Vous pouvez écouter pour des événements de requêtes en utilisant la méthode `DB::listen` :
+
+**Ecoute d'événements de requêtes**
+
+    DB::listen(function($sql, $bindings, $time)
+    {
+        //
+    });
+
 <a name="accessing-connections"></a>
 ## Accéder aux Connexions
 

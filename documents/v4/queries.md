@@ -47,6 +47,12 @@ Le Query Builder (Constructeur de requête) de Laravel fournit une interface pra
 
 	$users = DB::table('users')->select('name as user_name')->get();
 
+**Ajout d'une clause SELECT à une requête existante**
+
+    $query = DB::table('users')->select('name');
+
+    $users = $query->addSelect('age')->get();
+
 **Utilisation de la clause WHERE**
 
 	$users = DB::table('users')->where('votes', '>', 100)->get();

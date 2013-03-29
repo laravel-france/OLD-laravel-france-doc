@@ -95,7 +95,7 @@ Les filtres de routes fournissent une manière simple de limiter l'accès à cer
 		}
 	});
 
-Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée.
+Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée, et les filtres `after` seront annulés également.
 
 **Attachement d'un filtre à une route**
 
@@ -170,6 +170,10 @@ Mantenant, vous pouvez utiliser le nom de la route lorsque vous générez une UR
 	$url = URL::route('profile');
 
 	$redirect = Redirect::route('profile');
+
+Vous pouvez accéder au nom de la route qui est actuellement utilisé par la méthode `currentRouteName` :
+
+    $name = Route::currentRouteName();
 
 <a name="route-groups"></a>
 ## Routes groupées
