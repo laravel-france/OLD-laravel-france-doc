@@ -39,6 +39,14 @@ Le Query Builder (Constructeur de requête) de Laravel fournit une interface pra
 
 	$name = DB::table('users')->where('name', 'John')->pluck('name');
 
+**Retrouve une liste des valeurs d'une colonne**
+
+    $roles = DB::table('roles')->lists('title');
+
+Cette méthode retournera un table des titres des rôles, avec en clé l'ID du rôle. Vous pouvez également spécifier une clé personnalisée :
+
+    $roles = DB::table('roles')->lists('title', 'name');
+
 **Spécification d'une clause SELECT**
 
 	$users = DB::table('users')->select('name', 'email')->get();

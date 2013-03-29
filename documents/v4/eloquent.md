@@ -519,6 +519,10 @@ Vous pouvez également passer un tableau d'attributs qui doivent être stockés 
 
     $user->roles()->attach(1, array('expires' => $expires));
 
+Naturellement, l'opposé de `attach` est `detach` :
+
+    $user->roles()->detach(1);
+
 Vous pouvez également utiliser la méthode `sync` pour attacher des modèles liés. La méthode `sync` accepte un tableau d'IDs à placer dans la table pivot. Une fois cette opération terminée, seul les IDs dans le tableau seront dans la table pivot pour le modèle :
 
 **Utilisation de la méthode Sync pour attacher des modèles liés**
