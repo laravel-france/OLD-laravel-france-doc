@@ -39,6 +39,8 @@ Notez que nous n'avons pas indiqué à Eloquent quelle table doit être utilisé
 
     }
 
+Eloquent va également présumer que votre table à une clé primaire nommée `id`. Vous pouvez définir une propriété `primaryKey` pour surcharger cette convention. De la même manière, vous pouvez définir une propriété `connection` pour surcharger le nom de la connexion qui sera utilisé pour accéder à la table de ce modèle.
+
 > **Note:** Eloquent va également assumé que chaque table à une clé primaire qui s'appelle `id`. Vous pouvez définir une clé primaire à la main en ajoutant une propriété `$primaryKey`.
 
 Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer des enregistrement dans votre table. Notez que vous aurez besoin de créer des colonnes `updated_at` et `created_at`  sur votre table par défaut. Si vous ne voulez pas de ces colonnes, qui sont auto maintenu par Laravel, définissez une propriété `$timestamps` à `false`.
@@ -57,7 +59,7 @@ Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer
 
 **Récupérer un modèle par sa clé primaire ou lancer une exception**
 
-Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouvé, vous permettant d'attraper les exceptions en utilisant un gestionnaire d'événement `App::error` et afficher une page 404.
+Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouvé, vous permettant d'attraper les exceptions en utilisant un gestionnaire d'événement `error` et afficher une page 404.
 
     $model = User::findOrFail(1);
 
@@ -132,6 +134,8 @@ Pour créer un nouvel enregistrement dans la base de donnée pour un modèle, cr
     $user->name = 'John';
 
     $user->save();
+
+**Note:** Typiquement, votre modèle Eloquent aura une clé de type auto-increment. Cependant, si vous souhaitez spécifier votre propre clé, définissez la propriété `incrementing` de votre modèle à `false`.
 
 Vous pouvez également utiliser la méthode `create` Pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retourné par la méthode. Cependant avant de faire cela, vous devrez spécifier soit l'attribut `fillable` ou `guarded` sur le modèle, car tous les modèles Eloquent sont protégés contre l'assignement de masse.
 
