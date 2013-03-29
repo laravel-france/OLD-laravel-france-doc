@@ -63,9 +63,9 @@ Souvent, vous voudrez remplir un formulaire selon le contenu d'un modèle. Pour 
 
 Maintenant, quand vous générez un élément de formulaire, comme un champ texte, la valeur du modèle qui correspond au nom du champ sera automatiquement défini comme la valeur du champ. Donc, par exemple, Pour un champ texte nommé `email`, la valeur de l'attribut `email` du modèle User sera définie comme la valeur du champ. Cependant, il y a plus ! Si il y a un élement dans le flash de la Session qui correspond au nom du champ, cette valeur sera prioritaire sur celle du modèle. Les prioriétés sont les suivantes :
 
-    1. Données dans le flash de la session (vieilles données)
-    2. Valeurs passées explicitements
-    3. Données des attributs du modèle
+1. Données dans le flash de la session (vieilles données)
+2. Valeurs passées explicitements
+3. Données des attributs du modèle
 
 Cela vous permet de construire des formulaires plus rapidement car cela lie les valeurs du modèle, et en plus cela re-rempli votre formulaire si il y a une erreur de validation sur le serveur !
 

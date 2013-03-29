@@ -17,6 +17,7 @@
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
  - [Les événements](/docs/v4/doc/events)
+ - [Formulaires & HTML](/docs/v4/doc/html)
  - [Le conteneur de dépendances](/docs/v4/doc/ioc)
  - [Traduction & Localisation](/docs/v4/doc/localization)
  - [Email](/docs/v4/doc/mail)
@@ -26,7 +27,6 @@
  - [La sécurité](/docs/v4/doc/security)
  - [Les sessions](/docs/v4/doc/session)
  - [Les templates](/docs/v4/doc/templates)
- - [Formulaires & HTML](/docs/v4/doc/html)
  - [Les tests unitaires](/docs/v4/doc/testing)
  - [La validation](/docs/v4/doc/validation)
  <a name="base-de-donnees"></a>
@@ -41,6 +41,3 @@
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)
  - [Développement de commandes](/docs/v4/doc/commands)
- <a name="elements-avances"></a>
-### Éléments avancés
- - [Architecture](#)
