@@ -55,6 +55,21 @@ Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer
 
 > **Note:** Toutes les méthodes disponibles dans le [Query Builder](/docs/v4/doc/queries) sont également disponibles avec Eloquent.
 
+**Récupérer un modèle par sa clé primaire ou lancer une exception**
+
+Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouvé, vous permettant d'attraper les exceptions en utilisant un gestionnaire d'événement `App::error` et afficher une page 404.
+
+    $model = User::findOrFail(1);
+
+Pour enregistrer le gestionnaire d'erreur, écoutez auprès d'un `ModelNotFoundException`
+
+    use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+    App::error(function(ModelNotFoundException $e)
+    {
+        return Response::make('Not Found', 404);
+    });
+
 **Requêtage utilisant le modèle Eloquent**
 
     $users = User::where('votes', '>', 100)->take(10)->get();

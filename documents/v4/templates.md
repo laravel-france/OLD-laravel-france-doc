@@ -108,6 +108,12 @@ Pour échapper la sortie,     utilisez trois accollades :
 
 	@include('view.name')
 
++**Affichage d'une ligne de langue**
+
+  @lang('language.line')
+
+  @choice('language.line', 1);
+
 **Commentaires**
 
 	{{-- This comment will not be in the rendered HTML --}}

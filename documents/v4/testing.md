@@ -69,6 +69,10 @@ La méthode `getContent` retournera le contenu de la chaîne évaluée de la ré
 
     $this->assertEquals('John', $view['name']);
 
+Pour appeller une route HTTPS, vous pouvez utiliser la méthode `callSecure` :
+
+    $response = $this->callSecure('GET', 'foo/bar');
+
 ### Inspecteur de DOM
 
 Vous pouvez également appeler une route et recevoir une instance de l'inspecteur de DOM que vous pouvez utiliser pour regarder le contenu :

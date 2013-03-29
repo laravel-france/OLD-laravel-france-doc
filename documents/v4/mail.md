@@ -7,7 +7,7 @@
 <a name="configuration"></a>
 ## Configuration
 
-Laravel fournit une API simple et claire de la célèbre librairie [SwiftMailer](http://swiftmailer.org). La configuration de l'envoi de message s'effectue dans le fichier `app/config/mail.php`. Vous pouvez configurer le host SMTP, son port, les informations d'authentification et aussi la mise en œuvre d'une adresse destinée à l'envoi "En tant que". Vous pouvez utiliser n'importe quel type de serveur SMTP. 
+Laravel fournit une API simple et claire de la célèbre librairie [SwiftMailer](http://swiftmailer.org). La configuration de l'envoi de message s'effectue dans le fichier `app/config/mail.php`. Vous pouvez configurer le host SMTP, son port, les informations d'authentification et aussi la mise en œuvre d'une adresse destinée à l'envoi "En tant que". Vous pouvez utiliser n'importe quel type de serveur SMTP. Si vous souhaitez utiliser la fonction PHP `mail` pour envoyer des emails, alors changez le `driver` pour `mail` dans le fichier de configuration.
 
 <a name="basic-usage"></a>
 ## Utilisation
