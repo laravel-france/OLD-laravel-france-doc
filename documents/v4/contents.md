@@ -1,4 +1,4 @@
- - [Acceuil](/docs/v4/doc/home)
+ - [Accueil](/docs/v4/doc/home)
  <a name="preface"></a>
 ### Préface
  - [Introduction](/docs/v4/doc/introduction)
