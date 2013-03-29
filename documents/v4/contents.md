@@ -26,6 +26,7 @@
  - [La sécurité](/docs/v4/doc/security)
  - [Les sessions](/docs/v4/doc/session)
  - [Les templates](/docs/v4/doc/templates)
+ - [Formulaires & HTML](/docs/v4/doc/html)
  - [Les tests unitaires](/docs/v4/doc/testing)
  - [La validation](/docs/v4/doc/validation)
  <a name="base-de-donnees"></a>

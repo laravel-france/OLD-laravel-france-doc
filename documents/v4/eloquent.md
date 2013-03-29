@@ -9,6 +9,7 @@
 - [Relations](#relationships)
 - [Chargements liés](#eager-loading)
 - [Insertion de modèles liés](#inserting-related-models)
+- [Mise à jour du Timestamps des parents](#touching-parent-timestamps)
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
@@ -549,6 +550,31 @@ Vous pouvez également créer une nouveau modèle lié et l'attacher en une simp
 Dans cet exemple, le nouveau modèle `Role` sera sauvegardé et attaché au modèle `User`. Vous pourriez également avoir besoin de passer un tableau d'attributs pour le sauvegarder dans la table de jointure :
 
     User::find(1)->roles()->save($role, array('expires' => $expires));
+
+<a name="touching-parent-timestamps"></a>
+## Mise à jour du Timestamps des parents
+
+Quand un modèle appartient à (`belongsTo`) à un autre modèle, comme un `Comment` appartient à un `Post`, il est souvent utile de mettre à jour les timestamps du parent lorsque le modèle enfant est mis à jour. Par exemple, lorsqu'un commentaire est modifié, nous pourrions mettre à jour le `Post` qui le contient. Eloquent rend cela facile. Ajoutez simplement la propriété `touches` qui contient le nom des relations dans le modèle enfant :
+
+    class Comment extends Eloquent {
+
+        protected $touches = array('post');
+
+        public function post()
+        {
+            return $this->belongsTo('Post');
+        }
+
+    }
+
+Maintenant, quand vous mettre à jour un `Comment`, le `Post` parent aura sa colonne `updated_at` mise à jour :
+
+    $comment = Comment::find(1);
+
+    $comment->text = 'Edit to this comment!';
+
+    $comment->save();
+
 
 <a name="working-with-pivot-tables"></a>
 ## Travail sur les tables pivots
