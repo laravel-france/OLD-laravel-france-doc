@@ -50,8 +50,6 @@ Vous pouvez accéder au nom de l'action du contrôleur qui est lancé en utilisa
 
     $action = Route::currentRouteAction();
 
-> **Note:** Après avoir créé une nouvelle classe, pensez à lancer `composer dump-autoload` depuis la ligne de commande. Cela permettra au framework de charger automatiquement votre classe.
-
 <a name="controller-filters"></a>
 ## Filtres de contrôleurs
 
