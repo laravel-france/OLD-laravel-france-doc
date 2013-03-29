@@ -210,7 +210,7 @@ Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méth
 <a name="query-scopes"></a>
 ## Cadres de requête
 
-Les cadres vous permettent de réutiliser facielement des logiques de requêtes dans vos modèles. Pour définir un cadre, prefixez simpelement une méthode du modèle avec `scope`:
+Les cadres vous permettent de réutiliser facilement des logiques de requêtes dans vos modèles. Pour définir un cadre, prefixez simpelement une méthode du modèle avec `scope`:
 
 **Définition d'un cadre de requête**
 
