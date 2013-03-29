@@ -297,7 +297,7 @@ Nous pouvons accéder aux commentaires du post via la propriété dynamique :
 
     $comments = Post::find(1)->comments;
 
-Si vous avez besoin d'ajouter des contraintes simplémentaires à la récupération de de 'comments', appellez la `comments` et continuez à chainer les conditions :
+Si vous avez besoin d'ajouter des contraintes suplémentaires à la récupération de 'comments', appellez la méthode `comments` et continuez à chainer les conditions :
 
     $comments = Post::find(1)->comments()->where('title', '=', 'foo')->first();
 

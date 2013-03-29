@@ -378,6 +378,8 @@ Laravel fournit une variété de règles de validations utiles, cependant vous p
 		return $value == 'foo';
 	});
 
+> **Note:** Le nom de la règle passée à la méthode `extend` doit être en "snake_case".
+
 La fonction anonyme de validation reçoit trois arguments : le nom du champ (`$attribute`) qui se fait valider, la valeur (`$value`) du champ, et le tableau des paramètres (`$parameters`) passés à la règles
 
 Notez que vous devrez également définir un message d'erreur personnalisé. Vous pouvez le faire soit en utilisant un tableau avec votre message perso à chaque fois que vous appellerez votre règle de validation personnalisée, soit en ajoutant une entrée dans le fichier de langue de validation.
