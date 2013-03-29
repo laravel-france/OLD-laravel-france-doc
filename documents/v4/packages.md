@@ -26,23 +26,15 @@ Tous les packages Laravel sont distribués via [Packagist](http://packagist.org)
 <a name="creating-a-package"></a>
 ## Création d'un package
 
-La manière la plus facile de créer un package Laravel est d'utiliser la commande Artisan `workbench` de laravel.
+La manière la plus facile de créer un package Laravel est d'utiliser la commande Artisan `workbench` de Laravel. Mais d'abord, vous aurez besoin de définir quelques options dans le fichier `app/config/workbench.php`. Dans ce fichier, vous trouverez une option `name` et `email`. Ces valeurs sont utilisés pour générer un fichier `composer.json` pour vos nouveaux packages. Une fois que vous avez inscrit ces valeurs, vous êtes prêt à consrtuire une package !
 
 **Execution de la commande Artistan `workbench`**
 
-	php artisan workbench
+	php artisan workbench vendor/package
 
-Cette commande vous demandera plusieurs informations, comme le nom du vendor et le nom du package, mais également votre adresse email. Ces quelques informations sont utilisés pour créer le namespace et le fichier `composer.json` de votre package.
+Le nom du vendor est une manière de distinguer votre package de celui des autres qui aurait le même nom. Par exemple, Si je (Taylor Otwell) créerais un nouveau package nommé "Zapper", le nom du vendor pourrait être `Taylor` et le nom du package serait `Zapper`.
 
-Le nom du vendor (vendor name) est une manière de distinguer votre package de celui des autres qui aurait le même nom. Par exemple, Si je (Taylor Otwell) créerais un nouveau package nommé "Zapper", le nom du vendor pourrait être `Taylor` et le nom du package serait `Zapper`.
-
-Une fois que la commande `workbench` a été executée, votre package sera disponible dans le dossier `workbench` de votre installation Laravel. Vous devez maintenant lancer la commande `composer install` **depuis la racine de votre package**, cela va installer les dépendances et générer le fichier autoload de Composer pour votre package. vous pouvez également utiliser la directive `--composer` sur la commande `workbench` pour le faire automatiquement lors de la création du package :
-
-**Création d'un package avec Workbench, qui lance également composer**
-
-	php artisan workbench --composer
-
-Ensuite, vous devez enregistrer le `ServiceProvider` qui a été créé pour votre package. Vous devez enregistrer le fournisseur en l'ajoutant dans le tableau `providers` du fichier de configuration `app/config/app.php`. Cela dira à Laravel de charger votre package lorsque votre application démarre. Les fournisseurs de services utilise une convention de nommage de la forme suivante : `[NomDuPackage]ServiceProvider`. Donc, en utilisant l'exemple précédent, vous ajouterez la ligne `Taylor\Zapper\ZapperServiceProvider` au tableau `providers`.
+Une fois que la commande `workbench` a été executée, votre package sera disponible dans le dossier `workbench` de votre installation Laravel. Ensuite, vous devez enregistrer le `ServiceProvider` qui a été créé pour votre package. Vous devez enregistrer le fournisseur en l'ajoutant dans le tableau `providers` du fichier de configuration `app/config/app.php`. Cela dira à Laravel de charger votre package lorsque votre application démarre. Les fournisseurs de services utilise une convention de nommage de la forme suivante : `[NomDuPackage]ServiceProvider`. Donc, en utilisant l'exemple précédent, vous ajouterez la ligne `Taylor\Zapper\ZapperServiceProvider` au tableau `providers`.
 
 Une fois que le fournisseur a été enregistré, vous êtes prêt à développer votre package ! Cependant, avant de se lancer dedans, vous devriez lire les sections ci dessous pour être plus familier avec la structure d'un package et avoir un bon processus de développement.
 
