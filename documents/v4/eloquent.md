@@ -2,6 +2,7 @@
 
 - [Introduction](#introduction)
 - [Utilisation Basique](#basic-usage)
+- [Assignement de masse](#mass-assignment)
 - [Insertion, mise à jour, suppression](#insert-update-delete)
 - [Timestamps](#timestamps)
 - [Cadres de requête](#query-scopes)
@@ -11,7 +12,6 @@
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
-- [Assignement de masse](#mass-assignment)
 - [Evenements de modèle](#model-events)
 - [Conversion en tableau / JSON](#converting-to-arrays-or-json)
 
@@ -85,6 +85,41 @@ Bien sur, vous pouvez également utilisé les fonctions d'aggrégats du Query Bu
 
     $count = User::where('votes', '>', 100)->count();
 
+<a name="mass-assignment"></a>
+## Assignement de masse
+
+Lorsque vous créez un nouvel modèle, vous passez un tableau d'attribut au constructeur du modèle. Ces attributs  sont ensuite assigné au modèle via l'assignement de masse. C'est très pratique, cependant cela peut être une risque **sérieux** de sécurité lorsque des données provenants d'utilisateurs sont aveugléments passées dans un modèle. Si les données de l'utilisateurs sont aveugléments passés au modèle, l'utilisateur est libre de modifier n'importe quel attribut du modèle.
+
+Pour commencer, définissez les propriétés `fillable` ou `guarded` sur votre modèle.
+
+La propriété `fillable` spécifie quels attributs peuvent être assignés en masse. Cela peut être défini dans la classe ou au niveau de l'instance du modèle.
+
+**Definition de l'attribut fillable dans un modèle**
+
+    class User extends Eloquent {
+
+        protected $fillable = array('first_name', 'last_name', 'email');
+
+    }
+
+Dans cet exemple, seul les trois attributs listés peuvent être assignés lors d'un assignement de masse.
+
+L'inverse de `fillable` est `guarded`, et il contient une "blacklist" plutôt qu'un laisser passer :
+
+**Definition de l'attribut guarded dans un modèle**
+
+    class User extends Eloquent {
+
+        protected $guarded = array('id', 'password');
+
+    }
+
+Dans l'exemple ci dessus, les attributs `id` et `password` **ne peuvent pas** être assignés en masse. Tous les autres attributs peuvent être assignés lors d'un assignement de masse.  Vous pouvez aussi bloqué **tous** les attributs lors de l'assignement de masse en utilisant guard :
+
+**Bloque tous les attributs lors de l'assignement de masse**
+
+    protected $guarded = array('*');
+
 <a name="insert-update-delete"></a>
 ## Insertion, mise à jour, suppression
 
@@ -98,7 +133,15 @@ Pour créer un nouvel enregistrement dans la base de donnée pour un modèle, cr
 
     $user->save();
 
-Vous pouvez également utiliser la méthode `create` Pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retourné par la méthode :
+Vous pouvez également utiliser la méthode `create` Pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retourné par la méthode. Cependant avant de faire cela, vous devrez spécifier soit l'attribut `fillable` ou `guarded` sur le modèle, car tous les modèles Eloquent sont protégés contre l'assignement de masse.
+
+**Mise en place de l'attribut guarded sur le modèle**
+
+    class User extends Eloquent {
+
+        protected $guarded = array('id', 'account_id');
+
+      }
 
 **Création d'un utilisateur en utilant la méthode create**
 
@@ -613,41 +656,6 @@ Les mutateurs sont déclarés dans le même ésprit :
         }
 
     }
-
-<a name="mass-assignment"></a>
-## Assignement de masse
-
-Lorsque vous créez un nouvel modèle, vous passez un tableau d'attribut au constructeur du modèle. Ces attributs  sont ensuite assigné au modèle via l'assignement de masse. C'est très pratique, cependant cela peut être une risque **sérieux** de sécurité lorsque des données provenants d'utilisateurs sont aveugléments passées dans un modèle. Si les données de l'utilisateurs sont aveugléments passés au modèle, l'utilisateur est libre de modifier n'importe quel attribut du modèle.
-
-Une approche plus sûre est d'assigné des attributs soit manuellement, soit en remplissant la propriété `fillable` ou `guarded` sur votre modèle.
-
-La propriété `fillable` spécifie quels attributs peuvent être assignés en masse. Cela peut être défini dans la classe ou au niveau de l'instance du modèle.
-
-**Definition de l'attribut fillable dans un modèle**
-
-    class User extends Eloquent {
-
-        protected $fillable = array('first_name', 'last_name', 'email');
-
-    }
-
-Dans cet exemple, seul les trois attributs listés peuvent être assignés lors d'un assignement de masse.
-
-L'inverse de `fillable` est `guarded`, et il contient une "blacklist" plutôt qu'un laisser passer :
-
-**Definition de l'attribut guarded dans un modèle**
-
-    class User extends Eloquent {
-
-        protected $guarded = array('id', 'password');
-
-    }
-
-Dans l'exemple ci dessus, les attributs `id` et `password` **ne peuvent pas** être assignés en masse. Tous les autres attributs peuvent être assignés lors d'un assignement de masse.  Vous pouvez aussi bloqué **tous** les attributs lors de l'assignement de masse en utilisant guard :
-
-**Bloque tous les attributs lors de l'assignement de masse**
-
-    protected $guarded = array('*');
 
 <a name="model-events"></a>
 ## Evenements de modèle
