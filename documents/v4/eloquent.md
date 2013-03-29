@@ -350,6 +350,17 @@ Vous pouvez également surchager les clés associées :
 
     return $this->belongsToMany('Role', 'user_roles', 'user_id', 'foo_id');
 
+Bien sur, vous pouvez aussi avoir besoin de définir de la relation dans le modèle `Role` :
+
+    class Role extends Eloquent {
+
+        public function users()
+        {
+            return $this->belongsToMany('User');
+        }
+
+    }
+
 <a name="polymorphic-relations"></a>
 ### Relations polymorphiques
 

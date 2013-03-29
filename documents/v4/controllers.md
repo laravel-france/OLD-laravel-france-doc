@@ -42,6 +42,10 @@ Vous pouvez également nommer ces routes avec la propriété `as` :
 	Route::get('foo', array('uses' => 'FooController@method',
 											'as' => 'name'));
 
+Pour générer une URL vers une action de contrôleur, utilisez la méthode `URL::action` :
+
+    $url = URL::action('FooController@method');
+
 Vous pouvez accéder au nom de l'action du contrôleur qui est lancé en utilisant la méthode `currentRouteAction` :
 
     $action = Route::currentRouteAction();

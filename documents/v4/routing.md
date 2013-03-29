@@ -44,6 +44,10 @@ La plupart des routes de votre application seront définis dans le fichier `app/
 		return 'Must be over HTTPS';
 	}));
 
+Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire utilisez la méthode `URL::to` :
+
+    $url = URL::to('foo');
+
 <a name="route-parameters"></a>
 ## Paramètres de routes
 
