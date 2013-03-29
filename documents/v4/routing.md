@@ -287,11 +287,11 @@ Lorsque vous construisez des applications qui supportent de multiples langues, v
 
 **Ajout de locales dans la configuration**
 
-  'locales' => array('en', 'fr', 'nl');
+    'locales' => array('en', 'fr', 'nl');
 
 C'est tout ! Vous pouvez maintenant accéder à vos routes d'application avec n'importe laquelle de ces locales préfixée à l'URI. Quand vous le faites, la locale par défaut pour la classe `Lang` sera définie automatiquement, et tous les URLs générées par la classe `URL` seront préfixez avec la locale courante.
 
 Pour accéder à la locale en cours, vous pouvez utiliser la méthode `Lang::locale` :
 
-  $locale = Lang::locale();
+    $locale = Lang::locale();
 
