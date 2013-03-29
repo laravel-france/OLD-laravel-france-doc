@@ -20,7 +20,7 @@ Bien sûr, si vous avez d'autres environnements que l'environnement `local`, vou
 <a name="application-events"></a>
 ## Les gestionnaires d'évènements
 
-Vous pouvez ajouter des opérations précédant et suivant l'exécution de la requête en enregistrant les gestionnaires des évènements `before` and `after`.
+Vous pouvez ajouter des opérations précédant et suivant l'exécution de la requête en enregistrant les gestionnaires des évènements `before`, `after`, `close`, `finish`, et `shutdown`.
 
 **Enregistrer des gestionnaires d'évènements**
 
@@ -29,7 +29,7 @@ Vous pouvez ajouter des opérations précédant et suivant l'exécution de la re
 		//
 	});
 
-	App::after(function()
+	App::after(function(request, $response)
 	{
 		//
 	});

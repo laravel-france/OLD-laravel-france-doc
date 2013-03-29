@@ -9,7 +9,7 @@
 
 Le composant Queue fournit une API unique donnant accès à une variété de systèmes de files de travaux. Queue permet d'exécuter de manière différée une tâche de longue comme l'envoi de message, ce qui accélère considérablement les requêtes d' application.
 
-La configuration d'une file de travaux s'effectue dans le fichier `app/config/queue.php`. Dans ce fichier, vous y trouverez les éléments de déclaration de chacun des pilotes de file de travaux inclus dans le framework comme [Beanstalkd](http://kr.github.com/beanstalkd) et le pilote de synchronisation (pilote destiné à être utilisé en local).
+La configuration d'une file de travaux s'effectue dans le fichier `app/config/queue.php`. Dans ce fichier, vous y trouverez les éléments de déclaration de chacun des pilotes de file de travaux inclus dans le framework comme [Beanstalkd](http://kr.github.com/beanstalkd), [IronMQ](http://iron.io), [Amazon SQS](http://aws.amazon.com/sqs), et le pilote de synchronisation (pilote destiné à être utilisé en local).
 
 <a name="basic-usage"></a>
 ## Utilisation
@@ -84,6 +84,12 @@ Vous pouvez aussi indiquer le gestionnaire que vous souhaitez démarrer :
 	php artisan queue:listen connection
 
 Notez qu'une fois le gestionnaire démarré, il reste actif jusqu'à ce qu'il soit stoppé manuellement. Utilisez un moniteur de tâches comme [Supervisor](http://supervisord.org/) pour vous assurer que le gestionnaire est bien arrêté.
+
+Vous pouvez également définir le temps maximum en secondes qu'une tâche est autorisé à prendre :
+
+**Spécification d'un délai maximum**
+
+  php artisan queue:listen --timeout=60
 
 Pour exécuter uniquement la première tâche de la file d'attente, utilisez la commande `queue:work` :
 

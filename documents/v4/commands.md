@@ -91,9 +91,14 @@ Pour envoyer des messages à la console, vous pouvez utiliser les méthodes `inf
 
 Vous pouvez également utiliser les méthodes `ask` et`confirm` pour demander des entrées à l'utilisateur :
 
-**Demandes des infos à l'utilisateur**
+**Demande d'une information à l'utilisateur**
 
-	$name = $this->ask('What is your name?');
+	$name = $this->ask('What is your name ?');
+
+**Demande d'une informations secrète**
+
+    $password = $this->secret('What is the password ?');
+
 
 **Demande une confirmation à l'utilisateur**
 

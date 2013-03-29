@@ -12,35 +12,35 @@ La classe `Event` du framework Laravel vous permet de souscrire et d'écouter de
 
 **Enregistrement à un événement**
 
-	Event::listen('user.login', function($user)
-	{
-		$user->last_login = new DateTime;
+    Event::listen('user.login', function($user)
+    {
+        $user->last_login = new DateTime;
 
-		$user->save();
-	});
+        $user->save();
+    });
 
 **Déclencher un événement**
 
-	$event = Event::fire('user.login', array($user));
+    $event = Event::fire('user.login', array($user));
 
 Vous pouvez spécifier une priorité pour vos écouteurs d'événements. Les écouteurs ayants une plus grande priorité seront éxécutés en premier. tandis que les écouteurs qui ont la même priorité seront executés dans leur ordre d'enregistrement.
 
 **Enregistrement à un événement avec priorité**
 
-	Event::listen('user.login', 'LoginHandler', 10);
+    Event::listen('user.login', 'LoginHandler', 10);
 
-	Event::listen('user.login', 'OtherHandler', 5);
+    Event::listen('user.login', 'OtherHandler', 5);
 
 Vous pouvez stopper la propagation d'un évenement aux autres, en retournant 'false' depuis l'écouteur :
 
 **Stop la propagation d'un événement**
 
-	Event::listen('user.login', function($event)
-	{
-		// Handle the event...
+    Event::listen('user.login', function($event)
+    {
+        // Handle the event...
 
-		return false;
-	});
+        return false;
+    });
 
 <a name="using-classes-as-listeners"></a>
 ## Utilisation de classes en tant qu'écouteur
@@ -49,26 +49,26 @@ Dans certains car, vous pourriez vouloir utiliser une classe pour gérer un év�
 
 **Enregistrement d'une classe écouteur**
 
-	Event::listen('user.login', 'LoginHandler');
+    Event::listen('user.login', 'LoginHandler');
 
 Par défaut, la méthode `handle` de la classe `LoginHandler` sera appellée:
 
 **Définition d'une classe écouteur d'événement**
 
-	class LoginHandler {
+    class LoginHandler {
 
-		public function handle($data)
-		{
-			//
-		}
+        public function handle($data)
+        {
+            //
+        }
 
-	}
+    }
 
 Si vous ne souhaitez pas utiliser la méthode par défaut `handle`, vous pouvez préciser le nom d'une méthode que vous souhaitez utiliser:
 
 **Spécifie quelle méthode doit être utilisée**
 
-	Event::listen('user.login', 'LoginHandler@onLogin');
+    Event::listen('user.login', 'LoginHandler@onLogin');
 
 <a name="queued-events"></a>
 ## Mise en attente d'un événement
@@ -77,14 +77,14 @@ En utilisant les méthodes `queue` et `flush`, vous pouvez mettre en attente un 
 
 **Enregistrement d'un événement en attente**
 
-  Event::queue('foo', array($user));
+    Event::queue('foo', array($user));
 
 **Enregistrement d'un videur**
 
-  Event::flusher('foo', function($user)
-  {
-    //
-  });
+    Event::flusher('foo', function($user)
+    {
+        //
+    });
 
 Finallement, vous pouvez executer le "videur" et vider tous les événement en attente avec la méthode `flush` :
 
@@ -97,43 +97,43 @@ Les classes d'abonnements sont des classes qui peuvent souscrire à plusieurs é
 
 **Définition d'une classe d'abonnements**
 
-	class UserEventHandler {
+    class UserEventHandler {
 
-		/**
-		 * Handle user login events.
-		 */
-		public function onUserLogin($event)
-		{
-			//
-		}
+        /**
+         * Handle user login events.
+         */
+        public function onUserLogin($event)
+        {
+            //
+        }
 
-		/**
-		 * Handle user logout events.
-		 */
-		public function onUserLogout($event)
-		{
-			//
-		}
+        /**
+         * Handle user logout events.
+         */
+        public function onUserLogout($event)
+        {
+            //
+        }
 
-		/**
-		 * Register the listeners for the subscriber.
-		 *
-		 * @param  Illuminate\Events\Dispatcher  $events
-		 * @return array
-		 */
-		public static function subscribe($events)
-		{
-			$events->listen('user.login', 'UserEventHandler@onUserLogin');
+        /**
+         * Register the listeners for the subscriber.
+         *
+         * @param  Illuminate\Events\Dispatcher  $events
+         * @return array
+         */
+        public static function subscribe($events)
+        {
+            $events->listen('user.login', 'UserEventHandler@onUserLogin');
 
-			$events->listen('user.logout', 'UserEventHandler@onUserLogout');
-		}
+            $events->listen('user.logout', 'UserEventHandler@onUserLogout');
+        }
 
-	}
+    }
 
 Une fois que la classe a été définie, elle doit être enregistrer avec la classe `Event`.
 
 **Enregistrement d'une classe d'abonnements**
 
-	$subscriber = new UserEventHandler;
+    $subscriber = new UserEventHandler;
 
-	Event::subscribe($subscriber);
+    Event::subscribe($subscriber);

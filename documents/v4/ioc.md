@@ -21,14 +21,14 @@ Il y a deux manière pour faire résoudre des dépendances au conteneur IoC : vi
 
 **Liaison d'un type dans le conteneur**
 
-	App::bind('foo', function()
-	{
-		return new FooBar;
-	});
+    App::bind('foo', function()
+    {
+        return new FooBar;
+    });
 
 **Résolution d'un type depuis le conteneur**
 
-	$value = App::make('foo');
+    $value = App::make('foo');
 
 Quand la méthode `App::make` est appellée, la fonction anonyme est executée et le résultat est retourné.
 
@@ -36,18 +36,18 @@ Parfois, vous voudrez lier quelquechose dans le conteneur qui ne doit pas être 
 
 **Liaison d'un type "partagé" dans le conteneur**
 
-	App::singleton('foo', function()
-	{
-		return new FooBar;
-	});
+    App::singleton('foo', function()
+    {
+        return new FooBar;
+    });
 
 Vous pouvez également lié un objet existant au conteneur en utilisant la méthode `instance` :
 
 **Laision d'un object existant dans le conteneur**
 
-	$foo = new Foo;
+    $foo = new Foo;
 
-	App::instance('foo', $foo);
+    App::instance('foo', $foo);
 
 <a name="automatic-resolution"></a>
 ## Résolution automatique
@@ -56,16 +56,16 @@ Le conteneur IoC est assez puissant pour résoudre des classes sans aucune confi
 
 **Résolution automatique d'une classe**
 
-	class FooBar {
+    class FooBar {
 
-		public function __construct(Baz $baz)
-		{
-			$this->baz = $baz;
-		}
+        public function __construct(Baz $baz)
+        {
+            $this->baz = $baz;
+        }
 
-	}
+    }
 
-	$fooBar = App::make('FooBar');
+    $fooBar = App::make('FooBar');
 
 Malgrès que nous n'avons pas enregistrer la classe FooBar dans le conteneur, ce dernier a réussi à résoudre la classe, et même à injecter la dépendance `Baz` automatiquement !
 
@@ -75,18 +75,18 @@ Cependant, dans certains cas, une classe peut dépendre d'une interface et non d
 
 **Liaison d'une implémentation d'une interface**
 
-	App::bind('UserRepositoryInterface', 'DbUserRepository');
+    App::bind('UserRepositoryInterface', 'DbUserRepository');
 
 Maintenant, imaginons le contrôleur suivant :
 
-	class UserController extends BaseController {
+    class UserController extends BaseController {
 
-		public function __construct(UserRepositoryInterface $users)
-		{
-			$this->users = $users;
-		}
+        public function __construct(UserRepositoryInterface $users)
+        {
+            $this->users = $users;
+        }
 
-	}
+    }
 
 Etant donné que nous avons lié l'interface `UserRepositoryInterface`, le type concret `DbUserRepository` sera automatiquement injecté dans ce contrôleur quand celui ci sera créé.
 
@@ -97,21 +97,21 @@ Laravel fournit plusieurs opportunités d'utiliser le conteneur IoC pour augment
 
 **Déclaration de dépendance par typage object implicite dans le contrôleur**
 
-	class OrderController extends BaseController {
+    class OrderController extends BaseController {
 
-		public function __construct(OrderRepository $orders)
-		{
-			$this->orders = $orders;
-		}
+        public function __construct(OrderRepository $orders)
+        {
+            $this->orders = $orders;
+        }
 
-		public function getIndex()
-		{
-			$all = $this->orders->all();
+        public function getIndex()
+        {
+            $all = $this->orders->all();
 
-			return View::make('orders', compact('all'));
-		}
+            return View::make('orders', compact('all'));
+        }
 
-	}
+    }
 
 Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dans le contrôleur. Cela signifie que lors des  [tests unitaires](/docs/v4/doc/testing), une classe d'imitation (mock) `OrderRepository` peut être liée dans le conteneur et injectée dans le contrôleur, vous permettant de créer facilement des bouchons (stub) de la couche d'intéraction avec la base de donnée.
 
@@ -119,11 +119,11 @@ Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dan
 
 **Exemple d'utilisation de l'IoC**
 
-	Route::filter('foo', 'FooFilter');
+    Route::filter('foo', 'FooFilter');
 
-	View::composer('foo', 'FooComposer');
+    View::composer('foo', 'FooComposer');
 
-	Event::listen('foo', 'FooHandler');
+    Event::listen('foo', 'FooHandler');
 
 <a name="service-providers"></a>
 ## Fournisseur de services
@@ -134,19 +134,19 @@ Pour créer un fournisseur de service, votre classe doit hériter de la classe `
 
 **Définition d'un fournisseur de service**
 
-	use Illuminate\Support\ServiceProvider;
+    use Illuminate\Support\ServiceProvider;
 
-	class FooServiceProvider extends ServiceProvider {
+    class FooServiceProvider extends ServiceProvider {
 
-		public function register()
-		{
-			$this->app->bind('foo', function()
-			{
-				return new Foo;
-			});
-		}
+        public function register()
+        {
+            $this->app->bind('foo', function()
+            {
+                return new Foo;
+            });
+        }
 
-	}
+    }
 
 Notez quand dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
 
@@ -157,9 +157,9 @@ Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pou
 
 **Enregistrement d'un écouteur de résolution**
 
-  App::resolving(function($object)
-  {
-    //
-  });
+    App::resolving(function($object)
+    {
+        //
+    });
 
 Note that the object that was resolved will be passed to the callback.

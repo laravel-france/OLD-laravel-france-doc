@@ -5,6 +5,7 @@
 - [Environnement de test](#test-environment)
 - [Appel de routes depuis un test](#calling-routes-from-tests)
 - [Mockage de Facades](#mocking-facades)
+- [Assertions du Framework](#framework-assertions)
 - [Méthodes "Helper"](#helper-methods)
 
 <a name="introduction"></a>
@@ -21,14 +22,14 @@ Pour créer un cas de test, créez simplement un nouveau fichier de test dans le
 
 **Exemple de classe de test**
 
-	class FooTest extends TestCase {
+    class FooTest extends TestCase {
 
-		public function testSomethingIsTrue()
-		{
-			$this->assertTrue(true);
-		}
+        public function testSomethingIsTrue()
+        {
+            $this->assertTrue(true);
+        }
 
-	}
+    }
 
 Vous pouvez exécuter tous vos tests e lançant la commande `phpunit` dans votre terminal.
 
@@ -46,37 +47,37 @@ Vous pouvez facilement appeler une de vos routes pour un test en utilisant la m�
 
 **Appel d'une route depuis un test**
 
-	$response = $this->call('GET', 'user/profile');
+    $response = $this->call('GET', 'user/profile');
 
-	$response = $this->call($method, $uri, $parameters, $files, $server, $content);
+    $response = $this->call($method, $uri, $parameters, $files, $server, $content);
 
 Vous pouvez ensuite inspecter l'objet `Illuminate\Http\Response` retourné :
 
-	$this->assertEquals('Hello World', $response->getContent());
+    $this->assertEquals('Hello World', $response->getContent());
 
 Vous pouvez également appeler un contrôleur depuis un test :
 
 **Appel d'un contrôleur depuis un test**
 
-	$response = $this->action('GET', 'HomeController@index');
+    $response = $this->action('GET', 'HomeController@index');
 
-	$response = $this->action('GET', 'UserController@profile', array('user' => 1));
+    $response = $this->action('GET', 'UserController@profile', array('user' => 1));
 
 La méthode `getContent` retournera le contenu de la chaîne évaluée de la réponse. Si votre route retourne une instance de la classe `View`, vous pouvez accéder à la vue en utilisant la propriété `original` :
 
-	$view = $response->original;
+    $view = $response->original;
 
-	$this->assertEquals('John', $view['name']);
+    $this->assertEquals('John', $view['name']);
 
 ### Inspecteur de DOM
 
 Vous pouvez également appeler une route et recevoir une instance de l'inspecteur de DOM que vous pouvez utiliser pour regarder le contenu :
 
-	$crawler = $this->client->request('GET', '/');
+    $crawler = $this->client->request('GET', '/');
 
-	$this->assertTrue($this->client->getResponse()->isOk());
+    $this->assertTrue($this->client->getResponse()->isOk());
 
-	$this->assertCount(1, $crawler->filter('h1:contains("Hello World!")'));
+    $this->assertCount(1, $crawler->filter('h1:contains("Hello World!")'));
 
 Pour plus d'information sur l'utilisateur de l'inspecteur de DOM, visitez sa [documentation officielle](http://symfony.com/doc/master/components/dom_crawler.html).
 
@@ -85,26 +86,67 @@ Pour plus d'information sur l'utilisateur de l'inspecteur de DOM, visitez sa [do
 
 Lorsque vous testez, vous voudrez souvent mocker un appel à une facade static de Laravel. Par exemple, considerons l'action de contrôleur suivante :
 
-  public function getIndex()
-  {
-    Event::fire('foo', array('name' => 'Dayle'));
+    public function getIndex()
+    {
+        Event::fire('foo', array('name' => 'Dayle'));
 
-    return 'All done!';
-  }
+        return 'All done!';
+    }
 
 Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `shouldReceive`sur la facade, qui retournera une instance d'un mock [Mockery](https://github.com/padraic/mockery).
 
 **Mockage d'une Facade**
 
-  public function testGetIndex()
-  {
-    Event::shouldReceive('fire')->once()->with(array('name' => 'Dayle'));
+    public function testGetIndex()
+    {
+        Event::shouldReceive('fire')->once()->with(array('name' => 'Dayle'));
 
-    $this->call('GET', '/');
-  }
+        $this->call('GET', '/');
+    }
 
 > **Note:** Vous ne pouvez pas mocker la facade `Request`. A la place, passez les données d'entrées désirées à la méthode `call` lorsque vous executer vos tests.
 
+<a name="framework-assertions"></a>
+## Assertions du Framework
+
+Laravel est libré avec plusieurs méthodes `assert` pour vous facilier les tests :
+
+**Affirme qu'une réponse est OK**
+
+    public function testMethod()
+    {
+        $this->call('GET', '/');
+
+        $this->assertRepsonseIsOk();
+    }
+
+**Affirme qu'une réponse est une redirectio **
+
+    $this->assertRedirectedTo('foo');
+
+    $this->assertRedirectedToRoute('route.name');
+
+    $this->assertRedirectedToAction('Controller@method');
+
+**Affirme qu'une vue à des données**
+
+    public function testMethod()
+    {
+        $this->call('GET', '/');
+
+        $this->assertViewHas('name');
+        $this->assertViewHas('age', $value);
+    }
+
+**Affirme qu'une session à des données**
+
+    public function testMethod()
+    {
+        $this->call('GET', '/');
+
+        $this->assertSessionHas('name');
+        $this->assertSessionHas('age', $value);
+    }
 
 <a name="helper-methods"></a>
 ## Méthodes "Helper"
@@ -115,16 +157,16 @@ Vous pouvez définir l'utilisateur actuellement connecté avec la méthode `be` 
 
 **Défini un utilisateur comme étant connecté**
 
-	$user = new User(array('name' => 'John'));
+    $user = new User(array('name' => 'John'));
 
-	$this->be($user);
+    $this->be($user);
 
 Vous pouvez repopuler votre base de donnée depuis les tests unitaires en utilisateur la méthode `seed` :
 
 **Repopule la base de donnée depuis les tests**
 
-	$this->seed();
+    $this->seed();
 
-	$this->seed($connection);
+    $this->seed($connection);
 
 Plus d'information sur la population de base de donnée dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.

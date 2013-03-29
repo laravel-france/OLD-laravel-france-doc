@@ -170,6 +170,8 @@ Certains packages peuvent contenir des ressources tels que du JavaScript, CSS, d
 
 **Déplace les ressources d'un package vers public**
 
+    php artisan asset:publish
+
 	php artisan asset:publish vendor/package
 
 Si le package se trouve dans le `workbench`, utilisez la directive `--bench` :
