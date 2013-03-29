@@ -283,7 +283,7 @@ Ou, comme d'habitude, avec la propriété dynamique roles :
 
     $roles = User::find(1)->roles;
 
-Si votre nom de table ne suit pas la convention de nommage, passez le nom de la table en tant que second argument à la méthode **has\_and\_belongs\_to\_many** :
+Si votre nom de table ne suit pas la convention de nommage, passez le nom de la table en tant que second argument à la méthode **has\_many\_and\_belongs\_to** :
 
     class User extends Eloquent {
 
