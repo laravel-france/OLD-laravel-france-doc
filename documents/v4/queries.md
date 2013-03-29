@@ -195,7 +195,7 @@ Parfois vous aurez besoin d'utiliser des expressions brutes dans une requête. C
 **Insertion d'une ligne dans une table**
 
 	DB::table('users')->insert(
-		array('email' => 'john@example.com', 'votes' => 0),
+		array('email' => 'john@example.com', 'votes' => 0)
 	);
 
 Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthode `insertGetId` pour insérer la ligne et récuperer son Id :
@@ -203,7 +203,7 @@ Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthod
 **Insertion d'une ligne dans une table et récupération de l'ID dans la ligne créée**
 
 	$id = DB::table('users')->insertGetId(
-		array('email' => 'john@example.com', 'votes' => 0),
+		array('email' => 'john@example.com', 'votes' => 0)
 	);
 
 > **Note:** Si vous utilisez PostgreSQL, la méthode insertGetId assume que la colonne auto-incrémentée s'appelle "id".

@@ -165,6 +165,10 @@ Les routes nommées rendent le agréable le référencement d'une route lors de 
 		//
 	}));
 
+Vous pouvez également spécifié un nom de route pour les actions de contrôleurs :
+
+    Route::get('user/profile', array('as' => 'profile', 'uses' => 'UserController@showProfile'));
+
 Mantenant, vous pouvez utiliser le nom de la route lorsque vous générez une URL ou redirigez l'utilisateur :
 
 	$url = URL::route('profile');

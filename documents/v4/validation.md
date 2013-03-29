@@ -144,6 +144,7 @@ Vous trouverez ci dessous une liste des règles de validation et leurs fonctions
 - [Max](#rule-max)
 - [MIME Types](#rule-mimes)
 - [Min](#rule-min)
+- [Not in](#not-in)
 - [Numeric](#rule-numeric)
 - [Regular Expression](#rule-regex)
 - [Required](#rule-required)
@@ -269,6 +270,11 @@ Le fichier sous validation doit avoir un type MIME qui correspond à une des ext
 #### min:_value_
 
 Le champ sous validation doit avoir une taille minimum de _value_.  Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
+
+<a name="rule-not-in"></a>
+#### not_in:_foo_,_bar_,...
+
+Le champ sous validation ne doit pas être inclu dans la liste de valeurs données.
 
 <a name="rule-numeric"></a>
 #### numeric
