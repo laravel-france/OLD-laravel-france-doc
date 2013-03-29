@@ -95,6 +95,10 @@ Le second argument passé ici à `View::make` est un tableau de données qui doi
 
 Dans l'exemple ci dessus, `$name` sera accessible dans la vue, et aura comme valeur `Steve`.
 
+Vous pouvez également partager des données avec toutes les vues :
+
+    View::share('name', 'Steve');
+
 **Passage d'une sous-vue à une vue**
 
 Vous pouvez également passé une vue à une autre vue. Par exemple, nous pouvons passer une sous-vue qui se trouve dans le fichier `app/views/child/view.php`,à une autre vue de la manière suivante :

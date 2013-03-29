@@ -19,7 +19,7 @@ De plus, le fichier de configuration du cache fournit diverses options. Consulte
 
     Cache::put('key', 'value', $minutes);
 
-**Stocker un élément dans e cache si il n'existe pas**
+**Stocker un élément dans le cache si il n'existe pas**
 
     Cache::add('key', 'value', $minutes);
 

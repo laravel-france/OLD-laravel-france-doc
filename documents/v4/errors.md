@@ -65,7 +65,7 @@ Vous pouvez enregistrer un gestionnaire qui gère toutes les erreurs 404 de votr
 
     App::missing(function($exception)
     {
-        return View::make('errors.missing');
+        return Response::view('errors.missing', array(), 404);
     });
 
 <a name="logging"></a>

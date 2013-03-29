@@ -55,7 +55,7 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 
 **Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connécté à votre application.
 
-**Connecter un utilisateur avec des conditions particulières**
+**Connecter un utilisateur avec des conditions**
 
 Vous pouvez ajouter des conditions particulières pour vous assurer qu'un utiliseur est par exemple actif, et non suspendu :
 
@@ -69,6 +69,10 @@ Une fois qu'un utilisateur est connécté, vous pouvez accéder à son modèle/e
 **Accès à l'utilisateur connécté**
 
 	$email = Auth::user()->email;
+
+Pour connecter simplement un utilisateur dans votre application en utilisant son Id, utilisez la méthode `loginUsingId` :
+
+  Auth::loginUsingId(1);
 
 La méthode `validate` vous permet de valider que les identifiants d'un utilisateur sont corrects sans le connecter à l'application :
 
@@ -204,7 +208,7 @@ Une fois de plus, remarquez que nous utilisons `Session` pour afficher les erreu
 
 		return Password::reset($credentials, function($user, $password)
 		{
-			$user->password = $password;
+			$user->password = Hash::make($password);
 
 			$user->save();
 

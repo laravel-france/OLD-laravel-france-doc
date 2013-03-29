@@ -32,7 +32,7 @@ Les fichiers de langues sont simplements des tableaux avec des clés. Par exempl
 		'welcome' => 'Bienvenue sur notre application'
 	);
 
-La langue par défaut est définie dans le fichier de configuration `app/config/app.php`. Vous pouvez changer la langue durant l'execution grâce à la méthode `App::locale` :
+La langue par défaut est définie dans le fichier de configuration `app/config/app.php`. Vous pouvez changer la langue durant l'execution grâce à la méthode `App::setLocale` :
 
 **Changement de langue durant l'execution**
 

@@ -9,6 +9,7 @@
 - [Relations](#relationships)
 - [Chargements liés](#eager-loading)
 - [Insertion de modèles liés](#inserting-related-models)
+- [Mise à jour du Timestamps des parents](#touching-parent-timestamps)
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
@@ -39,6 +40,8 @@ Notez que nous n'avons pas indiqué à Eloquent quelle table doit être utilisé
 
     }
 
+Eloquent va également présumer que votre table à une clé primaire nommée `id`. Vous pouvez définir une propriété `primaryKey` pour surcharger cette convention. De la même manière, vous pouvez définir une propriété `connection` pour surcharger le nom de la connexion qui sera utilisé pour accéder à la table de ce modèle.
+
 > **Note:** Eloquent va également assumé que chaque table à une clé primaire qui s'appelle `id`. Vous pouvez définir une clé primaire à la main en ajoutant une propriété `$primaryKey`.
 
 Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer des enregistrement dans votre table. Notez que vous aurez besoin de créer des colonnes `updated_at` et `created_at`  sur votre table par défaut. Si vous ne voulez pas de ces colonnes, qui sont auto maintenu par Laravel, définissez une propriété `$timestamps` à `false`.
@@ -57,7 +60,7 @@ Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer
 
 **Récupérer un modèle par sa clé primaire ou lancer une exception**
 
-Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouvé, vous permettant d'attraper les exceptions en utilisant un gestionnaire d'événement `App::error` et afficher une page 404.
+Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouvé, vous permettant d'attraper les exceptions en utilisant un gestionnaire d'événement `error` et afficher une page 404.
 
     $model = User::findOrFail(1);
 
@@ -132,6 +135,8 @@ Pour créer un nouvel enregistrement dans la base de donnée pour un modèle, cr
     $user->name = 'John';
 
     $user->save();
+
+**Note:** Typiquement, votre modèle Eloquent aura une clé de type auto-increment. Cependant, si vous souhaitez spécifier votre propre clé, définissez la propriété `incrementing` de votre modèle à `false`.
 
 Vous pouvez également utiliser la méthode `create` Pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retourné par la méthode. Cependant avant de faire cela, vous devrez spécifier soit l'attribut `fillable` ou `guarded` sur le modèle, car tous les modèles Eloquent sont protégés contre l'assignement de masse.
 
@@ -210,7 +215,7 @@ Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méth
 <a name="query-scopes"></a>
 ## Cadres de requête
 
-Les cadres vous permettent de réutiliser facielement des logiques de requêtes dans vos modèles. Pour définir un cadre, prefixez simpelement une méthode du modèle avec `scope`:
+Les cadres vous permettent de réutiliser facilement des logiques de requêtes dans vos modèles. Pour définir un cadre, prefixez simpelement une méthode du modèle avec `scope`:
 
 **Définition d'un cadre de requête**
 
@@ -297,7 +302,7 @@ Nous pouvons accéder aux commentaires du post via la propriété dynamique :
 
     $comments = Post::find(1)->comments;
 
-Si vous avez besoin d'ajouter des contraintes simplémentaires à la récupération de de 'comments', appellez la `comments` et continuez à chainer les conditions :
+Si vous avez besoin d'ajouter des contraintes suplémentaires à la récupération de 'comments', appellez la méthode `comments` et continuez à chainer les conditions :
 
     $comments = Post::find(1)->comments()->where('title', '=', 'foo')->first();
 
@@ -345,6 +350,17 @@ Si vous souhaitez utiliser un nom non conventionnel pour votre table pivot, pass
 Vous pouvez également surchager les clés associées :
 
     return $this->belongsToMany('Role', 'user_roles', 'user_id', 'foo_id');
+
+Bien sur, vous pouvez aussi avoir besoin de définir de la relation dans le modèle `Role` :
+
+    class Role extends Eloquent {
+
+        public function users()
+        {
+            return $this->belongsToMany('User');
+        }
+
+    }
 
 <a name="polymorphic-relations"></a>
 ### Relations polymorphiques
@@ -515,6 +531,10 @@ Vous pouvez également passer un tableau d'attributs qui doivent être stockés 
 
     $user->roles()->attach(1, array('expires' => $expires));
 
+Naturellement, l'opposé de `attach` est `detach` :
+
+    $user->roles()->detach(1);
+
 Vous pouvez également utiliser la méthode `sync` pour attacher des modèles liés. La méthode `sync` accepte un tableau d'IDs à placer dans la table pivot. Une fois cette opération terminée, seul les IDs dans le tableau seront dans la table pivot pour le modèle :
 
 **Utilisation de la méthode Sync pour attacher des modèles liés**
@@ -530,6 +550,31 @@ Vous pouvez également créer une nouveau modèle lié et l'attacher en une simp
 Dans cet exemple, le nouveau modèle `Role` sera sauvegardé et attaché au modèle `User`. Vous pourriez également avoir besoin de passer un tableau d'attributs pour le sauvegarder dans la table de jointure :
 
     User::find(1)->roles()->save($role, array('expires' => $expires));
+
+<a name="touching-parent-timestamps"></a>
+## Mise à jour du Timestamps des parents
+
+Quand un modèle appartient à (`belongsTo`) à un autre modèle, comme un `Comment` appartient à un `Post`, il est souvent utile de mettre à jour les timestamps du parent lorsque le modèle enfant est mis à jour. Par exemple, lorsqu'un commentaire est modifié, nous pourrions mettre à jour le `Post` qui le contient. Eloquent rend cela facile. Ajoutez simplement la propriété `touches` qui contient le nom des relations dans le modèle enfant :
+
+    class Comment extends Eloquent {
+
+        protected $touches = array('post');
+
+        public function post()
+        {
+            return $this->belongsTo('Post');
+        }
+
+    }
+
+Maintenant, quand vous mettre à jour un `Comment`, le `Post` parent aura sa colonne `updated_at` mise à jour :
+
+    $comment = Comment::find(1);
+
+    $comment->text = 'Edit to this comment!';
+
+    $comment->save();
+
 
 <a name="working-with-pivot-tables"></a>
 ## Travail sur les tables pivots

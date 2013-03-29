@@ -86,6 +86,13 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
         $table->dropColumn('votes');
     });
 
+**Suppression de plusieurs colonnes d'une table**
+
+  Schema::table('users', function($table)
+  {
+    $table->dropColumns('votes', 'avatar', 'location');
+  });
+
 <a name="adding-indexes"></a>
 ## Ajout d'index
 

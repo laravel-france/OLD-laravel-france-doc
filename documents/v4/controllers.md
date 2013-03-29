@@ -42,11 +42,13 @@ Vous pouvez également nommer ces routes avec la propriété `as` :
 	Route::get('foo', array('uses' => 'FooController@method',
 											'as' => 'name'));
 
+Pour générer une URL vers une action de contrôleur, utilisez la méthode `URL::action` :
+
+    $url = URL::action('FooController@method');
+
 Vous pouvez accéder au nom de l'action du contrôleur qui est lancé en utilisant la méthode `currentRouteAction` :
 
     $action = Route::currentRouteAction();
-
-> **Note:** Après avoir créé une nouvelle classe, pensez à lancer `composer dump-autoload` depuis la ligne de commande. Cela permettra au framework de charger automatiquement votre classe.
 
 <a name="controller-filters"></a>
 ## Filtres de contrôleurs

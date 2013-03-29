@@ -113,7 +113,7 @@ Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `sho
 <a name="framework-assertions"></a>
 ## Assertions du Framework
 
-Laravel est libré avec plusieurs méthodes `assert` pour vous facilier les tests :
+Laravel est livré avec plusieurs méthodes `assert` pour vous facilier les tests :
 
 **Affirme qu'une réponse est OK**
 
@@ -121,10 +121,10 @@ Laravel est libré avec plusieurs méthodes `assert` pour vous facilier les test
     {
         $this->call('GET', '/');
 
-        $this->assertRepsonseIsOk();
+        $this->assertResponseOk();
     }
 
-**Affirme qu'une réponse est une redirectio **
+**Affirme qu'une réponse est une redirection**
 
     $this->assertRedirectedTo('foo');
 

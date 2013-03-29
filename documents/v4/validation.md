@@ -144,6 +144,7 @@ Vous trouverez ci dessous une liste des règles de validation et leurs fonctions
 - [Max](#rule-max)
 - [MIME Types](#rule-mimes)
 - [Min](#rule-min)
+- [Not in](#not-in)
 - [Numeric](#rule-numeric)
 - [Regular Expression](#rule-regex)
 - [Required](#rule-required)
@@ -270,6 +271,11 @@ Le fichier sous validation doit avoir un type MIME qui correspond à une des ext
 
 Le champ sous validation doit avoir une taille minimum de _value_.  Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
 
+<a name="rule-not-in"></a>
+#### not_in:_foo_,_bar_,...
+
+Le champ sous validation ne doit pas être inclu dans la liste de valeurs données.
+
 <a name="rule-numeric"></a>
 #### numeric
 
@@ -377,6 +383,8 @@ Laravel fournit une variété de règles de validations utiles, cependant vous p
 	{
 		return $value == 'foo';
 	});
+
+> **Note:** Le nom de la règle passée à la méthode `extend` doit être en "snake_case".
 
 La fonction anonyme de validation reçoit trois arguments : le nom du champ (`$attribute`) qui se fait valider, la valeur (`$value`) du champ, et le tableau des paramètres (`$parameters`) passés à la règles
 
