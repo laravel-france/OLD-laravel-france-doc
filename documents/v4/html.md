@@ -67,6 +67,10 @@ Maintenant, quand vous générez un élément de formulaire, comme un champ text
     2. Valeurs passées explicitements
     3. Données des attributs du modèle
 
+Cela vous permet de construire des formulaires plus rapidement car cela lie les valeurs du modèle, et en plus cela re-rempli votre formulaire si il y a une erreur de validation sur le serveur !
+
+> **Note:** Lorsque vous utilisez `Form::model`, n'oubliez pas de fermer vos formulaires avec `Form::close` !
+
 <a name="labels"></a>
 ## Labels
 
