@@ -401,9 +401,9 @@ Ensuite, vous devez enregistrer votre classe de validation personnalisée :
 
 **Enregistrement d'une nouvelle classe de validation**
 
-	Validator::resolver(function()
+	Validator::resolver(function($translator, $data, $rules, $messages)
 	{
-		return new CustomValidator;
+		return new CustomValidator($translator, $data, $rules, $messages);
 	});
 
 Lorsque vous créez une règle de validation personnalisée, vous pourriez avoir besoin de créer des jokers personnalisés pour les messages d'erreurs. Vous pouvez les créer en ajoutant une methode `replaceXXX` au validateur.
