@@ -30,9 +30,9 @@ La manière la plus facile de créer un package Laravel est d'utiliser la comman
 
 **Execution de la commande Artistan `workbench`**
 
-	php artisan workbench vendor/package
+	php artisan workbench vendor/package --resources
 
-Le nom du vendor est une manière de distinguer votre package de celui des autres qui aurait le même nom. Par exemple, Si je (Taylor Otwell) créerais un nouveau package nommé "Zapper", le nom du vendor pourrait être `Taylor` et le nom du package serait `Zapper`.
+Le nom du vendor est une manière de distinguer votre package de celui des autres qui aurait le même nom. Par exemple, Si je (Taylor Otwell) créerais un nouveau package nommé "Zapper", le nom du vendor pourrait être `Taylor` et le nom du package serait `Zapper`. Par défautl, le framework va créer un package générique; cependant, la commande `resource` dit au workbench de générer le package avec les dossiers spécifiques de Laravel tel que `migrations`, `views`, `config`, etc.
 
 Une fois que la commande `workbench` a été executée, votre package sera disponible dans le dossier `workbench` de votre installation Laravel. Ensuite, vous devez enregistrer le `ServiceProvider` qui a été créé pour votre package. Vous devez enregistrer le fournisseur en l'ajoutant dans le tableau `providers` du fichier de configuration `app/config/app.php`. Cela dira à Laravel de charger votre package lorsque votre application démarre. Les fournisseurs de services utilise une convention de nommage de la forme suivante : `[NomDuPackage]ServiceProvider`. Donc, en utilisant l'exemple précédent, vous ajouterez la ligne `Taylor\Zapper\ZapperServiceProvider` au tableau `providers`.
 
