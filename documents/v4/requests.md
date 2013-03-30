@@ -36,11 +36,7 @@ Les entrées utilisateurs sont accessibles facilement à l'aide de quelques mét
 
 	$input = Input::except('credit_card');
 
-Certaines librairies Javascript comme Backbone peuvent transmettre à l'application les entrées au format JSON.
-
-**Retrouver une entrée de format JSON**
-
-	$input = Input::json();
+Certaines librairies Javascript comme Backbone peuvent transmettre à l'application les entrées au format JSON. Vous pouvez accéder à ces données via `Input::get()` comme d'habitude.
 
 <a name="cookies"></a>
 ## Utilisation de cookies

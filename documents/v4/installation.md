@@ -17,7 +17,6 @@ Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances.
 
 Une fois que Composer est installé, téléchargez la [dernière version](https://github.com/laravel/laravel/archive/develop.zip) du framework, et extrayez son contenu dans un dossier sur votre serveur. Ensuite, à la racine de votre application Laravel, lancez la commande `php composer.phar install` pour installer toutes les dépendances du framework. Ce process requis que git soit installé sur le serveur pour terminer l'installation.
 
-
 <a name="server-requirements"></a>
 ## Prérequis
 
@@ -36,6 +35,11 @@ Laravel n'a presque pas besoin de configuration pour fonctionner. En fait, vous 
 <a name="permissions"></a>
 ### Permissions
 Laravel a besoin que le serveur web ai un accès en écriture sur les dossiers à l'intérieur de app/storage.
+
+<a name="paths"></a>
+### Chemins
+
+Plusieurs chemins des dossiers du Framework sont configurable. Pour changer leurs positions, regardez le fichier `bootstrap/paths.php`.
 
 <a name="pretty-urls"></a>
 ## Des URLs propres

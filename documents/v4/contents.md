@@ -1,4 +1,4 @@
- - [Acceuil](/docs/v4/doc/home)
+ - [Accueil](/docs/v4/doc/home)
  <a name="preface"></a>
 ### Préface
  - [Introduction](/docs/v4/doc/introduction)
@@ -17,6 +17,7 @@
 ### Aller plus loin
  - [La gestion du cache](/docs/v4/doc/cache)
  - [Les événements](/docs/v4/doc/events)
+ - [Formulaires & HTML](/docs/v4/doc/html)
  - [Le conteneur de dépendances](/docs/v4/doc/ioc)
  - [Traduction & Localisation](/docs/v4/doc/localization)
  - [Email](/docs/v4/doc/mail)
@@ -27,19 +28,16 @@
  - [Les sessions](/docs/v4/doc/session)
  - [Les templates](/docs/v4/doc/templates)
  - [Les tests unitaires](/docs/v4/doc/testing)
- - [La validation (en)](/docs/v4/doc/validation)
+ - [La validation](/docs/v4/doc/validation)
  <a name="base-de-donnees"></a>
 ### Base de données
  - [Les bases](/docs/v4/doc/database)
- - [Le requêteur (en)](/docs/v4/doc/queries)
- - [L'ORM Eloquent (en)](/docs/v4/doc/eloquent)
- - [La construction du schéma (en)](/docs/v4/doc/schema)
- - [Les migrations & et la population (en)](/docs/v4/doc/migrations)
- - [Redis (en)](/docs/v4/doc/redis)
+ - [Query Builder](/docs/v4/doc/queries)
+ - [L'ORM Eloquent](/docs/v4/doc/eloquent)
+ - [Le constructeur de schéma](/docs/v4/doc/schema)
+ - [Les migrations & et la population](/docs/v4/doc/migrations)
+ - [Redis](/docs/v4/doc/redis)
  <a name="artisan-cli"></a>
 ### Artisan CLI
  - [Présentation](/docs/v4/doc/artisan)
- - [Développement (en)](/docs/v4/doc/commands)
- <a name="elements-avances"></a>
-### Éléments avancés
- - [Architecture](#)
+ - [Développement de commandes](/docs/v4/doc/commands)

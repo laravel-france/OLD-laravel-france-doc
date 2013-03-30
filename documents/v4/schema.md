@@ -1,110 +1,123 @@
-# Schema Builder
+# Le constructeur de schéma
 
 - [Introduction](#introduction)
-- [Creating & Dropping Tables](#creating-and-dropping-tables)
-- [Adding Columns](#adding-columns)
-- [Dropping Columns](#dropping-columns)
-- [Adding Indexes](#adding-indexes)
-- [Dropping Indexes](#dropping-indexes)
+- [Création et suppression de table](#creating-and-dropping-tables)
+- [Ajout de colonnes](#adding-columns)
+- [Suppression de colonnes](#dropping-columns)
+- [Ajout d'index](#adding-indexes)
+- [Suppression d'index](#dropping-indexes)
 
 <a name="introduction"></a>
 ## Introduction
 
-The Laravel `Schema` class provides a database agnostic way of manipulating tables. It works well with all of the databases supported by Laravel, and has a unified API across all of these systems.
+La classe `Schema` de Laravel fournit une manière indépendante du type de base de donnée pour manipuler les tables. Le constructeur marche bien avec toutes les bases de données supportées par Laravel, et a une API unifiée pour tous ces systèmes.
 
 <a name="creating-and-dropping-tables"></a>
-## Creating & Dropping Tables
+## Création et suppression de table
 
-To create a new database table, the `Schema::create` method is used:
+Pour créer une nouvelle table, la méthode `Schema::create` est utilisée :
 
-	Schema::create('users', function($table)
-	{
-		$table->increments('id');
-	});
+    Schema::create('users', function($table)
+    {
+        $table->increments('id');
+    });
 
-The first argument passed to the `create` method is the name of the table, and the second is a `Closure` which will receive a `Blueprint` object which may be used to define the new table.
+Le premier argument passé à la méthode `create` est le nom de la tabnle, et le second argument est une fonction anonyme, qui va recevoir un objet objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
 
-To specify which connection the schema operation should take place on, use the `Schema::connection` method:
+Pour spécifier quelle connexion doit être utilisée par le constructeur de schéma, Utilisez la méthode `Schema::connection` :
 
-	Schema::connection('foo')->create('users', function($table)
-	{
-		$table->increments('id'):
-	});
+    Schema::connection('foo')->create('users', function($table)
+    {
+        $table->increments('id'):
+    });
 
-To drop a table, you may use the `Schema::drop` method:
+Pour supprimer une table, vous pouvez utiliser la méthode `Schema::drop` :
 
-	Schema::drop('users');
+    Schema::drop('users');
 
-	Schema::dropIfExists('users');
+    Schema::dropIfExists('users');
 
 <a name="adding-columns"></a>
-## Adding Columns
+## Ajout de colonnes
 
-To update an existing table, we will use the `Schema::table` method:
+Pour éditer une table existante, nous utiliserons la méthode `Schema::table` :
 
-	Schema::table('users', function($table)
-	{
-		$table->string('email');
-	});
+    Schema::table('users', function($table)
+    {
+        $table->string('email');
+    });
 
-The table builder contains a variety of column types that you may use when building your tables:
+Le constructeur de table contient une variété de type de colonne qui vous pouvez utiliser pour construire vos tables :
 
-Command  | Description
+Commande  | Description
 ------------- | -------------
-`$table->increments('id');`  |  Incrementing ID to the table (primary key).
-`$table->string('email');`  |  VARCHAR equivalent column
-`$table->string('name', 100);`  |  VARCHAR equivalent with a length
-`$table->integer('votes');`  |  INTEGER equivalent to the table
-`$table->float('amount');`  |  FLOAT equivalent to the table
-`$table->decimal('amount', 5, 2);`  |  DECIMAL equivalent with a precision and scale
-`$table->boolean('confirmed');`  |  BOOLEAN equivalent to the table
-`$table->date('created_at');`  |  DATE equivalent to the table
-`$table->dateTime('created_at');`  |  DATETIME equivalent to the table
-`$table->time('sunrise');`  |  TIME equivalent to the table
-`$table->timestamp('added_on');`  |  TIMESTAMP equivalent to the table
-`$table->timestamps();`  |  Adds **created\_at** and **updated\_at** columns
-`$table->text('description');`  |  TEXT equivalent to the table
-`$table->binary('data');`  |  BLOB equivalent to the table
-`$table->enum('choices', array('foo', 'bar'));` | ENUM equivalent to the table
-`->nullable()`  |  Designate that the column allows NULL values
-`->default($value)`  |  Declare a default value for a column
-`->unsigned()`  |  Set INTEGER to UNSIGNED
+`$table->increments('id');`  |  Clé primaire de type auto-incrémentale.
+`$table->string('email');`  |  Equivalent de VARCHAR
+`$table->string('name', 100);`  |  Equivalent de VARCHAR avec une taille
+`$table->integer('votes');`  |  Equivalent d'INTEGER
+`$table->float('amount');`  |  Equivalent de FLOAT
+`$table->decimal('amount', 5, 2);`  |  Equivalent de DECIMAL avec une précision et une echelle
+`$table->boolean('confirmed');`  |  Equivalent de BOOLEAN
+`$table->date('created_at');`  |  Equivalent de DATE
+`$table->dateTime('created_at');`  |  Equivalent de DATETIME
+`$table->time('sunrise');`  |  Equivalent de TIME
+`$table->timestamp('added_on');`  |  Equivalent de TIMESTAMP
+`$table->timestamps();`  |  Ajoute les colonnes **created\_at** et **updated\_at**
+`$table->text('description');`  |  Equivalent de TEXT
+`$table->binary('data');`  |  Equivalent de BLOB
+`$table->enum('choices', array('foo', 'bar'));` | Equivalent de ENUM
+`->nullable()`  |  Designe une colonne qui autorise NULL
+`->default($value)`  |  Déclare une valeur par défaut pour la colonne
+`->unsigned()`  |  Défini un INTEGER comme étant UNSIGNED
+
+Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `after` pour spécifier l'ordre des colonnes :
+
+**Utilisation de after sur MySQL**
+
+    $table->string('name')->after('email');
 
 <a name="dropping-columns"></a>
-## Dropping Columns
+## Suppression de colonnes
 
-**Dropping A Column From A Database Table**
+**Suppression d'une colonne d'une table**
 
-	Schema::table('users', function($table)
-	{
-		$table->dropColumn('votes');
-	});
+    Schema::table('users', function($table)
+    {
+        $table->dropColumn('votes');
+    });
+
+**Suppression de plusieurs colonnes d'une table**
+
+  Schema::table('users', function($table)
+  {
+    $table->dropColumns('votes', 'avatar', 'location');
+  });
 
 <a name="adding-indexes"></a>
-## Adding Indexes
+## Ajout d'index
 
-The schema builder supports several types of indexes. There are two ways to add them. First, you may fluently define them on a column definition, or you may add them separately:
+Le constructeur de schema supporte plusieurs types d'indices. Il y a deux manières de les ajouter. La première est de manière fluide, lors de la définition d'une colonne :
 
-**Fluently Creating A Column And Index**
+**Crée de manière fluide une colonne et un index**
 
-	$table->string('email')->unique();
+    $table->string('email')->unique();
 
-Or, you may choose to add the indexes on separate lines. Below is a list of all available index types:
+Ou, vous pouvez choisir d'ajouter les indices sur des lignes séparés. Vous trouverez ci dessous une liste des types d'index:
 
-Command  | Description
+Commande  | Description
 ------------- | -------------
-`$table->primary('id');`  |  Adding a primary key
-`$table->primary(array('first', 'last'));`  |  Adding composite keys
-`$table->unique('email');`  |  Adding a unique index
-`$table->index('state');`  |  Adding a basic index
+`$table->primary('id');`  |  Ajout d'une clé primaire
+`$table->primary(array('first', 'last'));`  |  Ajout d'une clé primaire composite
+`$table->unique('email');`  |  Ajout d'un index d'unicité
+`$table->index('state');`  |  Ajout d'un index basique
 
 <a name="dropping-indexes"></a>
-## Dropping Indexes
+## Suppression d'index
 
-To drop index you must specify the index's name. Laravel assigns a reasonable name to the indexes by default. Simply concatenate the table name, the names of the column in the index, and the index type. Here are some examples:
+Pour supprimer un index, vous devez spécifier le nom de l'index. Laravel assigne un nom raisonnable aux indices par défaut. Concatenez simplement le nom de la table, le nom des colonnes dans l'index, et le type d'index. Voici quelques exemples :
 
 Command  | Description
 ------------- | -------------
-`$table->dropPrimary('users_id_primary');`  |  Dropping a primary key from the "users" table
-`$table->dropUnique('users_email_unique');`  |  Dropping a unique index from the "users" table
-`$table->dropIndex('geo_state_index');`  |  Dropping a basic index from the "geo" table
+`$table->dropPrimary('users_id_primary');`  |  Supprime une clé primaire de la table "users"
+`$table->dropUnique('users_email_unique');`  |  Supprime une clé d'unicité de la table "users"
+`$table->dropIndex('geo_state_index');`  |  Supprime une clé basique de la table "geo"

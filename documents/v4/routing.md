@@ -10,6 +10,7 @@
 - [Liaison de modèle à une route](#route-model-binding)
 - [Lancer une erreur 404](#throwing-404-errors)
 - [Contrôleurs de resources](#resource-controllers)
+- [Route avec Locale](#locale-routing)
 
 <a name="basic-routing"></a>
 ## Routage basique
@@ -43,6 +44,10 @@ La plupart des routes de votre application seront définis dans le fichier `app/
 	{
 		return 'Must be over HTTPS';
 	}));
+
+Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire utilisez la méthode `URL::to` :
+
+    $url = URL::to('foo');
 
 <a name="route-parameters"></a>
 ## Paramètres de routes
@@ -95,7 +100,7 @@ Les filtres de routes fournissent une manière simple de limiter l'accès à cer
 		}
 	});
 
-Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée.
+Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée, et les filtres `after` seront annulés également.
 
 **Attachement d'un filtre à une route**
 
@@ -165,11 +170,19 @@ Les routes nommées rendent le agréable le référencement d'une route lors de 
 		//
 	}));
 
+Vous pouvez également spécifié un nom de route pour les actions de contrôleurs :
+
+    Route::get('user/profile', array('as' => 'profile', 'uses' => 'UserController@showProfile'));
+
 Mantenant, vous pouvez utiliser le nom de la route lorsque vous générez une URL ou redirigez l'utilisateur :
 
 	$url = URL::route('profile');
 
 	$redirect = Redirect::route('profile');
+
+Vous pouvez accéder au nom de la route qui est actuellement utilisé par la méthode `currentRouteName` :
+
+    $name = Route::currentRouteName();
 
 <a name="route-groups"></a>
 ## Routes groupées
@@ -266,3 +279,19 @@ Plus d'informations sur la gestion des exceptions 404 et l'utilisation de répon
 Les contrôleurs de resources rendent plus facile la construction de contrôleurs RESTful autour d'une resource. 
 
 Voir la documentation des [contrôleurs](/docs/v4/doc/controllers#resource-controllers) pour plus d'informations.
+
+<a name="locale-routing"></a>
+## Route avec locale
+
+Lorsque vous construisez des applications qui supportent de multiples langues, vous pourriez vouloir inclure la langue dans l'URI, comme ceci : `http://yourapp.com/fr/toto/titi`. Laravel rend cela simple. Pour commencer, listez les locales que vous voulez supporter dans l'option `locales` de votre fichier de configuration `app/config/app.php`. Ces locales doivent correspondrent aux locales de votre dossier `app/lang`.
+
+**Ajout de locales dans la configuration**
+
+    'locales' => array('en', 'fr', 'nl');
+
+C'est tout ! Vous pouvez maintenant accéder à vos routes d'application avec n'importe laquelle de ces locales préfixée à l'URI. Quand vous le faites, la locale par défaut pour la classe `Lang` sera définie automatiquement, et tous les URLs générées par la classe `URL` seront préfixez avec la locale courante.
+
+Pour accéder à la locale en cours, vous pouvez utiliser la méthode `Lang::locale` :
+
+    $locale = Lang::locale();
+
