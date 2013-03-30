@@ -6,7 +6,7 @@
  *
  * This page contains the "introduction" to Laravel.
  */
-Route::get('(:bundle)/(:any?)/doc', function($version="v3")
+Route::get('(:bundle)/(:any?)/doc', array('as' => 'doc_home', function($version="v3")
 {
     if(!document_exists($version.DIRECTORY_SEPARATOR.'home')) return Response::error('404');
 
@@ -21,7 +21,7 @@ Route::get('(:bundle)/(:any?)/doc', function($version="v3")
         ->with('version', $version)
         ->with('bc_title', 'Documentation de Laravel '.$version)
         ->with('sidebar', document($version.DIRECTORY_SEPARATOR.'contents'));
-});
+}));
 
 /**
  * Handle documentation routes for sections and pages.
