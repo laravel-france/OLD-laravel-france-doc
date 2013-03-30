@@ -1,4 +1,4 @@
-# Documentation de laravel v4
+# Documentation de Laravel v4
 
 La documentation est **en cours de traduction**. Vous pouvez y contribuer sur le dépôt github suivant :
 

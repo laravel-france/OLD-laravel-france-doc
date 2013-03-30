@@ -1,7 +1,7 @@
-Guide laravel France
+Guide Laravel France
 ====================
 
-Ce repository contient le guide du site laravel France. Vous pouvez apporter facilement vos corrections de la manière suivante :
+Ce repository contient le guide du site Laravel France. Vous pouvez apporter facilement vos corrections de la manière suivante :
 
 - Sur github, faites un fork du projet
 - **Placez vous sur la branche develop si ce n'est pas déjà le cas**

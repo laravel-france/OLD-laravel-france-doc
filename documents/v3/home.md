@@ -39,7 +39,7 @@ Il y a beaucoup de choses qui rendent Laravel différent des autres frameworks, 
 - **Le conteneur IoC** (Inversion de Contrôle) est un injecteur de dépendances, qui vous permet donc de générer des objets, et également d'instancier des singletons. Grâce à l'IoC, vous ne devriez que très rarement instancié des bibliothèques externes. Cela signifie également que ces objets sont accessibles partout dans votre code, le rendant ainsi plus flexible et moins monolithique. 
 - **Les migrations** vous permettent de garder le contrôle sur l'évolution des tables de votre base de données. Vous pouvez les générer et les exécuter grâce à l'outil en ligne de commande "Artisan". En équipe, quand votre collègue récupère le projet, il n'aura plus qu'à lancer l'execution de l'outil de migration et sa base de données sera à jour !
 - **Les tests unitaires** ont une place très importante pour Laravel. Le framework Laravel contient lui même une batterie d'une centaine de tests pour s'assurer que les changements apportés à ce dernier ne cassent rien. Laravel vous fournit grâce à "Artisan", l'outil en ligne de commande, la possibilité d'exécuter facilement vos tests.
-- **La pagination automatique** est utile pour ne pas avoir à gérer la logique de pagination. A la place d'obtenir le nombre d'enregistrements dans la base de données puis de sélectionner les données avec un offset et une limite, appelez simplement `paginate` et dites à Laravel où écrire la liste des pages dans votre vue. Laravel s'occupe de tout. Le système de pagination de laravel a été conçu pour être facile à implementer. Une chose à garder en mémoire, qui vaut également pour le reste, ce n'est pas parce que Laravel peut le faire pour vous que vous êtes obligé de le faire par Laravel. Rien ne vous empêche de créer un système manuel !
+- **La pagination automatique** est utile pour ne pas avoir à gérer la logique de pagination. A la place d'obtenir le nombre d'enregistrements dans la base de données puis de sélectionner les données avec un offset et une limite, appelez simplement `paginate` et dites à Laravel où écrire la liste des pages dans votre vue. Laravel s'occupe de tout. Le système de pagination de Laravel a été conçu pour être facile à implementer. Une chose à garder en mémoire, qui vaut également pour le reste, ce n'est pas parce que Laravel peut le faire pour vous que vous êtes obligé de le faire par Laravel. Rien ne vous empêche de créer un système manuel !
 
 Vous avez là un aperçu de ce qui rend Laravel différent des autres frameworks PHP. Toutes ces fonctionnalités et bien d'autres vous seront présentées dans la documentation.
 
@@ -53,9 +53,9 @@ Cependant, l'architecture de Laravel est flexible. Cela signifie que vous pouvez
 Dans cette documentation, nous partirons du principe que l'architecture par défaut est respectée. 
 
 <a name="Laravel-community"></a>
-## La communauté laravel
+## La communauté Laravel
 
-Laravel a la chance d'être supportée par une communauté qui grandit rapidement, avec des membres amicaux et enthousiastes. Les [Forums de laravel[en]](http://forums.Laravel.com) sont une bonne place pour trouver de l'aide, répondre aux questions, proposer des suggestions ou simplement voir ce qui se passe.
+Laravel a la chance d'être supportée par une communauté qui grandit rapidement, avec des membres amicaux et enthousiastes. Les [Forums de Laravel[en]](http://forums.Laravel.com) sont une bonne place pour trouver de l'aide, répondre aux questions, proposer des suggestions ou simplement voir ce qui se passe.
 
 La plupart d'entre nous passons du temps sur le channel IRC [#laravel](irc://freenode.net/laravel) sur le réseau FreeNode [Voir sur le forum comment nous rejoindre[en]](http://forums.laravel.com/viewtopic.php?id=671). C'est une place idéale pour apprendre beaucoup de choses sur le monde du développement web en utilisant Laravel. Vous pouvez poser des questions, répondre aux questions des autres personnes, venir discuter de l'actualité des technos du web, etc... Nous aimons Laravel, et nous adorons en parler, alors n'hésitez pas à nous rejoindre.
 
