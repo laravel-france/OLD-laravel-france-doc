@@ -174,6 +174,12 @@ Pour supprimer un modèle, appellez simplement la méthode `delete` sur une inst
 
     $user->delete();
 
+**Suppression de modèles par leur clé**
+
+    User::destroy(1);
+
+    User::destroy(1, 2, 3);
+
 Bien sur, vous pouvez également supprimé un ensemble de modèle :
 
     $affectedRows = User::where('votes', '>', 100)->delete();
@@ -600,11 +606,11 @@ Si vous souhaitez que que votre table pivot ai les timestamps `created_at` et `u
 
     return $this->belongsToMany('Role')->withTimestamps();
 
-Pour supprimer toutes les lignes de la table pivot pour un modèle, vous pouvez utiliser la méthode `delete` :
+Pour supprimer toutes les lignes de la table pivot pour un modèle, vous pouvez utiliser la méthode `detach` :
 
 **Suppression des lignes de la table pivot**
 
-    User::find(1)->roles()->delete();
+    User::find(1)->roles()->detach();
 
 Notez que cette opération ne supprimera pas les enregistrements de la table `roles`, mais seulement de la table pivot.
 
