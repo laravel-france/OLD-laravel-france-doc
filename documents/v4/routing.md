@@ -10,7 +10,6 @@
 - [Liaison de modèle à une route](#route-model-binding)
 - [Lancer une erreur 404](#throwing-404-errors)
 - [Contrôleurs de resources](#resource-controllers)
-- [Route avec Locale](#locale-routing)
 
 <a name="basic-routing"></a>
 ## Routage basique
@@ -279,19 +278,4 @@ Plus d'informations sur la gestion des exceptions 404 et l'utilisation de répon
 Les contrôleurs de resources rendent plus facile la construction de contrôleurs RESTful autour d'une resource. 
 
 Voir la documentation des [contrôleurs](/docs/v4/doc/controllers#resource-controllers) pour plus d'informations.
-
-<a name="locale-routing"></a>
-## Route avec locale
-
-Lorsque vous construisez des applications qui supportent de multiples langues, vous pourriez vouloir inclure la langue dans l'URI, comme ceci : `http://yourapp.com/fr/toto/titi`. Laravel rend cela simple. Pour commencer, listez les locales que vous voulez supporter dans l'option `locales` de votre fichier de configuration `app/config/app.php`. Ces locales doivent correspondrent aux locales de votre dossier `app/lang`.
-
-**Ajout de locales dans la configuration**
-
-    'locales' => array('en', 'fr', 'nl');
-
-C'est tout ! Vous pouvez maintenant accéder à vos routes d'application avec n'importe laquelle de ces locales préfixée à l'URI. Quand vous le faites, la locale par défaut pour la classe `Lang` sera définie automatiquement, et tous les URLs générées par la classe `URL` seront préfixez avec la locale courante.
-
-Pour accéder à la locale en cours, vous pouvez utiliser la méthode `Lang::locale` :
-
-    $locale = Lang::locale();
 
