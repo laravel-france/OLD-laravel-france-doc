@@ -57,27 +57,25 @@ Tout d'abord, soyez sûr que vous travaillez dans la branche **develop**. Si vou
 
     # git checkout develop
 
-Ensuite, vous voulez être sûr d'être à jour avec le dernier dépôt Laravel. Si de nouvelles fonctionnalités ou corrections de bugs sont ajoutées au projet Laravel depuis que vous l'avez cloné, 
-
-Next, you want to make sure you are up-to-date with the latest Laravel repository. If any new features or bug fixes have been added to the Laravel project since you cloned it, this will ensure that your local repository has all of those changes. This important step is the reason we originally cloned the Laravel repository instead of your own fork.
+Ensuite, vous voulez être sûr d'être à jour avec le dernier dépôt Laravel. Si de nouvelles fonctionnalités ou corrections de bugs sont ajoutées au projet Laravel depuis que vous l'avez cloné, vous devez vous assurer que votre dépôt local a ces changements. Cette étape importante est la raison pour laquelle nous avons cloné le dépôt Laravel au lieu de votre propre fork.
 
     # git pull origin develop
 
-Now you are ready to create a new branch for your new feature or bug-fix. When you create a new branch, use a self-descriptive naming convention. For example, if you are going to fix a bug in Eloquent, name your branch *bug/eloquent*:
+Maintenant vous êtes prêt à créer une nouvelle branche pour vos nouvelles fonctionnalités ou corrections de bugs. Quand vous créez une nouvelle branche, utilisez une convention de nommage auto-descriptive. Par exemple, si vous corrigez un bug dans Eloquent, nommez votre branche *bug/eloquent*:
 
     # git branch bug/eloquent
     # git checkout bug/eloquent
     Switched to branch 'bug/eloquent'
 
-Or if there is a new feature to add or change to the documentation that you want to make, for example, the localization documentation:
+Ou s'il a une nouvelle fonctionnalité sur la documentation de localisation :
 
     # git branch feature/localization-docs
     # git checkout feature/localization-docs
     Switched to branch 'feature/localization-docs'
 
-> **Note:** Create one new branch for every new feature or bug-fix. This will encourage organization, limit interdependency between new features/fixes and will make it easy for the Laravel team to merge your changes into the Laravel core.
+> **Note:** Créez une nouvelle branche pour toutes nouvelles fonctionnalités ou corrections de bugs. Cela encouragera l'organisation, limitera les inter-dépendances entre les nouvelles fonctionnalités/corrections et cela facilitera le travail de l'équipe de Laravel pour merger votre changements dans le core de Laravel.
 
-Now that you have created your own branch and have switched to it, it's time to make your changes to the code. Add your new feature or fix that bug.
+Maintenant que vous avez créé votre propre branche et que vous switchez dessus, il est temps de faire votre changement dans le code. Ajoutez vos nouvelles fonctionnalités et corrigez des bugs.
 
 <a name="committing"></a>
 ## Committez
@@ -90,8 +88,8 @@ Ensuite, committez les changements au dépôt :
 
     # git commit -s -m "I added some more stuff to the Localization documentation."
 
-"- **-s** signifie que vous means that you are signing-off on your commit with your name. This tells the Laravel team know that you personally agree to your code being added to the Laravel core.
-"- **-m** is the message that goes with your commit. Provide a brief explanation of what you added or changed.
+"- **-s** means that you are signing-off on your commit with your name. This tells the Laravel team know that you personally agree to your code being added to the Laravel core.
+"- **-m** est le message qui vient avec votre commit. Fournissez une brève explication de ce que vous avez ajouté ou modifié.
 
 <a name="pushing-to-your-fork"></a>
 ## Envoyez à votre Fork
@@ -100,14 +98,12 @@ Maintenant que votre dépôt local a les changements soumis, il est temps d'envo
 
     # git push fork feature/localization-docs
 
-Votre branche a été envoyé avec succès à votre fork sur GitHub.
+Votre branche a été envoyée avec succès à votre fork sur GitHub.
 
 <a name="submitting-a-pull-request"></a>
 ## Soumettez une Pull Request
 
-L'étape finale est de soumettre une pull request au dépôt Laravel. 
-
-The final step is to submit a pull request to the Laravel repository. Cela signifie que vous demandez à l'équipe de Laravel de prendre en compte vos développements. Dans votre navigateur, visitez votre fork de Laravel sur [https://github.com/username/laravel](https://github.com/username/laravel). Cliquez sur **Pull Request**. Ensuite, soyez sûr que vous choisissez la base et le dépôt adéquates, et les branches :
+L'étape finale est de soumettre une pull request au dépôt Laravel. Cela signifie que vous demandez à l'équipe de Laravel de prendre en compte vos développements. Dans votre navigateur, visitez votre fork de Laravel sur [https://github.com/username/laravel](https://github.com/username/laravel). Cliquez sur **Pull Request**. Ensuite, soyez sûr que vous choisissez la base et le dépôt adéquates, et les branches :
 
 - **base repo:** laravel/laravel
 - **base branch:** develop
@@ -123,7 +119,7 @@ Avez vous une autre fonctionnalité que vous voulez ajouter ou un autre bug que 
 
     # git checkout develop
 
-Ensuite, récuperez les derniers changements du dépôt de Laravel :
+Ensuite, récupérez les derniers changements du dépôt de Laravel :
 
     # git pull origin develop
 
