@@ -100,21 +100,21 @@ Puisqu'il est souvent nécessaire de combiner l'enregistrement des entrées avec
 
 L'objet retourné par la méthode `file` est une instance de la classe `Symfony\Component\HttpFoundation\File\UploadedFile`. Cette classe est une extension de la classe PHP `SplFileInfo` fournissant un ensemble de méthodes permettant d'intéragir avec le fichier.
 
-**Déplacer un ficher téléchargé**
+**Déplacer un fichier téléchargé**
 
 	Input::file('photo')->move($destinationPath);
 
 	Input::file('photo')->move($destinationPath, $fileName);
 
-**Obtenir le chemin d'un ficher téléchargé**
+**Obtenir le chemin d'un fichier téléchargé**
 
 	$path = Input::file('photo')->getRealPath();
 
-**Obtenir la taille d'un ficher téléchargé**
+**Obtenir la taille d'un fichier téléchargé**
 
 	$size = Input::file('photo')->getSize();
 
-**Obtenir le type MIME d'un ficher téléchargé**
+**Obtenir le type MIME d'un fichier téléchargé**
 
 	$mime = Input::file('photo')->getMimeType();
 

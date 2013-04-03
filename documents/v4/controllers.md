@@ -29,7 +29,7 @@ Voici un exemple d'un contrôleur basique :
 
 	}
 
-Tous les contrôleurs doivent hérité de la classe `BaseController`. La classe `BaseController` est également présente dans le dossier `app/controllers`, et peut être utilisée pour placer pour placer des élémenents partagés. `BaseController` héritede la classe `Controller` du framework. Maintenant, nous pouvons router vers notre contrôleur de la manière suivante :
+Tous les contrôleurs doivent hérité de la classe `BaseController`. La classe `BaseController` est également présente dans le dossier `app/controllers`, et peut être utilisée pour placer des élémenents partagés. `BaseController` hérite de la classe `Controller` du framework. Maintenant, nous pouvons router vers notre contrôleur de la manière suivante :
 
 	Route::get('user/{id}', 'UserController@showProfile');
 
@@ -128,7 +128,7 @@ Si votre méthode de contrôleur contient plusieurs mots, vous devrez accéder �
 <a name="resource-controllers"></a>
 ## Contrôleurs de resource
 
-Les contrôleurs de resource rendent plus facile la construction de contrôleur RESTful autour d'une resource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
+Les contrôleurs de ressource rendent plus facile la construction de contrôleur RESTful autour d'une ressource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
 
 Pour créer le contrôleur en ligne de commande, executez la commande suivante :
 
@@ -138,9 +138,9 @@ Maintenant nous pouvons enregistrer une route "resourceful" vers notre contrôle
 
 	Route::resource('photo', 'PhotoController');
 
-Cette simple déclaration de route crée de multiples routes pour gérer une variété d'actions RESTful sur notre resource "photo". De plus, le contrôleur généré contiendra déjà des méthodes pour chacunes de ces actions avec une note vous informant à quelles URIs et à quels verbes HTTP ils répondent.
+Cette simple déclaration de route crée de multiples routes pour gérer une variété d'actions RESTful sur notre ressource "photo". De plus, le contrôleur généré contiendra déjà des méthodes pour chacunes de ces actions avec une note vous informant à quelles URIs et à quels verbes HTTP ils répondent.
 
-**Actions gérées par un contrôleur de resource**
+**Actions gérées par un contrôleur de ressource**
 
 Verb      | Path                  | Action
 ----------|-----------------------|--------------
