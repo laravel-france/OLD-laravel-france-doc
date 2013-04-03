@@ -1,20 +1,20 @@
 # IoC Container
 
-- [Definition](/docs/v3/doc/ioc#definition)
-- [Registering Objects](/docs/v3/doc/ioc#register)
-- [Resolving Objects](/docs/v3/doc/ioc#resolve)
+- [Définition](/docs/v3/doc/ioc#definition)
+- [Objets enregistrés](/docs/v3/doc/ioc#register)
+- [Résolution d'objets](/docs/v3/doc/ioc#resolve)
 
 <a name="definition"></a>
-## Definition
+## Définition
 
-An IoC container is simply a way of managing the creation of objects. You can use it to define the creation of complex objects, allowing you to resolve them throughout your application using a single line of code. You may also use it to "inject" dependencies into your classes and controllers.
+Un container IoC est une voie simple de manager la création d'objets. Vous pouvez l'utiliser pour définir la création d'objets complexes, vous permettant de les résoudre tout au long de votre application en utilisant une simple ligne de code. Vous pouvez également l'utiliser pour "injecter" des dépendances dans vos classes et les contrôleurs.
 
-IoC containers help make your application more flexible and testable. Since you may register alternate implementations of an interface with the container, you may isolate the code you are testing from external dependencies using [stubs and mocks](http://martinfowler.com/articles/mocksArentStubs.html).
+Les containers IoC aide à concevoir votre application de façon plus flexible et testable. Depuis que vous pouvez enregistrer des implémentations alternatives d'une interface avec le container, vous pouvez isoler le code que vous testez à partir des dépendances externes en utilisant [stubs et mocks](http://martinfowler.com/articles/mocksArentStubs.html).
 
 <a name="register"></a>
-## Registering Objects
+## Objets enregistrés
 
-#### Registering a resolver in the IoC container:
+#### Enregistrez un résolveur dans le container IoC :
 
     IoC::register('mailer', function()
     {
@@ -23,27 +23,26 @@ IoC containers help make your application more flexible and testable. Since you 
         return Swift_Mailer::newInstance($transport);
     });
 
+Bien ! Maintenant que nous avons enregistré un résolveur pour SwiftMailer dans notre container. Mais, si nous ne voulons pas que le container ne crée une nouvelle instance "mailer" tout le temps que quand nous en avons besoin ? Peut-être que nous voulons juste que le container retourne la même instance après que l'instance initiale ait été créée. Dites juste au container que l'objet doit être un singleton :
 
-Great! Now we have registered a resolver for SwiftMailer in our container. But, what if we don't want the container to create a new mailer instance every time we need one? Maybe we just want the container to return the same instance after the initial instance is created. Just tell the container the object should be a singleton:
-
-#### Registering a singleton in the container:
+#### Enregistrez un singleton dans le container :
 
     IoC::singleton('mailer', function()
     {
         //
     });
 
-You may also register an existing object instance as a singleton in the container.
+Vous pouvez aussi enregistrer une instance d'objet existant comme un singleton dans le container.
 
-#### Registering an existing instance in the container:
+#### Enregistrez une instance existante dans le container :
 
     IoC::instance('mailer', $instance);
 
 <a name="resolve"></a>
-## Resolving Objects
+## Résolution d'objets
 
-Now that we have SwiftMailer registered in the container, we can resolve it using the **resolve** method on the **IoC** class:
+Maintenant que vous avez enregistré SwiftMailer dans le container, nous pouvons le résoudre en utilisant la méthode **resolve** sur la classe **IoC** :
 
     $mailer = IoC::resolve('mailer');
 
-> **Note:** You may also [register controllers in the container](/docs/v3/doc/controllers#dependency-injection).
+> **Note:** Vous pouvez aussi [enregistrer les contrôleurs dans le container](/docs/v3/doc/controllers#dependency-injection).

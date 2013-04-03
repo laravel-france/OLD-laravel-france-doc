@@ -75,7 +75,7 @@
 - [Travail avec des chaînes](/docs/v3/doc/strings)
 - [Traduction & Localisation](/docs/v3/doc/localization)
 - [Chiffrement](/docs/v3/doc/encryption)
-- [IoC Container[en]](/docs/v3/doc/ioc)
+- [IoC Container](/docs/v3/doc/ioc)
 - [Tests unitaires](/docs/v3/doc/testing)
 
 <a name="base_de_donnees" id="base_de_donnees"></a>
@@ -102,7 +102,7 @@
 - [Utilisation](/docs/v3/doc/session/usage)
 
 <a name="authentication" id="authentication"></a>
-### Authentication
+### Authentification
 
 - [Configuration](/docs/v3/doc/auth/config)
 - [Utilisation](/docs/v3/doc/auth/usage)
