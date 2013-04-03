@@ -86,7 +86,7 @@ Exécute les tests unitaires d'un bundle  |  `php artisan test bundle-name`
 
 Description  | Commande
 ------------- | -------------
-Appel une route  |  `php artisan route:call get api/user/1`
+Appelle une route  |  `php artisan route:call get api/user/1`
 
 <br>
 > **Note:** vous pouvez remplacer get par post, put...
