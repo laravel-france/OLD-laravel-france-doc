@@ -16,12 +16,12 @@
             <h3>Laravel 3</h3>
             <h4>La documentation</h4>
             <ul>
-                <li><a href="/docs/v3/doc#general">Général</a></li>
-                <li><a href="/docs/v3/doc#base_de_donnees">Base de données</a></li>
-                <li><a href="/docs/v3/doc#caching">Caching</a></li>
-                <li><a href="/docs/v3/doc#sessions">Sessions</a></li>
-                <li><a href="/docs/v3/doc#authentication">Authentication</a></li>
-                <li><a href="/docs/v3/doc#artisan">Artisan CLI</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#general">Général</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#base_de_donnees">Base de données</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#caching">Caching</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#sessions">Sessions</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#authentication">Authentication</a></li>
+                <li><a href="{{ URL::to_route('doc_home', array($version)) }}#artisan">Artisan CLI</a></li>
             </ul>
 
             <h4>Les livres</h4>
@@ -35,7 +35,7 @@
         </div><!--/span-->
         <div class="span9">
             <ul class="breadcrumb">
-                <li><a title="Retour à la page d'accueil" href="/"><i class="icon-home"></i></a> <span class="divider">/</a></li>
+                <li><a title="Retour à la page d'accueil" href="{{ URL::home() }}"><i class="icon-home"></i></a> <span class="divider">/</a></li>
                 <li>Documentation & guides</li>
             </ul>
 
@@ -47,7 +47,7 @@
                 </p>
             
                 <p class="clearfix">
-                    <a href="/docs/v3/doc" class="btn btn-primary btn-large pull-right">
+                    <a href="{{ URL::to_route('doc_home', array($version)) }}" class="btn btn-primary btn-large pull-right">
                         Accéder à la doc
                     </a>
                 </p>

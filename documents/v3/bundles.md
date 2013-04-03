@@ -21,7 +21,7 @@ Les bundles sont le coeur des améliorations apportées à Laravel 3.0. Ils sont
 <a name="creating-and-registering"></a>
 ## Création de bundles
 
-La première étape pour créer un bundle est de créer un dossier pour ce dernier dans le répertoire **bundles**. Pour cet exemple, créons un bundle "admin", dans lequel sera logé le backend de notre application. Le fichier **application/start.php** fournit quelques options de configuration qui nous aide à définir comment va fonctionner notre application. De la même manière, nous allons créer un fichier **start.php** à la racine de notre bundle, qui aura le même rôle. Ce fichier est exécuté chaque fois que notre bundle est chargé.
+La première étape pour créer un bundle est de créer un dossier pour ce dernier dans le répertoire **bundles**. Pour cet exemple, créons un bundle "admin", dans lequel sera logé le backend de notre application. Le fichier **application/start.php** fournit quelques options de configuration qui nous aident à définir comment va fonctionner notre application. De la même manière, nous allons créer un fichier **start.php** à la racine de notre bundle, qui aura le même rôle. Ce fichier est exécuté chaque fois que notre bundle est chargé.
 
 #### Création du fichier start.php de note bundle:
 
