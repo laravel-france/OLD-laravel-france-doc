@@ -45,7 +45,7 @@ Vous pouvez stopper la propagation d'un évenement aux autres, en retournant 'fa
 <a name="using-classes-as-listeners"></a>
 ## Utilisation de classes en tant qu'écouteur
 
-Dans certains car, vous pourriez vouloir utiliser une classe pour gérer un événement plutôt qu'une fonction anonyme. Les événements de classes sont résolus grâce au [conteneur IoC de Laravel](/docs/v4/doc/ioc), vous fournissant ainsi la puissance de l'injecteur de dépendance à votre classe.
+Dans certains cas, vous pourriez vouloir utiliser une classe pour gérer un événement plutôt qu'une fonction anonyme. Les événements de classes sont résolus grâce au [conteneur IoC de Laravel](/docs/v4/doc/ioc), vous fournissant ainsi la puissance de l'injecteur de dépendance à votre classe.
 
 **Enregistrement d'une classe écouteur**
 
@@ -71,11 +71,11 @@ Si vous ne souhaitez pas utiliser la méthode par défaut `handle`, vous pouvez 
     Event::listen('user.login', 'LoginHandler@onLogin');
 
 <a name="queued-events"></a>
-## Mise en attente d'un événement
+## Événements en file d'attente
 
 En utilisant les méthodes `queue` et `flush`, vous pouvez mettre en attente un événement à déclarer, mais sans le lancer tout de suite :
 
-**Enregistrement d'un événement en attente**
+**Enregistrement d'un événement dans la file d'attente**
 
     Event::queue('foo', array($user));
 
@@ -86,14 +86,14 @@ En utilisant les méthodes `queue` et `flush`, vous pouvez mettre en attente un 
         //
     });
 
-Finallement, vous pouvez executer le "videur" et vider tous les événement en attente avec la méthode `flush` :
+Finalement, vous pouvez executer le "videur" et vider tous les événements en attente avec la méthode `flush` :
 
   Event::flush('foo');
 
 <a name="event-subscribers"></a>
 ## Classes d'abonnements
 
-Les classes d'abonnements sont des classes qui peuvent souscrire à plusieurs événements, enregistrés au seins même cela classe. Ces classes doivent définir une méthode `subscribe`, qui reçoit en unique argument une instance du répartiteur d'événement:
+Les classes d'abonnements sont des classes qui peuvent souscrire à plusieurs événements, enregistrés au seins même de ces classe. Ces classes doivent définir une méthode `subscribe`, qui reçoit en unique argument une instance du répartiteur d'événement:
 
 **Définition d'une classe d'abonnements**
 
@@ -130,7 +130,7 @@ Les classes d'abonnements sont des classes qui peuvent souscrire à plusieurs é
 
     }
 
-Une fois que la classe a été définie, elle doit être enregistrer avec la classe `Event`.
+Une fois que la classe a été définie, elle doit être enregistrée avec la classe `Event`.
 
 **Enregistrement d'une classe d'abonnements**
 
