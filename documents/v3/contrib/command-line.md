@@ -1,4 +1,4 @@
-# Contribuez à Laravel via la ligne de commande
+# Contribuer à Laravel via la ligne de commande
 
 ## Au menu
 
