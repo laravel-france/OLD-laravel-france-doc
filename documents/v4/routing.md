@@ -206,7 +206,7 @@ Parfois, vous pourriez avoir besoin d'appliquer un filtre sur tout un groupe de 
 
 Les routes de Laravel permettent également de router à partir d'un sous domaine. En utilisant un paramètre de routes en sous domaine, ce dernier sera alors passé en tant que paramètre à la route :
 
-**Enregistrement d'un groupe de routes à partir d'un sous-domaine (paramètre)**
+**Enregistrement d'un groupe de routes à partir du sous-domaines**
 
 	Route::group(array('domain' => '{account}.myapp.com'), function()
 	{
