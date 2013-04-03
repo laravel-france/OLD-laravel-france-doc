@@ -88,8 +88,8 @@ Ensuite, committez les changements au dépôt :
 
     # git commit -s -m "I added some more stuff to the Localization documentation."
 
-"- **-s** means that you are signing-off on your commit with your name. This tells the Laravel team know that you personally agree to your code being added to the Laravel core.
-"- **-m** est le message qui vient avec votre commit. Fournissez une brève explication de ce que vous avez ajouté ou modifié.
+* **-s** signifie que vous signez votre commit à votre nom, disant ainsi à l'équipe Laravel que vous êtes d'accord pour que votre code soit ajouté au core de Laravel.
+* **-m** est le message qui vient avec votre commit. Fournissez une brève explication de ce que vous avez ajouté ou modifié.
 
 <a name="pushing-to-your-fork"></a>
 ## Envoyez à votre Fork
