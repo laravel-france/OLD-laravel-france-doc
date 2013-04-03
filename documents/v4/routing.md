@@ -204,9 +204,9 @@ Parfois, vous pourriez avoir besoin d'appliquer un filtre sur tout un groupe de 
 <a name="sub-domain-routing"></a>
 ## Routage de sous domaine
 
-Les routes de Laravel permettent également de router à partir d'un sous domaine. En utilisant un un paramètre de routes en sous domaine, ce dernier sera alors passé en tant que paramètre à la route :
+Les routes de Laravel permettent également de router à partir d'un sous domaine. En utilisant un paramètre de routes en sous domaine, ce dernier sera alors passé en tant que paramètre à la route :
 
-**Registering Sub-Domain Routes**
+**Enregistrement d'un groupe de routes à partir d'un sous-domaine (paramètre)**
 
 	Route::group(array('domain' => '{account}.myapp.com'), function()
 	{
@@ -268,14 +268,14 @@ Il y a deux manières de lancer une erreur 404 depuis une route. Première méth
 
 	App::abort(404);
 
-Secondem méthode, vous pouvez lever une exception de type `Symfony\Component\HttpKernel\Exception\NotFoundHttpException`.
+Seconde méthode, vous pouvez lever une exception de type `Symfony\Component\HttpKernel\Exception\NotFoundHttpException`.
 
 Plus d'informations sur la gestion des exceptions 404 et l'utilisation de réponses personalisées pour ces erreurs peuvent être trouvées dans la section [erreurs](/docs/v4/doc/errors#handling-404-errors) de la documentation.
 
 <a name="resource-controllers"></a>
 ## Contrôleurs de resources
 
-Les contrôleurs de resources rendent plus facile la construction de contrôleurs RESTful autour d'une resource. 
+Les contrôleurs de ressources rendent plus facile la construction de contrôleurs RESTful autour d'une ressource. 
 
 Voir la documentation des [contrôleurs](/docs/v4/doc/controllers#resource-controllers) pour plus d'informations.
 
