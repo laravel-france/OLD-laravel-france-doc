@@ -8,40 +8,40 @@
 <a name="introduction"></a>
 ## Introduction
 
-En plus des commandes fournient par Laravel, vous pouvez aussi créer vos propres commandes pour votre application. Vous pouvez les stocker dans le dossier `app/commands`; Cependant, vous êtes libre des choisir votre propre endroit de stockage tant qu'il peut être chargé automatiquement selon la configuration de votre fichier `composer.json`.
+En plus des commandes fournies par Laravel, vous pouvez aussi créer vos propres commandes pour votre application. Vous pouvez les stocker dans le dossier `app/commands`. Cependant, vous êtes libre de choisir votre propre lieu de stockage tant qu'il peut être chargé automatiquement selon la configuration de votre fichier `composer.json`.
 
 <a name="building-a-command"></a>
 ## Construction d'une commande
 
 ### Génération d'une commande
 
-Pour créer une nouvelle commande, vous pouvez utiliser la commande Artisan `command:make`, qui va génerer un modèle de commande pour vous aider à démarrer :
+Pour créer une nouvelle commande, vous pouvez utiliser la commande Artisan `command:make`, qui va générer un modèle de commande pour vous aider à démarrer :
 
 **Génération d'une nouvelle commande**
 
 	php artisan command:make FooCommand
 
-Par défaut, la commande générée sera placer dans le dossier `app/commands`; Vous pouvez cependant préciser un chemin personnaliser et un namespace :
+Par défaut, la commande générée sera placée dans le dossier `app/commands`. Vous pouvez cependant préciser un chemin personnalisé et un namespace :
 
 	php artisan command:make FooCommand --path="app/classes" --namespace="Classes"
 
 ### Ecriture de la commande
 
-Une fois que votre commande est générée, vous devez remplir les propriétés nom et description de la classe, qui seront affichés dans le listing des commandes.
+Une fois que votre commande est générée, vous devez remplir les propriétés nom et description de la classe, qui seront affichées dans le listing des commandes.
 
-La méthode `fire` sera appelée quand votre commande est executée. Vous devez placer le contenu de votre commande dans cette méthode.
+La méthode `fire` sera appelée quand votre commande est exécutée. Vous devez placer le contenu de votre commande dans cette méthode.
 
 ### Arguments & Options
 
-Les méthodes `getArguments` et `getOptions` sont l'endroit où vous devez définir les arguments et les options de votre commande. Ces deux méthodes retournent un tableau qui contient la liste des arguments/options, ainsi que leur description.
+Les méthodes `getArguments` et `getOptions` sont les lieux où vous devez définir les arguments et les options de votre commande. Ces deux méthodes retournent un tableau qui contient la liste des arguments/options, ainsi que leur description.
 
-Lors de la définition des `arguments`, la tableau de définition des valeurs se présente de la manière suivante :
+Lors de la définition des `arguments`, le tableau de définition des valeurs se présente de la manière suivante :
 
 	array($name, $mode, $description, $defaultValue)
 
 L'argument `mode` peut être n'importe laquelle de ces valeurs : `InputArgument::REQUIRED` ou `InputArgument::OPTIONAL`.
 
-Lors de la définition des `options`, la tableau de définition des valeurs se présente de la manière suivante :
+Lors de la définition des `options`, le tableau de définition des valeurs se présente de la manière suivante :
 
 	array($name, $shortcut, $mode, $description, $defaultValue)
 
@@ -51,13 +51,13 @@ Le mode `VALUE_IS_ARRAY` indique que l'option peut être utilisée plusieurs foi
 
 	php artisan foo --option=bar --option=baz
 
-L'option `VALUE_NONE` indique que l'option est utilisé comme un "interrupteur":
+L'option `VALUE_NONE` indique que l'option est utilisée comme un "interrupteur":
 
 	php artisan foo --option
 
 ### Récupération des entrées
 
-Tandis que votre commande est executée, vous aurez évidement besoin d'accéder aux valeurs des arguments et des options accéptées par votre commande. Pour ce faire, vous devez utiliser les méthodes `argument` et `option` :
+Tandis que votre commande est exécutée, vous aurez évidemment besoin d'accéder aux valeurs des arguments et des options acceptés par votre commande. Pour ce faire, vous devez utiliser les méthodes `argument` et `option` :
 
 **Récupère la valeur d'un argument**
 
@@ -77,7 +77,7 @@ Tandis que votre commande est executée, vous aurez évidement besoin d'accéder
 
 ### Ecrire des messages
 
-Pour envoyer des messages à la console, vous pouvez utiliser les méthodes `info`, `comment`, `question` et `error`. Chacune de ces méthodes utilisera la color AINSI appropriée pour leur rôle.
+Pour envoyer des messages à la console, vous pouvez utiliser les méthodes `info`, `comment`, `question` et `error`. Chacune de ces méthodes utilisera la couleur AINSI appropriée pour leur rôle.
 
 **Envoi d'information à la console**
 
@@ -95,7 +95,7 @@ Vous pouvez également utiliser les méthodes `ask` et`confirm` pour demander de
 
 	$name = $this->ask('What is your name ?');
 
-**Demande d'une informations secrète**
+**Demande d'une information secrète**
 
     $password = $this->secret('What is the password ?');
 
@@ -114,7 +114,7 @@ Vous pouvez également spécifier une valeur par défaut à la méthode `confirm
 <a name="registering-commands"></a>
 ## Enregistrement d'une commande
 
-Une fois que le développement de votre commande est terminée, vous devez l'enregistrer auprès d'Artisan pour être capable de l'utiliser. Cette opération est généralement réalisée dans le fichier `app/start/artisan.php`. dans ce fichier, vous devez utiliser la méthode `Artisan::add` pour enregistrer votre commande :
+Une fois que le développement de votre commande est terminée, vous devez l'enregistrer auprès d'Artisan pour être capable de l'utiliser. Cette opération est généralement réalisée dans le fichier `app/start/artisan.php`. Dans ce fichier, vous devez utiliser la méthode `Artisan::add` pour enregistrer votre commande :
 
 **Enregistre une commande Artisan**
 
@@ -129,7 +129,7 @@ Si votre commande est enregistrée dans le [conteneur IoC](/docs/v4/ioc) de votr
 <a name="calling-other-commands"></a>
 ## Appel d'autres commandes
 
-Si vous avez besoin d'appeller une autre commande depuis votre commande, vous pouvez le faire en utilisant la méthode `call` :
+Si vous avez besoin d'appeler une autre commande depuis votre commande, vous pouvez le faire en utilisant la méthode `call` :
 
 **Appel d'une autre commande**
 

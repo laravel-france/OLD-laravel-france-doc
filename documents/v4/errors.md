@@ -9,7 +9,7 @@
 <a name="error-detail"></a>
 ## Détail des erreurs
 
-Par défaut, les détails des erreurs sont autorisés par votre application. Cela signifie que quand une erreur se déroule, une page d'erreur vous sera affichée avec la pile d'execution et un message d'erreur. Vous pouvez désactiver cela en mettant l'option `debug` du fichier `app/config/app.php` à `false`. **Il est fortement recommandé de passer cette option à false dans un environnement de production.**
+Par défaut, les détails des erreurs sont autorisés par votre application. Cela signifie que quand une erreur se déroule, une page d'erreur vous sera affichée avec la pile d'exécution et un message d'erreur. Vous pouvez désactiver cela en mettant l'option `debug` du fichier `app/config/app.php` à `false`. **Il est fortement recommandé de passer cette option à false dans un environnement de production.**
 
 ## Gestion des erreurs
 
@@ -20,14 +20,14 @@ Par défaut, le fichier `app/start/global.php` contient un gestionnaire d'erreur
         Log::error($exception);
     });
 
-C'est le gestionnaire d'erreur le plus basique. Cependant, vous pouvez spécifier plus de gestionnaires si besoin. Les gestionnaires sont appellés en se basant sur le type d'exception qu'ils gèrent. Par exemple, si vous créez un gestionnaire qui gère une instance de `RuntimeException` :
+C'est le gestionnaire d'erreur le plus basique. Cependant, vous pouvez spécifier plus de gestionnaires si besoin. Les gestionnaires sont appelés en se basant sur le type d'exception qu'ils gèrent. Par exemple, si vous créez un gestionnaire qui gère une instance de `RuntimeException` :
 
     App::error(function(RuntimeException $exception)
     {
         // Handle the exception...
     });
 
-Si un gestionnaire d'exception retourne une réponse, cette reponse sera envoyée au navigateur et aucun autre gestionnaire d'erreur ne sera appellé :
+Si un gestionnaire d'exception retourne une réponse, cette réponse sera envoyée au navigateur et aucun autre gestionnaire d'erreur ne sera appelé :
 
     App::error(function(InvalidUserException $exception)
     {
@@ -36,7 +36,7 @@ Si un gestionnaire d'exception retourne une réponse, cette reponse sera envoyé
         return 'Sorry! Something is wrong with this account!';
     });
 
-Pour écouter une erreur fatal PHP, vous devez utiliser la méthode `App::fatal` :
+Pour écouter une erreur fatale PHP, vous devez utiliser la méthode `App::fatal` :
 
     App::fatal(function($exception)
     {
@@ -71,7 +71,7 @@ Vous pouvez enregistrer un gestionnaire qui gère toutes les erreurs 404 de votr
 <a name="logging"></a>
 ## Logging
 
-Laravel vous fournit une une classe pour faire de la journalisation, qui se base sur le puissant [Monolog](http://github.com/seldaek/monolog). Par défaut, Laravel est configuré pour créer des fichiers journaliers pour votre application, et ils seront stockés dans `app/storage/logs`. Vous pouvez écrire dans ces fichiers de logs de la manière suivante :
+Laravel vous fournit une classe pour faire de la journalisation, qui se base sur le puissant [Monolog](http://github.com/seldaek/monolog). Par défaut, Laravel est configuré pour créer des fichiers journaliers pour votre application, et ils seront stockés dans `app/storage/logs`. Vous pouvez écrire dans ces fichiers de logs de la manière suivante :
 
     Log::info('This is some useful information.');
 
@@ -79,9 +79,9 @@ Laravel vous fournit une une classe pour faire de la journalisation, qui se base
 
     Log::error('Something is really going wrong.');
 
-Le journaliseur fournit les 7 niveaux de journalisations définis dans la [RFC 5424](http://tools.ietf.org/html/rfc5424): **debug**, **info**, **notice**, **warning**, **error**, **critical**, et **alert**.
+Le journaliseur fournit les 7 niveaux de journalisation définis dans la [RFC 5424](http://tools.ietf.org/html/rfc5424) : **debug**, **info**, **notice**, **warning**, **error**, **critical**, et **alert**.
 
-Monolog a une multitude de gestionnaire supplémentaires que vous pouvez utiliser pour faire de la journalisation. Si besoin, vous pouvez accéder directement à l'objet Monolog utilisé par Laravel :
+Monolog a une multitude de gestionnaires supplémentaires que vous pouvez utiliser pour faire de la journalisation. Si besoin, vous pouvez accéder directement à l'objet Monolog utilisé par Laravel :
 
     $monolog = Log::getMonolog();
 

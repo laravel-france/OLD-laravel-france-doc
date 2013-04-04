@@ -34,7 +34,7 @@ La méthode `select` retourne un tableau de lignes.
 
 	DB::delete('delete from users');
 
-> **Remarque:** Les commandes `update` et `delete` retournet le nombre de lignes affectées par l'opération.
+> **Remarque:** Les commandes `update` et `delete` retournent le nombre de lignes affectées par l'opération.
 
 **Exécuter une requête quelconque**
 
@@ -50,7 +50,7 @@ Vous pouvez écouter pour des événements de requêtes en utilisant la méthode
     });
 
 <a name="accessing-connections"></a>
-## Accéder aux Connexions
+## Accéder aux connexions
 
 Lorsque plusieurs connexions sont ouvertes, vous pouvez accéder à la connexion de votre choix à l'aide de la méthode `DB::connection` :
 
