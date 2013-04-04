@@ -46,7 +46,7 @@ Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exempl
 
 Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
-**Identifier un utiliser et se souvenir de lui**
+**Identifier un utilisateur et se souvenir de lui**
 
 	if (Auth::attempt(array('email' => $email, 'password' => $password), true))
 	{
