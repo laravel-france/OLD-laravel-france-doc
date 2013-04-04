@@ -11,7 +11,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-Laravel est construit avec les tests unitaire en tête. En fait, le support des tests avec PHPUnit est inclus dans Laravel. et un fichier `phpunit.xml` est déjé configuré pour votre application. En plus de PHPUnit, Laravel utilise également les composants HttpKernel, DomCrawler, et BrowserKit de Symfony pour vous permettre d'inspecter et manipuler vos vues lors des tests, et de simuler un navigateur web.
+Laravel est construit avec les tests unitaire en tête. En fait, le support des tests avec PHPUnit est inclus dans Laravel. et un fichier `phpunit.xml` est déjà configuré pour votre application. En plus de PHPUnit, Laravel utilise également les composants HttpKernel, DomCrawler, et BrowserKit de Symfony pour vous permettre d'inspecter et manipuler vos vues lors des tests, et de simuler un navigateur web.
 
 Un fichier de test d'exemple est fourni dans le dossier `app/tests`. Après avoir installé une nouvelle application Laravel, lancez simplement la commande `phpunit` sur la ligne de commande pour lancer vos tests.
 
@@ -31,14 +31,14 @@ Pour créer un cas de test, créez simplement un nouveau fichier de test dans le
 
     }
 
-Vous pouvez exécuter tous vos tests e lançant la commande `phpunit` dans votre terminal.
+Vous pouvez exécuter tous vos tests lançant la commande `phpunit` dans votre terminal.
 
 > **Note:** Si vous avez défini votre propre méthode `setUp`, n'oubliez pas d'appeler `parent::setUp`.
 
 <a name="test-environment"></a>
 ## Environnement de test
 
-Lors de l'exécution de vos tests unitaires, Laravel va automatiquement définir que l'environnement de votre application est `testing`. Aussi, Laravel fournit des fichiers de configurations pour `session` et `cache` pour l'environnement de test. Ces deux drivers sont régler à `array` dans l'environnement de test, ce qui signifie qu'aucune session et qu'aucune donnée en cache ne sera persistée durant les tests. Vous pouvez créer plusieurs environnements de tests si vous le souhaitez.
+Lors de l'exécution de vos tests unitaires, Laravel va automatiquement définir que l'environnement de votre application est `testing`. Aussi, Laravel fournit des fichiers de configurations pour `session` et `cache` pour l'environnement de test. Ces deux drivers sont réglés à `array` dans l'environnement de test, ce qui signifie qu'aucune session et qu'aucune donnée en cache ne sera persistée durant les tests. Vous pouvez créer plusieurs environnements de tests si vous le souhaitez.
 
 <a name="calling-routes-from-tests"></a>
 ## Appel de routes depuis un test
@@ -88,7 +88,7 @@ Pour plus d'information sur l'utilisateur de l'inspecteur de DOM, visitez sa [do
 <a name="mocking-facades"></a>
 ## Mockage de Facades
 
-Lorsque vous testez, vous voudrez souvent mocker un appel à une facade static de Laravel. Par exemple, considerons l'action de contrôleur suivante :
+Lorsque vous testez, vous voudrez souvent mocker un appel à une façade statique de Laravel. Par exemple, considerons l'action de contrôleur suivante :
 
     public function getIndex()
     {
@@ -97,9 +97,9 @@ Lorsque vous testez, vous voudrez souvent mocker un appel à une facade static d
         return 'All done!';
     }
 
-Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `shouldReceive`sur la facade, qui retournera une instance d'un mock [Mockery](https://github.com/padraic/mockery).
+Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `shouldReceive` sur la facade, qui retournera une instance d'un mock [Mockery](https://github.com/padraic/mockery).
 
-**Mockage d'une Facade**
+**Mockage d'une Façade**
 
     public function testGetIndex()
     {
@@ -108,12 +108,12 @@ Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `sho
         $this->call('GET', '/');
     }
 
-> **Note:** Vous ne pouvez pas mocker la facade `Request`. A la place, passez les données d'entrées désirées à la méthode `call` lorsque vous executer vos tests.
+> **Note:** Vous ne pouvez pas mocker la façade `Request`. A la place, passez les données d'entrées désirées à la méthode `call` lorsque vous executez vos tests.
 
 <a name="framework-assertions"></a>
 ## Assertions du Framework
 
-Laravel est livré avec plusieurs méthodes `assert` pour vous facilier les tests :
+Laravel est livré avec plusieurs méthodes `assert` pour vous faciliter les tests :
 
 **Affirme qu'une réponse est OK**
 
@@ -132,7 +132,7 @@ Laravel est livré avec plusieurs méthodes `assert` pour vous facilier les test
 
     $this->assertRedirectedToAction('Controller@method');
 
-**Affirme qu'une vue à des données**
+**Affirme qu'une vue a des données**
 
     public function testMethod()
     {
@@ -142,7 +142,7 @@ Laravel est livré avec plusieurs méthodes `assert` pour vous facilier les test
         $this->assertViewHas('age', $value);
     }
 
-**Affirme qu'une session à des données**
+**Affirme qu'une session a des données**
 
     public function testMethod()
     {
@@ -155,7 +155,7 @@ Laravel est livré avec plusieurs méthodes `assert` pour vous facilier les test
 <a name="helper-methods"></a>
 ## Méthodes "Helper"
 
-la classe `TestCase` contient plusieurs "Helper" pour le faciliter test de vos applications.
+La classe `TestCase` contient plusieurs "Helper" pour faciliter le test de vos applications.
 
 Vous pouvez définir l'utilisateur actuellement connecté avec la méthode `be` :
 
@@ -165,7 +165,7 @@ Vous pouvez définir l'utilisateur actuellement connecté avec la méthode `be` 
 
     $this->be($user);
 
-Vous pouvez repopuler votre base de donnée depuis les tests unitaires en utilisateur la méthode `seed` :
+Vous pouvez repeupler votre base de données depuis les tests unitaires en utilisant la méthode `seed` :
 
 **Repopule la base de donnée depuis les tests**
 
@@ -173,4 +173,4 @@ Vous pouvez repopuler votre base de donnée depuis les tests unitaires en utilis
 
     $this->seed($connection);
 
-Plus d'information sur la population de base de donnée dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.
+Plus d'information sur la peuplement de base de données dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.
