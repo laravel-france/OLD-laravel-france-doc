@@ -243,6 +243,6 @@ Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthod
 
 	DB::table('users')->delete();
 
-**Tronque une table**
+**Suppression d'une table**
 
 	DB::table('users')->truncate();
