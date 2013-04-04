@@ -21,7 +21,7 @@ Laravel vous est livré avec un outil simple et pratique pour valider des donné
 
 Le premier argument passé à la méthode `make` sont les données à valider. Le second argument est un tableau de règles de validation qui doit s'appliquer aux données.
 
-De multiples règles peuvent sont délimitées en utilisant le caractère "pipe" `|`, ou en tant qu'éléments séparés d'un tableau.
+De multiples règles peuvent être délimitées en utilisant le caractère "pipe" `|`, ou en tant qu'éléments séparés d'un tableau.
 
 **Utilisation de tableau pour définir différentes règles**
 
@@ -48,7 +48,7 @@ La classe `Validator` fournit plusieurs règles spécifiques pour les fichiers, 
 <a name="working-with-error-messages"></a>
 ## Travail avec les messages d'erreurs
 
-Après avoir appellé la méthode `messages` de l'instance de la classe `Validator`, Vous recevrez une instance de `MessageBag`, qui a quelques outils pour travailler avec les messages d'erreurs.
+Après avoir appellé la méthode `messages` de l'instance de la classe `Validator`, vous recevrez une instance de `MessageBag`, qui a quelques outils pour travailler avec les messages d'erreurs.
 
 **Retrouve le premier message d'erreur pour un champ**
 
@@ -79,9 +79,9 @@ Après avoir appellé la méthode `messages` de l'instance de la classe `Validat
 
 	echo $messages->first('email', '<p>:message</p>');
 
-> **Note:** Par défaut, les messages sont formatés pour utilisé une syntaxe compatible avec Bootstrap.
+> **Note:** Par défaut, les messages sont formatés pour utiliser une syntaxe compatible avec Bootstrap.
 
-**Retrouve tous les messages d'erreur avec un format donné**
+**Retrouve tous les messages d'erreurs avec un format donné**
 
 	foreach ($messages->all('<li>:message</li>') as $message)
 	{
@@ -91,7 +91,7 @@ Après avoir appellé la méthode `messages` de l'instance de la classe `Validat
 <a name="error-messages-and-views"></a>
 ## Messages d'erreurs et vues
 
-Une fois que vous avez effectué la validation, vous aurez besoin d'une manière simple de récuperer vos messages d'erreurs dans votre vue. C'est une chose prévue par Laravel. Considérez l'exemple ci dessous :
+Une fois que vous avez effectué la validation, vous aurez besoin d'une manière simple de récuperer vos messages d'erreurs dans votre vue. C'est une chose prévue par Laravel. Considérez l'exemple ci-dessous :
 
 	Route::get('register', function()
 	{
@@ -167,62 +167,62 @@ Le champ sous validation doit être une URL valide selon la fonction PHP `checkd
 <a name="rule-after"></a>
 #### after:_date_
 
-TLe champ sous validation doit être après une date donnée. Les dates seront passées à la fonction PHP `strtotime`.
+Le champ de sous validation doit être après une date donnée. Les dates seront passées à la fonction PHP `strtotime`.
 
 <a name="rule-alpha"></a>
 #### alpha
 
-Le champ sous validation peut uniquement contenir des lettres.
+Le champ de sous validation peut uniquement contenir des lettres.
 
 <a name="rule-alpha-dash"></a>
 #### alpha_dash
 
-Le champ sous validation peut contenir des caractères alphanumerique, ainsi que des tiret et des underscores.
+Le champ de sous validation peut contenir des caractères alphanumerique, ainsi que des tirets `-` et des underscores `_`.
 
 <a name="rule-alpha-num"></a>
 #### alpha_num
 
-Le champ sous validation peut uniquement contenir des caractères alphanumériques.
+Le champ de sous validation peut uniquement contenir des caractères alphanumériques.
 
 <a name="rule-before"></a>
 #### before:_date_
 
-Le champ sous validation doit être une date avant la date donnée. Les dates seront passées à la fonction PHP `strtotime`.
+Le champ de sous validation doit être une date avant la date donnée. Les dates seront passées à la fonction PHP `strtotime`.
 
 <a name="rule-between"></a>
 #### between:_min_,_max_
 
-Le champ sous validation doit avoir une taille entre entre _min_ et _max_. Les chaînes de caractères, les nombres et les fichiers sont évalués de la même manière que dans la règle `size`.
+Le champ de sous validation doit avoir une taille entre entre _min_ et _max_. Les chaînes de caractères, les nombres et les fichiers sont évalués de la même manière que dans la règle `size`.
 
 <a name="rule-confirmed"></a>
 #### confirmed
 
-Le champ sous validation doit avoir un champ champ de confirmation de type `foo_confirmation`. Par exemple, si votre champ sous validation est `password`, un champ `password_confirmation` doit être présent et avoir la même valeur.
+Le champ de sous validation doit avoir un champ de confirmation de type `foo_confirmation`. Par exemple, si votre champ de sous validation est `password`, un champ `password_confirmation` doit être présent et avoir la même valeur.
 
 <a name="rule-date"></a>
 #### date
 
-Le champ sous validation doit être une date valide selon la fonction PHP `strtotime`.
+Le champ de sous validation doit être une date valide selon la fonction PHP `strtotime`.
 
 <a name="rule-date-format"></a>
 #### date_format:_format_
 
-Le champ sous validation doit correspondre au format _format_ défini, en accord avec la fonction PHP `date_parse_from_format`.
+Le champ de sous validation doit correspondre au format _format_ défini, en accord avec la fonction PHP `date_parse_from_format`.
 
 <a name="rule-different"></a>
 #### different:_champ_
 
-Le _champ_ donné doit être différent du champ sous validation.
+Le _champ_ donné doit être différent du champ de sous validation.
 
 <a name="rule-email"></a>
 #### email
 
-Le champ sous validation doit être une adresse email correcte.
+Le champ de sous validation doit être une adresse email correcte.
 
 <a name="rule-exists"></a>
 #### exists:_table_,_column_
 
-Le champ sous validation doit exister doit exister dans la base de donnée.
+Le champ de sous validation doit exister dans la base de données.
 
 **Usage basique de la règle exists**
 
@@ -235,32 +235,32 @@ Le champ sous validation doit exister doit exister dans la base de donnée.
 <a name="rule-image"></a>
 #### image
 
-Le fichier sous validation doit être une image (jpeg, png, bmp, ou gif)
+Le fichier de sous validation doit être une image (jpeg, png, bmp, ou gif)
 
 <a name="rule-in"></a>
 #### in:_foo_,_bar_,...
 
-Le champ sous validation doit être inclu dans la liste donnée de valeur.
+Le champ de sous validation doit être inclu dans la liste donnée de valeur.
 
 <a name="rule-integer"></a>
 #### integer
 
-Le champ sous validation doit être un entier.
+Le champ de sous validation doit être un entier.
 
 <a name="rule-ip"></a>
 #### ip
 
-Le champ sous validation doit être une adresse IP.
+Le champ de sous validation doit être une adresse IP.
 
 <a name="rule-max"></a>
 #### max:_value_
 
-Le champ sous validation doit plus petit que la valeur maximum _value_. Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
+Le champ de sous validation doit plus être petit que la valeur maximum _value_. Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
 
 <a name="rule-mimes"></a>
 #### mimes:_foo_,_bar_,...
 
-Le fichier sous validation doit avoir un type MIME qui correspond à une des extensions donnée.
+Le fichier de sous validation doit avoir un type MIME qui correspond à une des extensions donnée.
 
 **Utilisation basique du filtres mimes**
 
@@ -269,49 +269,49 @@ Le fichier sous validation doit avoir un type MIME qui correspond à une des ext
 <a name="rule-min"></a>
 #### min:_value_
 
-Le champ sous validation doit avoir une taille minimum de _value_.  Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
+Le champ de sous validation doit avoir une taille minimum de _value_.  Les chaines de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
 
 <a name="rule-not-in"></a>
 #### not_in:_foo_,_bar_,...
 
-Le champ sous validation ne doit pas être inclu dans la liste de valeurs données.
+Le champ de sous validation ne doit pas être inclu dans la liste de valeurs données.
 
 <a name="rule-numeric"></a>
 #### numeric
 
-Le champ sous validation doit avoir être un chiffre.
+Le champ de sous validation doit être un chiffre.
 
 <a name="rule-regex"></a>
 #### regex:_pattern_
 
-Le filtre sous validation doit correspondre à l'expression régulière donnée.
+Le filtre de sous validation doit correspondre à l'expression régulière donnée.
 
-**Note:** Lorsque vous utilisez la règle `regex`, il peut être nécéssaire d'implémenter les règles dans un tableau plutôt qu'avec un le démiliteur pipe, surtout si ce dernier est utilisé dnas l'expression régulière.
+**Note:** Lorsque vous utilisez la règle `regex`, il peut être nécessaire d'implémenter les règles dans un tableau plutôt qu'avec le délimiteur pipe `|`, surtout si ce dernier est utilisé dans l'expression régulière.
 
 <a name="rule-required"></a>
 #### required
 
-Le champs sous validation doit être présent dans les données.
+Le champs de sous validation doit être présent dans les données.
 
 <a name="rule-required-with"></a>
 #### required_with:_foo_,_bar_,...
 
-Le champ sous validation doit être présent _seulement si_ les autres champs spécifiés sont présent.
+Le champ de sous validation doit être présent _seulement si_ les autres champs spécifiés sont présent.
 
 <a name="rule-same"></a>
 #### same:_field_
 
-Le champ _field_ doit correspondre au champ sous validation.
+Le champ _field_ doit correspondre au champ de sous validation.
 
 <a name="rule-size"></a>
 #### size:_value_
 
-Le champ sous validation doit avoir une taille qui correpondante à la valeur _value_. Pour les chaînes de caractères, _value_ correspond au nombre de caractères. Pour les chiffres, _value_ correspond à l'entier donné. Pour les fichier, _value_ correspond à la taille du fichier en kilobytes.
+Le champ de sous validation doit avoir une taille qui correpondante à la valeur _value_. Pour les chaînes de caractères, _value_ correspond au nombre de caractères. Pour les chiffres, _value_ correspond à l'entier donné. Pour les fichier, _value_ correspond à la taille du fichier en kilobytes.
 
 <a name="rule-unique"></a>
 #### unique:_table_,_column_,_except_,_idColumn_
 
-Le champ sous validation doit être uniqué dans la table de la base de donnée. Si l'option `column` n'est pas spécifié, le nom du champ sera utilisé.
+Le champ de sous validation doit être unique dans la table de la base de donnée. Si l'option `column` n'est pas spécifié, le nom du champ sera utilisé.
 
 **Usage basique de la règle**
 
@@ -328,12 +328,12 @@ Le champ sous validation doit être uniqué dans la table de la base de donnée.
 <a name="rule-url"></a>
 #### url
 
-Le champ sous validation doit être formé comme une URL.
+Le champ de sous validation doit être formé comme une URL.
 
 <a name="custom-error-messages"></a>
 ## Messages d'erreur personnalisés
 
-Si besoin, vous pouvez utiliser des messages d'erreur personnalisés pour la validation plutôt que ceux par défaut. Il y a plusieurs manières de définir ces messages.
+Si besoin, vous pouvez utiliser des messages d'erreurs personnalisés pour la validation plutôt que ceux par défaut. Il y a plusieurs manières de définir ces messages.
 
 **Passage des messages à la méthode make**
 
@@ -343,7 +343,7 @@ Si besoin, vous pouvez utiliser des messages d'erreur personnalisés pour la val
 
 	$validator = Validator::make($input, $rules, $messages);
 
-*Note:* Le joker `:attribute` sera remplacé par le nom du champ sous validation. Vous pouvez également utiliser d'autres joker dans les messages de validation.
+*Note:* Le joker `:attribute` sera remplacé par le nom du champ sous validation. Vous pouvez également utiliser d'autres jokers dans les messages de validation.
 
 **Autres joker de validation**
 
@@ -354,28 +354,28 @@ Si besoin, vous pouvez utiliser des messages d'erreur personnalisés pour la val
 		'in'      => ':attribute doit être une des valeurs suivantes : :values',
 	);
 
-Parfois vous pourrez vouloir spécifié un message personnalisé uniquement pour un champ spécifique :
+Parfois vous pourrez vouloir spécifier un message personnalisé uniquement pour un champ spécifique :
 
 **Specification d'un message d'erreur personnalisé pour un attribut précis**
 
 	$messages = array(
-		'email.required' => 'We need to know your e-mail address!',
+		'email.required' => 'Nous avons besoin de connaître votre adresse e-mail !',
 	);
 
-Dans certains cas, vous pourriez vouloir spécifier vos messages d'erreurs personnalisés dans un fichier de langue plutôt que des les passer directement à `Validator`. Pour ce faire, ajoutez vos messages au tableau `custom` du fichier de langue `app/lang/xx/validation.php`.
+Dans certains cas, vous pourriez vouloir spécifier vos messages d'erreurs personnalisés dans un fichier de langue plutôt que de les passer directement à `Validator`. Pour ce faire, ajoutez vos messages au tableau `custom` du fichier de langue `app/lang/xx/validation.php`.
 
 **Specification d'un message d'erreur personnalisé dans un fichier de langue**
 
 	'custom' => array(
 		'email' => array(
-			'required' => 'We need to know your e-mail address!',
+			'required' => 'Nous avons besoin de connaître votre adresse e-mail !',
 		),
 	),
 
 <a name="custom-validation-rules"></a>
-## Règles de validation personnalisée
+## Règles de validations personnalisées
 
-Laravel fournit une variété de règles de validations utiles, cependant vous pourriez avoir besoin de créer vos propres règles. Une méthode pour enregistrer des règles de validation personnalisées est d'utiliser la méthode `Validator::extend` :
+Laravel fournit une variété de règles de validations utiles, cependant vous pourriez avoir besoin de créer vos propres règles. Une méthode pour enregistrer des règles de validations personnalisées est d'utiliser la méthode `Validator::extend` :
 
 **Enregistrement d'une règle personnalisée**
 
@@ -390,7 +390,7 @@ La fonction anonyme de validation reçoit trois arguments : le nom du champ (`$a
 
 Notez que vous devrez également définir un message d'erreur personnalisé. Vous pouvez le faire soit en utilisant un tableau avec votre message perso à chaque fois que vous appellerez votre règle de validation personnalisée, soit en ajoutant une entrée dans le fichier de langue de validation.
 
-Plutôt que d'utiliser des fonctions anonymes pour étendre le valiteur, vous pouvez étendre la classe Validator elle même. Pour se faire, ecrivez une classe Validator qui hérite de `Illuminate\Validation\Validator`. Vous pouvez ensuite ajouter vos méthode de validation en préfixant leur nom par `validate`:
+Plutôt que d'utiliser des fonctions anonymes pour étendre le valiteur, vous pouvez étendre la classe Validator elle même. Pour se faire, ecrivez une classe Validator qui hérite de `Illuminate\Validation\Validator`. Vous pouvez ensuite ajouter vos méthodes de validation en préfixant leur nom par `validate`:
 
 **Extension de la classe Validator**
 
