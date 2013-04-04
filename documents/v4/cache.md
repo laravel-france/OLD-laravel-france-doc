@@ -10,7 +10,7 @@
 
 Laravel fournit une API unique pour différents gestionnaires de cache. La configuration du cache est située dans le fichier `app/config/cache.php`. Dans ce fichier, vous devez indiquer le driver à utiliser par défaut dans votre application. Laravel supporte les célèbres gestionnaires de cache [Memcached](http://memcached.org) et [Redis](http://redis.io).
 
-De plus, le fichier de configuration du cache fournit diverses options. Consultez ces options, elles sont documentées directement dans le fichier de configuration. Par défaut, Laravel est configuré pour utiliser le gestionnaire de cache `file` lequel enregistre les objets sérialisés dans des fichiers. Pour les applications de grande envergure, il est recommandé d'utiliser un cache mémoire comme Memcached ou APC. 
+De plus, le fichier de configuration du cache fournit diverses options. Consultez ces options, elles sont documentées directement dans le fichier de configuration. Par défaut, Laravel est configuré pour utiliser le gestionnaire de cache `file` qui enregistre les objets sérialisés dans des fichiers. Pour les applications de grande envergure, il est recommandé d'utiliser un cache mémoire comme Memcached ou APC. 
 
 <a name="cache-usage"></a>
 ## Utilisation
@@ -19,7 +19,7 @@ De plus, le fichier de configuration du cache fournit diverses options. Consulte
 
     Cache::put('key', 'value', $minutes);
 
-**Stocker un élément dans le cache si il n'existe pas**
+**Stocker un élément dans le cache s'il n'existe pas**
 
     Cache::add('key', 'value', $minutes);
 
