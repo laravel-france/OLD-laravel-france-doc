@@ -6,9 +6,9 @@
 <a name="laravel-philosophy"></a>
 ## Philosophie de Laravel
 
-Laravel est un framework web dont la syntaxe est expressive et élégante. Nous pensons que le développement devrait être plaisant, créatif et épanouissant. Laravel tente d'alléger le développement des aspects nécessaires à la majorité des  applications web telles que l'authentification, le routage, les sessions et la gestion de cache.
+Laravel est un framework web dont la syntaxe est expressive et élégante. Nous pensons que le développement devrait être plaisant, créatif et épanouissant. Laravel tente d'alléger le développement des aspects nécessaires à la majorité des applications web telles que l'authentification, le routage, les sessions et la gestion de cache.
 
-Laravel a pour objectif de rendre le développement agréable tout permettant de développer des fonctionnalités adaptées. Développer dans de bonnes conditions contribue à la qualité des applications.
+Laravel a pour objectif de rendre le développement agréable tout en permettant de développer des fonctionnalités adaptées. Développer dans de bonnes conditions contribue à la qualité des applications.
 
 <a name="learning-laravel"></a>
 ## Apprentissage de Laravel
