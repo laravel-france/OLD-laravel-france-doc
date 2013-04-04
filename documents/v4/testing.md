@@ -31,7 +31,7 @@ Pour créer un cas de test, créez simplement un nouveau fichier de test dans le
 
     }
 
-Vous pouvez exécuter tous vos tests lançant la commande `phpunit` dans votre terminal.
+Vous pouvez exécuter tous vos tests en lançant la commande `phpunit` dans votre terminal.
 
 > **Note:** Si vous avez défini votre propre méthode `setUp`, n'oubliez pas d'appeler `parent::setUp`.
 
