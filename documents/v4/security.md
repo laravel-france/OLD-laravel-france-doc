@@ -44,7 +44,7 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 
 Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées.
 
-Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connécté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
+Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
 **Identifier un utiliser et se souvenir de lui**
 
@@ -53,7 +53,7 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 		// The user is being remembered...
 	}
 
-**Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connécté à votre application.
+**Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connecté à votre application.
 
 **Connecter un utilisateur avec des conditions**
 
@@ -64,9 +64,9 @@ Vous pouvez ajouter des conditions particulières pour vous assurer qu'un utilis
         // The user is active, not suspended, and exists.
     }
 
-Une fois qu'un utilisateur est connécté, vous pouvez accéder à son modèle/enregistrement :
+Une fois qu'un utilisateur est connecté, vous pouvez accéder à son modèle/enregistrement :
 
-**Accès à l'utilisateur connécté**
+**Accès à l'utilisateur connecté**
 
 	$email = Auth::user()->email;
 
@@ -99,7 +99,7 @@ Vous pouvez également utiliser la méthode `stateless` pour connecter un utilis
 <a name="protecting-routes"></a>
 ## Protection de routes
 
-Les filtres de routes peuvent être utilisés pour autoriser uniquement les utilisateurs connéctés à acceder à certaines routes. Laravel fournit un filtre `auth` par défaut, qui se situe dans le fichier `app/filters.php`.
+Les filtres de routes peuvent être utilisés pour autoriser uniquement les utilisateurs connectés à acceder à certaines routes. Laravel fournit un filtre `auth` par défaut, qui se situe dans le fichier `app/filters.php`.
 
 **Protection d'une route**
 
@@ -160,7 +160,7 @@ Pour envoyer un rappel de mot de passe, nous pouvons utiliser la méthode `Passw
 		return Password::remind($credentials);
 	});
 
-Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyé un un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe.
+Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyer un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe.
 
 > **Note:** Vous pouvez spécifié la vue qui sera utilisée dans l'email en changeant l'option de configuration `auth.reminder.email`. Bien entendu, une vue par défaut vous est fournie.
 
@@ -171,7 +171,7 @@ Vous pouvez modifier l'instance du message qui va être envoyé en passant une f
 		$m->subject('Your Password Reminder');
 	});
 
-Vous pouvez également remarqué que nous avons retourné le résultat de la méthode `remind` directement depuis une route. Par défaut, la méthode `remind` retournera un `Redirect` vers l'URI courante. Si une erreur se produit durant l'essai de réinitialisation du mot de passe, une variable `error` sera mise en session pour la requête suivante uniquement, ainsi qu'une variable `reason`, qui peut être utilisée pour extraire une ligne de langue depuis la fichier de langue `reminders`. Donc, votre formulaire de réinitialisation de mot de passe peut ressembler à cela s:
+Vous pouvez également remarqué que nous avons retourné le résultat de la méthode `remind` directement depuis une route. Par défaut, la méthode `remind` retournera un `Redirect` vers l'URI courante. Si une erreur se produit durant l'essai de réinitialisation du mot de passe, une variable `error` sera mise en session pour la requête suivante uniquement, ainsi qu'une variable `reason`, qui peut être utilisée pour extraire une ligne de langue depuis la fichier de langue `reminders`. Donc, votre formulaire de réinitialisation de mot de passe peut ressembler à cela :
 
 	@if (Session::has('error'))
 		{{ trans(Session::get('reason')) }}
@@ -182,7 +182,7 @@ Vous pouvez également remarqué que nous avons retourné le résultat de la mé
 
 ### Réinitialisation du mot de passe
 
-Une fois qu'un utilisateur à cliqué sur le lien de réinitialisation de l'email de rappel, ils sont redirigé vers un formulaire qui inclut un champ caché `token`, ainsi que les champs `password` et `password_confirmation`. Vous trouverez ci dessous un exemple de route pour un formulaire de réinitialisation de mot de passe :
+Une fois qu'un utilisateur a cliqué sur le lien de réinitialisation de l'email de rappel, il est redirigé vers un formulaire qui inclut un champ caché `token`, ainsi que les champs `password` et `password_confirmation`. Vous trouverez ci-dessous un exemple de route pour un formulaire de réinitialisation de mot de passe :
 
 	Route::get('password/reset/{token}', function($token)
 	{
@@ -216,7 +216,7 @@ Une fois de plus, remarquez que nous utilisons `Session` pour afficher les erreu
 		});
 	});
 
-Si le password est correctement réinitialisé, une instance de `User` et le mot de passe vous serons fournis dans la fonction anonyme, vous permettant d'effectuer la sauvegarde. Ensuite, vous pouvez retourner un `Redirect` ou ce que vous souhaitez, le contenu sera renvoyé par la méthode `reset`. Notez que la méthode `reset` vérifiera automatiquement pour un jeton valide dans la requête, un utilisateur valide, ainsi que des mots de passes identiques.
+Si le password est correctement réinitialisé, une instance de `User` et le mot de passe vous seront fournis dans la fonction anonyme, vous permettant d'effectuer la sauvegarde. Ensuite, vous pouvez retourner un `Redirect` ou ce que vous souhaitez, le contenu sera renvoyé par la méthode `reset`. Notez que la méthode `reset` vérifiera automatiquement pour un jeton valide dans la requête, un utilisateur valide, ainsi que des mots de passes identiques.
 
 Pour finir, de la même manière que la méthode `remind`, si une erreur se produit, la méthode `reset` retournera un `Redirect` vers l'URI en cours avec les variables `error` et `reason`.
 
