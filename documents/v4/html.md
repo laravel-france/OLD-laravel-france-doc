@@ -26,7 +26,7 @@ Par défaut, la méthode `POST` sera utilisée; cependant, vous êtes libre de s
 
 > **Note:** Etant donné que les formulaires HTML ne supportent que les méthodes `POST`, les méthodes `PUT` et `DELETE` seront simuler en ajoutant un champ caché `_method` à votre formulaire.
 
-Vous pouvez également ouvvrir un formulaire qui pointe vers une route nommée ou une action de contrôleur :
+Vous pouvez également ouvrir un formulaire qui pointe vers une route nommée ou une action de contrôleur :
 
     echo Form::open(array('route' => 'route.name'))
 
@@ -53,7 +53,7 @@ Laravel fournit une méthode simple pour protéger votre application des attaque
     }));
 
 <a name="form-model-binding"></a>
-## Form lié à un modèle
+## Formulaire lié à un modèle
 
 Souvent, vous voudrez remplir un formulaire selon le contenu d'un modèle. Pour ce faire, utilisez la méthode `Form::model` :
 
