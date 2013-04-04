@@ -286,7 +286,7 @@ Le champ de sous validation doit être un chiffre.
 
 Le filtre de sous validation doit correspondre à l'expression régulière donnée.
 
-**Note:** Lorsque vous utilisez la règle `regex`, il peut être nécéssaire d'implémenter les règles dans un tableau plutôt qu'avec le délimiteur pipe `|`, surtout si ce dernier est utilisé dans l'expression régulière.
+**Note:** Lorsque vous utilisez la règle `regex`, il peut être nécessaire d'implémenter les règles dans un tableau plutôt qu'avec le délimiteur pipe `|`, surtout si ce dernier est utilisé dans l'expression régulière.
 
 <a name="rule-required"></a>
 #### required
