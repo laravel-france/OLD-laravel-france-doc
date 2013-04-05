@@ -9,7 +9,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-Les migrations sont une sorte de contrôle de version pour votre base de données. Elles à une équipe permettent de modifier le schema des tables et de rester à jour sur l'état courant du schema des tables. Les migrations sont souvent pairés avec le [Constructeur de Schéma](/docs/v4/doc/schema) pour gérer facilement les schemas de votre application.
+Les migrations sont une sorte de contrôle de version pour votre base de données. Elles permettent de modifier le schema des tables et de rester à jour sur l'état courant du schema des tables. Les migrations sont souvent couplés avec le [Constructeur de Schéma](/docs/v4/doc/schema) pour gérer facilement les schemas de votre application.
 
 <a name="creating-migrations"></a>
 ## Création de migrations
@@ -20,7 +20,7 @@ Pour créer une migration, vous pouvez utiliser la commande `migrate:make` d'Art
 
 	php artisan migrate:make create_users_table
 
-La migration sera placée dans votre dossier `app/database/migrations`, et sera contiendra un timestamp pour permettre au framework de determiner l'ordre de vos migrations.
+La migration sera placée dans votre dossier `app/database/migrations`, et contiendra un timestamp pour permettre au framework de déterminer l'ordre de vos migrations.
 
 Vous pouvez également spécifier une option `--path` lorsque vous créez la migration. Le chemin doit être relatif à la racine de votre installation :
 
@@ -65,38 +65,37 @@ Les otpions `--table` et `--create` peuvent être également utilisé pour indiq
 	php artisan migrate:refresh --seed
 
 <a name="database-seeding"></a>
-## Population de base de donnée
+## Population de base de données
 
-Laravel fournit également une manière simple de populer votre base de donnée avec des données de tests en utilisant des classes de populations. Toutes les classes de populations sont stockées dans le dossier `app/database/seeds`. Les classes de populations peuvent avoir le nom que vous souhaitez, mais devrez probablement suivre une convention, tel que `UserTableSeeder`, etc. Par défaut, une classe `DatabaseSeeder` est définie pour vous. Depuis cette classe, vous pouvez utiliser la méthode `call` pour executer d'autres classes de population, vous permettant de contrôler l'ordre de de la population.
+Laravel fournit également une manière simple de peupler votre base de données avec des données de tests en utilisant des classes de populations. Toutes les classes de populations sont stockées dans le dossier `app/database/seeds`. Les classes de populations peuvent avoir le nom que vous souhaitez, mais devrez probablement suivre une convention, tel que `UserTableSeeder`, etc. Par défaut, une classe `DatabaseSeeder` est définie pour vous. Depuis cette classe, vous pouvez utiliser la méthode `call` pour executer d'autres classes de population, vous permettant de contrôler l'ordre de de la population.
 
 **Exemple de classe de population de base de donnée**
 
-	class DatabaseSeeder extends Seeder {
+    class DatabaseSeeder extends Seeder {
 
-		public function run()
-		{
-			$this->call('UserTableSeeder');
+        public function run()
+        {
+             $this->call('UserTableSeeder');
 
-            $this->command->info('User table seeded!');
-		}
+             $this->command->info('User table seeded!');
+        }
+     }
 
-	}
+    class UserTableSeeder extends Seeder {
 
-	class UserTableSeeder extends Seeder {
+         public function run()
+         {
+             DB::table('users')->delete();
 
-		public function run()
-		{
-			DB::table('users')->delete();
+             User::create(array('email' => 'foo@bar.com'));
+         }
 
-			User::create(array('email' => 'foo@bar.com'));
-		}
+    }
 
-	}
-
-Pour populer votre base de données, vous pouvez utiliser la commande `db:seed` avec Artisan en ligne de commande :
+Pour peupler votre base de données, vous pouvez utiliser la commande `db:seed` avec Artisan en ligne de commande :
 
 	php artisan db:seed
 
-Vous pouvez également populer votre base de données en utilisant la commande `migrate:refresh`, qui va également annuler les migrations et les relancer :
+Vous pouvez également peupler votre base de données en utilisant la commande `migrate:refresh`, qui va également annuler les migrations et les relancer :
 
 	php artisan migrate:refresh --seed
