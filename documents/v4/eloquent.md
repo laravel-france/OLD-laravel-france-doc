@@ -739,7 +739,7 @@ Les modèles Eloquent contiennent également une méthode static `boot`, qui peu
 <a name="converting-to-arrays-or-json"></a>
 ## Conversion en tableau / JSON
 
-Quand une construisez des APIs en JSON, vous devez souvent convertir vos modèles et vos relations en tableau ou en JSON. Eloquent inclut des méthodes pour le faire. Pour convertir un modèle et ses relations en tableau, vous pouvez utiliser la méthode `toArray` :
+Quand vous construisez des APIs en JSON, vous devez souvent convertir vos modèles et vos relations en tableau ou en JSON. Eloquent inclut des méthodes pour le faire. Pour convertir un modèle et ses relations en tableau, vous pouvez utiliser la méthode `toArray` :
 
 **Convertion d'un modèle en tableau**
 
