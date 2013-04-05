@@ -10,7 +10,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-La classe `Schema` de Laravel fournit une manière indépendante du type de base de donnée pour manipuler les tables. Le constructeur marche bien avec toutes les bases de données supportées par Laravel, et a une API unifiée pour tous ces systèmes.
+La classe `Schema` de Laravel fournit une manière indépendante du type de base de données pour manipuler les tables. Le constructeur marche bien avec toutes les bases de données supportées par Laravel, et a une API unifiée pour tous ces systèmes.
 
 <a name="creating-and-dropping-tables"></a>
 ## Création et suppression de table
@@ -22,9 +22,9 @@ Pour créer une nouvelle table, la méthode `Schema::create` est utilisée :
         $table->increments('id');
     });
 
-Le premier argument passé à la méthode `create` est le nom de la tabnle, et le second argument est une fonction anonyme, qui va recevoir un objet objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
+Le premier argument passé à la méthode `create` est le nom de la tabnle, et le second argument est une fonction anonyme, qui va recevoir un objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
 
-Pour spécifier quelle connexion doit être utilisée par le constructeur de schéma, Utilisez la méthode `Schema::connection` :
+Pour spécifier quelle connexion doit être utilisée par le constructeur de schéma, utilisez la méthode `Schema::connection` :
 
     Schema::connection('foo')->create('users', function($table)
     {
@@ -47,7 +47,7 @@ Pour éditer une table existante, nous utiliserons la méthode `Schema::table` :
         $table->string('email');
     });
 
-Le constructeur de table contient une variété de type de colonne qui vous pouvez utiliser pour construire vos tables :
+Le constructeur de table contient une variété de type de colonne que vous pouvez utiliser pour construire vos tables :
 
 Commande  | Description
 ------------- | -------------
@@ -88,10 +88,10 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 
 **Suppression de plusieurs colonnes d'une table**
 
-  Schema::table('users', function($table)
-  {
-    $table->dropColumns('votes', 'avatar', 'location');
-  });
+    Schema::table('users', function($table)
+    {
+        $table->dropColumns('votes', 'avatar', 'location');
+    });
 
 <a name="adding-indexes"></a>
 ## Ajout d'index
@@ -102,7 +102,7 @@ Le constructeur de schema supporte plusieurs types d'indices. Il y a deux maniè
 
     $table->string('email')->unique();
 
-Ou, vous pouvez choisir d'ajouter les indices sur des lignes séparés. Vous trouverez ci dessous une liste des types d'index:
+Ou, vous pouvez choisir d'ajouter les indices sur des lignes séparés. Vous trouverez ci-dessous une liste des types d'index:
 
 Commande  | Description
 ------------- | -------------

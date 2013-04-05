@@ -32,7 +32,7 @@ Il y a deux manière pour faire résoudre des dépendances au conteneur IoC : vi
 
 Quand la méthode `App::make` est appellée, la fonction anonyme est executée et le résultat est retourné.
 
-Parfois, vous voudrez lier quelquechose dans le conteneur qui ne doit pas être instancié à chaque appel, mais vous souhaiteriez que la même instance soit retournée à chaque fois :
+Parfois, vous voudrez lier quelque chose dans le conteneur qui ne doit pas être instancié à chaque appel, mais vous souhaiteriez que la même instance soit retournée à chaque fois :
 
 **Liaison d'un type "partagé" dans le conteneur**
 
@@ -41,9 +41,9 @@ Parfois, vous voudrez lier quelquechose dans le conteneur qui ne doit pas être 
         return new FooBar;
     });
 
-Vous pouvez également lié un objet existant au conteneur en utilisant la méthode `instance` :
+Vous pouvez également lier un objet existant au conteneur en utilisant la méthode `instance` :
 
-**Laision d'un object existant dans le conteneur**
+**Liaison d'un object existant dans le conteneur**
 
     $foo = new Foo;
 
@@ -71,7 +71,7 @@ Malgrès que nous n'avons pas enregistrer la classe FooBar dans le conteneur, ce
 
 Quand un type n'est pas lier dans le conteneur, il utilisera la Reflexion PHP pour inspecter la classe et lire le typage objet implicite des paramètres du constructeur. En utilisant ces informations, le conteneur peut automatiquement construire une instance de cette classe.
 
-Cependant, dans certains cas, une classe peut dépendre d'une interface et non d'un type "concret". Quand le cas se produit, la méthode `App::bind` peutt être utilisé pour informer le conteneur de quelle implémentation de l'interface doit être injectée :
+Cependant, dans certains cas, une classe peut dépendre d'une interface et non d'un type "concret". Quand le cas se produit, la méthode `App::bind` peut être utilisé pour informer le conteneur de quelle implémentation de l'interface doit être injectée :
 
 **Liaison d'une implémentation d'une interface**
 
@@ -88,7 +88,7 @@ Maintenant, imaginons le contrôleur suivant :
 
     }
 
-Etant donné que nous avons lié l'interface `UserRepositoryInterface`, le type concret `DbUserRepository` sera automatiquement injecté dans ce contrôleur quand celui ci sera créé.
+Etant donné que nous avons lié l'interface `UserRepositoryInterface`, le type concret `DbUserRepository` sera automatiquement injecté dans ce contrôleur quand celui-ci sera créé.
 
 <a name="practical-usage"></a>
 ## Usage pratique
@@ -128,7 +128,7 @@ Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dan
 <a name="service-providers"></a>
 ## Fournisseur de services
 
-les fournisseurs de services sont une bonne manière de grouper des enregistrement "liés" dans le conteneur IoC à un seul endroit. En fait, une grande partie des composants du coeur du framework Laravel inclus un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre applications sont listés dans le tableau `providers` dans fichier de configuration `app/config/app.php`.
+Les fournisseurs de services sont une bonne manière de grouper des enregistrements "liés" dans le conteneur IoC à un seul endroit. En fait, une grande partie des composants du coeur du framework Laravel inclus un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre applications sont listés dans le tableau `providers` dans le fichier de configuration `app/config/app.php`.
 
 Pour créer un fournisseur de service, votre classe doit hériter de la classe `Illuminate\Support\ServiceProvider` et définir une méthode `register` :
 
@@ -148,12 +148,12 @@ Pour créer un fournisseur de service, votre classe doit hériter de la classe `
 
     }
 
-Notez quand dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
+Notez que dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
 
 <a name="container-events"></a>
 ## Evénements du conteneur
 
-Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pouvez écouter à cet événement en utilisant la méthod `resolving` :
+Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pouvez écouter cet événement en utilisant la méthod `resolving` :
 
 **Enregistrement d'un écouteur de résolution**
 
@@ -162,4 +162,4 @@ Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pou
         //
     });
 
-Note that the object that was resolved will be passed to the callback.
+Notez que l'objet qui a été résolu va être passé à la fonction de rappel (callback).

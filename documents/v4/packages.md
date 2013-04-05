@@ -26,7 +26,7 @@ Tous les packages Laravel sont distribués via [Packagist](http://packagist.org)
 <a name="creating-a-package"></a>
 ## Création d'un package
 
-La manière la plus facile de créer un package Laravel est d'utiliser la commande Artisan `workbench` de Laravel. D'abord, vous aurez besoin de définir quelques options dans le fichier `app/config/workbench.php`. Dans ce fichier, vous trouverez une option `name` et `email`. Ces valeurs sont utilisés pour générer un fichier `composer.json` pour vos nouveaux packages. Une fois que vous avez inscrit ces valeurs, vous êtes prêt à consrtuire une package !
+La manière la plus facile de créer un package Laravel est d'utiliser la commande Artisan `workbench` de Laravel. D'abord, vous aurez besoin de définir quelques options dans le fichier `app/config/workbench.php`. Dans ce fichier, vous trouverez une option `name` et `email`. Ces valeurs sont utilisés pour générer un fichier `composer.json` pour vos nouveaux packages. Une fois que vous avez inscrit ces valeurs, vous êtes prêt à construire une package !
 
 **Execution de la commande Artistan `workbench`**
 
@@ -41,7 +41,7 @@ Une fois que le fournisseur a été enregistré, vous êtes prêt à développer
 <a name="package-structure"></a>
 ## Structure d'un package
 
-Lorsque vous utiliser la commande `workbench`, votre package sera créer en respectant des conventions qui permettront au package de s'intégrer facilement avec les autres parties du framework Laravel :
+Lorsque vous utiliser la commande `workbench`, votre package sera créé en respectant des conventions qui permettront au package de s'intégrer facilement avec les autres parties du framework Laravel :
 
 **Structure basique d'un package Laravel**
 
@@ -56,14 +56,14 @@ Lorsque vous utiliser la commande `workbench`, votre package sera créer en resp
 	/tests
 	/public
 
-Décrivons un peu cette structure. Le dossier `src/Vendor/Package` est la racine de toutes les classes de votre package, y compris le `ServiceProvider`. Les dossiers `config`, `lang`, `migrations`, et `views`, comme vous l'aurez devinez, contiennent les ressources correspondantes pour votre package. Les packages peuvent contenir n'importe laquelle de ces ressources, tout comme une "application régulière".
+Décrivons un peu cette structure. Le dossier `src/Vendor/Package` est la racine de toutes les classes de votre package, y compris le `ServiceProvider`. Les dossiers `config`, `lang`, `migrations`, et `views`, comme vous l'aurez deviné, contiennent les ressources correspondantes pour votre package. Les packages peuvent contenir n'importe laquelle de ces ressources, tout comme une "application régulière".
 
 <a name="service-providers"></a>
 ## Fournisseurs de services
 
-Les fournisseurs de services sont des classes de démarrage pour les packages. Par défaut, elles contiennent deux méthodes : `boot` et `register`. dans ces méthodes vous pouvez faire ce que vous souhaitez : inclure un fichier de route, enregistrer des liaisons dans le conteneur IoC, écouter des événements...
+Les fournisseurs de services sont des classes de démarrage pour les packages. Par défaut, elles contiennent deux méthodes : `boot` et `register`. Dans ces méthodes vous pouvez faire ce que vous souhaitez : inclure un fichier de route, enregistrer des liaisons dans le conteneur IoC, écouter des événements...
 
-La méthode `register` est appelée directement lors de l'enregistrement du fournisseur de service, tandis que la méthode `boot` est appelée juste avant qu'une requête est routée. Donc, si des actions dans votre fournisseur de service dépendent d'un autre fournisseur de service déjà enregistrer, ou que vous souhaitez surcharger des services liés par un autre fournisseur, vous devrez le faire dans la méthode `boot`.
+La méthode `register` est appelée directement lors de l'enregistrement du fournisseur de service, tandis que la méthode `boot` est appelée juste avant qu'une requête soit routée. Donc, si des actions dans votre fournisseur de service dépendent d'un autre fournisseur de service déjà enregistré, ou que vous souhaitez surcharger des services liés par un autre fournisseur, vous devrez le faire dans la méthode `boot`.
 
 Lors de la création d'un package avec `workbench`, la commande `boot` contient déjà une action :
 
@@ -76,7 +76,7 @@ Cette méthode autorise Laravel à connaitre comment charger correctement les vu
 
 Lorsque vous utilisez une ressource depuis un package, comme des options de configuration ou des vues, un double deux points ( :: ) sera généralement utilisé :
 
-**Chargement d'un vue depuis un package**
+**Chargement d'une vue depuis un package**
 
 	return View::make('package::view.name');
 
@@ -84,12 +84,12 @@ Lorsque vous utilisez une ressource depuis un package, comme des options de conf
 
 	return Config::get('package::group.option');
 
-> **Note:** Si vous package contient des migrations, prefixez le nom de votre migration avec le nom de votre package pour éviter d'avoir des conflits de nom de classes avec d'autres package.
+> **Note:** Si votre package contient des migrations, prefixez le nom de votre migration avec le nom de votre package pour éviter d'avoir des conflits de nom de classes avec d'autres packages.
 
 <a name="development-workflow"></a>
 ## Processus de développement
 
-Lorsque vous développez un package, il est utile de pouvoir développé dans le contexte d'une application, vous permettant de voir facilement et de faire des essais sur vos templates, ect... Alors pour commencer, installer une copie fraîche du framework Laravel, ensuite utilisez la commande `workbench`pour créer la structure d'un package.
+Lorsque vous développez un package, il est utile de pouvoir développer dans le contexte d'une application, vous permettant de voir facilement et de faire des essais sur vos templates, ect... Alors pour commencer, installer une copie fraîche du framework Laravel, ensuite utilisez la commande `workbench`pour créer la structure d'un package.
 
 Une fois que la commande `workbench` a créé le package, vous pouvez utiliser `git init` depuis le dossier `workbench/[vendor]/[package]` et `git push` votre package directement depuis le workbench ! Cela vous permettra de développer commodément votre package dans le contexte d'une application sans avoir à lancer sans arrêt la commande `composer update` pour avoir une copie à jour de ce dernier.
 
@@ -98,7 +98,7 @@ Une fois que la commande `workbench` a créé le package, vous pouvez utiliser `
 <a name="package-routing"></a>
 ## Routage de package
 
-Dans les versions précédentes de Laravel, une clause `handles` était utilisée pour spécifier à quels URIs le package peut répondre. Cependant dans Laravel 4, un package peut répondre à n'importe quelle URI. Pour charger un fichier de route pour votre package, ajoutez simplement un `include` vers le fichier dans la méthode `register`.
+Dans les versions précédentes de Laravel, une clause `handles` était utilisée pour spécifier à quelles URIs le package peut répondre. Cependant dans Laravel 4, un package peut répondre à n'importe quelle URI. Pour charger un fichier de route pour votre package, ajoutez simplement un `include` vers le fichier dans la méthode `register`.
 
 **Inclusion d'un fichier de route dans le fournisseur de service**
 
@@ -132,7 +132,7 @@ Quand d'autres développeurs installent votre package, ils peuvent vouloir surch
 
 	php artisan config:publish vendor/package
 
-Quand cette commande est exécutée, les fichiers de configurations de votre package sont copiés dans le dossier `app/config/packages/vendor/package` où ils peuvent être modifié en tout sécurité par le développeur !
+Quand cette commande est exécutée, les fichiers de configurations de votre package sont copiés dans le dossier `app/config/packages/vendor/package` où ils peuvent être modifié en toute sécurité par le développeur !
 
 > **Note:** Le développeur peut également créer des fichiers de configurations spécifiques aux environnements pour votre package en les plaçant dans `app/config/packages/vendor/package/environment`.
 
@@ -149,7 +149,7 @@ Vous pouvez créer et exécuter facilement des migrations pour n'importe lequel 
 
 	php artisan migrate --bench="vendor/package"
 
-Pour lancer les migrations d'un packages terminée qui a été installé via composer, dans le dossier `vendor`, vous devez utiliser l'option `--package` :
+Pour lancer les migrations d'un package terminé qui a été installé via Composer, dans le dossier `vendor`, vous devez utiliser l'option `--package` :
 
 **Exécution de migrations d'un package installé**
 
@@ -160,7 +160,7 @@ Pour lancer les migrations d'un packages terminée qui a été installé via com
 
 Certains packages peuvent contenir des ressources tels que du JavaScript, CSS, des images. Cependant, nous sommes incapable de lier de créer un lien vers les dossiers `vendor` ou `workbench`, nous devons trouver un moyen de bouger ses ressources dans le dossier `public` de notre application. La commande artisan `asset:publish` se charge de cela pour vous :
 
-**Déplace les ressources d'un package vers public**
+**Déplace les ressources d'un package vers le dossier public**
 
     php artisan asset:publish
 
@@ -179,6 +179,6 @@ Quand votre package est prêt à être publié, vous devez le soumettre au dép�
 
 Aussi, il est courtois et utile de tagger vos releases pour que les développeurs peuvent utiliser des versions stables lorsqu'ils demandent votre package dans leurs fichier `composer.json`. Si une version stable n'est pas prête, vous devriez utiliser la directive `branch-alias` de Composer.
 
-Une fois que votre package a été publié, continuez vos développement sur ce package dans le contexte de l'application créé par `workbench`. C'est une bonne manière de continuer Il s'agit d'une excellente façon de continuer à développer idéalement le package même après qu'il a été publié.
+Une fois que votre package a été publié, continuez vos développements sur ce package dans le contexte de l'application créé par `workbench`. C'est une bonne manière de continuer. Il s'agit d'une excellente façon de continuer à développer idéalement le package même après qu'il a été publié.
 
-Certaines organisations choisissent d'héberger leurs propres dépôt de packages pour leurs développeurs. Si vous êtes intéressé par cela, voyez la documentation du projet [Satis](http://github.com/composer/satis) fournit par l'équipe de Composer.
+Certaines organisations choisissent d'héberger leurs propres dépôts de packages pour leurs développeurs. Si vous êtes intéressé par cela, voyez la documentation du projet [Satis](http://github.com/composer/satis) fournit par l'équipe de Composer.
