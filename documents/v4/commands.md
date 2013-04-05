@@ -89,7 +89,7 @@ Pour envoyer des messages à la console, vous pouvez utiliser les méthodes `inf
 
 ### Poser des questions
 
-Vous pouvez également utiliser les méthodes `ask` et`confirm` pour demander des entrées à l'utilisateur :
+Vous pouvez également utiliser les méthodes `ask` et `confirm` pour demander des entrées à l'utilisateur :
 
 **Demande d'une information à l'utilisateur**
 
