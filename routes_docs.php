@@ -6,7 +6,7 @@
  *
  * This page contains the "introduction" to Laravel.
  */
-Route::get('(:bundle)/(:any?)/doc', array('as' => 'doc_home', function($version="v3")
+Route::get('(:bundle)/(:any?)/doc', array('before'=>'beforeDocsCacheable', 'after' => 'afterDocsCacheable', 'as' => 'doc_home', function($version="v3")
 {
     if(!document_exists($version.DIRECTORY_SEPARATOR.'home')) return Response::error('404');
 
@@ -31,7 +31,7 @@ Route::get('(:bundle)/(:any?)/doc', array('as' => 'doc_home', function($version=
  * @param  string  $page
  * @return mixed
  */
-Route::get('(:bundle)/(:any)/doc/(:any)/(:any?)', function($version, $section, $page = null)
+Route::get('(:bundle)/(:any)/doc/(:any)/(:any?)', array('before'=>'beforeDocsCacheable', 'after' => 'afterDocsCacheable', function($version, $section, $page = null)
 {
     $file = rtrim(implode('/', func_get_args()), '/');
 
@@ -60,5 +60,20 @@ Route::get('(:bundle)/(:any)/doc/(:any)/(:any?)', function($version, $section, $
     else
     {
         return Response::error('404');
+    }
+}));
+
+Route::filter('beforeDocsCacheable', function()
+{
+    if ($content = Cache::get('docs_'.md5(URL::full()), false))  {
+        return $content;
+    }
+});
+
+
+Route::filter('afterDocsCacheable', function($content)
+{
+    if (!Cache::has('docs_'.md5(URL::full()))) {
+        Cache::put('docs_'.md5(URL::full()), $content, 1440);
     }
 });

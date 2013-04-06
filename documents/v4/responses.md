@@ -18,7 +18,7 @@
 
 **Création d'une réponse personnalisée**
 
-Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundation\Response`, qui fournie une multitude de méthode pour construire une réponse HTTP.
+Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundation\Response`, qui fournie une multitude de méthodes pour construire une réponse HTTP.
 
 	$response = Response::make($contents, $statusCode);
 

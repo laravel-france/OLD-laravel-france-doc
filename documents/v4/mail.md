@@ -22,7 +22,7 @@ La méthode `Mail::send` doit être utilisée pour l'envoi de message :
 
 Le premier argument attendu par la méthode `send` est le nom de la vue à utiliser pour constituer le texte du message. Le second argument attendu est le tableau `$data` à transmettre à la vue et le troisième argument est une closure permettant d'indiquer des options relatives au message.
 
-> **Remarque:** Une variable `$message` est toujours passée aux vues de messages, ce qui permet l'incrustation de pièces jointes. Il est donc préférable de ne pas passer de variable `message` à une vue d'attachement de pièce jointe.
+> **Remarque:** Une variable `$message` est toujours passée aux vues de messages, ce qui permet l'incrustation de pièces jointes. Il est donc préférable de ne pas passer de variable `$message` à une vue d'attachement de pièce jointe.
 
 Vous pouvez aussi définir une vue plein texte en plus de la vue HTML :
 

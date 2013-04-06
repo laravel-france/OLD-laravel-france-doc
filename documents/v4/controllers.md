@@ -3,7 +3,7 @@
 - [Contrôleurs basiques](#basic-controllers)
 - [Filtres de contrôleurs](#controller-filters)
 - [Contrôleurs RESTful](#restful-controllers)
-- [Contrôleurs de resource](#resource-controllers)
+- [Contrôleurs de ressource](#resource-controllers)
 - [Gestion de méthodes manquantes](#handling-missing-methods)
 
 <a name="basic-controllers"></a>
@@ -29,11 +29,11 @@ Voici un exemple d'un contrôleur basique :
 
 	}
 
-Tous les contrôleurs doivent hérité de la classe `BaseController`. La classe `BaseController` est également présente dans le dossier `app/controllers`, et peut être utilisée pour placer pour placer des élémenents partagés. `BaseController` héritede la classe `Controller` du framework. Maintenant, nous pouvons router vers notre contrôleur de la manière suivante :
+Tous les contrôleurs doivent hériter de la classe `BaseController`. La classe `BaseController` est également présente dans le dossier `app/controllers`, et peut être utilisée pour placer des éléments partagés. `BaseController` hérite de la classe `Controller` du framework. Maintenant, nous pouvons router vers notre contrôleur de la manière suivante :
 
 	Route::get('user/{id}', 'UserController@showProfile');
 
-Si vous organiser votre code avec des namespaces PHP, utilisez simplement le nom complet de la classe lors de la définition de la route :
+Si vous organisez votre code avec des namespaces PHP, utilisez simplement le nom complet de la classe lors de la définition de la route :
 
 	Route::get('foo', 'Namespace\FooController@method');
 
@@ -53,12 +53,12 @@ Vous pouvez accéder au nom de l'action du contrôleur qui est lancé en utilisa
 <a name="controller-filters"></a>
 ## Filtres de contrôleurs
 
-[Les filtres](/docs/v4/doc/routing#route-filters) peuvent être spécifié sur les routes de contrôleurs comme pour toutes les autres routes :
+[Les filtres](/docs/v4/doc/routing#route-filters) peuvent être spécifiés sur les routes de contrôleurs comme pour toutes les autres routes :
 
 	Route::get('profile', array('before' => 'auth',
 				'uses' => 'UserController@showProfile'));
 
-Cependant, vous pouvez également spécifier des filtres à l'intérieur de votre contrôleurs :
+Cependant, vous pouvez également spécifier des filtres à l'intérieur de votre contrôleur :
 
 	class UserController extends BaseController {
 
@@ -77,7 +77,7 @@ Cependant, vous pouvez également spécifier des filtres à l'intérieur de votr
 
 	}
 
-Vous pouvez également spécifié des filtres directement avec une fonction anonyme :
+Vous pouvez également spécifier des filtres directement avec une fonction anonyme :
 
 	class UserController extends BaseController {
 
@@ -103,7 +103,7 @@ Laravel vous permet de définir une seule route pour gérer toutes les actions d
 
 	Route::controller('users', 'UserController');
 
-la méthode `controller` prends deux arguments. Le premier est la base d'URI qui conduit au contrôleur, le second est le nom de la classe du contrôleur. Ensuite, ajoutez simplement des méthodes à votre contrôleur, préfixés par le verbe HTTP auquel ils doivent répondre :
+La méthode `controller` prend deux arguments. Le premier est la base d'URI qui conduit au contrôleur, le second est le nom de la classe du contrôleur. Ensuite, ajoutez simplement des méthodes à votre contrôleur, préfixés par le verbe HTTP auquel ils doivent répondre :
 
 	class UserController extends BaseController {
 
@@ -126,9 +126,9 @@ Si votre méthode de contrôleur contient plusieurs mots, vous devrez accéder �
 	public function getAdminProfile() {}
 
 <a name="resource-controllers"></a>
-## Contrôleurs de resource
+## Contrôleurs de ressource
 
-Les contrôleurs de resource rendent plus facile la construction de contrôleur RESTful autour d'une resource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
+Les contrôleurs de ressource rendent plus facile la construction de contrôleur RESTful autour d'une ressource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
 
 Pour créer le contrôleur en ligne de commande, executez la commande suivante :
 
@@ -138,27 +138,27 @@ Maintenant nous pouvons enregistrer une route "resourceful" vers notre contrôle
 
 	Route::resource('photo', 'PhotoController');
 
-Cette simple déclaration de route crée de multiples routes pour gérer une variété d'actions RESTful sur notre resource "photo". De plus, le contrôleur généré contiendra déjà des méthodes pour chacunes de ces actions avec une note vous informant à quelles URIs et à quels verbes HTTP ils répondent.
+Cette simple déclaration de route crée de multiples routes pour gérer une variété d'actions RESTful sur notre ressource "photo". De plus, le contrôleur généré contiendra déjà des méthodes pour chacune de ces actions avec une note vous informant à quelles URIs et à quels verbes HTTP ils répondent.
 
-**Actions gérées par un contrôleur de resource**
+**Actions gérées par un contrôleur de ressource**
 
-Verb      | Path                  | Action
-----------|-----------------------|--------------
-GET       | /resource             | index
-GET       | /resource/create      | create
-POST      | /resource             | store
-GET       | /resource/{id}        | show
-GET       | /resource/{id}/edit   | edit
-PUT/PATCH | /resource/{id}        | update
-DELETE    | /resource/{id}        | destroy
+Verb      | Path                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | /resource             | index        | resource.index
+GET       | /resource/create      | create       | resource.create
+POST      | /resource             | store        | resource.store
+GET       | /resource/{id}        | show         | resource.show
+GET       | /resource/{id}/edit   | edit         | resource.edit
+PUT/PATCH | /resource/{id}        | update       | resource.update
+DELETE    | /resource/{id}        | destroy      | resource.destroy
 
-Parfois vous aurez seulement besoin d'une partie des méthodes du contrôleur de resource :
+Parfois vous aurez seulement besoin d'une partie des méthodes du contrôleur de ressource :
 
 	php artisan controller:make PhotoController --only=index,show
 
 	php artisan controller:make PhotoController --except=index
 
-Et, vous pouvez aussi spécifier quelles méthodes doivent être disponible via le routage:
+Et, vous pouvez aussi spécifier quelles méthodes doivent être disponibles via le routage:
 
 	Route::resource('photo', 'PhotoController',
 					array('only' => array('index', 'show')));
@@ -166,9 +166,9 @@ Et, vous pouvez aussi spécifier quelles méthodes doivent être disponible via 
 <a name="handling-missing-methods"></a>
 ## Gestion de méthodes manquantes
 
-Une méthode attrape tout peut être créée, elle sera appelé quand aucune autre méthode n'est trouvé dans un contrôleur donné. La méthode doit s'appeller `missingMethod`, et elle reçoit le tableau de paramètres de la requête en tant que seul argument :
+Une méthode attrape-tout peut être créée, elle sera appelée quand aucune autre méthode n'est trouvée dans un contrôleur donné. La méthode doit s'appeler `missingMethod`, et elle reçoit le tableau de paramètres de la requête en tant que seul argument :
 
-**Définition d'une méthode attrape tout**
+**Définition d'une méthode attrape-tout**
 
 	public function missingMethod($parameters)
 	{

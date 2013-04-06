@@ -33,6 +33,6 @@
     - [Redis](/docs/redis)
 - Artisan CLI
     - [Présentation](/docs/artisan)
-    - [Développement (en)](/docs/commands)
+    - [Développement](/docs/commands)
 - Éléments avancés
     - [Architecture](#)
