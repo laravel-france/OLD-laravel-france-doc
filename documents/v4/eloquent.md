@@ -585,7 +585,7 @@ Maintenant, quand vous mettrez à jour un `Comment`, le `Post` parent aura sa co
 <a name="working-with-pivot-tables"></a>
 ## Travail sur les tables pivots
 
-Comme vous l'avez déjà appris, le travail avec les relations plusieurs-vers-plusieurs requis la présence d'une table intermédiaire. Eloquent fournit des moyens très utiles d'interagir avec cette table. Par exemple, disons que nous avons un objet `User` qui a plusieurs objets `Role`. Après avoir accédé à la relation, vous pouvez accéder à la table `pivot` du modèle :
+Comme vous l'avez déjà appris, le travail avec les relations plusieurs-vers-plusieurs nécessite la présence d'une table intermédiaire. Eloquent fournit des moyens très utiles d'interagir avec cette table. Par exemple, disons que nous avons un objet `User` qui a plusieurs objets `Role`. Après avoir accédé à la relation, vous pouvez accéder à la table `pivot` du modèle :
 
     $user = User::find(1);
 
@@ -724,22 +724,22 @@ Les modèles Eloquent contiennent également une méthode static `boot`, qui peu
 
 **Mise en place de la méthode boot d'un modèle**
 
-  class User extends Eloquent {
+    class User extends Eloquent {
 
-    public static function boot()
-    {
-      parent::boot();
+      public static function boot()
+      {
+        parent::boot();
 
-      // Setup event bindings...
+        // Setup event bindings...
+      }
+
     }
-
-  }
 
 
 <a name="converting-to-arrays-or-json"></a>
 ## Conversion en tableau / JSON
 
-Quand une construisez des APIs en JSON, vous devez souvent convertir vos modèles et vos relations en tableau ou en JSON. Eloquent inclut des méthodes pour le faire. Pour convertir un modèle et ses relations en tableau, vous pouvez utiliser la méthode `toArray` :
+Quand vous construisez des APIs en JSON, vous devez souvent convertir vos modèles et vos relations en tableau ou en JSON. Eloquent inclut des méthodes pour le faire. Pour convertir un modèle et ses relations en tableau, vous pouvez utiliser la méthode `toArray` :
 
 **Convertion d'un modèle en tableau**
 

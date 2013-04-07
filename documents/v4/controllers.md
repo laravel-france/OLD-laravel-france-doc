@@ -142,15 +142,15 @@ Cette simple déclaration de route crée de multiples routes pour gérer une var
 
 **Actions gérées par un contrôleur de ressource**
 
-Verb      | Path                  | Action
-----------|-----------------------|--------------
-GET       | /resource             | index
-GET       | /resource/create      | create
-POST      | /resource             | store
-GET       | /resource/{id}        | show
-GET       | /resource/{id}/edit   | edit
-PUT/PATCH | /resource/{id}        | update
-DELETE    | /resource/{id}        | destroy
+Verb      | Path                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | /resource             | index        | resource.index
+GET       | /resource/create      | create       | resource.create
+POST      | /resource             | store        | resource.store
+GET       | /resource/{id}        | show         | resource.show
+GET       | /resource/{id}/edit   | edit         | resource.edit
+PUT/PATCH | /resource/{id}        | update       | resource.update
+DELETE    | /resource/{id}        | destroy      | resource.destroy
 
 Parfois vous aurez seulement besoin d'une partie des méthodes du contrôleur de ressource :
 

@@ -126,7 +126,7 @@ Vous pouvez également spécifier des clauses de jointures plus complexes :
 <a name="advanced-wheres"></a>
 ## Clauses WHERE avancées
 
-Parfois vous pouvez avoir besoin de créer des clauses WHERE avancées comme des "WHERE EXISTS" ou des avec des clauses imbriquées. Le Query Builder le Laravel peut gférer cela également :
+Parfois vous pouvez avoir besoin de créer des clauses WHERE avancées comme des "WHERE EXISTS" ou des requêtes avec des clauses imbriquées. Le Query Builder le Laravel peut gférer cela également :
 
 **Groupage de paramètre**
 
@@ -154,7 +154,7 @@ La requête ci dessus éxecutera la requête suivante :
 	            })
 	            ->get();
 
-La requête ci dessus éxecutera la requête suivante:
+La requête ci-dessus éxecutera la requête suivante:
 
 	select * from users
 	where exists (
@@ -243,6 +243,6 @@ Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthod
 
 	DB::table('users')->delete();
 
-**Tronque une table**
+**Suppression d'une table**
 
 	DB::table('users')->truncate();
