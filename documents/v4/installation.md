@@ -41,6 +41,8 @@ Laravel a besoin que le serveur web ait un accès en écriture sur les dossiers 
 
 Plusieurs chemins des dossiers du Framework sont configurables. Pour changer leurs positions, regardez le fichier `bootstrap/paths.php`.
 
+> **Note:** Laravel est conçu pour protéger le code de votre application et de votre stockage local en plaçant uniquement les fichiers qui sont nécessairement publiques dans le dossier public. il est grandement recommandé soit de placer le dossier public en tant que documentRoot (aussi connu en tant que web root) ou de placer le contenu du dossier public de votre dans le dossier racine de votre site et de placer tous les autres fichiers de Laravel en dehors de ce dernier.
+
 <a name="pretty-urls"></a>
 ## Des URLs propres
 
@@ -49,9 +51,10 @@ Le framework est fourni avec un fichier `public/.htaccess` qui est utilisé pour
 Si le fichier `.htaccess` fourni avec Laravel ne fonctionne pas, essayez celui ci :
 
 	Options +FollowSymLinks
-	RewriteEngine on
+	RewriteEngine On
 
-	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-
-	RewriteRule . index.php [L]
+    RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
+   
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]

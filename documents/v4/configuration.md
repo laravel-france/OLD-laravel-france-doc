@@ -51,7 +51,7 @@ Ensuite, nous devons indiquer au framework comment déterminer sur quel environn
 
 Vous pouvez également passer une fonction anonyme à la méthode `detectEnvironment`, vous permettant d'implémenter votre propre détection d'environnement :
 
-  $env = $app->detectEnvironmnet(function()
+  $env = $app->detectEnvironment(function()
   {
     return $_SERVER['MY_LARAVEL_ENV'];
   });
