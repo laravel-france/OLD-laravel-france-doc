@@ -10,7 +10,7 @@
 
 Puisque l'état des variables n'est pas conservé par les applications basées sur le protocole HTTP, les sessions sont un moyen de conserver des informations d'une requête à l'autre.  Laravel inclut des gestionnaires de données à travers une API claire et unifiée. Laravel supporte [Memcached](http://memcached.org), [Redis](http://redis.io) et les gestionnaires de base de données.
 
-Les sessions sont paramétrables dans le fichier `app/config/session.php`. Examinez bien les options de ce fichier, elles sont bien documentées. Par défaut, Laravel est configuré pour l'utilisation du driver de session `cookie` convenant à la majorité des applications.
+Les sessions sont paramétrables dans le fichier `app/config/session.php`. Examinez bien les options de ce fichier, elles sont bien documentées. Par défaut, Laravel est configuré pour l'utilisation du driver de session `native` convenant à la majorité des applications.
 
 <a name="session-usage"></a>
 ## Utilisation
@@ -78,5 +78,7 @@ Pour utiliser le driver de session `database`, vous devez créer une table desti
 Evidemment, vous pouvez utiliser la commande Artisan `session:table` pour générer cette migration :
 
 	php artisan session:table
+
+	composer dump-autoload
 
 	php artisan migrate

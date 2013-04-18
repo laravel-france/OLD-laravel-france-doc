@@ -87,7 +87,7 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 <a name="route-filters"></a>
 ## Filtres de routes
 
-Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, une filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
+Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, un filtre `auth.basic`, un filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
 
 **Définition d'un filtre de route**
 
