@@ -83,11 +83,11 @@ La méthode `validate` vous permet de valider que les identifiants d'un utilisat
 		//
 	}
 
-Vous pouvez également utiliser la méthode `stateless` pour connecter un utilisateur le temps d'une seule requête. Il n'y aura ni session ni cookie pour cet utilisateur.
+Vous pouvez également utiliser la méthode `once` pour connecter un utilisateur le temps d'une seule requête. Il n'y aura ni session ni cookie pour cet utilisateur.
 
 **Connecte un utilisateur pour une seule requête**
 
-	if (Auth::stateless($credentials))
+	if (Auth::once($credentials))
 	{
 		//
 	}
