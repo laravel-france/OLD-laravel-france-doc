@@ -2,6 +2,8 @@
 
 - [Configuration](#configuration)
 - [Utilisation](#usage)
+- [Ajout de paramètres sur les liens de pagination](#appending-to-pagination-links)
+
 
 <a name="configuration"></a>
 ## Configuration
@@ -49,3 +51,14 @@ Si vous souhaitez créer une pagination manuellement en fournissant un tableau d
 **Créer manuellement une pagination**
 
 	$paginator = Paginator::make($items, $totalItems, $perPage);
+
+<a name="appending-to-pagination-links"></a>
+## Ajout de paramètres sur les liens de pagination
+
+Vous pouvez ajouter des paramètres sur les liens de pagination en utilisant la méthode `appends` sur le  Paginator:
+
+	<?php echo $users->appends(array('sort' => 'votes'))->links(); ?>
+
+Cela génèrera une URL qui ressemblera à cela :
+
+	http://example.com/something?page=2&sort=votes
