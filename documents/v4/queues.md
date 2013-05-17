@@ -39,7 +39,14 @@ Le premier paramètre attendu par la méthode `push` est le nom de la classe à 
 
 	}
 
-Remarquez que seul l'appel de la méthode `fire` en joignant l'instance de tâche et le tableau de données associé est nécessaire. 
+Remarquez que seul l'appel de la méthode `fire` en joignant l'instance de tâche et le tableau de données associé est nécessaire.
+
+Si vous souhaitez que votre tâche utilise une autre méthode que `fire`, vous devez spécifier la méthode lorsque vous poussez la tâche :
+
+**Spécifie une méthode personnalisée**
+
+    Queue::push('SendEmail@send', array('message' => $message));
+
 
 Une fois la tâche exécutée, vous devez la supprimer de la file d'attente à l'aide de la méthode `delete` au sein de l'instance de tâche :
 

@@ -3,6 +3,7 @@
 - [Introduction](#introduction)
 - [Configuration](#configuration)
 - [Utilisation](#usage)
+- [Pipelining](#pipelining)
 
 <a name="introduction"></a>
 ## Introduction
@@ -15,12 +16,13 @@
 La configuration Redis pour votre application est située dans le fichier **app/config/database.php**. Dans ce fichier, l'élément **redis** est un tableau contenant les serveurs Redis utilisés par votre application :
 
 	'redis' => array(
-
+        'cluster' => true,
 		'default' => array('host' => '127.0.0.1', 'port' => 6379),
-
 	),
 
 La configuration de serveur par défaut doit être suffisant pour le développement. Toutefois, vous pouvez modifier ce tableau à votre convenance. Donnez seulement un nom à chacun de vos serveurs Redis, puis indiquez le host et le port utilisés pour chaque serveur.
+
+L'option `cluster` indiquera au client Redis de Laravel de faire du Sharding coté client sur les noeuds Redis, vous premettant de mettre en commun des noeuds et de créer un grand nombre de RAM disponible. Cependant, notez que le sharding coté client ne gère pas les défaillances, de ce fait l'usage sera plutôt pour mettre en cache des données qui sont disponibles depuis une autre source.
 
 <a name="usage"></a>
 ## Utilisation
@@ -56,3 +58,20 @@ Pour exécuter des commandes sans utiliser la connexion par défaut, utilisez le
 	$values = Redis::lrange('names', 5, 10);
 
 > **Note:** Les drivers [cache](/docs/v4/doc/cache) et [session](/docs/v4/doc/session) de Redis sont fournis avec Laravel.
+
+<a name="pipelining"></a>
+## Pipelining
+
+Le Pipelining doit être utilisé lorsque vous avez besoin d'envoyer plusieurs commandes au serveur en une opération. Pour se faire, utilisez la méthode `pipeline` :
+
+**Envoi de plusieurs commandes au serveur**
+
+    Redis::pipeline(function($pipe)
+    {
+        for ($i = 0; $i < 1000; $i++)
+        {
+            $pipe->set("key:$i", $i);
+        }
+    });
+
+

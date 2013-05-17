@@ -4,6 +4,7 @@
 - [Stockage de mot de passe](#storing-passwords)
 - [Identifier les utilisateurs](#authenticating-users)
 - [Protection de routes](#protecting-routes)
+- [Identification HTTP Basic](#http-basic-authentication)
 - [Réinitialisation du mot de passe](#password-reminders-and-reset)
 - [Chiffrage](#encryption)
 
@@ -122,6 +123,29 @@ Laravel fournit une méthode simple de proteger votre application contre les att
     {
         return 'You gave a valid CSRF token!';
     }));
+    
+<a name="http-basic-authentication"></a>
+## Identification HTTP Basic
+
+L'identification HTTP Basic fournit une manière rapide d'identifier des utilisateurs de votre application sans avoir à créer une page de "login". Pour commencer, attachez le filtre `auth.basic` à votre route :
+
+**Protection d'une route avec HTTP Basic**
+
+	Route::get('profile', array('before' => 'auth.basic', function()
+	{
+		// Only authenticated users may enter...
+	}));
+
+
+Vous pouvez également utiliser l'identification HTTP Basic sans conserver l'utilisateur connécté en session après la requête, ce qui est utile pour l'identification dans une API. Pour se faire, créez un filtre qui retourne la méthode `onceBasic` :
+
+**Défini un filtre HTTP Basic de connexion stateless**
+
+    Route::filter('basic.once', function()
+    {
+        return Auth::onceBasic();
+    });
+
 
 <a name="password-reminders-and-reset"></a>
 ## Réinitialisation du mot de passe
