@@ -4,6 +4,7 @@
 - [Utilisation basique](#basic-usage)
 - [Assignement de masse](#mass-assignment)
 - [Insertion, mise à jour, suppression](#insert-update-delete)
+- [Suppression douce](#soft-deleting)
 - [Timestamps](#timestamps)
 - [Cadres de requête](#query-scopes)
 - [Relations](#relationships)
@@ -190,6 +191,43 @@ Si vous souhaitez simplement mettre à jour les timestamps d'un modèle, utilise
 **Mise à jour uniquement des timestamps d'un modèle**
 
     $user->touch();
+
+<a name="soft-deleting"></a>
+## Suppression douce
+
+Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprimé de votre base de données. A la place, un timestamp `deleted_at` est défini sur la ligne. Pour activer la suppression douce sur un modèle, ajoutez la propriété `softDelete` à ce dernier :
+
+	class User extends Eloquent {
+
+		protected $softDelete = true;
+
+	}
+
+Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera rempli avec la date et l'heure de suppression. Lorsque vous requetez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withDeleted` sur la requête :
+
+**Force l'affichage des lignes réputées supprimées**
+
+	$users = User::withDeleted()->where('account_id', 1)->get();
+
+Pour annuler cette suppression, utilisez la méthode `restore` :
+
+	$user->restore();
+
+Vous pouvez également utilserla méthode `restore` sur une requête :
+
+	User::withDeleted()->where('account_id', 1)->restore();
+
+La méthode `restore` peut également être utilisée sur une relation :
+
+	$user->posts()->restore();
+
+Si vous sohaitez réélement supprimé une lign de la base de données, vous pouvez utiliser la méthode `forceDelete` :
+
+	$user->forceDelete();
+
+La méthode `forceDelete` marche également sur les relations :
+
+	$user->posts()->forceDelete();
 
 <a name="timestamps"></a>
 ## Timestamps
