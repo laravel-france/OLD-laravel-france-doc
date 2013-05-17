@@ -233,6 +233,10 @@ Le champ de sous validation doit exister dans la base de données.
 
 	'state' => 'exists:states,abbreviation'
 
+Vous pouvez également spécifier plus de conditions qui seront ajoutés en tant que clause "WHERE" à la requête :
+
+    'email' => 'exists:staff,email,account_id,1'
+
 <a name="rule-image"></a>
 #### image
 
@@ -295,9 +299,9 @@ Le filtre de sous validation doit correspondre à l'expression régulière donn�
 Le champs de sous validation doit être présent dans les données.
 
 <a name="rule-required-if"></a>
-#### required_if:_foo_,_bar_
+#### required_if:_field_,_value_
 
-Le champ sous validation doit être présent si la champ _foo_ est égal à _bar_.
+Le champ sous validation doit être présent si la champ _field_ field is equal to _value_.
 
 <a name="rule-required-with"></a>
 #### required_with:_foo_,_bar_,...
