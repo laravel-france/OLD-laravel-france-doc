@@ -254,6 +254,14 @@ Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une i
 
 > **Note:** Si un une instance d'un modèle n'est pas trouvée dans la base de données, alors une erreur 404 est lancée.
 
+Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pouvez passer une fonction anonyme en tant que troisème argument de la méthode `model` :
+
+    Route::model('user', 'User', function()
+    {
+        throw new NotFoundException;
+    });
+
+
 Si vous avez besoin de résoudre vous même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
 
 	Route::bind('user', function($value, $route)

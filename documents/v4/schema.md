@@ -5,6 +5,7 @@
 - [Ajout de colonnes](#adding-columns)
 - [Renommage de colonnes](#renaming-columns)
 - [Suppression de colonnes](#dropping-columns)
+- [Vérification d'existence](#checking-existence)
 - [Ajout d'index](#adding-indexes)
 - [Suppression d'index](#dropping-indexes)
 
@@ -105,6 +106,25 @@ Pour renommer une colonne, vous devez pouvez la méthode `renameColumn`sur le co
     {
         $table->dropColumn('votes', 'avatar', 'location');
     });
+
+<a name="checking-existence"></a>
+## Vérification d'existence
+
+Vous pouvez vérifier facilement l'existence d'une table ou d'une colonne en utilisant les méthodes `hasTable` et `hasColumn` :
+
+**Vérifie l'existence d'une table**
+
+	if (Schema::hasTable('users'))
+	{
+		//
+	}
+
+**Vérifie l'existence d'une colonne**
+
+	if (Schema::hasColumn('users', 'email'))
+	{
+		//
+	}
 
 <a name="adding-indexes"></a>
 ## Ajout d'index

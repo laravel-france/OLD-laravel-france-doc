@@ -55,3 +55,7 @@ Vous pouvez écouter pour des événements de requêtes en utilisant la méthode
 Lorsque plusieurs connexions sont ouvertes, vous pouvez accéder à la connexion de votre choix à l'aide de la méthode `DB::connection` :
 
 	$users = DB::connection('foo')->select(...);
+
+Parfois vous pourriez avoir besoin de vous reconnecter à une base de données : 
+
+    DB::reconnect('foo');

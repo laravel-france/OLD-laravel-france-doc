@@ -7,6 +7,7 @@
 - [Timestamps](#timestamps)
 - [Cadres de requête](#query-scopes)
 - [Relations](#relationships)
+- [Requêtes sur les relations](#querying-relations)
 - [Chargements liés](#eager-loading)
 - [Insertion de modèles liés](#inserting-related-models)
 - [Mise à jour du Timestamps des parents](#touching-parent-timestamps)
@@ -441,6 +442,20 @@ Pour vous aider à comprendre comment cela marche, jetons un oeil à la structur
 
 Les champs clés à remarquer ici sont `imageable_id` et `imageable_type` de la table `photos`. L'ID contiendra la valeur de l'ID d'une ligne de staff ou de commande ici par exemple, tandis que le type contiendra le nom de la classe du modèle propriétaire. C'est ce qui permet à l'ORM de déterminer quel type de propriétaire doit être retourné lors de l'accès à la relation `imageable`.
 
+<a name="querying-relations"></a>
+## Requêtes sur les relations
+
+Lorsque vous accédez aux lignes d'un modèle, vous pourriez vouloir limiter vos résultats en se basant sur l'existance d'une relation. Par exemple, pour récupérer les billets d'un blog qui ont au moins un commentaire. Pour se faire, vous pouvez utiliser le méthode `has` :
+
+**Vérification d'une relation lors de la selection**
+
+	$posts = Post::has('comments')->get();
+
+Vous pouvez également spécifier un opérateur et un nombre :
+
+	$posts = Post::has('comments', '>=', 3)->get();
+
+
 <a name="eager-loading"></a>
 ## Chargements liés
 
@@ -781,3 +796,7 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
         protected $hidden = array('password');
 
     }
+
+Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
+
+    protected $visible = array('first_name', 'last_name');

@@ -148,6 +148,7 @@ Vous trouverez ci dessous une liste des règles de validation et leurs fonctions
 - [Numeric](#rule-numeric)
 - [Regular Expression](#rule-regex)
 - [Required](#rule-required)
+- [Required If](#rule-required-if)
 - [Required With](#rule-required-with)
 - [Same](#rule-same)
 - [Size](#rule-size)
@@ -293,6 +294,11 @@ Le filtre de sous validation doit correspondre à l'expression régulière donn�
 
 Le champs de sous validation doit être présent dans les données.
 
+<a name="rule-required-if"></a>
+#### required_if:_foo_,_bar_
+
+Le champ sous validation doit être présent si la champ _foo_ est égal à _bar_.
+
 <a name="rule-required-with"></a>
 #### required_with:_foo_,_bar_,...
 
@@ -387,6 +393,10 @@ Laravel fournit une variété de règles de validations utiles, cependant vous p
 > **Note:** Le nom de la règle passée à la méthode `extend` doit être en "snake_case".
 
 La fonction anonyme de validation reçoit trois arguments : le nom du champ (`$attribute`) qui se fait valider, la valeur (`$value`) du champ, et le tableau des paramètres (`$parameters`) passés à la règles
+
+Vous pouvez également utiliser une classe et une méthode à la méthode `extend` plutôt qu'une fonction anonyme :
+
+    Validator::extend('foo', 'FooValidator@validate');
 
 Notez que vous devrez également définir un message d'erreur personnalisé. Vous pouvez le faire soit en utilisant un tableau avec votre message perso à chaque fois que vous appellerez votre règle de validation personnalisée, soit en ajoutant une entrée dans le fichier de langue de validation.
 

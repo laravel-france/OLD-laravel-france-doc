@@ -40,10 +40,10 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 
 	if (Auth::attempt(array('email' => $email, 'password' => $password)))
 	{
-		// The user's credentials are valid...
+		return Redirect::intended('dashboard');
 	}
 
-Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées.
+Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées. La fonction `Redirect::intended` redirigera l'utilisateur vers l'URL qu'il tentait d'atteindre avant de se faire attraper par le filtre d'identification. Une URL par défaut peut être donnée à la méthode dans le cas où l'URL qu'il souhaitait atteindre n'est pas determinée.
 
 Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
@@ -56,11 +56,9 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 
 **Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connecté à votre application.
 
-**Connecter un utilisateur avec des conditions**
+Vous pouvez ajouter des conditions particulières à la requête d'identification :
 
-Vous pouvez ajouter des conditions particulières pour vous assurer qu'un utiliseur est par exemple actif, et non suspendu :
-
-    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1, 'suspended' => 0)))
+    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1)))
     {
         // The user is active, not suspended, and exists.
     }
