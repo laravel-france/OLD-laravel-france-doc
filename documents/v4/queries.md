@@ -9,6 +9,7 @@
 - [Insertions](#inserts)
 - [Mises à jour](#updates)
 - [Suppressions](#deletes)
+- [Unions](#unions)
 
 <a name="introduction"></a>
 ## Introduction
@@ -246,3 +247,16 @@ Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthod
 **Suppression d'une table**
 
 	DB::table('users')->truncate();
+
+<a name="unions"></a>
+## Unions
+
+Le constructeur de requête vous fournit également une manière rapide de faire des unions :
+
+**Execuction d'une requête Union**
+
+	$first = DB::table('users')->whereNull('first_name');
+
+	$users = DB::table('users')->whereNull('last_name')->union($first)->get();
+
+La méthode `unionAll` est également disponible, et a la même signature que `union`.

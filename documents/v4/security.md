@@ -182,7 +182,7 @@ Pour envoyer un rappel de mot de passe, nous pouvons utiliser la méthode `Passw
 		return Password::remind($credentials);
 	});
 
-Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyer un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe.
+Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyer un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe. L'object `user` sera également passé à la vue.
 
 > **Note:** Vous pouvez spécifié la vue qui sera utilisée dans l'email en changeant l'option de configuration `auth.reminder.email`. Bien entendu, une vue par défaut vous est fournie.
 
