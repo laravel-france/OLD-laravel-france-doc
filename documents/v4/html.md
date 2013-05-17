@@ -132,6 +132,13 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 
     echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
 
+**Génération d'une liste avec groupes**
+
+    echo Form::select('animal', array(
+        'Cats' => array('leopard' => 'Leopard'),
+        'Dogs' => array('spaniel' => 'Spaniel'),
+    ));
+
 <a name="buttons"></a>
 ## Boutons
 
