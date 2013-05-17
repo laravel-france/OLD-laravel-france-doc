@@ -127,6 +127,13 @@ Si une réponse est retournée par un filtre, cette réponse sera considéré co
 		return 'Hello World';
 	}));
 
+Les filtres 'after' reçoivent une `$response` en tant que troisième argument du filtre :
+
+    Route::filter('log', function($route, $request, $response, $value)
+    {
+        //
+    });
+
 **Filtres basés sur un patron de route**
 
 Vous pouvez aussi spéficier qu'un filtre s'applique sur un jeu entier de routes en se basant sur leurs URIs.

@@ -136,7 +136,7 @@ Les classes d'abonnement sont des classes qui peuvent souscrire à plusieurs év
          * @param  Illuminate\Events\Dispatcher  $events
          * @return array
          */
-        public static function subscribe($events)
+        public function subscribe($events)
         {
             $events->listen('user.login', 'UserEventHandler@onUserLogin');
 

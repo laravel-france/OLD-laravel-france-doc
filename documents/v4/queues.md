@@ -2,6 +2,7 @@
 
 - [Configuration](#configuration)
 - [Utilisation](#basic-usage)
+- [Mise en queue de fonction anonymes](#queueing-closures)
 - [Activer le gestionnaire d'exécution de la file de travaux](#running-the-queue-listener)
 - [Queues en mode Push](#push-queues)- 
 
@@ -48,17 +49,6 @@ Si vous souhaitez que votre tâche utilise une autre méthode que `fire`, vous d
 
     Queue::push('SendEmail@send', array('message' => $message));
 
-Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraiment pratique pour des tâches rapides & simples à placer dans la queue :
-
-**Placer une fonction anonyme dans la queue**
-
-    Queue::push(function() use ($id)
-    {
-        Account::delete($id);
-    });
-
-> **Note:** Lorsque vous placez une fonction anonyme dans la queue, les constantes `__DIR__` et `__FILE__` ne devraient pas être utilisé.
-
 Une fois la tâche exécutée, vous devez la supprimer de la file d'attente à l'aide de la méthode `delete` au sein de l'instance de tâche :
 
 **Supprimer une tâche terminée**
@@ -93,6 +83,22 @@ Si une exception survient à l'exécution d'une tâche, cette tâche est automat
 	{
 		//
 	}
+
+<a name="queueing-closures"></a>
+## Mise en queue de fonction anonymes
+
+Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraiment pratique pour des tâches rapides & simples à placer dans la queue :
+
+**Placer une fonction anonyme dans la queue**
+
+    Queue::push(function() use ($id)
+    {
+        Account::delete($id);
+    });
+
+> **Note:** Lorsque vous placez une fonction anonyme dans la queue, les constantes `__DIR__` et `__FILE__` ne devraient pas être utilisé.
+
+Lorseque vous utilisez Iron.io [en tant que queue en mode push](#push-queues), vous devriez prendre prendre des précautions lorsque vous placez en queue des fonctions anonymes. Le point final qui reçoit votre message de queue devrait vérifier un token pour s'assurer que le requête vient effectivement de Iron.io. Par exemple, le point final de votre queue pourrait être quelque chose comme ceci : `https://yourapp.com/queue/receive?token=SecretToken`. Vous pouvez ensuite vérifier la valeur du token avant d'utiliser la méthode `marshal`.
 
 <a name="running-the-queue-listener"></a>
 ##Activer le gestionnaire d'exécution de la file de travaux
@@ -134,7 +140,7 @@ Ensuite, vous pouvez utiliser la commande Artisan `queue:subscribe` pour enregis
 
 Maintenant, lorsque vous vous connectez au tableau de bord d'Iron, vous verrez votre nouvelle queue, ainsi que l'URL souscrite. Vous pouvez créer autant d'URL que vous le souhaitez pour une queue donnée. Ensuite, créez une route pour votre point d'arrivé `queue/receive` et retournez la réponse de la méthode `Queue::marshal` :
 
-	Route::get('queue/receive', function()
+	Route::post('queue/receive', function()
 	{
 		return Queue::marshal();
 	});

@@ -2,6 +2,7 @@
 
 - [Configuration](#configuration)
 - [Exécuter des requêtes](#running-queries)
+- [Transaction sur la base de données](#database-transactions)
 - [Accéder aux connexions](#accessing-connections)
 
 <a name="configuration"></a>
@@ -48,6 +49,18 @@ Vous pouvez écouter pour des événements de requêtes en utilisant la méthode
     {
         //
     });
+
+<a name="database-transactions"></a>
+## Transactions sur la base de données
+
+Pour éxecuter une liste d'opération durant une transaction, vous pouvez utiliser la méthode `transaction` :
+
+	DB::transaction(function()
+	{
+		DB::table('users')->update(array('votes' => 1));
+
+		DB::table('posts')->delete();
+	});
 
 <a name="accessing-connections"></a>
 ## Accéder aux connexions

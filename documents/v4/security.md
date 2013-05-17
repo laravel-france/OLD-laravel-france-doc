@@ -33,6 +33,13 @@ La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 		// The passwords match...
 	}
 
+**Vérifie si un mot de passe a besoin d'être recrypté**
+
+    if (Hash::needsRehash($hashed))
+    {
+        $hashed = Hash::make('secret');
+    }
+
 <a name="authenticating-users"></a>
 ## Identifier les utilisateurs
 
@@ -44,6 +51,16 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 	}
 
 Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées. La fonction `Redirect::intended` redirigera l'utilisateur vers l'URL qu'il tentait d'atteindre avant de se faire attraper par le filtre d'identification. Une URL par défaut peut être donnée à la méthode dans le cas où l'URL qu'il souhaitait atteindre n'est pas determinée.
+
+Pour déterminer si un utilisateur est déjà connécté à votre application, vous pouvez utiliser la méthode `check` :
+
+**Détermine si un utilisateur est identifié**
+
+  if (Auth::check())
+  {
+    // The user is logged in...
+  }
+
 
 Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 

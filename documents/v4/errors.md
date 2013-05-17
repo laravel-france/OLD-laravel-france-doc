@@ -1,8 +1,8 @@
 # Erreurs & Journalisations
 
 - [Détail des erreurs](#error-detail)
+- [Gestion des erreurs](#handling-errors)
 - [Exceptions HTTP](#http-exceptions)
-- [Handling Errors](#handling-errors)
 - [Gestion des erreurs 404](#handling-404-errors)
 - [Logging](#logging)
 
@@ -11,6 +11,7 @@
 
 Par défaut, les détails des erreurs sont autorisés par votre application. Cela signifie que quand une erreur se déroule, une page d'erreur vous sera affichée avec la pile d'exécution et un message d'erreur. Vous pouvez désactiver cela en mettant l'option `debug` du fichier `app/config/app.php` à `false`. **Il est fortement recommandé de passer cette option à false dans un environnement de production.**
 
+<a name="handling-errors"></a>
 ## Gestion des erreurs
 
 Par défaut, le fichier `app/start/global.php` contient un gestionnaire d'erreur pour toutes les exceptions :

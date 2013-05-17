@@ -306,7 +306,7 @@ Une relation un-vers-un est une relation très basique. Par exemple, un modèle 
 
     }
 
-Le premier argument passé à la méthode `hasOne` est le nom du modèle lié. Une fois que la relation est définie, nous pouvons la récupérer en utilisant les propriétés dynamiques d'Eloquent :
+Le premier argument passé à la méthode `hasOne` est le nom du modèle lié. Une fois que la relation est définie, nous pouvons la récupérer en utilisant les [propriétés dynamiques](#dynamic-properties) d'Eloquent :
 
     $phone = User::find(1)->phone;
 
@@ -347,7 +347,7 @@ Un exemple de relation une-vers-plusieurs est un post de blog qui a plusieurs co
 
     }
 
-Nous pouvons accéder aux commentaires du post via la propriété dynamique :
+Nous pouvons accéder aux commentaires du post via la [propriété dynamique](#dynamic-properties) :
 
     $comments = Post::find(1)->comments;
 
@@ -458,7 +458,7 @@ Cependant, la vraie magie de la polymorphie apparait lorsque vous accédez au st
 
 **Récupération du propriétaire de la Photo**
 
-    Photo::find(1);
+    $photo = Photo::find(1);
 
     $imageable = $photo->imageable;
 
@@ -497,6 +497,29 @@ Vous pouvez également spécifier un opérateur et un nombre :
 
 	$posts = Post::has('comments', '>=', 3)->get();
 
+<a name="dynamic-properties"></a>
+### Dynamic Properties
+
+Eloquent vous autorise d'accéder à vos relations par des propriétés déynamiques. Eloquent va automatiquement charger la relation pour vous, et est assez malin pour savoir quand appeller la méthode `get` (pour les relations one-to-many) ou `first` (pour les relations one-to-one). La relation sera alors accessible par une propriété dynamique qui porte le même nom que la relation. Par exemple, avec le modèle `$phone`:
+
+	class Phone extends Eloquent {
+
+		public function user()
+		{
+			return $this->belongsTo('User');
+		}
+
+	}
+
+	$phone = Phone::find(1);
+	
+Plutôt que d'afficher l'adresse email de l'utilisateur ainsi :
+
+	echo $phone->user()->first()->email;
+
+L'appel peut se faire de cette manière :
+
+	echo $phone->user->email;
 
 <a name="eager-loading"></a>
 ## Chargements liés

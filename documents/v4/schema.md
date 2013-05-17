@@ -8,6 +8,7 @@
 - [Vérification d'existence](#checking-existence)
 - [Ajout d'index](#adding-indexes)
 - [Suppression d'index](#dropping-indexes)
+- [Moteur de stockage](#storage-engines)
 
 <a name="introduction"></a>
 ## Introduction
@@ -85,10 +86,12 @@ Pour renommer une colonne, vous devez pouvez la méthode `renameColumn`sur le co
 
 **Renommage d'une colonne**
 
-	Schema::table('users', function($t)
+	Schema::table('users', function($table)
 	{
-		$t->renameColumn('from', 'to');
+		$table->renameColumn('from', 'to');
 	});
+
+> **Note:** Le renommage de colonne de type `enum` n'est pas supporté.
 
 <a name="dropping-columns"></a>
 ## Suppression de colonnes
@@ -154,3 +157,15 @@ Command  | Description
 `$table->dropPrimary('users_id_primary');`  |  Supprime une clé primaire de la table "users"
 `$table->dropUnique('users_email_unique');`  |  Supprime une clé d'unicité de la table "users"
 `$table->dropIndex('geo_state_index');`  |  Supprime une clé basique de la table "geo"
+
+<a name="storage-engines"></a>
+## Moteur de stockage
+
+Pour définir le moteur de stockage d'une table, définissez la propriété `engine`  sur le constructeur de schema:
+
+    Schema::create('users', function($table)
+    {
+        $table->engine = 'InnoDB';
+
+        $table->string('email');
+    });
