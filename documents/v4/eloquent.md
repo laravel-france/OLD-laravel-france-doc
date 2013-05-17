@@ -203,11 +203,15 @@ Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprim
 
 	}
 
-Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera rempli avec la date et l'heure de suppression. Lorsque vous requetez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withDeleted` sur la requête :
+Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera rempli avec la date et l'heure de suppression. Lorsque vous requetez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withTrashed` sur la requête :
 
 **Force l'affichage des lignes réputées supprimées**
 
-	$users = User::withDeleted()->where('account_id', 1)->get();
+	$users = User::withTrashed()->where('account_id', 1)->get();
+
+Si vous souhaitez recevoir uniquement les lignes supprimées, utilisez la méthode `trashed` :
+
+    $users = User::trashed()->where('account_id', 1)->get();
 
 Pour annuler cette suppression, utilisez la méthode `restore` :
 
@@ -215,7 +219,7 @@ Pour annuler cette suppression, utilisez la méthode `restore` :
 
 Vous pouvez également utilserla méthode `restore` sur une requête :
 
-	User::withDeleted()->where('account_id', 1)->restore();
+	User::withTrashed()->where('account_id', 1)->restore();
 
 La méthode `restore` peut également être utilisée sur une relation :
 
