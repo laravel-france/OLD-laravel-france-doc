@@ -3,6 +3,7 @@
 - [Configuration](#configuration)
 - [Utilisation](#basic-usage)
 - [Incrustation de pièces jointes](#embedding-inline-attachments)
+- [Mise en queue de mail](#queueing-mail)
 
 <a name="configuration"></a>
 ## Configuration
@@ -71,3 +72,29 @@ Incruster des images dans les messages est généralement laborieux; cependant, 
 	</body>
 
 Notez que la variable `$message` est toujours passée aux vues de message par la classe `Mail`.
+
+<a name="queueing-mail"></a>
+## Mise en queue de mail
+
+Etant donné que l'envoi de mail peut augmenter drastiquement le temps de réponse de votre application, plusieurs développeurs choisissent de mettre en queue les emails pour un envoi de tâche de fond. Laravel rend cela simple en utilisant son [API de queue](/docs/v4/queue). Pour mettre en queue un mail, utilisez simplement la méthode `queue` sur la classe `Mail` :
+
+**Mise en queue d'un email**
+
+	Mail::queue('emails.welcome', $data, function($m)
+	{
+		$m->to('foo@example.com', 'John Smith')->subject('Welcome!');
+	});
+
+Vous pouvez également spécifier un délai en secondes avant l'envoi du mail avec la méthode `later` :
+
+	Mail::later(5, 'emails.welcome', $data, function($m)
+	{
+		$m->to('foo@example.com', 'John Smith')->subject('Welcome!');
+	});
+
+Si vous souhaitez spécifié une queue spécifique, ou "tube", sur laquelle votre message doit être placé, vous pouvez utilisez les méthodes `queueOn` et `laterOn` :
+
+	Mail::queueOn('queue-name', 'emails.welcome', $data, function($m)
+	{
+		$m->to('foo@example.com', 'John Smith')->subject('Welcome!');
+	});

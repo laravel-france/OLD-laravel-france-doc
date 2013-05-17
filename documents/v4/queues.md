@@ -3,7 +3,7 @@
 - [Configuration](#configuration)
 - [Utilisation](#basic-usage)
 - [Activer le gestionnaire d'exécution de la file de travaux](#running-the-queue-listener)
-- [Queues en mode Push](#push-queues)
+- [Queues en mode Push](#push-queues)- 
 
 <a name="configuration"></a>
 ## Configuration
@@ -139,4 +139,4 @@ Maintenant, lorsque vous vous connectez au tableau de bord d'Iron, vous verrez v
 		return Queue::marshal();
 	});
 
-La méthode `marshal` se chargera d'éxecuter la bonne classe de gestion de la tâche. Ppur lancer une tâche dans les queues en mode Pusn, utilisez la même méthode `Queue::push` que pour les queues conventionelles !
+La méthode `marshal` se chargera d'éxecuter la bonne classe de gestion de la tâche. Ppur lancer une tâche dans les queues en mode Pusn, utilisez la même méthode `Queue::push` que pour les queues conventionelles.
