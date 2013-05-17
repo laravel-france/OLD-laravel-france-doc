@@ -3,6 +3,7 @@
 - [Configuration](#configuration)
 - [Utilisation](#basic-usage)
 - [Activer le gestionnaire d'exécution de la file de travaux](#running-the-queue-listener)
+- [Queues en mode Push](#push-queues)
 
 <a name="configuration"></a>
 ## Configuration
@@ -47,6 +48,16 @@ Si vous souhaitez que votre tâche utilise une autre méthode que `fire`, vous d
 
     Queue::push('SendEmail@send', array('message' => $message));
 
+Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraiment pratique pour des tâches rapides & simples à placer dans la queue :
+
+**Placer une fonction anonyme dans la queue**
+
+    Queue::push(function() use ($id)
+    {
+        Account::delete($id);
+    });
+
+> **Note:** Lorsque vous placez une fonction anonyme dans la queue, les constantes `__DIR__` et `__FILE__` ne devraient pas être utilisé.
 
 Une fois la tâche exécutée, vous devez la supprimer de la file d'attente à l'aide de la méthode `delete` au sein de l'instance de tâche :
 
@@ -109,3 +120,23 @@ Pour exécuter uniquement la première tâche de la file d'attente, utilisez la 
 **Exécuter la première tâche de la file d'attente**
 
 	php artisan queue:work
+
+<a name="push-queues"></a>
+## Queues en mode Push
+
+Les queues en mode Push vous permettent d'utiliser la puissance des queue Laravel 4 sans avoir à éxecuter un service ou un gestionnaire de queue sur votre serveur. Actuellement, les queues en mode push sont uniquements supportées par le driver [Iron.io](http://iron.io). Avant de commencer, créez un compte Iron.io, et ajoutez vos identifiants dans le fichier de configuration `app/config/queue.php`.
+
+Ensuite, vous pouvez utiliser la commande Artisan `queue:subscribe` pour enregistrer l'URL de votre application qui recevra les nouvelles tâches en queues :
+
+**Enregistrement d'un receveur de tâches en mode Push**
+
+	php artisan queue:subscribe queue_name http://foo.com/queue/receive
+
+Maintenant, lorsque vous vous connectez au tableau de bord d'Iron, vous verrez votre nouvelle queue, ainsi que l'URL souscrite. Vous pouvez créer autant d'URL que vous le souhaitez pour une queue donnée. Ensuite, créez une route pour votre point d'arrivé `queue/receive` et retournez la réponse de la méthode `Queue::marshal` :
+
+	Route::get('queue/receive', function()
+	{
+		return Queue::marshal();
+	});
+
+La méthode `marshal` se chargera d'éxecuter la bonne classe de gestion de la tâche. Ppur lancer une tâche dans les queues en mode Pusn, utilisez la même méthode `Queue::push` que pour les queues conventionelles !

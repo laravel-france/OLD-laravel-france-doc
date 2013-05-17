@@ -654,6 +654,22 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 
     });
 
+**Applique une fonction sur chaque object d'une collection**
+
+	$roles = User::find(1)->roles;
+	
+	$roles->each(function($role)
+	{
+		//	
+	});
+
+**Tri une collection par une valeur**
+
+	$roles = $roles->sortBy(function($role)
+	{
+		return $role->created_at;
+	});
+
 Parfois, vous pourriez vouloir retourner une collection personnalisée avec vos propres méthodes ajoutées. Vous devez spécifier cela dans votre modèle Eloquent en surchargeant la méthode `newCollection` :
 
 **Retourne un type de collection personnalisé**
@@ -666,16 +682,6 @@ Parfois, vous pourriez vouloir retourner une collection personnalisée avec vos 
         }
 
     }
-
-**Applique une fonction de retour sur les objets d'une collection**
-
-    $roles = User::find(1)->roles;
-    
-    $roles->each(function($role)
-    {
-        //  
-    });
-    
 
 <a name="accessors-and-mutators"></a>
 ## Les accesseurs et mutateurs

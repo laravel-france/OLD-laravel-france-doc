@@ -3,6 +3,7 @@
 - [Introduction](#introduction)
 - [Création et suppression de table](#creating-and-dropping-tables)
 - [Ajout de colonnes](#adding-columns)
+- [Renommage de colonnes](#renaming-columns)
 - [Suppression de colonnes](#dropping-columns)
 - [Ajout d'index](#adding-indexes)
 - [Suppression d'index](#dropping-indexes)
@@ -76,6 +77,18 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 
     $table->string('name')->after('email');
 
+<a name="renaming-columns"></a>
+## Renommage de colonnes
+
+Pour renommer une colonne, vous devez pouvez la méthode `renameColumn`sur le constructeur de schema :
+
+**Renommage d'une colonne**
+
+	Schema::table('users', function($t)
+	{
+		$t->renameColumn('from', 'to');
+	});
+
 <a name="dropping-columns"></a>
 ## Suppression de colonnes
 
@@ -90,7 +103,7 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 
     Schema::table('users', function($table)
     {
-        $table->dropColumns('votes', 'avatar', 'location');
+        $table->dropColumn('votes', 'avatar', 'location');
     });
 
 <a name="adding-indexes"></a>

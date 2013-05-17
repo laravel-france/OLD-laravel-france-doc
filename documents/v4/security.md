@@ -113,7 +113,7 @@ Les filtres de routes peuvent être utilisés pour autoriser uniquement les util
 
 Laravel fournit une méthode simple de proteger votre application contre les attaques de type [CSRF](http://fr.wikipedia.org/wiki/Cross-site_request_forgery).
 
-**Insertion du jeton CSRF dans votre formulaire** en utilisant `csrf_token()` ou `Session::getToken()`
+**Insertion du jeton CSRF dans votre formulaire**
 
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -258,3 +258,11 @@ Laravel fournit une solution pour du chiffrage fort AES-256 avec l'extension PHP
 **Déchiffrage d'une valeur**
 
 	$decrypted = Crypt::decrypt($encryptedValue);
+
+Vous pouvez également préciser le chiffrement ou le mode utilisé par le chiffreur :
+
+**Reglage du chiffrement et du mode**
+
+  Crypt::setMode('crt');
+
+  Crypt::setCipher($cipher);
