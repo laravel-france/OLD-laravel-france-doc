@@ -42,11 +42,11 @@ Le Query Builder (Constructeur de requête) de Laravel fournit une interface pra
 
 **Retrouve une liste des valeurs d'une colonne**
 
-    $roles = DB::table('roles')->lists('title');
+	$roles = DB::table('roles')->lists('title');
 
-Cette méthode retournera un table des titres des rôles, avec en clé l'ID du rôle. Vous pouvez également spécifier une clé personnalisée :
+Cette méthode retournera un tableau des titres des rôles. Vous pouvez également spécifier une clé personnalisée pour le tableau retourné :
 
-    $roles = DB::table('roles')->lists('title', 'name');
+	$roles = DB::table('roles')->lists('title', 'name');
 
 **Spécification d'une clause SELECT**
 
