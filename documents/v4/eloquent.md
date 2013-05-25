@@ -209,9 +209,9 @@ Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colon
 
 	$users = User::withTrashed()->where('account_id', 1)->get();
 
-Si vous souhaitez recevoir uniquement les lignes supprimées, utilisez la méthode `trashed` :
+Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la méthode `trashed` :
 
-    $users = User::trashed()->where('account_id', 1)->get();
+    $users = User::onlyTrashed()->where('account_id', 1)->get();
 
 Pour annuler cette suppression, utilisez la méthode `restore` :
 

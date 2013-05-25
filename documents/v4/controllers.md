@@ -125,16 +125,6 @@ Si votre méthode de contrôleur contient plusieurs mots, vous devrez accéder �
 
 	public function getAdminProfile() {}
 
-La méthode `controller` accepte également un troisième paramètre optionnel qui vous permet d'assigner facilement des noms de route à un jeu de méthodes :
-
-**Assignement de noms aux actions d'un contrôleur RESTful**
-
-    Route::controller('users', 'UserController', array(
-        'showProfile'   => 'profile',
-        'showDashboard' => 'dashboard',
-    ));
-
-
 <a name="resource-controllers"></a>
 ## Contrôleurs de ressource
 
