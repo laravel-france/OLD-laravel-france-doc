@@ -3,9 +3,12 @@
 - [Introduction](#introduction)
 - [Création et suppression de table](#creating-and-dropping-tables)
 - [Ajout de colonnes](#adding-columns)
+- [Renommage de colonnes](#renaming-columns)
 - [Suppression de colonnes](#dropping-columns)
+- [Vérification d'existence](#checking-existence)
 - [Ajout d'index](#adding-indexes)
 - [Suppression d'index](#dropping-indexes)
+- [Moteur de stockage](#storage-engines)
 
 <a name="introduction"></a>
 ## Introduction
@@ -76,6 +79,20 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 
     $table->string('name')->after('email');
 
+<a name="renaming-columns"></a>
+## Renommage de colonnes
+
+Pour renommer une colonne, vous devez pouvez la méthode `renameColumn`sur le constructeur de schema :
+
+**Renommage d'une colonne**
+
+	Schema::table('users', function($table)
+	{
+		$table->renameColumn('from', 'to');
+	});
+
+> **Note:** Le renommage de colonne de type `enum` n'est pas supporté.
+
 <a name="dropping-columns"></a>
 ## Suppression de colonnes
 
@@ -90,8 +107,27 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 
     Schema::table('users', function($table)
     {
-        $table->dropColumns('votes', 'avatar', 'location');
+        $table->dropColumn('votes', 'avatar', 'location');
     });
+
+<a name="checking-existence"></a>
+## Vérification d'existence
+
+Vous pouvez vérifier facilement l'existence d'une table ou d'une colonne en utilisant les méthodes `hasTable` et `hasColumn` :
+
+**Vérifie l'existence d'une table**
+
+	if (Schema::hasTable('users'))
+	{
+		//
+	}
+
+**Vérifie l'existence d'une colonne**
+
+	if (Schema::hasColumn('users', 'email'))
+	{
+		//
+	}
 
 <a name="adding-indexes"></a>
 ## Ajout d'index
@@ -121,3 +157,15 @@ Command  | Description
 `$table->dropPrimary('users_id_primary');`  |  Supprime une clé primaire de la table "users"
 `$table->dropUnique('users_email_unique');`  |  Supprime une clé d'unicité de la table "users"
 `$table->dropIndex('geo_state_index');`  |  Supprime une clé basique de la table "geo"
+
+<a name="storage-engines"></a>
+## Moteur de stockage
+
+Pour définir le moteur de stockage d'une table, définissez la propriété `engine`  sur le constructeur de schema:
+
+    Schema::create('users', function($table)
+    {
+        $table->engine = 'InnoDB';
+
+        $table->string('email');
+    });

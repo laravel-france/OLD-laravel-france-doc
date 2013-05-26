@@ -98,15 +98,15 @@ Une fois que la commande `workbench` a créé le package, vous pouvez utiliser `
 <a name="package-routing"></a>
 ## Routage de package
 
-Dans les versions précédentes de Laravel, une clause `handles` était utilisée pour spécifier à quelles URIs le package peut répondre. Cependant dans Laravel 4, un package peut répondre à n'importe quelle URI. Pour charger un fichier de route pour votre package, ajoutez simplement un `include` vers le fichier dans la méthode `register`.
+Dans les versions précédentes de Laravel, une clause `handles` était utilisée pour spécifier à quelles URIs le package peut répondre. Cependant dans Laravel 4, un package peut répondre à n'importe quelle URI. Pour charger un fichier de route pour votre package, ajoutez simplement un `include` vers le fichier dans la méthode `boot`.
 
 **Inclusion d'un fichier de route dans le fournisseur de service**
 
-	public function register()
+	public function boot()
 	{
 		$this->package('vendor/package');
 
-		include __DIR__.'/routes.php';
+		include __DIR__.'/../../routes.php';
 	}
 
 <a name="package-configuration"></a>

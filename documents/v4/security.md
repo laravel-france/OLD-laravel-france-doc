@@ -4,6 +4,7 @@
 - [Stockage de mot de passe](#storing-passwords)
 - [Identifier les utilisateurs](#authenticating-users)
 - [Protection de routes](#protecting-routes)
+- [Identification HTTP Basic](#http-basic-authentication)
 - [Réinitialisation du mot de passe](#password-reminders-and-reset)
 - [Chiffrage](#encryption)
 
@@ -32,6 +33,13 @@ La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 		// The passwords match...
 	}
 
+**Vérifie si un mot de passe a besoin d'être recrypté**
+
+    if (Hash::needsRehash($hashed))
+    {
+        $hashed = Hash::make('secret');
+    }
+
 <a name="authenticating-users"></a>
 ## Identifier les utilisateurs
 
@@ -39,10 +47,20 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 
 	if (Auth::attempt(array('email' => $email, 'password' => $password)))
 	{
-		// The user's credentials are valid...
+		return Redirect::intended('dashboard');
 	}
 
-Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées.
+Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de donnnées. La fonction `Redirect::intended` redirigera l'utilisateur vers l'URL qu'il tentait d'atteindre avant de se faire attraper par le filtre d'identification. Une URL par défaut peut être donnée à la méthode dans le cas où l'URL qu'il souhaitait atteindre n'est pas determinée.
+
+Pour déterminer si un utilisateur est déjà connécté à votre application, vous pouvez utiliser la méthode `check` :
+
+**Détermine si un utilisateur est identifié**
+
+  if (Auth::check())
+  {
+    // The user is logged in...
+  }
+
 
 Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
@@ -55,11 +73,9 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 
 **Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connecté à votre application.
 
-**Connecter un utilisateur avec des conditions**
+Vous pouvez ajouter des conditions particulières à la requête d'identification :
 
-Vous pouvez ajouter des conditions particulières pour vous assurer qu'un utiliseur est par exemple actif, et non suspendu :
-
-    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1, 'suspended' => 0)))
+    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1)))
     {
         // The user is active, not suspended, and exists.
     }
@@ -83,11 +99,11 @@ La méthode `validate` vous permet de valider que les identifiants d'un utilisat
 		//
 	}
 
-Vous pouvez également utiliser la méthode `stateless` pour connecter un utilisateur le temps d'une seule requête. Il n'y aura ni session ni cookie pour cet utilisateur.
+Vous pouvez également utiliser la méthode `once` pour connecter un utilisateur le temps d'une seule requête. Il n'y aura ni session ni cookie pour cet utilisateur.
 
 **Connecte un utilisateur pour une seule requête**
 
-	if (Auth::stateless($credentials))
+	if (Auth::once($credentials))
 	{
 		//
 	}
@@ -112,7 +128,7 @@ Les filtres de routes peuvent être utilisés pour autoriser uniquement les util
 
 Laravel fournit une méthode simple de proteger votre application contre les attaques de type [CSRF](http://fr.wikipedia.org/wiki/Cross-site_request_forgery).
 
-**Insertion du jeton CSRF dans votre formulaire** en utilisant `csrf_token()` ou `Session::getToken()`
+**Insertion du jeton CSRF dans votre formulaire**
 
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -122,6 +138,29 @@ Laravel fournit une méthode simple de proteger votre application contre les att
     {
         return 'You gave a valid CSRF token!';
     }));
+    
+<a name="http-basic-authentication"></a>
+## Identification HTTP Basic
+
+L'identification HTTP Basic fournit une manière rapide d'identifier des utilisateurs de votre application sans avoir à créer une page de "login". Pour commencer, attachez le filtre `auth.basic` à votre route :
+
+**Protection d'une route avec HTTP Basic**
+
+	Route::get('profile', array('before' => 'auth.basic', function()
+	{
+		// Only authenticated users may enter...
+	}));
+
+
+Vous pouvez également utiliser l'identification HTTP Basic sans conserver l'utilisateur connécté en session après la requête, ce qui est utile pour l'identification dans une API. Pour se faire, créez un filtre qui retourne la méthode `onceBasic` :
+
+**Défini un filtre HTTP Basic de connexion stateless**
+
+    Route::filter('basic.once', function()
+    {
+        return Auth::onceBasic();
+    });
+
 
 <a name="password-reminders-and-reset"></a>
 ## Réinitialisation du mot de passe
@@ -160,7 +199,7 @@ Pour envoyer un rappel de mot de passe, nous pouvons utiliser la méthode `Passw
 		return Password::remind($credentials);
 	});
 
-Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyer un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe.
+Notez que les arguments passés à la méthode `remind` ressemblent à ceux de la méthode `Auth::attempt`. Cette méthode va retrouver un `User` et lui envoyer un lien de réinitialisation de mot de passe par email. L'email contiendra un jeton `token` qui sera utilisé pour construire le lien vers le formulaire de réinitialisation du mot de passe. L'object `user` sera également passé à la vue.
 
 > **Note:** Vous pouvez spécifié la vue qui sera utilisée dans l'email en changeant l'option de configuration `auth.reminder.email`. Bien entendu, une vue par défaut vous est fournie.
 
@@ -234,3 +273,11 @@ Laravel fournit une solution pour du chiffrage fort AES-256 avec l'extension PHP
 **Déchiffrage d'une valeur**
 
 	$decrypted = Crypt::decrypt($encryptedValue);
+
+Vous pouvez également préciser le chiffrement ou le mode utilisé par le chiffreur :
+
+**Reglage du chiffrement et du mode**
+
+  Crypt::setMode('crt');
+
+  Crypt::setCipher($cipher);

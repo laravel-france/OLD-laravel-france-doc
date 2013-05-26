@@ -87,7 +87,7 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 <a name="route-filters"></a>
 ## Filtres de routes
 
-Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, une filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
+Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, un filtre `auth.basic`, un filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
 
 **Définition d'un filtre de route**
 
@@ -126,6 +126,13 @@ Si une réponse est retournée par un filtre, cette réponse sera considéré co
 	{
 		return 'Hello World';
 	}));
+
+Les filtres 'after' reçoivent une `$response` en tant que troisième argument du filtre :
+
+    Route::filter('log', function($route, $request, $response, $value)
+    {
+        //
+    });
 
 **Filtres basés sur un patron de route**
 
@@ -253,6 +260,14 @@ Ensuite, définissez une route qui contient le paramètre `{user}` :
 Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une instance de `User` sera injectée à la route. Donc, par exemple, une requête sur `profile/1` injectera  une instance `User` qui a un ID de 1.
 
 > **Note:** Si un une instance d'un modèle n'est pas trouvée dans la base de données, alors une erreur 404 est lancée.
+
+Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pouvez passer une fonction anonyme en tant que troisème argument de la méthode `model` :
+
+    Route::model('user', 'User', function()
+    {
+        throw new NotFoundException;
+    });
+
 
 Si vous avez besoin de résoudre vous même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
 

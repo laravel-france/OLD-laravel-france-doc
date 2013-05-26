@@ -5,8 +5,8 @@
 - [Form lié à un modèle](#form-model-binding)
 - [Labels](#labels)
 - [Texte, Textarea et champs cachés](#text)
-- [Fichiers](#file-input)
 - [Checkbox et boutons radios](#checkboxes-and-radio-buttons)
+- [Fichiers](#file-input)
 - [Listes de séléction](#drop-down-lists)
 - [Boutons](#buttons)
 - [Macros personnalisées](#custom-macros)
@@ -104,15 +104,15 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 <a name="checkboxes-and-radio-buttons"></a>
 ## Checkbox et boutons radios
 
-**Génération d'un champ checkbox**
+**Génération d'un champ checkbox ou radio**
 
     echo Form::checkbox('name', 'value');
+    echo Form::radio('name', 'value');
 
-**Génération d'un champ checkbox coché**
+**Génération d'un champ checkbox ou radio coché**
 
     echo Form::checkbox('name', 'value', true);
-
-> **Note:** La méthode *radio* a la même signature que la méthode *checkbox*.
+    echo Form::radio('name', 'value', true);
 
 <a name="file-input"></a>
 ## Fichiers
@@ -131,6 +131,13 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 **Génération d'une liste de sélection avec un champ sélectionné par défaut**
 
     echo Form::select('size', array('L' => 'Large', 'S' => 'Small'), 'S');
+
+**Génération d'une liste avec groupes**
+
+    echo Form::select('animal', array(
+        'Cats' => array('leopard' => 'Leopard'),
+        'Dogs' => array('spaniel' => 'Spaniel'),
+    ));
 
 <a name="buttons"></a>
 ## Boutons

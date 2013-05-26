@@ -3,6 +3,7 @@
 - [Configuration](#configuration)
 - [Utilisation](#cache-usage)
 - [Incrémenter et Décrémenter](#increments-and-decrements)
+- [Sections de cache](#cache-sections)
 - [Cache de base en données](#database-cache)
 
 <a name="configuration"></a>
@@ -73,6 +74,29 @@ Tous les drivers sauf `file` et `database` supportent les opérations `increment
     Cache::decrement('key');
 
     Cache::decrement('key', $amount);
+
+<a name="cache-sections"></a>
+## Sections de cache
+
+> **Note:** Les sections de cache ne sont pas supportés lorsque vous utilisez les drivers de cache `file` ou `database`.
+
+Les sections de cache vous permettent de grouper des éléments de même nature dans le cache, et également de vider la section d'un coup. Pour accéder à une section, utilisez la méthode `section` :
+
+**Accès à une section de cache**
+
+	Cache::section('people')->put('John', $john);
+
+	Cache::section('people')->put('Anne', $anne);
+
+Vous pouvez également accéder aux éléments de la section, et utilisez les autres méthodes tel que `increment` et `decrement`:
+
+**Accès à un élément d'une section**
+
+	$anne = Cache::section('people')->get('Anne');
+
+Vous povuez vider tous les éléments d'un section :
+
+	Cache::section('people')->flush();
 
 <a name="database-cache"></a>
 ## Cache de base de données

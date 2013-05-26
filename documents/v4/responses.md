@@ -22,7 +22,7 @@ Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundatio
 
 	$response = Response::make($contents, $statusCode);
 
-	$response->headers->set('Content-Type', $value);
+	$response->headers('Content-Type', $value);
 
 	return $response;
 

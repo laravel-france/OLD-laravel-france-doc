@@ -1,6 +1,7 @@
 # Les événements
 
 - [Utilisation basique](#basic-usage)
+- [Ecouteur joker](#wildcard-listeners)
 - [Utilisation de classes en tant qu'écouteur](#using-classes-as-listeners)
 - [Mise en attente d'un événement](#queued-events)
 - [Classes d'abonnement](#event-subscribers)
@@ -41,6 +42,20 @@ Vous pouvez stopper la propagation d'un événement aux autres, en retournant 'f
 
         return false;
     });
+
+<a name="wildcard-listeners"></a>
+## Ecouteurs joker
+
+Lors de l'enregistrement d'un écouteur d'événement, vous pouvez utiliser un joker :
+
+**Enregistrement d'un écouteur joker**
+
+    Event::listen('foo.*', function($param, $event)
+    {
+      // Handle the event...
+    });
+
+Cet écouteur va gérer tous les événement qui commencent par  "foo.". Notez que le nom complet de l'événement est passé en dernier argument de gestionnaire.
 
 <a name="using-classes-as-listeners"></a>
 ## Utilisation de classes en tant qu'écouteur
@@ -121,7 +136,7 @@ Les classes d'abonnement sont des classes qui peuvent souscrire à plusieurs év
          * @param  Illuminate\Events\Dispatcher  $events
          * @return array
          */
-        public static function subscribe($events)
+        public function subscribe($events)
         {
             $events->listen('user.login', 'UserEventHandler@onUserLogin');
 

@@ -4,9 +4,11 @@
 - [Utilisation basique](#basic-usage)
 - [Assignement de masse](#mass-assignment)
 - [Insertion, mise à jour, suppression](#insert-update-delete)
+- [Suppression douce](#soft-deleting)
 - [Timestamps](#timestamps)
 - [Cadres de requête](#query-scopes)
 - [Relations](#relationships)
+- [Requêtes sur les relations](#querying-relations)
 - [Chargements liés](#eager-loading)
 - [Insertion de modèles liés](#inserting-related-models)
 - [Mise à jour du Timestamps des parents](#touching-parent-timestamps)
@@ -190,6 +192,47 @@ Si vous souhaitez simplement mettre à jour les timestamps d'un modèle, utilise
 
     $user->touch();
 
+<a name="soft-deleting"></a>
+## Suppression douce
+
+Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprimé de votre base de données. A la place, un timestamp `deleted_at` est défini sur la ligne. Pour activer la suppression douce sur un modèle, ajoutez la propriété `softDelete` à ce dernier :
+
+	class User extends Eloquent {
+
+		protected $softDelete = true;
+
+	}
+
+Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera rempli avec la date et l'heure de suppression. Lorsque vous requetez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withTrashed` sur la requête :
+
+**Force l'affichage des lignes réputées supprimées**
+
+	$users = User::withTrashed()->where('account_id', 1)->get();
+
+Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la méthode `trashed` :
+
+    $users = User::onlyTrashed()->where('account_id', 1)->get();
+
+Pour annuler cette suppression, utilisez la méthode `restore` :
+
+	$user->restore();
+
+Vous pouvez également utilserla méthode `restore` sur une requête :
+
+	User::withTrashed()->where('account_id', 1)->restore();
+
+La méthode `restore` peut également être utilisée sur une relation :
+
+	$user->posts()->restore();
+
+Si vous sohaitez réélement supprimé une lign de la base de données, vous pouvez utiliser la méthode `forceDelete` :
+
+	$user->forceDelete();
+
+La méthode `forceDelete` marche également sur les relations :
+
+	$user->posts()->forceDelete();
+
 <a name="timestamps"></a>
 ## Timestamps
 
@@ -263,7 +306,7 @@ Une relation un-vers-un est une relation très basique. Par exemple, un modèle 
 
     }
 
-Le premier argument passé à la méthode `hasOne` est le nom du modèle lié. Une fois que la relation est définie, nous pouvons la récupérer en utilisant les propriétés dynamiques d'Eloquent :
+Le premier argument passé à la méthode `hasOne` est le nom du modèle lié. Une fois que la relation est définie, nous pouvons la récupérer en utilisant les [propriétés dynamiques](#dynamic-properties) d'Eloquent :
 
     $phone = User::find(1)->phone;
 
@@ -304,7 +347,7 @@ Un exemple de relation une-vers-plusieurs est un post de blog qui a plusieurs co
 
     }
 
-Nous pouvons accéder aux commentaires du post via la propriété dynamique :
+Nous pouvons accéder aux commentaires du post via la [propriété dynamique](#dynamic-properties) :
 
     $comments = Post::find(1)->comments;
 
@@ -415,7 +458,7 @@ Cependant, la vraie magie de la polymorphie apparait lorsque vous accédez au st
 
 **Récupération du propriétaire de la Photo**
 
-    Photo::find(1);
+    $photo = Photo::find(1);
 
     $imageable = $photo->imageable;
 
@@ -440,6 +483,43 @@ Pour vous aider à comprendre comment cela marche, jetons un oeil à la structur
         imageable_type - string
 
 Les champs clés à remarquer ici sont `imageable_id` et `imageable_type` de la table `photos`. L'ID contiendra la valeur de l'ID d'une ligne de staff ou de commande ici par exemple, tandis que le type contiendra le nom de la classe du modèle propriétaire. C'est ce qui permet à l'ORM de déterminer quel type de propriétaire doit être retourné lors de l'accès à la relation `imageable`.
+
+<a name="querying-relations"></a>
+## Requêtes sur les relations
+
+Lorsque vous accédez aux lignes d'un modèle, vous pourriez vouloir limiter vos résultats en se basant sur l'existance d'une relation. Par exemple, pour récupérer les billets d'un blog qui ont au moins un commentaire. Pour se faire, vous pouvez utiliser le méthode `has` :
+
+**Vérification d'une relation lors de la selection**
+
+	$posts = Post::has('comments')->get();
+
+Vous pouvez également spécifier un opérateur et un nombre :
+
+	$posts = Post::has('comments', '>=', 3)->get();
+
+<a name="dynamic-properties"></a>
+### Dynamic Properties
+
+Eloquent vous autorise d'accéder à vos relations par des propriétés déynamiques. Eloquent va automatiquement charger la relation pour vous, et est assez malin pour savoir quand appeller la méthode `get` (pour les relations one-to-many) ou `first` (pour les relations one-to-one). La relation sera alors accessible par une propriété dynamique qui porte le même nom que la relation. Par exemple, avec le modèle `$phone`:
+
+	class Phone extends Eloquent {
+
+		public function user()
+		{
+			return $this->belongsTo('User');
+		}
+
+	}
+
+	$phone = Phone::find(1);
+	
+Plutôt que d'afficher l'adresse email de l'utilisateur ainsi :
+
+	echo $phone->user()->first()->email;
+
+L'appel peut se faire de cette manière :
+
+	echo $phone->user->email;
 
 <a name="eager-loading"></a>
 ## Chargements liés
@@ -654,6 +734,22 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 
     });
 
+**Applique une fonction sur chaque object d'une collection**
+
+	$roles = User::find(1)->roles;
+	
+	$roles->each(function($role)
+	{
+		//	
+	});
+
+**Tri une collection par une valeur**
+
+	$roles = $roles->sortBy(function($role)
+	{
+		return $role->created_at;
+	});
+
 Parfois, vous pourriez vouloir retourner une collection personnalisée avec vos propres méthodes ajoutées. Vous devez spécifier cela dans votre modèle Eloquent en surchargeant la méthode `newCollection` :
 
 **Retourne un type de collection personnalisé**
@@ -666,16 +762,6 @@ Parfois, vous pourriez vouloir retourner une collection personnalisée avec vos 
         }
 
     }
-
-**Applique une fonction de retour sur les objets d'une collection**
-
-    $roles = User::find(1)->roles;
-    
-    $roles->each(function($role)
-    {
-        //  
-    });
-    
 
 <a name="accessors-and-mutators"></a>
 ## Les accesseurs et mutateurs
@@ -775,3 +861,7 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
         protected $hidden = array('password');
 
     }
+
+Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
+
+    protected $visible = array('first_name', 'last_name');
