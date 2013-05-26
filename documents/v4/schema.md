@@ -25,7 +25,7 @@ Pour créer une nouvelle table, la méthode `Schema::create` est utilisée :
         $table->increments('id');
     });
 
-Le premier argument passé à la méthode `create` est le nom de la tabnle, et le second argument est une fonction anonyme, qui va recevoir un objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
+Le premier argument passé à la méthode `create` est le nom de la table, et le second argument est une fonction anonyme, qui va recevoir un objet `Blueprint` qui doit être utilisé pour définir la nouvelle table.
 
 Pour spécifier quelle connexion doit être utilisée par le constructeur de schéma, utilisez la méthode `Schema::connection` :
 
@@ -50,7 +50,7 @@ Pour éditer une table existante, nous utiliserons la méthode `Schema::table` :
         $table->string('email');
     });
 
-Le constructeur de table contient une variété de type de colonne que vous pouvez utiliser pour construire vos tables :
+Le constructeur de table contient une variété de types de colonne que vous pouvez utiliser pour construire vos tables :
 
 Commande  | Description
 ------------- | -------------
@@ -59,7 +59,7 @@ Commande  | Description
 `$table->string('name', 100);`  |  Equivalent de VARCHAR avec une taille
 `$table->integer('votes');`  |  Equivalent d'INTEGER
 `$table->float('amount');`  |  Equivalent de FLOAT
-`$table->decimal('amount', 5, 2);`  |  Equivalent de DECIMAL avec une précision et une echelle
+`$table->decimal('amount', 5, 2);`  |  Equivalent de DECIMAL avec une précision et une échelle
 `$table->boolean('confirmed');`  |  Equivalent de BOOLEAN
 `$table->date('created_at');`  |  Equivalent de DATE
 `$table->dateTime('created_at');`  |  Equivalent de DATETIME
@@ -69,9 +69,9 @@ Commande  | Description
 `$table->text('description');`  |  Equivalent de TEXT
 `$table->binary('data');`  |  Equivalent de BLOB
 `$table->enum('choices', array('foo', 'bar'));` | Equivalent de ENUM
-`->nullable()`  |  Designe une colonne qui autorise NULL
+`->nullable()`  |  Désigne une colonne qui autorise NULL
 `->default($value)`  |  Déclare une valeur par défaut pour la colonne
-`->unsigned()`  |  Défini un INTEGER comme étant UNSIGNED
+`->unsigned()`  |  Définit un INTEGER comme étant UNSIGNED
 
 Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `after` pour spécifier l'ordre des colonnes :
 
@@ -82,7 +82,7 @@ Si vous utilisez une base de données MySQL, vous pouvez utiliser la méthode `a
 <a name="renaming-columns"></a>
 ## Renommage de colonnes
 
-Pour renommer une colonne, vous devez pouvez la méthode `renameColumn`sur le constructeur de schema :
+Pour renommer une colonne, vous devez utiliser la méthode `renameColumn` sur le constructeur de schéma :
 
 **Renommage d'une colonne**
 
@@ -132,13 +132,13 @@ Vous pouvez vérifier facilement l'existence d'une table ou d'une colonne en uti
 <a name="adding-indexes"></a>
 ## Ajout d'index
 
-Le constructeur de schema supporte plusieurs types d'indices. Il y a deux manières de les ajouter. La première est de manière fluide, lors de la définition d'une colonne :
+Le constructeur de schema supporte plusieurs types d'index. Il y a deux manières de les ajouter. La première est de manière fluide, lors de la définition d'une colonne :
 
 **Crée de manière fluide une colonne et un index**
 
     $table->string('email')->unique();
 
-Ou, vous pouvez choisir d'ajouter les indices sur des lignes séparés. Vous trouverez ci-dessous une liste des types d'index:
+Ou, vous pouvez choisir d'ajouter les index sur des lignes séparées. Vous trouverez ci-dessous une liste des types d'index:
 
 Commande  | Description
 ------------- | -------------
@@ -150,7 +150,7 @@ Commande  | Description
 <a name="dropping-indexes"></a>
 ## Suppression d'index
 
-Pour supprimer un index, vous devez spécifier le nom de l'index. Laravel assigne un nom raisonnable aux indices par défaut. Concatenez simplement le nom de la table, le nom des colonnes dans l'index, et le type d'index. Voici quelques exemples :
+Pour supprimer un index, vous devez spécifier le nom de l'index. Laravel assigne un nom raisonnable aux index par défaut. Concatenez simplement le nom de la table, le nom des colonnes dans l'index, et le type d'index. Voici quelques exemples :
 
 Command  | Description
 ------------- | -------------
