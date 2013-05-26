@@ -9,7 +9,7 @@
 <a name="basic-responses"></a>
 ## Réponses basiques
 
-**Retourne une chaine de caractères depuis une route**
+**Retourne une chaîne de caractères depuis une route**
 
 	Route::get('/', function()
 	{
@@ -18,7 +18,7 @@
 
 **Création d'une réponse personnalisée**
 
-Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundation\Response`, qui fournie une multitude de méthodes pour construire une réponse HTTP.
+Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundation\Response`, qui fournit une multitude de méthodes pour construire une réponse HTTP.
 
 	$response = Response::make($contents, $statusCode);
 
@@ -47,7 +47,7 @@ Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundatio
 
 	return Redirect::route('profile', array(1));
 
-**Retourne une redirection vers une route nommée avec des paramètres nommées**
+**Retourne une redirection vers une route nommée avec des paramètres nommés**
 
 	return Redirect::route('profile', array('user' => 1));
 
@@ -59,14 +59,14 @@ Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundatio
 
 	return Redirect::action('UserController@profile', array(1));
 
-**Retourne une redirection vers une action d'un contrôleur avec des paramètres nommées**
+**Retourne une redirection vers une action d'un contrôleur avec des paramètres nommés**
 
 	return Redirect::action('UserController@profile', array('user' => 1));
 
 <a name="views"></a>
 ## Vues
 
-Les vues contiennent habituellement les fichiers HTML de votre application et fournissent une manière simple de séparer vos contrôleurs et la logique métier de la partie présentation. Les vues sont stockés dans le dossier `app/views`.
+Les vues contiennent habituellement les fichiers HTML de votre application et fournissent une manière simple de séparer vos contrôleurs et la logique métier de la partie présentation. Les vues sont stockées dans le dossier `app/views`.
 
 Une vue peut ressembler à ceci :
 
@@ -93,7 +93,7 @@ Le second argument passé ici à `View::make` est un tableau de données qui doi
 
 	$view = View::make('greeting')->with('name', 'Steve');
 
-Dans l'exemple ci dessus, `$name` sera accessible dans la vue, et aura comme valeur `Steve`.
+Dans l'exemple ci-dessus, `$name` sera accessible dans la vue, et aura comme valeur `Steve`.
 
 Vous pouvez également partager des données avec toutes les vues :
 
@@ -101,7 +101,7 @@ Vous pouvez également partager des données avec toutes les vues :
 
 **Passage d'une sous-vue à une vue**
 
-Vous pouvez également passé une vue à une autre vue. Par exemple, nous pouvons passer une sous-vue qui se trouve dans le fichier `app/views/child/view.php`,à une autre vue de la manière suivante :
+Vous pouvez également passer une vue à une autre vue. Par exemple, nous pouvons passer une sous-vue qui se trouve dans le fichier `app/views/child/view.php`, à une autre vue de la manière suivante :
 
 	$view = View::make('greeting')->nest('child', 'child.view');
 
@@ -152,7 +152,7 @@ Une classe compositeur de vue doit être définie comme ceci :
 
 	}
 
-Notez qu'il n'y a pas de convention sur l'endroit où les compositeurs de vues doivent être stockées. Vous êtes libre de les mettre où vous le souhaitez, tant qu'ils peuvent être chargés automatiquement par l'une des directives de votre fichier `composer.json`.
+Notez qu'il n'y a pas de convention sur l'endroit où les compositeurs de vues doivent être stockés. Vous êtes libres de les mettre où vous le souhaitez, tant qu'ils peuvent être chargés automatiquement par l'une des directives de votre fichier `composer.json`.
 
 <a name="special-responses"></a>
 ## Réponses spéciales
@@ -161,7 +161,7 @@ Notez qu'il n'y a pas de convention sur l'endroit où les compositeurs de vues d
 
 	return Response::json(array('name' => 'Steve', 'state' => 'CA'));
 
-**création d'une réponse JSONP**
+**Création d'une réponse JSONP**
 
 	return Response::json(array('name' => 'Steve', 'state' => 'CA'))->setCallback(Input::get('callback'));
 

@@ -9,7 +9,7 @@
 <a name="configuration"></a>
 ## Configuration
 
-Le composant Queue fournit une API unique donnant accès à une variété de systèmes de files de travaux. Queue permet d'exécuter de manière différée une tâche de longue comme l'envoi de message, ce qui accélère considérablement les requêtes d' application.
+Le composant Queue fournit une API unique donnant accès à une variété de systèmes de files de travaux. Queue permet d'exécuter de manière différée une tâche consommatrice de temps comme l'envoi de message, ce qui accélère considérablement les requêtes d' application.
 
 La configuration d'une file de travaux s'effectue dans le fichier `app/config/queue.php`. Dans ce fichier, vous y trouverez les éléments de déclaration de chacun des pilotes de file de travaux inclus dans le framework comme [Beanstalkd](http://kr.github.com/beanstalkd), [IronMQ](http://iron.io), [Amazon SQS](http://aws.amazon.com/sqs), et le pilote de synchronisation (pilote destiné à être utilisé en local).
 
@@ -41,7 +41,7 @@ Le premier paramètre attendu par la méthode `push` est le nom de la classe à 
 
 	}
 
-Remarquez que seul l'appel de la méthode `fire` en joignant l'instance de tâche et le tableau de données associé est nécessaire.
+Remarquez que seul l'appel de la méthode `fire` en joignant l'instance de tâche et le tableau de données associé sont nécessaires.
 
 Si vous souhaitez que votre tâche utilise une autre méthode que `fire`, vous devez spécifier la méthode lorsque vous poussez la tâche :
 
@@ -87,7 +87,7 @@ Si une exception survient à l'exécution d'une tâche, cette tâche est automat
 <a name="queueing-closures"></a>
 ## Mise en queue de fonction anonymes
 
-Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraiment pratique pour des tâches rapides & simples à placer dans la queue :
+Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraiment pratique pour des tâches rapides et simples à placer dans la queue :
 
 **Placer une fonction anonyme dans la queue**
 
@@ -96,14 +96,14 @@ Vous pouvez également placer une fonction anonyme dans la queue. Ceci est vraim
         Account::delete($id);
     });
 
-> **Note:** Lorsque vous placez une fonction anonyme dans la queue, les constantes `__DIR__` et `__FILE__` ne devraient pas être utilisé.
+> **Note:** Lorsque vous placez une fonction anonyme dans la queue, les constantes `__DIR__` et `__FILE__` ne devraient pas être utilisées.
 
-Lorseque vous utilisez Iron.io [en tant que queue en mode push](#push-queues), vous devriez prendre prendre des précautions lorsque vous placez en queue des fonctions anonymes. Le point final qui reçoit votre message de queue devrait vérifier un token pour s'assurer que le requête vient effectivement de Iron.io. Par exemple, le point final de votre queue pourrait être quelque chose comme ceci : `https://yourapp.com/queue/receive?token=SecretToken`. Vous pouvez ensuite vérifier la valeur du token avant d'utiliser la méthode `marshal`.
+Lorseue vous utilisez Iron.io [en tant que queue en mode push](#push-queues), vous devriez prendre des précautions lorsque vous placez en queue des fonctions anonymes. Le point final qui reçoit votre message de queue devrait vérifier un token pour s'assurer que la requête vient effectivement de Iron.io. Par exemple, le point final de votre queue pourrait être quelque chose comme ceci : `https://yourapp.com/queue/receive?token=SecretToken`. Vous pouvez ensuite vérifier la valeur du token avant d'utiliser la méthode `marshal`.
 
 <a name="running-the-queue-listener"></a>
 ##Activer le gestionnaire d'exécution de la file de travaux
 
-Laravel fournit une commande Artisan permettant d'activer l'exécution des tâches lorsqu'elles sont ajoutées à la file d'attente. Il s'agit de la commande  `queue:listen` :
+Laravel fournit une commande Artisan permettant d'activer l'exécution des tâches lorsqu'elles sont ajoutées à la file d'attente. Il s'agit de la commande `queue:listen` :
 
 **Démarrer l'exécution de la file de travaux**
 
@@ -115,7 +115,7 @@ Vous pouvez aussi indiquer le gestionnaire que vous souhaitez démarrer :
 
 Notez qu'une fois le gestionnaire démarré, il reste actif jusqu'à ce qu'il soit stoppé manuellement. Utilisez un moniteur de tâches comme [Supervisor](http://supervisord.org/) pour vous assurer que le gestionnaire est bien arrêté.
 
-Vous pouvez également définir le temps maximum en secondes qu'une tâche est autorisé à prendre :
+Vous pouvez également définir le temps maximum en secondes qu'une tâche est autorisée à prendre :
 
 **Spécification d'un délai maximum**
 
@@ -130,7 +130,7 @@ Pour exécuter uniquement la première tâche de la file d'attente, utilisez la 
 <a name="push-queues"></a>
 ## Queues en mode Push
 
-Les queues en mode Push vous permettent d'utiliser la puissance des queue Laravel 4 sans avoir à éxecuter un service ou un gestionnaire de queue sur votre serveur. Actuellement, les queues en mode push sont uniquements supportées par le driver [Iron.io](http://iron.io). Avant de commencer, créez un compte Iron.io, et ajoutez vos identifiants dans le fichier de configuration `app/config/queue.php`.
+Les queues en mode Push vous permettent d'utiliser la puissance des queue de Laravel 4 sans avoir à exécuter un service ou un gestionnaire de queue sur votre serveur. Actuellement, les queues en mode push sont uniquement supportées par le driver [Iron.io](http://iron.io). Avant de commencer, créez un compte Iron.io, et ajoutez vos identifiants dans le fichier de configuration `app/config/queue.php`.
 
 Ensuite, vous pouvez utiliser la commande Artisan `queue:subscribe` pour enregistrer l'URL de votre application qui recevra les nouvelles tâches en queues :
 
@@ -138,11 +138,11 @@ Ensuite, vous pouvez utiliser la commande Artisan `queue:subscribe` pour enregis
 
 	php artisan queue:subscribe queue_name http://foo.com/queue/receive
 
-Maintenant, lorsque vous vous connectez au tableau de bord d'Iron, vous verrez votre nouvelle queue, ainsi que l'URL souscrite. Vous pouvez créer autant d'URL que vous le souhaitez pour une queue donnée. Ensuite, créez une route pour votre point d'arrivé `queue/receive` et retournez la réponse de la méthode `Queue::marshal` :
+Maintenant, lorsque vous vous connectez au tableau de bord d'Iron, vous verrez votre nouvelle queue, ainsi que l'URL souscrite. Vous pouvez créer autant d'URL que vous le souhaitez pour une queue donnée. Ensuite, créez une route pour votre point d'arrivée `queue/receive` et retournez la réponse de la méthode `Queue::marshal` :
 
 	Route::post('queue/receive', function()
 	{
 		return Queue::marshal();
 	});
 
-La méthode `marshal` se chargera d'éxecuter la bonne classe de gestion de la tâche. Ppur lancer une tâche dans les queues en mode Pusn, utilisez la même méthode `Queue::push` que pour les queues conventionelles.
+La méthode `marshal` se chargera d'exécuter la bonne classe de gestion de la tâche. Pour lancer une tâche dans les queues en mode Push, utilisez la même méthode `Queue::push` que pour les queues conventionelles.
