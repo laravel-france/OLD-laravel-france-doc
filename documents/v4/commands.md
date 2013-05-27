@@ -114,7 +114,7 @@ Vous pouvez également spécifier une valeur par défaut à la méthode `confirm
 <a name="registering-commands"></a>
 ## Enregistrement d'une commande
 
-Une fois que le développement de votre commande est terminée, vous devez l'enregistrer auprès d'Artisan pour être capable de l'utiliser. Cette opération est généralement réalisée dans le fichier `app/start/artisan.php`. Dans ce fichier, vous devez utiliser la méthode `Artisan::add` pour enregistrer votre commande :
+Une fois que le développement de votre commande est terminé, vous devez l'enregistrer auprès d'Artisan pour être capable de l'utiliser. Cette opération est généralement réalisée dans le fichier `app/start/artisan.php`. Dans ce fichier, vous devez utiliser la méthode `Artisan::add` pour enregistrer votre commande :
 
 **Enregistre une commande Artisan**
 
