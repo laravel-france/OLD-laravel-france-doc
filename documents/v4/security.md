@@ -151,6 +151,10 @@ L'identification HTTP Basic fournit une manière rapide d'identifier des utilisa
 	}));
 
 
+Par défaut, le filtre `basic` utilisera la colonne `email` de l'enregistrement de l'utilisateur pour faire l'identification. Si vous souhaitez utiliser une autre colonne, vous pouvez passer le nom de la colonne en tant que premier paramètre de la méthode `basic` :
+
+	return Auth::basic('username');
+
 Vous pouvez également utiliser l'identification HTTP Basic sans conserver l'utilisateur connecté en session après la requête, ce qui est utile pour l'identification dans une API. Pour se faire, créez un filtre qui retourne la méthode `onceBasic` :
 
 **Définit un filtre HTTP Basic de connexion stateless**
