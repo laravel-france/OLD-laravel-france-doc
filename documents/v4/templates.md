@@ -31,7 +31,7 @@ Une méthode pour utiliser les templates dans Laravel est d'utiliser les layouts
 <a name="blade-templating"></a>
 ## Le moteur de template Blade
 
-Blade est un moteur de template simple et puissant fournit par Laravel. A la différence des layouts de contrôleurs, Blade est conduit par _l'héritage de template_ et _les sections_. Les templates Blade doivent avoir comme extension `.blade.php`.
+Blade est un moteur de template simple et puissant fourni par Laravel. A la différence des layouts de contrôleurs, Blade est conduit par _l'héritage de template_ et _les sections_. Les templates Blade doivent avoir comme extension `.blade.php`.
 
 **Définition d'un layout Blade**
 
@@ -63,7 +63,7 @@ Blade est un moteur de template simple et puissant fournit par Laravel. A la dif
 		<p>This is my body content.</p>
 	@stop
 
-Notez que les vues qui `extend` un layout Blade surchargent simplement les sections du layout. Le contenu du layout peut être inclu dans une vue enfant en utilisant la directive `@parent` dans une section, vous permettant d'ajouter dans le contenu du layout votre propre contenu, pour par exemple ajouter des liens dans la sidebar ou dans le footer.
+Notez que les vues qui `extend` un layout Blade surchargent simplement les sections du layout. Le contenu du layout peut être inclus dans une vue enfant en utilisant la directive `@parent` dans une section, vous permettant d'ajouter dans le contenu du layout votre propre contenu, pour par exemple ajouter des liens dans la sidebar ou dans le footer.
 
 <a name="other-blade-control-structures"></a>
 ## Structures de contrôle Blade

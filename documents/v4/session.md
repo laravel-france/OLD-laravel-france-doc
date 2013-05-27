@@ -8,7 +8,7 @@
 <a name="configuration"></a>
 ## Configuration
 
-Puisque l'état des variables n'est pas conservé par les applications basées sur le protocole HTTP, les sessions sont un moyen de conserver des informations d'une requête à l'autre.  Laravel inclut des gestionnaires de données à travers une API claire et unifiée. Laravel supporte [Memcached](http://memcached.org), [Redis](http://redis.io) et les gestionnaires de base de données.
+Puisque l'état des variables n'est pas conservé par les applications basées sur le protocole HTTP, les sessions sont un moyen de conserver des informations d'une requête à l'autre. Laravel inclut des gestionnaires de données à travers une API claire et unifiée. Laravel supporte [Memcached](http://memcached.org), [Redis](http://redis.io) et les gestionnaires de bases de données.
 
 Les sessions sont paramétrables dans le fichier `app/config/session.php`. Examinez bien les options de ce fichier, elles sont bien documentées. Par défaut, Laravel est configuré pour l'utilisation du driver de session `native` convenant à la majorité des applications.
 
@@ -44,7 +44,7 @@ Les sessions sont paramétrables dans le fichier `app/config/session.php`. Exami
 
 	Session::flush();
 
-**Regénérer l'identifiant de session**
+**Régénérer l'identifiant de session**
 
 	Session::regenerate();
 

@@ -14,7 +14,7 @@
 <a name="basic-routing"></a>
 ## Routage basique
 
-La plupart des routes de votre application seront définis dans le fichier `app/routes.php`. La route la plus simple sur Laravel consiste en une URI et un fonction de retour anonyme.
+La plupart des routes de votre application seront définies dans le fichier `app/routes.php`. La route la plus simple sur Laravel consiste en une URI et une fonction de retour anonyme.
 
 **Route GET basique**
 
@@ -70,7 +70,7 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 		return $name;
 	});
 
-**Routes avec paramètre contraint par une expression régulière**
+**Routes avec paramètre contraintes par une expression régulière**
 
 	Route::get('user/{name}', function($name)
 	{
@@ -87,7 +87,7 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 <a name="route-filters"></a>
 ## Filtres de routes
 
-Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécéssitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, un filtre `auth.basic`, un filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
+Les filtres de routes fournissent une manière simple de limiter l'accès à certaines routes, ce qui est utile par exemple pour les parties d'un site qui nécessitent une identification. Il y a plusieurs filtres inclus avec le framework Laravel par défaut, dont un filtre `auth`, un filtre `auth.basic`, un filtre `guest`, et un filtre `csrf`. Ils sont situés dans le fichier `app/filters.php`.
 
 **Définition d'un filtre de route**
 
@@ -99,7 +99,7 @@ Les filtres de routes fournissent une manière simple de limiter l'accès à cer
 		}
 	});
 
-Si une réponse est retournée par un filtre, cette réponse sera considéré comme la réponse de la requête et la route ne sera pas éxecutée, et les filtres `after` seront annulés également.
+Si une réponse est retournée par un filtre, cette réponse sera considérée comme la réponse de la requête et la route ne sera pas exécutée, et les filtres `after` seront annulés également.
 
 **Attachement d'un filtre à une route**
 
@@ -115,7 +115,7 @@ Si une réponse est retournée par un filtre, cette réponse sera considéré co
 		return 'You are authenticated and over 200 years old!';
 	}));
 
-**Spéfification des paramètres de filtres**
+**Spécification des paramètres de filtres**
 
 	Route::filter('age', function($route, $request, $value)
 	{
@@ -136,7 +136,7 @@ Les filtres 'after' reçoivent une `$response` en tant que troisième argument d
 
 **Filtres basés sur un patron de route**
 
-Vous pouvez aussi spéficier qu'un filtre s'applique sur un jeu entier de routes en se basant sur leurs URIs.
+Vous pouvez aussi spécifier qu'un filtre s'applique sur un jeu entier de routes en se basant sur leurs URIs.
 
 	Route::filter('admin', function()
 	{
@@ -145,11 +145,11 @@ Vous pouvez aussi spéficier qu'un filtre s'applique sur un jeu entier de routes
 
 	Route::when('admin/*', 'admin');
 
-Dans l'exemple ci dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
+Dans l'exemple ci-dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
 
 **Classes de filtres**
 
-Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonction anonyme. Comme les filtres de classes sont résolus par [le conteneur IoC](/docs/v4/doc/ioc), vous serez en mesure d'utiliser l'injection de dépendence dans ces filtres pour une meilleure testabilité.
+Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonction anonyme. Comme les filtres de classes sont résolus par [le conteneur IoC](/docs/v4/doc/ioc), vous serez en mesure d'utiliser l'injection de dépendance dans ces filtres pour une meilleure testabilité.
 
 **Définition d'une classe de filtre**
 
@@ -169,14 +169,14 @@ Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonctio
 <a name="named-routes"></a>
 ## Routes nommées
 
-Les routes nommées rendent le agréable le référencement d'une route lors de la génération d'un lien ou d'une redirection. Pour spécifier un nom à une route, faites de la manière suivante :
+Les routes nommées rendent agréable le référencement d'une route lors de la génération d'un lien ou d'une redirection. Pour spécifier un nom à une route, faites de la manière suivante :
 
 	Route::get('user/profile', array('as' => 'profile', function()
 	{
 		//
 	}));
 
-Vous pouvez également spécifié un nom de route pour les actions de contrôleurs :
+Vous pouvez également spécifier un nom de route pour les actions de contrôleurs :
 
     Route::get('user/profile', array('as' => 'profile', 'uses' => 'UserController@showProfile'));
 
@@ -209,11 +209,11 @@ Parfois, vous pourriez avoir besoin d'appliquer un filtre sur tout un groupe de 
 	});
 
 <a name="sub-domain-routing"></a>
-## Routage de sous domaine
+## Routage de sous-domaine
 
-Les routes de Laravel permettent également de router à partir d'un sous domaine. En utilisant un paramètre de routes en sous domaine, ce dernier sera alors passé en tant que paramètre à la route :
+Les routes de Laravel permettent également de router à partir d'un sous-domaine. En utilisant un paramètre de routes en sous-domaine, ce dernier sera alors passé en tant que paramètre à la route :
 
-**Enregistrement d'un groupe de routes à partir du sous-domaines**
+**Enregistrement d'un groupe de routes à partir du sous-domaine**
 
 	Route::group(array('domain' => '{account}.myapp.com'), function()
 	{
@@ -227,7 +227,7 @@ Les routes de Laravel permettent également de router à partir d'un sous domain
 <a name="route-prefixing"></a>
 ## Préfixage de routes
 
-Un groupe de route peut être préfixé en utilisant l'option `prefix` dans le tableau d'attribut d'un groupe de routes:
+Un groupe de route peut être préfixé en utilisant l'option `prefix` dans le tableau d'attribut d'un groupe de routes :
 
 **Préfixage d'un groupe de routes**
 
@@ -257,11 +257,11 @@ Ensuite, définissez une route qui contient le paramètre `{user}` :
 		//
 	});
 
-Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une instance de `User` sera injectée à la route. Donc, par exemple, une requête sur `profile/1` injectera  une instance `User` qui a un ID de 1.
+Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une instance de `User` sera injectée à la route. Donc, par exemple, une requête sur `profile/1` injectera une instance `User` qui a un ID de 1.
 
-> **Note:** Si un une instance d'un modèle n'est pas trouvée dans la base de données, alors une erreur 404 est lancée.
+> **Note:** Si une instance d'un modèle n'est pas trouvée dans la base de données, alors une erreur 404 est lancée.
 
-Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pouvez passer une fonction anonyme en tant que troisème argument de la méthode `model` :
+Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pouvez passer une fonction anonyme en tant que troisième argument de la méthode `model` :
 
     Route::model('user', 'User', function()
     {
@@ -269,7 +269,7 @@ Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pou
     });
 
 
-Si vous avez besoin de résoudre vous même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
+Si vous avez besoin de résoudre vous-même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
 
 	Route::bind('user', function($value, $route)
 	{

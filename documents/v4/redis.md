@@ -8,7 +8,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-[Redis](http://redis.io) est une base de données open source de type clé-valeur. Il est souvent présenté comme un gestionnaire de données structurées puisque les clés peuvent être de type  [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et [sorted sets](http://redis.io/topics/data-types#sorted-sets).
+[Redis](http://redis.io) est une base de données open source de type clé-valeur. Il est souvent présenté comme un gestionnaire de données structurées puisque les clés peuvent être de type [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#lists), [sets](http://redis.io/topics/data-types#sets), et [sorted sets](http://redis.io/topics/data-types#sorted-sets).
 
 <a name="configuration"></a>
 ## Configuration
@@ -20,9 +20,9 @@ La configuration Redis pour votre application est située dans le fichier **app/
 		'default' => array('host' => '127.0.0.1', 'port' => 6379),
 	),
 
-La configuration de serveur par défaut doit être suffisant pour le développement. Toutefois, vous pouvez modifier ce tableau à votre convenance. Donnez seulement un nom à chacun de vos serveurs Redis, puis indiquez le host et le port utilisés pour chaque serveur.
+La configuration de serveur par défaut doit être suffisante pour le développement. Toutefois, vous pouvez modifier ce tableau à votre convenance. Donnez seulement un nom à chacun de vos serveurs Redis, puis indiquez le host et le port utilisés pour chaque serveur.
 
-L'option `cluster` indiquera au client Redis de Laravel de faire du Sharding coté client sur les noeuds Redis, vous premettant de mettre en commun des noeuds et de créer un grand nombre de RAM disponible. Cependant, notez que le sharding coté client ne gère pas les défaillances, de ce fait l'usage sera plutôt pour mettre en cache des données qui sont disponibles depuis une autre source.
+L'option `cluster` indiquera au client Redis de Laravel de faire du Sharding côté client sur les noeuds Redis, vous permettant de mettre en commun des noeuds et de créer un grand nombre de RAM disponibles. Cependant, notez que le sharding côté client ne gère pas les défaillances, de ce fait l'usage sera plutôt pour mettre en cache des données qui sont disponibles depuis une autre source.
 
 <a name="usage"></a>
 ## Utilisation
@@ -32,7 +32,7 @@ Vous devez obtenir une instance Redis en appelant la méthode `Redis::connection
 	$redis = Redis::connection();
 
 
-Une instance du serveur Redis par défaut vous sera retourné. Vous devez indiquer le nom du serveur à la méthode `connection` afin d'obtenir un serveur spécifique comme défini dans votre configuration Redis :
+Une instance du serveur Redis par défaut vous sera retournée. Vous devez indiquer le nom du serveur à la méthode `connection` afin d'obtenir un serveur spécifique comme défini dans votre configuration Redis :
 
 
 	$redis = Redis::connection('other');
@@ -62,7 +62,7 @@ Pour exécuter des commandes sans utiliser la connexion par défaut, utilisez le
 <a name="pipelining"></a>
 ## Pipelining
 
-Le Pipelining doit être utilisé lorsque vous avez besoin d'envoyer plusieurs commandes au serveur en une opération. Pour se faire, utilisez la méthode `pipeline` :
+Le Pipelining doit être utilisé lorsque vous avez besoin d'envoyer plusieurs commandes au serveur en une opération. Pour ce faire, utilisez la méthode `pipeline` :
 
 **Envoi de plusieurs commandes au serveur**
 

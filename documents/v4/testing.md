@@ -11,7 +11,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-Laravel est construit avec les tests unitaire en tête. En fait, le support des tests avec PHPUnit est inclus dans Laravel. et un fichier `phpunit.xml` est déjà configuré pour votre application. En plus de PHPUnit, Laravel utilise également les composants HttpKernel, DomCrawler, et BrowserKit de Symfony pour vous permettre d'inspecter et manipuler vos vues lors des tests, et de simuler un navigateur web.
+Laravel est construit avec les tests unitaires en tête. En fait, le support des tests avec PHPUnit est inclus dans Laravel, et un fichier `phpunit.xml` est déjà configuré pour votre application. En plus de PHPUnit, Laravel utilise également les composants HttpKernel, DomCrawler, et BrowserKit de Symfony pour vous permettre d'inspecter et manipuler vos vues lors des tests, et de simuler un navigateur web.
 
 Un fichier de test d'exemple est fourni dans le dossier `app/tests`. Après avoir installé une nouvelle application Laravel, lancez simplement la commande `phpunit` sur la ligne de commande pour lancer vos tests.
 
@@ -38,7 +38,7 @@ Vous pouvez exécuter tous vos tests en lançant la commande `phpunit` dans votr
 <a name="test-environment"></a>
 ## Environnement de test
 
-Lors de l'exécution de vos tests unitaires, Laravel va automatiquement définir que l'environnement de votre application est `testing`. Aussi, Laravel fournit des fichiers de configurations pour `session` et `cache` pour l'environnement de test. Ces deux drivers sont réglés à `array` dans l'environnement de test, ce qui signifie qu'aucune session et qu'aucune donnée en cache ne sera persistée durant les tests. Vous pouvez créer plusieurs environnements de tests si vous le souhaitez.
+Lors de l'exécution de vos tests unitaires, Laravel va automatiquement définir que l'environnement de votre application est `testing`. Aussi, Laravel fournit des fichiers de configuration pour `session` et `cache` pour l'environnement de test. Ces deux drivers sont réglés à `array` dans l'environnement de test, ce qui signifie qu'aucune session et qu'aucune donnée en cache ne sera persistante durant les tests. Vous pouvez créer plusieurs environnements de tests si vous le souhaitez.
 
 <a name="calling-routes-from-tests"></a>
 ## Appel de routes depuis un test
@@ -83,12 +83,12 @@ Vous pouvez également appeler une route et recevoir une instance de l'inspecteu
 
     $this->assertCount(1, $crawler->filter('h1:contains("Hello World!")'));
 
-Pour plus d'information sur l'utilisateur de l'inspecteur de DOM, visitez sa [documentation officielle](http://symfony.com/doc/master/components/dom_crawler.html).
+Pour plus d'informations sur l'utilisateur de l'inspecteur de DOM, visitez sa [documentation officielle](http://symfony.com/doc/master/components/dom_crawler.html).
 
 <a name="mocking-facades"></a>
 ## Mockage de Facades
 
-Lorsque vous testez, vous voudrez souvent mocker un appel à une façade statique de Laravel. Par exemple, considerons l'action de contrôleur suivante :
+Lorsque vous testez, vous voudrez souvent mocker un appel à une façade statique de Laravel. Par exemple, considérons l'action de contrôleur suivante :
 
     public function getIndex()
     {
@@ -97,7 +97,7 @@ Lorsque vous testez, vous voudrez souvent mocker un appel à une façade statiqu
         return 'All done!';
     }
 
-Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `shouldReceive` sur la facade, qui retournera une instance d'un mock [Mockery](https://github.com/padraic/mockery).
+Nous pouvons mocker l'appel à la classe `Event` en utilisant la méthode `shouldReceive` sur la facade, qui retournera une instance d'un mock [Mockery](https://github.com/padraic/mockery).
 
 **Mockage d'une Façade**
 
@@ -108,7 +108,7 @@ Nous pouvons mocker l'appel à la classe `Event` en utilisation la méthode `sho
         $this->call('GET', '/');
     }
 
-> **Note:** Vous ne pouvez pas mocker la façade `Request`. A la place, passez les données d'entrées désirées à la méthode `call` lorsque vous executez vos tests.
+> **Note:** Vous ne pouvez pas mocker la façade `Request`. A la place, passez les données d'entrée désirées à la méthode `call` lorsque vous exécutez vos tests.
 
 <a name="framework-assertions"></a>
 ## Assertions du Framework
@@ -159,18 +159,18 @@ La classe `TestCase` contient plusieurs "Helper" pour faciliter le test de vos a
 
 Vous pouvez définir l'utilisateur actuellement connecté avec la méthode `be` :
 
-**Défini un utilisateur comme étant connecté**
+**Définit un utilisateur comme étant connecté**
 
     $user = new User(array('name' => 'John'));
 
     $this->be($user);
 
-Vous pouvez repeupler votre base de données depuis les tests unitaires en utilisant la méthode `seed` :
+Vous pouvez re-peupler votre base de données depuis les tests unitaires en utilisant la méthode `seed` :
 
-**Repopule la base de donnée depuis les tests**
+**Re-popule la base de données depuis les tests**
 
     $this->seed();
 
     $this->seed($connection);
 
-Plus d'information sur la peuplement de base de données dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.
+Plus d'informations sur la peuplement de base de données dans la section [migrations et populations](/docs/v4/doc/migrations#database-seeding) de la documentation.
