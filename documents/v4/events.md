@@ -55,7 +55,7 @@ Lors de l'enregistrement d'un écouteur d'événement, vous pouvez utiliser un j
       // Handle the event...
     });
 
-Cet écouteur va gérer tous les événement qui commencent par  "foo.". Notez que le nom complet de l'événement est passé en dernier argument de gestionnaire.
+Cet écouteur va gérer tous les événement qui commencent par "foo.". Notez que le nom complet de l'événement est passé en dernier argument de gestionnaire.
 
 <a name="using-classes-as-listeners"></a>
 ## Utilisation de classes en tant qu'écouteur
@@ -66,7 +66,7 @@ Dans certains cas, vous pourriez vouloir utiliser une classe pour gérer un év�
 
     Event::listen('user.login', 'LoginHandler');
 
-Par défaut, la méthode `handle` de la classe `LoginHandler` sera appelée:
+Par défaut, la méthode `handle` de la classe `LoginHandler` sera appelée :
 
 **Définition d'une classe écouteur d'événement**
 
@@ -79,7 +79,7 @@ Par défaut, la méthode `handle` de la classe `LoginHandler` sera appelée:
 
     }
 
-Si vous ne souhaitez pas utiliser la méthode par défaut `handle`, vous pouvez préciser le nom d'une méthode que vous souhaitez utiliser:
+Si vous ne souhaitez pas utiliser la méthode par défaut `handle`, vous pouvez préciser le nom d'une méthode que vous souhaitez utiliser :
 
 **Spécifie quelle méthode doit être utilisée**
 

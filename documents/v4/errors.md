@@ -51,7 +51,7 @@ Les exceptions HTTP sont des erreurs qui peuvent intervenir pendant une requête
 
     App::abort(404, 'Page not found');
 
-Le premier argument est le code HTTP, suivi d'un message d'erreur personnalisé que vous aimeriez montrer
+Le premier argument est le code HTTP, suivi d'un message d'erreur personnalisé que vous aimeriez montrer.
 
 Pour lever une erreur 401 "non autorisé", faites comme ceci :
 
