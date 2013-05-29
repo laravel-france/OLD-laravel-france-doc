@@ -22,7 +22,7 @@ Les chaînes de langues sont stockées dans des fichiers à l'intérieur du doss
 			/fr
 				messages.php
 
-Les fichiers de langues sont simplementsdes tableaux avec des clés. Par exemple:
+Les fichiers de langues sont simplements des tableaux avec des clés. Par exemple:
 
 **Fichier de langue d'exemple**
 
@@ -53,7 +53,7 @@ Le premier segment passé à la méthode `get` est le nom du fichier de traducti
 
 Vous pouvez placer une variable dans votre ligne de langue :
 
-	'welcome' => 'Bienvenu, :name',
+	'welcome' => 'Bienvenue, :name',
 
 Ensuite, passez un tableau de correspondance en tant que second argument à la méthode `Lang::get` :
 
