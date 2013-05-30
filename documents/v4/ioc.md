@@ -152,6 +152,12 @@ Pour créer un fournisseur de service, votre classe doit hériter de la classe `
 
 Notez que dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
 
+Vous pouvez également enregistrer un fournisseur de service lors de l'éxécution de la méthode `App::register` :
+
+**Enregistrement d'un fournisseur de service lors de l'éxécution**
+
+    App::register('FooServiceProvider');
+
 <a name="container-events"></a>
 ## Evénements du conteneur
 

@@ -2,6 +2,7 @@
  <a name="preface"></a>
 ### Préface
  - [Introduction](/docs/v4/doc/introduction)
+ - [Quickstart](/docs/v4/doc/quick)
  - [Contribuer à Laravel](/docs/v4/doc/contributing)
  <a name="premiers-pas"></a>
 ### Premiers pas

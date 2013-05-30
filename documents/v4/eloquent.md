@@ -15,7 +15,7 @@
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
-- [Date Mutators](#date-mutators)
+- [Mutateur de date](#date-mutators)
 - [Evénements de modèle](#model-events)
 - [Observeurs de modèle](#model-observers)
 - [Conversion en tableau / JSON](#converting-to-arrays-or-json)

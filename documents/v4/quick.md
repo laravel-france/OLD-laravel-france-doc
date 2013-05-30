@@ -2,7 +2,7 @@
 
 - [Installation](#installation)
 - [Routage](#routing)
-- [Création d'une vue](#view)
+- [Création d'une vue](#creating-a-view)
 - [Création d'une migration](#creating-a-migration)
 - [L'ORM Eloquent](#eloquent-orm)
 - [Affichage de données dans la vue](#displaying-data)
@@ -30,7 +30,7 @@ Les routes peuvent également être attachées à un contrôleur. Par exemple :
 
     Route::get('users', 'UserController@getIndex');
 
-Cette route informe le framework que la requête  vers la route `/user` doit appeller la méthode `getIndex` de la classe `UserController`. Pour plus d'informations à propos du routage vers un contrôleur, lisez la [documentation sur les contrôleurs](/docs/v4/doc/controllers).
+Cette route informe le framework que la requête  vers la route `/users` doit appeller la méthode `getIndex` de la classe `UserController`. Pour plus d'informations à propos du routage vers un contrôleur, lisez la [documentation sur les contrôleurs](/docs/v4/doc/controllers).
 
 <a name="creating-a-view"></a>
 ## Création d'une vue
@@ -51,7 +51,7 @@ Ensuite, créons notre vue `users.blade.php` :
 
     @section('content')
         Users!
-    @endsection
+    @stop
 
 Certaines parties de cette syntaxe doit vous sembler étrange. C'est parce que nous utilisons le système de templating de Laravel : Blade. Blade est très rapide, cas c'est simplement une poignée d'expressions régulières executées sur votre template pour le compiler en du PHP pur. Blade fournit des fonctionnalités puissantes comme l'héritage de template, ainsi qu'une syntaxe embellie sur les structures de contrôles de PHP tel que `if` et `for`. Lisez la [ocumentation de Blade](/docs/v4/doc/templates) pour plus de détail.
 
@@ -67,7 +67,11 @@ Magnifique ! Maintenat vous avez mise en place une vue simple qui hérite d'un l
 <a name="creating-a-migration"></a>
 ## Création d'une migration
 
-Pour créer une table qui garde nos données, nous allons utiliser la système de migration de Laravel. Les mirgations vous laisse définir des modifications sur votre base de données de manière expressive, et de les partager facilement avec le reste de votre équipe. Pour créer une migration, nous allons utiliser [Artisan](/docs/v4/doc/artisan). Depuis la racine de votre projet, éxécutez la ligne suivante dans votre terminal :
+Pour créer une table qui garde nos données, nous allons utiliser la système de migration de Laravel. Les mirgations vous laisse définir des modifications sur votre base de données de manière expressive, et de les partager facilement avec le reste de votre équipe.
+
+Premièrement, configurons une connexion à la base de données. Vous pouvez configurer vos connexions à la base données depuis le fichier `app/config/database.php`. Par défault, Laravel est configuré pour utiliser SQLite, et une base de données SQLite est inclue dans le dossier `app/database`. Si vous le souhaitez, vous pouvez changer l'option `driver` pour `mysql` et configurer la connexion `mysql` dans le fichier de configuration des bases de données.
+
+Ensuite, pour créer une migration, nous allons utiliser [Artisan](/docs/v4/doc/artisan). Depuis la racine de votre projet, éxécutez la ligne suivante dans votre terminal :
 
     php artisan migrate:make create_users_table
 
@@ -100,9 +104,9 @@ Si vous souhaitez annuler une migration, vous pouvez utiliser la commande `migra
 <a name="eloquent-orm"></a>
 ## L'ORM Eloquent
 
-Laravel est founit avec un superbe ORM, Eloquent. Si vous avez utiliser le framework Ruby on Rails, vous allez trouvé Eloquent familier, car il suit la style d'ORM ActiveRecord pour les interactions avec la base de données.
+Laravel est founit avec un superbe ORM : Eloquent. Si vous avez utiliser le framework Ruby on Rails, vous allez trouvé Eloquent familier, car il suit la style d'ORM ActiveRecord pour les interactions avec la base de données.
 
-Premièrement, définissons un modèle. Un modèle Eloquent peut être utilisé pour requêter une table associée dans la base de données, mais aussi pour représenter une ligne dans la table. Ne vous inquietez pas. Cela fera du sens très rapidement ! Les modèles sont généralements dans le dossier `app/models`. Définissons un modèle `User.php` comme ceci :
+Premièrement, définissons un modèle. Un modèle Eloquent peut être utilisé pour requêter une table associée dans la base de données, mais aussi pour représenter une ligne dans la table. Ne vous inquietez pas. Cela fera du sens très rapidement ! Les modèles sont généralements dans le dossier `app/models`. Définissons un modèle `User.php` dans ce dossier comme ceci :
 
     class User extends Eloquent {}
 
@@ -134,7 +138,7 @@ Maintenant que nous avons rendu les `users` disponibles pour notre vue, nous pou
         @foreach($users as $user)
             <p>{{ $user->name }}</p>
         @endforeach
-    @endsection
+    @stop
 
 Vous devez vous demander où se trouvent la directive `echo`. Lorsque vous utilisez Blade, vous pouvez afficher des données en les entourants par des doubles accolades. Un vrai jeu d'enfant. Maintenant, vous devez être capable d'aller sur la route `/users` et de voir vos utilisateurs affichés dans la réponse.
 

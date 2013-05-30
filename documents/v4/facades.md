@@ -9,25 +9,27 @@
 <a name="introduction"></a>
 ## Introduction
 
-Les Facades sont des classes spéciales qui sont conçues pour simplifier votre code. Laravel est livré avec plusieurs Facades, et vous en avez probablement utilisé sans même le savoir. Lorsque vous developpez votre application ou vos packages, vous pourriez vouloir utiliser les facaces pour raccourcir votre code. Ici, nous allons couvrir le concept, le développement et l'utilisation des classes Facade.
+Les Facades fournissent une interface "static" vers des classes qui sont accessibles dans le [conteneur IoC](/docs/v4/doc/ioc). Laravel est livré avec plusieurs Facades et vous en avez probablement utilisé sans même le savoir !
+
+Occasionnellement, vous pourriez souhaiter créer vos propres facades pour vos applications et vos pacakges, donc voysons le concept, le développement et l'utilisation de ces classes.
 
 > **Note:** Avant s'attaquer aux Facades, il est fortement recommandé d'être familiarisé avec le [conteneur IoC](/docs/v4/doc/ioc) de Laravel.
 
 <a name="explanation"></a>
 ## Explication
 
-Les Facades en général ne contiennent que deux méthodes, une méthode `getFacadeAccessor` et une méthode `__callStatic`. La méthode `getFacadeAccessor` retourne simplement une chaîne de caractères qui peut être utilisée pour résoudre une classe depuis le [conteneur IoC](/docs/v4/doc/ioc). Cette classe resolue en utilisant la clé retournée par `getFacadeAccessor` sera appellée par la méthode `__callStatic` lorsque qu'une méthode est appellée sur la Facade.
+Dans le contexte d'une application Laravel, une facade est une classe qui fournit un accès à un object depuis le conteneur. Le mecanisme qui fait marcher tout cela se trouve dans le classe `Facade`. Les facades de Laravel et n'importe quelle façade que vous souhaitez créer, devra hériter de la classe `Facade`.
 
-Donc, les Facades ne sont rien de plus qu'une manière de fournir une syntaxe plus courte pour appeller des classes disponibles dans le contenur IoC de l'application.
+Vos classes facades doivent uniquement contenir une méthode, `getFacadeAccessor`. C'est la mission de la méthode `getFacadeAccessor` de définir ce qui doit être résolu depuis le conteneur. La classe de base `Facade` fait appel à la méthode magique `__callStatic` pour transmettre les appels de votre facade vers l'objet résolu.
 
-+<a name="practical-usage"></a>
-+## Cas pratique
+<a name="practical-usage"></a>
+## Cas pratique
 
-Dans l'exemple ci dessous, un appel est fait au système de cache de Laravel. Dans ce cas, on dirait que la méthode static `get` est appellée sur le classe `Cache`.
+Dans l'exemple ci dessous, un appel est fait au système de cache de Laravel. En jetant un oeil à ce code, quelqu'un pourrait dire que la méthode static `get` est appellée sur le classe `Cache`.
 
     $value = Cache::get('key');
 
-Cependant, si vous regardons cette classe `Illuminate\Support\Facades\Cache`,
+Cependant, si vous regardons cette classe `Illuminate\Support\Facades\Cache`, vous verrez qu'il n'y a pas de méthode statique `get` :
 
     class Cache extends Facade {
 
@@ -40,9 +42,9 @@ Cependant, si vous regardons cette classe `Illuminate\Support\Facades\Cache`,
 
     }
 
-Notez que la classe Facade `Cache` hérite de la classe Facade, et définie une méthode `getFacadeAccessor()`. Souvenez vous, le boulot de cette méthode est de retourner le nom d'une liaison IoC.
+La classe `Cache` hérite de la classe de base `Facade`, et définie une méthode `getFacadeAccessor()`. Souvenez vous, le boulot de cette méthode est de retourner le nom d'une liaison IoC.
 
-Lorsqu'un utilisateur fait un appel à une méthode static sur la classe `Cache`, Laravel résout cette liaison IoC depuis le conteneur et exécute la méthode désirée (dans ce cas, `get`) sur cet objet.
+Lorsqu'un utilisateur fait un appel à une méthode static sur la classe `Cache`, Laravel résout le liaison `cache` depuis le conteneur et exécute la méthode désirée (dans ce cas, `get`) sur cet objet.
 
 Donc, notre appel `Cache::get` pourrait être réécrit comme cela :
 
@@ -51,13 +53,13 @@ Donc, notre appel `Cache::get` pourrait être réécrit comme cela :
 <a name="creating-facades"></a>
 ## Création de Facades
 
-Créer une Facade pour votre application ou package est simple. Vous avez besoin de seulements 3 choses.
+Créer une facade pour votre application ou package est simple. Vous avez besoin de seulements 3 choses.
 
 - Une liaison IoC.
 - Une classe Facade.
 - Un Alias de Facade dans la configuration.
 
-Regardons un exemple. Ici nous avons une classe qui peut être référencée en tant que `\PaymentGateway\Payment`.
+Regardons un exemple. Ici nous avons une classe qui définie en tant que `\PaymentGateway\Payment`.
 
     namespace PaymentGateway;
 
@@ -70,7 +72,16 @@ Regardons un exemple. Ici nous avons une classe qui peut être référencée en 
 
     }
 
-Une Facade pour cette classe pourrait ressembler à cela :
+Nous devons être capable de résoudre cette classe depuis le conteneur IoC. Alors, ajoutons une liaison :
+
+    App::bind('payment', function()
+    {
+        return new \PaymentGateway\Payment;
+    });
+
+Un bon endroit pour enregistrer cette liaison peut être de créer un [fournisseur de service](/docs/v4/doc/ioc#service-providers) nommé `PaymentServiceProvider`. La laision sera ajouté dans la méthode `register()`. Vous pouvez configurer Laravel pour charger vos fournisseurs de services dans le fichier de configuration `app/config/app.php`.
+
+Ensuite, nous pouvons créer notre propre classe façade :
 
     use Illuminate\Support\Facades\Facade;
 
@@ -80,20 +91,11 @@ Une Facade pour cette classe pourrait ressembler à cela :
 
     }
 
-Finallement, nous ajoutons notre liaison IoC, qui dit à Laravel sur quel objet travailler en utilisant cette Facade.
-
-    App::bind('payment', function()
-    {
-        return new \PaymentGateway\Payment;
-    });
-
-Un bon endroit pour enregistrer cette liaison peut être de créer un [fournisseur de service](/docs/v4/doc/ioc#service-providers) nommé `PaymentServiceProvider`. La laision sera ajouté dans la méthode `register()`. Vous pouvez configurer Laravel pour charger vos fournisseurs de services dans le fichier de configuration `app/config/app.php`.
-
-Ensuite, si nous le souhaitons, nous pouvons ajouter un alias pour notre Facade dans le tableau `aliases` du fichier de configuration `app/config/app.php`. Maintenant, nous pouvons appeller la méthode `process` sur une instance de notre classe `Payment` avec :
+Finalement, si nous le souhaitons, nous pouvons ajouter un alias pour notre Facade dans le tableau `aliases` du fichier de configuration `app/config/app.php`. Maintenant, nous pouvons appeller la méthode `process` sur une instance de notre classe `Payment` :
 
     Payment::process();
 
 <a name="mocking-facades"></a>
 ## Mockage de Facades
 
-Les tests unitaires sont un aspect important de pourquoi les Facades marchent comme cela. En fait, la testabilité est la raison pour laquelle les Facades existent. Regardez la section [Mockage de Facades](/docs/v4/doc/testing#mocking-facades) de la documentation.
+Les tests unitaires sont un aspect important de pourquoi les facades marchent comme cela. En fait, la testabilité est la raison pour laquelle les Facades existent. Regardez la section [Mockage de Facades](/docs/v4/doc/testing#mocking-facades) de la documentation.

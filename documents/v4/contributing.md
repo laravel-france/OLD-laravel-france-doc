@@ -28,5 +28,4 @@ Laravel adopte les standards de codage [PSR-0](https://github.com/php-fig/fig-st
 - les namespace doivent être déclarés sur une même ligne de la même manière que `<?php`,
 - l'ouverture `{` d'une classe doit être sur la même ligne que le nom de la classe,
 - le nom d'une fonction et l'ouverture `{` du corps de la fonction doivent être sur deux lignes différentes,
-- toujours utiliser `and` et `or`. Ne jamais utiliser `&&` ou `||`,
 - suffixer les noms d'interface avec `Interface` (`FooInterface`).
