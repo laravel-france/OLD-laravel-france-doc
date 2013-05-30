@@ -166,6 +166,12 @@ Pour mettre à jour un modèle, récupérez le, changer un attribut, et utilisez
 
     $user->save();
 
+Parfois vous pourriez vouloir sauvegarder non seulement le modèle, mais aussi toutes ses relations. Pour ce faire, utilisez la méthode `push` :
+
+**Sauvegarde un modèle et ses relations**
+
+    $user->push();
+
 Vous pouvez aussi lancer une mise à jour sur un ensemble de modèle :
 
     $affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
