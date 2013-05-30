@@ -10,6 +10,7 @@
 - [Mises à jour](#updates)
 - [Suppressions](#deletes)
 - [Unions](#unions)
+- [Mise en cache de requêtes](#caching-queries)
 
 <a name="introduction"></a>
 ## Introduction
@@ -260,3 +261,14 @@ Le constructeur de requête vous fournit également une manière rapide de faire
 	$users = DB::table('users')->whereNull('last_name')->union($first)->get();
 
 La méthode `unionAll` est également disponible, et a la même signature que `union`.
+
+<a name="caching-queries"></a>
+## Mise en cache de requêtes
+
+Vous pouvez facilement mettre en cache les résultats d'une requête en utilisant la méthode `remember` :
+
+**Mise en cache du résultat d'une requête**
+
+  $users = DB::table('users')->remember(10)->get();
+
+Dans cet exemple, les résultats de la requête seront cachés pour dix minutes. Tant que les résultats sont cachés, la requête ne sera plus éxécutée sur la base de donnée, et les résultats seront chargés depuis le driver de cache par défaut spécifié pour votre application.

@@ -52,6 +52,8 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 
 Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de données. La fonction `Redirect::intended` redirigera l'utilisateur vers l'URL qu'il tentait d'atteindre avant de se faire attraper par le filtre d'identification. Une URL par défaut peut être donnée à la méthode dans le cas où l'URL qu'il souhaitait atteindre n'est pas déterminée.
 
+Lorsque la méthode `attempt` est appellée, l'[évènement](/docs/v4/doc/events) `auth.attempt` est lancé. Si l'identification est un succèsn et que l'utilisateur est connécté, l'évènement `auth.login` sera également exécuté.
+
 Pour déterminer si un utilisateur est déjà connecté à votre application, vous pouvez utiliser la méthode `check` :
 
 **Détermine si un utilisateur est identifié**
@@ -137,7 +139,7 @@ Laravel fournit une méthode simple pour protéger votre application contre les 
     {
         return 'You gave a valid CSRF token!';
     }));
-    
+
 <a name="http-basic-authentication"></a>
 ## Identification HTTP Basic
 

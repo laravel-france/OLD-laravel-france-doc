@@ -4,7 +4,7 @@
 - [Utilisation](#basic-usage)
 - [Mise en queue de fonction anonymes](#queueing-closures)
 - [Activer le gestionnaire d'exécution de la file de travaux](#running-the-queue-listener)
-- [Queues en mode Push](#push-queues)- 
+- [Queues en mode Push](#push-queues)-
 
 <a name="configuration"></a>
 ## Configuration
@@ -83,6 +83,12 @@ Si une exception survient à l'exécution d'une tâche, cette tâche est automat
 	{
 		//
 	}
+
+Vous pouvez également accéder à l'identifiant d'une tâche :
+
+**Accès à l'ID d'une tâche**
+
+    $job->getJobId();
 
 <a name="queueing-closures"></a>
 ## Mise en queue de fonction anonymes

@@ -39,7 +39,7 @@ Si votre formulaire contient un champ pour la mise en ligne de fichier, ajoutez 
 <a name="csrf-protection"></a>
 ## Protection CSRF
 
-Laravel fournit une méthode simple pour protéger votre application des attaques Cross-Site Request Forgery. Premièrement, un jeton aléatoire est placé dans la session de l'utilisateur. Ne vous en inquiétez pas, cela se fait tout seul. Ensuite, Laravel utilise le jeton pour générer un champ caché qui contient le jeton aléatoire dans votre formulaire :
+Laravel fournit une méthode simple pour protéger votre application des attaques Cross-Site Request Forgery. Premièrement, un jeton aléatoire est placé dans la session de l'utilisateur. Ne vous en inquiétez pas, cela se fait tout seul. Le jeton CSRF sera ajouté à vos formulaires en tant que champ caché automatiquement. Cependant, si vous souhaitez générer le code HTML pour le champ caché, vous pouvez utiliser la méthode `token` :
 
 **Ajout du jeton CSRF à un formulaire**
 

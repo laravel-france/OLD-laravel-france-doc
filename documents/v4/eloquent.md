@@ -15,7 +15,9 @@
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
+- [Date Mutators](#date-mutators)
 - [Evénements de modèle](#model-events)
+- [Observeurs de modèle](#model-observers)
 - [Conversion en tableau / JSON](#converting-to-arrays-or-json)
 
 <a name="introduction"></a>
@@ -232,6 +234,13 @@ Si vous sohaitez réélement supprimé une lign de la base de données, vous pou
 La méthode `forceDelete` marche également sur les relations :
 
 	$user->posts()->forceDelete();
+
+Pour déterminer si un modèle donné a été supprimé de manière douce, vous pouvez utiliser la méthode `trashed` :
+
+    if ($user->trashed())
+    {
+        //
+    }
 
 <a name="timestamps"></a>
 ## Timestamps
@@ -512,7 +521,7 @@ Eloquent vous autorise d'accéder à vos relations par des propriétés déynami
 	}
 
 	$phone = Phone::find(1);
-	
+
 Plutôt que d'afficher l'adresse email de l'utilisateur ainsi :
 
 	echo $phone->user()->first()->email;
@@ -737,10 +746,10 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 **Applique une fonction sur chaque object d'une collection**
 
 	$roles = User::find(1)->roles;
-	
+
 	$roles->each(function($role)
 	{
-		//	
+		//
 	});
 
 **Tri une collection par une valeur**
@@ -794,6 +803,20 @@ Les mutateurs sont déclarés dans le même esprit :
 
     }
 
+<a name="date-mutators"></a>
+## Mutateur de date
+
+Par défaut, Eloquent va convertir les colonnes `created_at`, `updated_at` et `deleted_at` en instance de [Carbon](https://github.com/briannesbitt/Carbon), qui fournit un un lôt de méthodes utiles, et hérite de la classe PHP `DateTime`.
+
+Vous pouvez personnaliser quels champs seront automatiquement mutés,  voir même désactiver cette mutation, en surchargeant la méthode du modèle :
+
+    public function getDates()
+    {
+        return array('created_at');
+    }
+
+Lorsqu'une colonne est considérée comme une date, vous pouvez définir sa valeur comme étant un timestamp UNIX, une chaîne de date (`Y-m-d`), une chaine de type date et heure (`Y-m-d H:i:s`), ou bien sûr une instance de `DateTime` / `Carbon`.
+
 <a name="model-events"></a>
 ## Evénements de modèle
 
@@ -806,7 +829,7 @@ Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagi
         if ( ! $user->isValid()) return false;
     });
 
-Les modèles Eloquent contiennent également une méthode static `boot`, qui peut être l'endroit idéal pour s'abonner aux événements 
+Les modèles Eloquent contiennent également une méthode static `boot`, qui peut être l'endroit idéal pour s'abonner aux événements
 
 **Mise en place de la méthode boot d'un modèle**
 
@@ -821,6 +844,30 @@ Les modèles Eloquent contiennent également une méthode static `boot`, qui peu
 
     }
 
+<a name="model-observers"></a>
+## Observeurs de modèle
+
+Pour consolider le gestion des évènements d'un modèle, vous pouvez enregistrer une observeur de modèle. Une classe d'observation peut avoir des méthodes qui correspondent à plusieurs évènements d'un modèle. Par exemple, les méthodes `creating`, `updating`, `saving` peuvent être sur un observeur, en plus de n'importe quel autre nom d'évènement de modèle.
+
+Donc, par exemple, un observeur de modèle peut ressembler à cela :
+
+    class UserObserver {
+
+        public function saving($model)
+        {
+            //
+        }
+
+        public function saved($model)
+        {
+            //
+        }
+
+    }
+
+Vous pouvez enregistrer une instancve d'un observeur en utlisant la méthode `observe` :
+
+    User::observe(new UserObserver);
 
 <a name="converting-to-arrays-or-json"></a>
 ## Conversion en tableau / JSON

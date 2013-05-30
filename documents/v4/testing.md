@@ -124,6 +124,10 @@ Laravel est livré avec plusieurs méthodes `assert` pour vous faciliter les tes
         $this->assertResponseOk();
     }
 
+**Affirme que le status de la réponse est correct**
+
+    $this->assertResponseStatus(403);
+
 **Affirme qu'une réponse est une redirection**
 
     $this->assertRedirectedTo('foo');

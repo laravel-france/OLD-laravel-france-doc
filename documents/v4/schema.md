@@ -7,6 +7,7 @@
 - [Suppression de colonnes](#dropping-columns)
 - [Vérification d'existence](#checking-existence)
 - [Ajout d'index](#adding-indexes)
+- [Clés étrangères](#foreign-keys)
 - [Suppression d'index](#dropping-indexes)
 - [Moteur de stockage](#storage-engines)
 
@@ -58,6 +59,8 @@ Commande  | Description
 `$table->string('email');`  |  Equivalent de VARCHAR
 `$table->string('name', 100);`  |  Equivalent de VARCHAR avec une taille
 `$table->integer('votes');`  |  Equivalent d'INTEGER
+`$table->bigInteger('votes');`  |  Equivalent de BIGINT
+`$table->smallInteger('votes');`  |  Equivalent de SMALLINT
 `$table->float('amount');`  |  Equivalent de FLOAT
 `$table->decimal('amount', 5, 2);`  |  Equivalent de DECIMAL avec une précision et une échelle
 `$table->boolean('confirmed');`  |  Equivalent de BOOLEAN
@@ -146,6 +149,27 @@ Commande  | Description
 `$table->primary(array('first', 'last'));`  |  Ajout d'une clé primaire composite
 `$table->unique('email');`  |  Ajout d'un index d'unicité
 `$table->index('state');`  |  Ajout d'un index basique
+
+<a name="foreign-keys"></a>
+## Clés étrangères
+
+Laravel fournit également de quoi ajouter des clés étrangères à vos tables :
+
+**Ajout d'une clé étrangère à une table**
+
+    $table->foreign('user_id')->references('id')->on('users');
+
+Dans cet exemple, nous définissons que la colonne `user_id` référence  la colonne `id` de la table `users`.
+
+Vous pouvez également spécifier des options de contraintes pour les actions "on delete" et "on update" :
+
+    $table->foreign('user_id')
+          ->references('id')->on('users')
+          ->onDelete('cascade');
+
+Pour supprimer une clé étrangère, vous pouvez utiliser la méthode `dropForeign`. Une convention de nommage similaire aux autres clés est utilisée pour les clés étrangères :
+
+    $table->dropForeign('posts_user_id_foreign');
 
 <a name="dropping-indexes"></a>
 ## Suppression d'index

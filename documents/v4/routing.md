@@ -147,6 +147,10 @@ Vous pouvez aussi spécifier qu'un filtre s'applique sur un jeu entier de routes
 
 Dans l'exemple ci-dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
 
+Vous pouvez également ajouter une contrainte les filtres basés sur un patron par verbe HTTP :
+
+    Route::when('admin/*', 'admin', array('post'));
+
 **Classes de filtres**
 
 Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonction anonyme. Comme les filtres de classes sont résolus par [le conteneur IoC](/docs/v4/doc/ioc), vous serez en mesure d'utiliser l'injection de dépendance dans ces filtres pour une meilleure testabilité.
@@ -290,7 +294,7 @@ Plus d'informations sur la gestion des exceptions 404 et l'utilisation de répon
 <a name="resource-controllers"></a>
 ## Contrôleurs de resources
 
-Les contrôleurs de ressources rendent plus facile la construction de contrôleurs RESTful autour d'une ressource. 
+Les contrôleurs de ressources rendent plus facile la construction de contrôleurs RESTful autour d'une ressource.
 
 Voir la documentation des [contrôleurs](/docs/v4/doc/controllers#resource-controllers) pour plus d'informations.
 

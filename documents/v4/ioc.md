@@ -21,7 +21,7 @@ Il y a deux manière pour faire résoudre des dépendances au conteneur IoC : vi
 
 **Liaison d'un type dans le conteneur**
 
-    App::bind('foo', function()
+    App::bind('foo', function($app)
     {
         return new FooBar;
     });
@@ -128,7 +128,9 @@ Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dan
 <a name="service-providers"></a>
 ## Fournisseur de services
 
-Les fournisseurs de services sont une bonne manière de grouper des enregistrements "liés" dans le conteneur IoC à un seul endroit. En fait, une grande partie des composants du coeur du framework Laravel inclus un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre applications sont listés dans le tableau `providers` dans le fichier de configuration `app/config/app.php`.
+Les fournisseurs de services sont une bonne manière de grouper des enregistrements "liés" dans le conteneur IoC à un seul endroit. Pensez à eux comme étant une manière de charger des composants dans votre application. Dans un fournisseur de service, vous pouvez enregistrer un driver d'identification pesonnalisé, enregistrer les repositories de votre application dans le conteneur IoC, ou même définir une commande Artisan personnalisée.
+
+En fait, une grande partie des composants du coeur du framework Laravel inclus un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre applications sont listés dans le tableau `providers` dans le fichier de configuration `app/config/app.php`.
 
 Pour créer un fournisseur de service, votre classe doit hériter de la classe `Illuminate\Support\ServiceProvider` et définir une méthode `register` :
 

@@ -12,6 +12,8 @@
 
 Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances. Premièrement, téléchargez une copie de `composer.phar`. Une fois que vous avez l'archive PHAR, vous pouvez soit le laisser dans le dossier local de votre projet, soit le déplacer vers `usr/local/bin` pour l'utiliser de manière globale sur votre système. Sur Windows, vous pouvez utiliser l'installeur de Composer [pour Windows](https://getcomposer.org/Composer-Setup.exe).
 
+Une fois que Laravel est installé, vous pouvez mettre à jour le framework en utilisant la commande `php composer.phar update`.
+
 <a name="install-laravel"></a>
 ## Installation de Laravel
 
@@ -55,6 +57,6 @@ Si le fichier `.htaccess` fourni avec Laravel ne fonctionne pas, essayez celui c
 
 	RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
-   
+
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]

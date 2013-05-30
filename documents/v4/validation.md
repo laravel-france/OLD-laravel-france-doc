@@ -41,6 +41,10 @@ Si la validation échoue, vous pouvez récuperer les messages d'erreurs depuis l
 
 	$messages = $validator->messages();
 
+Vous pouvez également accéder à un tableau des règles de validation qui ont échoué, sans les messages. Pour ce faire, utilisez la méthode `failed` :
+
+    $failed = $validator->failed();
+
 **Validation de fichier**
 
 La classe `Validator` fournit plusieurs règles spécifiques pour les fichiers, telles que `size`, `mimes`, et d'autres. Pour valider un fichier, passez le simplement au validateur avec vos autres données.
