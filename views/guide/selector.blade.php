@@ -4,8 +4,8 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li><a href="{{ URL::to('docs/v3') }}">Version 3</a></li>
-    <li><a href="{{ URL::to('docs/v4') }}">Version 4 beta</a></li>
+    <li><a href="{{ URL::to('docs/4') }}">Version 4</a></li>
+    <li><a href="{{ URL::to('docs/3') }}">Version 3</a></li>
   </ul>
 </div>
 

@@ -1,5 +1,13 @@
 <?php
 
+function determineHome($version)
+{
+    if ($version == 3) {
+        return 'home';
+    } elseif ($version == 4) {
+        return 'introduction';
+    }
+}
 
 /**
  * Get the root path for the documentation Markdown.
