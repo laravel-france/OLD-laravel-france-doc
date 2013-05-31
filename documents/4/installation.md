@@ -17,7 +17,15 @@ Une fois que Laravel est installé, vous pouvez mettre à jour le framework en u
 <a name="install-laravel"></a>
 ## Installation de Laravel
 
+### Via un téléchargement
+
 Une fois que Composer est installé, téléchargez la [dernière version](https://github.com/laravel/laravel/archive/master.zip) du framework, et extrayez son contenu dans un dossier sur votre serveur. Ensuite, à la racine de votre application Laravel, lancez la commande `php composer.phar install` pour installer toutes les dépendances du framework. Ce process requis que git soit installé sur le serveur pour terminer l'installation.
+
+### Via Composer Create-Project
+
+Vous pouvez également installer Laravel en éxécutant la commande `create-project` de composer  dans votre terminal :
+
+    composer create-project laravel/laravel
 
 <a name="server-requirements"></a>
 ## Pré-requis
@@ -52,10 +60,10 @@ Le framework est fourni avec un fichier `public/.htaccess` qui est utilisé pour
 
 Si le fichier `.htaccess` fourni avec Laravel ne fonctionne pas, essayez celui ci :
 
-	Options +FollowSymLinks
-	RewriteEngine On
+    Options +FollowSymLinks
+    RewriteEngine On
 
-	RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
