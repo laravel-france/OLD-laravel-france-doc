@@ -45,7 +45,7 @@ La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 
 Pour connecter un utilisateur dans votre application, vous devez utiliser la méthode `Auth::attempt`.
 
-	if (Auth::attempt(array('email' => $email, 'password' => $password)))
+	if (Auth::attempt(array('email' => $email, 'password' => $password))))
 	{
 		return Redirect::intended('dashboard');
 	}
@@ -283,6 +283,6 @@ Vous pouvez également préciser le chiffrement ou le mode utilisé par le chiff
 
 **Réglage du chiffrement et du mode**
 
-  Crypt::setMode('crt');
+	Crypt::setMode('crt');
 
-  Crypt::setCipher($cipher);
+	Crypt::setCipher($cipher);
