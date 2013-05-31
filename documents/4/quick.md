@@ -14,7 +14,7 @@ Pour installer le framework Laravel, téléchargez une copie [sur le dépôt Git
 
 Vous pouvez également installer Laravel en éxécutant la commande suivante depuis votre terminal :
 
-  composer create-project laravel/laravel
+    composer create-project laravel/laravel
 
 Après avoir installer le framework, After installing the framework, jetez un coup d'oeil autour du projet pour vous familiariser avec la structure des dossiers. Le dossier `app` contient des dossiers tels que `views`, `controllers` et `models`. La majorité du code de votre application va résider dans ce dossier. Vous pouvez également explorer le dossier `app/config` et les options de configurations qui s'offrent à vous.
 
