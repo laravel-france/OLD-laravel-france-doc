@@ -69,7 +69,7 @@ Vous pouvez accéder à l'environnement courant de l'application par la méthode
 
 Lorsque votre application est en mode de maintenance, une vue personnalisée sera afficher sur toutes les routes de votre applications. C'est une manière simple de "désactiver" votre application pendant sa mise à jour. Un appel à la méthode `App::down` est déjà présent dans votre fichier `app/start/global.php`. La réponse de cette méthode sera envoyée aux utilisateurs lorsque l'application est en mode de maintenance.
 
-Pour activer le mode de maintenance, éxécutez la commande Artisan `down` :
+Pour activer le mode de maintenance, exécutez la commande Artisan `down` :
 
 	php artisan down
 

@@ -41,7 +41,7 @@ Si la validation échoue, vous pouvez récuperer les messages d'erreurs depuis l
 
 	$messages = $validator->messages();
 
-Vous pouvez également accéder à un tableau des règles de validation qui ont échoué, sans les messages. Pour ce faire, utilisez la méthode `failed` :
+Vous pouvez également accéder à un tableau de règles de validation qui ont échoué, sans les messages. Pour ce faire, utilisez la méthode `failed` :
 
     $failed = $validator->failed();
 
@@ -125,7 +125,7 @@ Donc, après une redirection vous pouvez utilisez la variable `$errors` liée au
 <a name="available-validation-rules"></a>
 ## Règles de validation disponibles
 
-Vous trouverez ci dessous une liste des règles de validation et leurs fonctions :
+Vous trouverez ci-dessous une liste des règles de validation et leurs fonctions :
 
 - [Accepted](#rule-accepted)
 - [Active URL](#rule-active-url)
@@ -278,7 +278,7 @@ Le fichier sous validation doit avoir un type MIME qui correspond à une des ext
 <a name="rule-min"></a>
 #### min:_value_
 
-Le champ sous validation doit avoir une taille minimum de _value_.  Les chaînes de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
+Le champ sous validation doit avoir une taille minimum de _value_. Les chaînes de caractères, les chiffres et les fichiers sont évalués comme dans la règle `size`.
 
 <a name="rule-not-in"></a>
 #### not_in:_foo_,_bar_,...
@@ -295,7 +295,7 @@ Le champ sous validation doit être un chiffre.
 
 Le filtre sous validation doit correspondre à l'expression régulière donnée.
 
-**Note:** Lorsque vous utilisez la règle `regex`, il peut être nécessaire d'implémenter les règles dans un tableau plutôt qu'avec le délimiteur pipe `|`, surtout si ce dernier est utilisé dans l'expression régulière.
+> **Note:** Lorsque vous utilisez la règle `regex`, il peut être nécessaire d'implémenter les règles dans un tableau plutôt qu'avec le délimiteur pipe `|`, surtout si ce dernier est utilisé dans l'expression régulière.
 
 <a name="rule-required"></a>
 #### required

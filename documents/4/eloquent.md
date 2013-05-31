@@ -15,9 +15,9 @@
 - [Travail sur les tables pivots](#working-with-pivot-tables)
 - [Collections](#collections)
 - [Les accesseurs et mutateurs](#accessors-and-mutators)
-- [Mutateur de date](#date-mutators)
+- [Mutateurs de date](#date-mutators)
 - [Evénements de modèle](#model-events)
-- [Observeurs de modèle](#model-observers)
+- [Observateurs de modèle](#model-observers)
 - [Conversion en tableau / JSON](#converting-to-arrays-or-json)
 
 <a name="introduction"></a>
@@ -46,9 +46,7 @@ Notez que nous n'avons pas indiqué à Eloquent quelle table doit être utilisé
 
 Eloquent va également présumer que votre table a une clé primaire nommée `id`. Vous pouvez définir une propriété `primaryKey` pour surcharger cette convention. De la même manière, vous pouvez définir une propriété `connection` pour surcharger le nom de la connexion qui sera utilisé pour accéder à la table de ce modèle.
 
-> **Note:** Eloquent va également assumer que chaque table a une clé primaire qui s'appelle `id`. Vous pouvez définir une clé primaire à la main en ajoutant une propriété `$primaryKey`.
-
-Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer des enregistrements dans votre table. Notez que vous aurez besoin de créer des colonnes `updated_at` et `created_at` sur votre table par défaut. Si vous ne voulez pas de ces colonnes, qui sont auto maintenues par Laravel, définissez une propriété `$timestamps` à `false`.
+Une fois qu'un modèle est défini, vous êtes prêt à récupérer et à créer des enregistrements dans votre table. Notez que vous aurez besoin de créer des colonnes `updated_at` et `created_at` sur votre table par défaut. Si vous ne voulez pas de ces colonnes, qui sont auto-maintenues par Laravel, définissez une propriété `$timestamps` à `false`.
 
 **Retourne tous les modèles**
 
@@ -86,7 +84,7 @@ Pour enregistrer le gestionnaire d'erreur, écoutez auprès d'un `ModelNotFoundE
         var_dump($user->name);
     }
 
-Bien sûr, vous pouvez également utiliser les fonctions d'agrégats du Query Builder.
+Bien sûr, vous pouvez également utiliser les fonctions d'agrégat du Query Builder.
 
 **Agrégat avec Eloquent**
 
@@ -109,7 +107,7 @@ La propriété `fillable` spécifie quels attributs peuvent être assignés en m
 
     }
 
-Dans cet exemple, seul les trois attributs listés peuvent être assignés lors d'un assignement de masse.
+Dans cet exemple, seuls les trois attributs listés peuvent être assignés lors d'un assignement de masse.
 
 L'inverse de `fillable` est `guarded`, et il contient une "blacklist" plutôt qu'un laisser passer :
 
@@ -140,7 +138,7 @@ Pour créer un nouvel enregistrement dans la base de données pour un modèle, c
 
     $user->save();
 
-**Note:** Typiquement, votre modèle Eloquent aura une clé de type auto-increment. Cependant, si vous souhaitez spécifier votre propre clé, définissez la propriété `incrementing` de votre modèle à `false`.
+> **Note:** Typiquement, votre modèle Eloquent aura une clé de type auto-increment. Cependant, si vous souhaitez spécifier votre propre clé, définissez la propriété `incrementing` de votre modèle à `false`.
 
 Vous pouvez également utiliser la méthode `create` pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retournée par la méthode. Cependant avant de faire cela, vous devrez spécifier l'attribut `fillable` ou `guarded` sur le modèle, car tous les modèles Eloquent sont protégés contre l'assignement de masse.
 
@@ -156,7 +154,7 @@ Vous pouvez également utiliser la méthode `create` pour sauvegarder un modèle
 
     $user = User::create(array('name' => 'John'));
 
-Pour mettre à jour un modèle, récupérez le, changer un attribut, et utilisez la méthode `save` :
+Pour mettre à jour un modèle, récupérez le, changez un attribut, et utilisez la méthode `save` :
 
 **Mise à jour d'un Modèle**
 
@@ -172,7 +170,7 @@ Parfois vous pourriez vouloir sauvegarder non seulement le modèle, mais aussi t
 
     $user->push();
 
-Vous pouvez aussi lancer une mise à jour sur un ensemble de modèle :
+Vous pouvez aussi lancer une mise à jour sur un ensemble de modèles :
 
     $affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
 
@@ -190,7 +188,7 @@ Pour supprimer un modèle, appelez simplement la méthode `delete` sur une insta
 
     User::destroy(1, 2, 3);
 
-Bien sûr, vous pouvez également supprimé un ensemble de modèle :
+Bien sûr, vous pouvez également supprimer un ensemble de modèles :
 
     $affectedRows = User::where('votes', '>', 100)->delete();
 
@@ -211,13 +209,13 @@ Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprim
 
 	}
 
-Maintenant, lorseque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera rempli avec la date et l'heure de suppression. Lorsque vous requetez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withTrashed` sur la requête :
+Maintenant, lorsque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera remplie avec la date et l'heure de suppression. Lorsque vous requêtez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withTrashed` sur la requête :
 
 **Force l'affichage des lignes réputées supprimées**
 
 	$users = User::withTrashed()->where('account_id', 1)->get();
 
-Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la méthode `trashed` :
+Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la méthode `onlyTrashed` :
 
     $users = User::onlyTrashed()->where('account_id', 1)->get();
 
@@ -225,7 +223,7 @@ Pour annuler cette suppression, utilisez la méthode `restore` :
 
 	$user->restore();
 
-Vous pouvez également utilserla méthode `restore` sur une requête :
+Vous pouvez également utiliser la méthode `restore` sur une requête :
 
 	User::withTrashed()->where('account_id', 1)->restore();
 
@@ -233,7 +231,7 @@ La méthode `restore` peut également être utilisée sur une relation :
 
 	$user->posts()->restore();
 
-Si vous sohaitez réélement supprimé une lign de la base de données, vous pouvez utiliser la méthode `forceDelete` :
+Si vous souhaitez réellement supprimer une ligne de la base de données, vous pouvez utiliser la méthode `forceDelete` :
 
 	$user->forceDelete();
 
@@ -351,7 +349,7 @@ Pour définir la relation inverse sur le modèle `Phone`, nous utilisons la mét
 <a name="one-to-many"></a>
 ### Un vers plusieurs (1:n)
 
-Un exemple de relation une-vers-plusieurs est un post de blog qui a plusieurs commentaires. Nous réalisons cette relation comme cela :
+Un exemple de relation un-vers-plusieurs est un post de blog qui a plusieurs commentaires. Nous réalisons cette relation comme cela :
 
     class Post extends Eloquent {
 
@@ -477,7 +475,7 @@ Cependant, la vraie magie de la polymorphie apparait lorsque vous accédez au st
 
     $imageable = $photo->imageable;
 
-La relation `imageable` du modèle `Photo` retournera soit une instance de `Staff` ou de `Commande`, selon quel modèle est propriétaire de la photo.
+La relation `imageable` du modèle `Photo` retournera soit une instance de `Staff` ou de `Commande`, selon le modèle propriétaire de la photo.
 
 Pour vous aider à comprendre comment cela marche, jetons un oeil à la structure de la base de données pour une relation polymorphique :
 
@@ -502,9 +500,9 @@ Les champs clés à remarquer ici sont `imageable_id` et `imageable_type` de la 
 <a name="querying-relations"></a>
 ## Requêtes sur les relations
 
-Lorsque vous accédez aux lignes d'un modèle, vous pourriez vouloir limiter vos résultats en se basant sur l'existance d'une relation. Par exemple, pour récupérer les billets d'un blog qui ont au moins un commentaire. Pour se faire, vous pouvez utiliser le méthode `has` :
+Lorsque vous accédez aux lignes d'un modèle, vous pourriez vouloir limiter vos résultats en se basant sur l'existence d'une relation. Par exemple, pour récupérer les billets d'un blog qui ont au moins un commentaire. Pour ce faire, vous pouvez utiliser la méthode `has` :
 
-**Vérification d'une relation lors de la selection**
+**Vérification d'une relation lors de la sélection**
 
 	$posts = Post::has('comments')->get();
 
@@ -513,9 +511,9 @@ Vous pouvez également spécifier un opérateur et un nombre :
 	$posts = Post::has('comments', '>=', 3)->get();
 
 <a name="dynamic-properties"></a>
-### Dynamic Properties
+### Propriétés dynamiques
 
-Eloquent vous autorise d'accéder à vos relations par des propriétés déynamiques. Eloquent va automatiquement charger la relation pour vous, et est assez malin pour savoir quand appeller la méthode `get` (pour les relations one-to-many) ou `first` (pour les relations one-to-one). La relation sera alors accessible par une propriété dynamique qui porte le même nom que la relation. Par exemple, avec le modèle `$phone`:
+Eloquent vous autorise à accéder à vos relations par des propriétés dynamiques. Eloquent va automatiquement charger la relation pour vous, et est assez malin pour savoir quand appeler la méthode `get` (pour les relations one-to-many) ou `first` (pour les relations one-to-one). La relation sera alors accessible par une propriété dynamique qui porte le même nom que la relation. Par exemple, avec le modèle `$phone`:
 
 	class Phone extends Eloquent {
 
@@ -528,7 +526,7 @@ Eloquent vous autorise d'accéder à vos relations par des propriétés déynami
 
 	$phone = Phone::find(1);
 
-Plutôt que d'afficher l'adresse email de l'utilisateur ainsi :
+Plutôt que d'afficher l'adresse e-mail de l'utilisateur ainsi :
 
 	echo $phone->user()->first()->email;
 
@@ -616,7 +614,7 @@ Vous aurez souvent besoin d'insérer des nouveaux modèles liés. Par exemple, p
 
     $comment = $post->comments()->save($comment);
 
-Dans ces exemple, le champ `post_id` sera automatiquement rempli dans le commentaire inséré.
+Dans cet exemple, le champ `post_id` sera automatiquement rempli dans le commentaire inséré.
 
 ### Insertion de modèles liés, plusieurs vers plusieurs
 
@@ -655,7 +653,7 @@ Dans cet exemple, le nouveau modèle `Role` sera sauvegardé et attaché au mod�
 <a name="touching-parent-timestamps"></a>
 ## Mise à jour du Timestamps des parents
 
-Quand un modèle appartient  à (`belongsTo`) un autre modèle, comme un `Comment` appartient à un `Post`, il est souvent utile de mettre à jour les timestamps du parent lorsque le modèle enfant est mis à jour. Par exemple, lorsqu'un commentaire est modifié, nous pourrions mettre à jour le `Post` qui le contient. Eloquent rend cela facile. Ajoutez simplement la propriété `touches` qui contient le nom des relations dans le modèle enfant :
+Quand un modèle appartient à (`belongsTo`) un autre modèle, comme un `Comment` appartient à un `Post`, il est souvent utile de mettre à jour les timestamps du parent lorsque le modèle enfant est mis à jour. Par exemple, lorsqu'un commentaire est modifié, nous pourrions mettre à jour le `Post` qui le contient. Eloquent rend cela facile. Ajoutez simplement la propriété `touches` qui contient le nom des relations dans le modèle enfant :
 
     class Comment extends Eloquent {
 
@@ -731,7 +729,7 @@ Les Collections peuvent être converties en tableau ou en JSON :
 
     $roles = User::find(1)->roles->toJson();
 
-Si une collection est castée en une chaine, alors sa représentation JSON sera retournée :
+Si une collection est castée en une chaîne, alors sa représentation JSON sera retournée :
 
     $roles = (string) User::find(1)->roles;
 
@@ -810,18 +808,18 @@ Les mutateurs sont déclarés dans le même esprit :
     }
 
 <a name="date-mutators"></a>
-## Mutateur de date
+## Mutateurs de date
 
-Par défaut, Eloquent va convertir les colonnes `created_at`, `updated_at` et `deleted_at` en instance de [Carbon](https://github.com/briannesbitt/Carbon), qui fournit un un lôt de méthodes utiles, et hérite de la classe PHP `DateTime`.
+Par défaut, Eloquent va convertir les colonnes `created_at`, `updated_at` et `deleted_at` en instance de [Carbon](https://github.com/briannesbitt/Carbon), qui fournit un lôt de méthodes utiles, et hérite de la classe PHP `DateTime`.
 
-Vous pouvez personnaliser quels champs seront automatiquement mutés,  voir même désactiver cette mutation, en surchargeant la méthode du modèle :
+Vous pouvez personnaliser quels champs seront automatiquement mutés, voir même désactiver cette mutation, en surchargeant la méthode du modèle :
 
     public function getDates()
     {
         return array('created_at');
     }
 
-Lorsqu'une colonne est considérée comme une date, vous pouvez définir sa valeur comme étant un timestamp UNIX, une chaîne de date (`Y-m-d`), une chaine de type date et heure (`Y-m-d H:i:s`), ou bien sûr une instance de `DateTime` / `Carbon`.
+Lorsqu'une colonne est considérée comme une date, vous pouvez définir sa valeur comme étant un timestamp UNIX, une chaîne de date (`Y-m-d`), une chaîne de type date et heure (`Y-m-d H:i:s`), ou bien sûr une instance de `DateTime` / `Carbon`.
 
 <a name="model-events"></a>
 ## Evénements de modèle
@@ -835,7 +833,7 @@ Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagi
         if ( ! $user->isValid()) return false;
     });
 
-Les modèles Eloquent contiennent également une méthode static `boot`, qui peut être l'endroit idéal pour s'abonner aux événements
+Les modèles Eloquent contiennent également une méthode static `boot`, qui peut être l'endroit idéal pour s'abonner aux événements.
 
 **Mise en place de la méthode boot d'un modèle**
 
@@ -851,11 +849,11 @@ Les modèles Eloquent contiennent également une méthode static `boot`, qui peu
     }
 
 <a name="model-observers"></a>
-## Observeurs de modèle
+## Observateurs de modèle
 
-Pour consolider le gestion des évènements d'un modèle, vous pouvez enregistrer une observeur de modèle. Une classe d'observation peut avoir des méthodes qui correspondent à plusieurs évènements d'un modèle. Par exemple, les méthodes `creating`, `updating`, `saving` peuvent être sur un observeur, en plus de n'importe quel autre nom d'évènement de modèle.
+Pour consolider le gestion des événements d'un modèle, vous pouvez enregistrer une observateur de modèle. Une classe d'observation peut avoir des méthodes qui correspondent à plusieurs événements d'un modèle. Par exemple, les méthodes `creating`, `updating`, `saving` peuvent être sur un observateur, en plus de n'importe quel autre nom d'événement de modèle.
 
-Donc, par exemple, un observeur de modèle peut ressembler à cela :
+Donc, par exemple, un observateur de modèle peut ressembler à cela :
 
     class UserObserver {
 
@@ -871,7 +869,7 @@ Donc, par exemple, un observeur de modèle peut ressembler à cela :
 
     }
 
-Vous pouvez enregistrer une instancve d'un observeur en utlisant la méthode `observe` :
+Vous pouvez enregistrer une instancve d'un observateur en utlisant la méthode `observe` :
 
     User::observe(new UserObserver);
 
@@ -896,7 +894,7 @@ Pour convertir un modèle en JSON, vous pouvez utiliser la méthode `toJson` :
 
     return User::find(1)->toJson();
 
-Notez que quand un modèle ou une collection est casté en string, ils seront convertis en JSON, ce qui signifie que vous pouvez retourner des objets Eloquent directement depuis vos routes/actions !
+Notez que quand un modèle ou une collection est casté en string, ils sont convertis en JSON, ce qui signifie que vous pouvez retourner des objets Eloquent directement depuis vos routes/actions !
 
 **Retourne un modèle depuis une route**
 
@@ -905,7 +903,7 @@ Notez que quand un modèle ou une collection est casté en string, ils seront co
         return User::all();
     });
 
-Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans la forme tableau ou JSON de vos modèles, tels que les mots de passes. Pour ce faire, ajoutez la propriété `hidden`  à la définition de votre modèle :
+Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans la forme tableau ou JSON de vos modèles, tels que les mots de passes. Pour ce faire, ajoutez la propriété `hidden` à la définition de votre modèle :
 
 **Cache un attribut des formats tableaux ou JSON**
 

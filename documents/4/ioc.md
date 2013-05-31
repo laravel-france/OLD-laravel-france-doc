@@ -10,14 +10,14 @@
 <a name="introduction"></a>
 ## Introduction
 
-Le conteneur d'inversion de contrôle de Laravel est un outil puissant pour gérer les dépendances des classes. L'injection de dépendance est une méthode pour supprimer les  dépendances hardcodées. A la place, les dépendances sont injéctées à l'execution, vous permettant d'avoir une grande flexibilité étant donné que les dépendances peuvent être échangées facilement.
+Le conteneur d'inversion de contrôle de Laravel est un outil puissant pour gérer les dépendances des classes. L'injection de dépendance est une méthode pour supprimer les dépendances hardcodées. A la place, les dépendances sont injectées à l'exécution, vous permettant d'avoir une grande flexibilité étant donné que les dépendances peuvent être échangées facilement.
 
 Comprendre le conteneur IoC de Laravel est essentiel pour construire des applications larges et puissantes, et également pour contribuer au coeur du framework Laravel lui même.
 
 <a name="basic-usage"></a>
 ## Utilisation basique
 
-Il y a deux manière pour faire résoudre des dépendances au conteneur IoC : via des fonctions anonymes, ou alors en résolution automatique. Nous allons d'abord voir l'utilisation de fonctions anonymes. Premièrement, un "type" doit être lié dans le conteneur :
+Il y a deux manières pour faire résoudre des dépendances au conteneur IoC : via des fonctions anonymes, ou alors en résolution automatique. Nous allons d'abord voir l'utilisation de fonctions anonymes. Premièrement, un "type" doit être lié dans le conteneur :
 
 **Liaison d'un type dans le conteneur**
 
@@ -30,7 +30,7 @@ Il y a deux manière pour faire résoudre des dépendances au conteneur IoC : vi
 
     $value = App::make('foo');
 
-Quand la méthode `App::make` est appellée, la fonction anonyme est executée et le résultat est retourné.
+Quand la méthode `App::make` est appelée, la fonction anonyme est exécutée et le résultat est retourné.
 
 Parfois, vous voudrez lier quelque chose dans le conteneur qui ne doit pas être instancié à chaque appel, mais vous souhaiteriez que la même instance soit retournée à chaque fois :
 
@@ -67,11 +67,11 @@ Le conteneur IoC est assez puissant pour résoudre des classes sans aucune confi
 
     $fooBar = App::make('FooBar');
 
-Malgrès que nous n'avons pas enregistrer la classe FooBar dans le conteneur, ce dernier a réussi à résoudre la classe, et même à injecter la dépendance `Baz` automatiquement !
+Malgré que nous n'avons pas enregistré la classe FooBar dans le conteneur, ce dernier a réussi à résoudre la classe, et même à injecter la dépendance `Baz` automatiquement !
 
-Quand un type n'est pas lier dans le conteneur, il utilisera la Reflexion PHP pour inspecter la classe et lire le typage objet implicite des paramètres du constructeur. En utilisant ces informations, le conteneur peut automatiquement construire une instance de cette classe.
+Quand un type n'est pas lié dans le conteneur, il utilisera la Reflexion PHP pour inspecter la classe et lire le typage objet implicite des paramètres du constructeur. En utilisant ces informations, le conteneur peut automatiquement construire une instance de cette classe.
 
-Cependant, dans certains cas, une classe peut dépendre d'une interface et non d'un type "concret". Quand le cas se produit, la méthode `App::bind` peut être utilisé pour informer le conteneur de quelle implémentation de l'interface doit être injectée :
+Cependant, dans certains cas, une classe peut dépendre d'une interface et non d'un type "concret". Quand le cas se produit, la méthode `App::bind` peut être utilisée pour informer le conteneur de quelle implémentation de l'interface doit être injectée :
 
 **Liaison d'une implémentation d'une interface**
 
@@ -93,7 +93,7 @@ Etant donné que nous avons lié l'interface `UserRepositoryInterface`, le type 
 <a name="practical-usage"></a>
 ## Usage pratique
 
-Laravel fournit plusieurs opportunités d'utiliser le conteneur IoC pour augmenter la fléxibilité et la testabilité de votre application. Un exemple peut être la résolution d'un contrôleur. Tous les contrôleurs sont résolus par le conteneur IoC, cela signifie que l'on peut utiliser le typage objet implicite dans le constructeur du contrôleur, et ils seront automatiquement injectés.
+Laravel fournit plusieurs opportunités d'utiliser le conteneur IoC pour augmenter la flexibilité et la testabilité de votre application. Un exemple peut être la résolution d'un contrôleur. Tous les contrôleurs sont résolus par le conteneur IoC, cela signifie que l'on peut utiliser le typage objet implicite dans le constructeur du contrôleur, et ils seront automatiquement injectés.
 
 **Déclaration de dépendance par typage object implicite dans le contrôleur**
 
@@ -113,9 +113,9 @@ Laravel fournit plusieurs opportunités d'utiliser le conteneur IoC pour augment
 
     }
 
-Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dans le contrôleur. Cela signifie que lors des  [tests unitaires](/docs/4/testing), une classe d'imitation (mock) `OrderRepository` peut être liée dans le conteneur et injectée dans le contrôleur, vous permettant de créer facilement des bouchons (stub) de la couche d'intéraction avec la base de donnée.
+Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dans le contrôleur. Cela signifie que lors des [tests unitaires](/docs/4/testing), une classe d'imitation (mock) `OrderRepository` peut être liée dans le conteneur et injectée dans le contrôleur, vous permettant de créer facilement des bouchons (stub) de la couche d'intéraction avec la base de données.
 
-[Les filtres](/docs/4/routing#route-filters), [les composeurs](/docs/4/responses#view-composers), et [les gestionnaires d'événements](/docs/4/events#using-classes-as-listeners) peuvent également être résolu par le conteneur IoC. Lors de leur enregistrement, donnez simplement le nom de la classe qui doit être utilisée :
+[Les filtres](/docs/4/routing#route-filters), [les composeurs](/docs/4/responses#view-composers), et [les gestionnaires d'événements](/docs/4/events#using-classes-as-listeners) peuvent également être résolus par le conteneur IoC. Lors de leur enregistrement, donnez simplement le nom de la classe qui doit être utilisée :
 
 **Exemple d'utilisation de l'IoC**
 
@@ -128,9 +128,9 @@ Dans cet exemple, la classe `OrderRepository` sera automatiquement injectée dan
 <a name="service-providers"></a>
 ## Fournisseur de services
 
-Les fournisseurs de services sont une bonne manière de grouper des enregistrements "liés" dans le conteneur IoC à un seul endroit. Pensez à eux comme étant une manière de charger des composants dans votre application. Dans un fournisseur de service, vous pouvez enregistrer un driver d'identification pesonnalisé, enregistrer les repositories de votre application dans le conteneur IoC, ou même définir une commande Artisan personnalisée.
+Les fournisseurs de services sont une bonne manière de grouper des enregistrements "liés" dans le conteneur IoC à un seul endroit. Pensez à eux comme étant une manière de charger des composants dans votre application. Dans un fournisseur de service, vous pouvez enregistrer un driver d'identification personnalisé, enregistrer les repositories de votre application dans le conteneur IoC, ou même définir une commande Artisan personnalisée.
 
-En fait, une grande partie des composants du coeur du framework Laravel inclus un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre applications sont listés dans le tableau `providers` dans le fichier de configuration `app/config/app.php`.
+En fait, une grande partie des composants du coeur du framework Laravel inclut un fournisseur de services. Tous les fournisseurs de services enregistrés dans votre application sont listés dans le tableau `providers` dans le fichier de configuration `app/config/app.php`.
 
 Pour créer un fournisseur de service, votre classe doit hériter de la classe `Illuminate\Support\ServiceProvider` et définir une méthode `register` :
 
@@ -152,9 +152,9 @@ Pour créer un fournisseur de service, votre classe doit hériter de la classe `
 
 Notez que dans la méthode `register`, le conteneur IoC de l'application est disponible via la propriété `$this->app`. Une fois que vous avez créé un fournisseur de service et êtes prêt à l'enregistrer dans votre application, ajoutez le simplement dans le tableau `providers` du fichier de configuration `app`.
 
-Vous pouvez également enregistrer un fournisseur de service lors de l'éxécution de la méthode `App::register` :
+Vous pouvez également enregistrer un fournisseur de service lors de l'exécution de la méthode `App::register` :
 
-**Enregistrement d'un fournisseur de service lors de l'éxécution**
+**Enregistrement d'un fournisseur de service lors de l'exécution**
 
     App::register('FooServiceProvider');
 

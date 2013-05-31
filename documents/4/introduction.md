@@ -9,9 +9,9 @@
 
 Laravel est un framework web dont la syntaxe est expressive et élégante. Le développement doit être plaisant, créatif et épanouissant. Laravel tente d'alléger le développement en facilitant les tâches communes à la majorité des applications web telles que l'authentification, le routage, les sessions et la gestion de cache.
 
-Laravel a pour objectif de rendre le développement agréable tout en permettant de développer des fonctionnalités adaptées. Des développeurs heureux produisent du code meilleur. Pour cela, nous avons tenter de combiner le meilleur de ce que nous avons trouver dans d'autres frameworks web, incluant les frameworkds d'autres langages comme Ruby On Rails, ASP.NET et Sinatra.
+Laravel a pour objectif de rendre le développement agréable tout en permettant de développer des fonctionnalités adaptées. Des développeurs heureux produisent du code meilleur. Pour cela, nous avons tenté de combiner le meilleur de ce que nous avons trouvé dans d'autres frameworks web, incluant les frameworks d'autres langages comme Ruby On Rails, ASP.NET et Sinatra.
 
-Laravel est accessible, puissant, fournissant des outils puissants pour des applications larges et robustes. Un superbe conteneur d'inversion de contrôle, un système de migration expressif, et un support pour l'intégration de tests unitaires vous donne les outils nécéssaires pour construire n'importe quelle application que vous devez réaliser.
+Laravel est accessible, puissant, fournissant des outils puissants pour des applications larges et robustes. Un superbe conteneur d'inversion de contrôle, un système de migration expressif, et un support pour l'intégration de tests unitaires vous donnent les outils nécessaires pour construire n'importe quelle application que vous devez réaliser.
 
 <a name="learning-laravel"></a>
 ## Apprentissage de Laravel
@@ -26,4 +26,4 @@ Par ailleurs, jetez un coup d'oeil aux [livres sur Laravel](http://wiki.laravel.
 <a name="development-team"></a>
 ## Equipe de développement
 
-Laravel a été créé par [Taylor Otwell](https://github.com/taylorotwell), qui continu de diriger le développement du framework. D'autres membres proéminents de la communauté et contributeurs incluent [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammed Zaki](https://github.com/crynobone), et [Phil Sturgeon](https://github.com/philsturgeon).
+Laravel a été créé par [Taylor Otwell](https://github.com/taylorotwell), qui continue de diriger le développement du framework. D'autres membres proéminents de la communauté et contributeurs incluant [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammed Zaki](https://github.com/crynobone), et [Phil Sturgeon](https://github.com/philsturgeon).

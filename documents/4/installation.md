@@ -10,7 +10,7 @@
 <a name="install-composer"></a>
 ## Installation de Composer
 
-Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances. Premièrement, téléchargez une copie de `composer.phar`. Une fois que vous avez l'archive PHAR, vous pouvez soit le laisser dans le dossier local de votre projet, soit le déplacer vers `usr/local/bin` pour l'utiliser de manière globale sur votre système. Sur Windows, vous pouvez utiliser l'installeur de Composer [pour Windows](https://getcomposer.org/Composer-Setup.exe).
+Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances. Premièrement, téléchargez une copie de `composer.phar`. Une fois que vous avez l'archive PHAR, vous pouvez soit la laisser dans le dossier local de votre projet, soit la déplacer vers `usr/local/bin` pour l'utiliser de manière globale sur votre système. Sur Windows, vous pouvez utiliser l'installeur de Composer [pour Windows](https://getcomposer.org/Composer-Setup.exe).
 
 Une fois que Laravel est installé, vous pouvez mettre à jour le framework en utilisant la commande `php composer.phar update`.
 
@@ -23,14 +23,14 @@ Une fois que Composer est installé, téléchargez la [dernière version](https:
 
 ### Via Composer Create-Project
 
-Vous pouvez également installer Laravel en éxécutant la commande `create-project` de composer  dans votre terminal :
+Vous pouvez également installer Laravel en exécutant la commande `create-project` de composer dans votre terminal :
 
     composer create-project laravel/laravel
 
 <a name="server-requirements"></a>
-## Pré-requis
+## Prérequis
 
-Le framework Laravel a quelques pré-requis système :
+Le framework Laravel a quelques prérequis système :
 
 - PHP >= 5.3.7
 - L'extension PHP MCrypt
@@ -40,7 +40,7 @@ Le framework Laravel a quelques pré-requis système :
 
 Laravel n'a presque pas besoin de configuration pour fonctionner. En fait, vous êtes libre de commencer à développer ! Cependant, vous devriez au minimum jeter un oeil au fichier `app/config/app.php` et à sa documentation. Il contient plusieurs options comme `timezone` et `locale` que vous pourriez vouloir changer pour votre application.
 
-> **Note:** Une option de configuration doit à tout prix avoir une valeur, il s'agit de l'option `key` du fichier `app/config/app.php`. Cette valeur doit être une chaine de 32 caractères aléatoires. Cette clé est utilisée pour chiffrer des valeurs, et les valeurs chiffrées ne seront pas sûres tant que cette clé n'est pas définie. Vous pouvez définir une clé aléatoire rapidement en lançant la commande Artisan suivante : `php artisan key:generate`.
+> **Note:** Une option de configuration doit à tout prix avoir une valeur, il s'agit de l'option `key` du fichier `app/config/app.php`. Cette valeur doit être une chaîne de 32 caractères aléatoires. Cette clé est utilisée pour chiffrer des valeurs, et les valeurs chiffrées ne seront pas sûres tant que cette clé n'est pas définie. Vous pouvez définir une clé aléatoire rapidement en lançant la commande Artisan suivante : `php artisan key:generate`.
 
 <a name="permissions"></a>
 ### Permissions

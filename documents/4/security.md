@@ -52,7 +52,7 @@ Pour connecter un utilisateur dans votre application, vous devez utiliser la mé
 
 Notez que `email` n'est pas requis, il est utilisé simplement en tant qu'exemple. Vous devez utiliser la colonne qui correspond à votre "nom d'utilisateur" dans votre base de données. La fonction `Redirect::intended` redirigera l'utilisateur vers l'URL qu'il tentait d'atteindre avant de se faire attraper par le filtre d'identification. Une URL par défaut peut être donnée à la méthode dans le cas où l'URL qu'il souhaitait atteindre n'est pas déterminée.
 
-Lorsque la méthode `attempt` est appellée, l'[évènement](/docs/4/events) `auth.attempt` est lancé. Si l'identification est un succèsn et que l'utilisateur est connécté, l'évènement `auth.login` sera également exécuté.
+Lorsque la méthode `attempt` est appelée, l'[événement](/docs/4/events) `auth.attempt` est lancé. Si l'identification est un succès et que l'utilisateur est connecté, l'événement `auth.login` sera également exécuté.
 
 Pour déterminer si un utilisateur est déjà connecté à votre application, vous pouvez utiliser la méthode `check` :
 
@@ -72,7 +72,7 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 		// The user is being remembered...
 	}
 
-**Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connecté à votre application.
+> **Note:** Si la méthode `attempt` retourne `true`, alors l'utilisateur est connecté à votre application.
 
 Vous pouvez ajouter des conditions particulières à la requête d'identification :
 
@@ -157,7 +157,7 @@ Par défaut, le filtre `basic` utilisera la colonne `email` de l'enregistrement 
 
 	return Auth::basic('username');
 
-Vous pouvez également utiliser l'identification HTTP Basic sans conserver l'utilisateur connecté en session après la requête, ce qui est utile pour l'identification dans une API. Pour se faire, créez un filtre qui retourne la méthode `onceBasic` :
+Vous pouvez également utiliser l'identification HTTP Basic sans conserver l'utilisateur connecté en session après la requête, ce qui est utile pour l'identification dans une API. Pour ce faire, créez un filtre qui retourne la méthode `onceBasic` :
 
 **Définit un filtre HTTP Basic de connexion stateless**
 

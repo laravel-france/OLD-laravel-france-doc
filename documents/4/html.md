@@ -2,7 +2,7 @@
 
 - [Ouverture d'un formulaire](#opening-a-form)
 - [Protection CSRF](#csrf-protection)
-- [Form lié à un modèle](#form-model-binding)
+- [Formulaire lié à un modèle](#form-model-binding)
 - [Labels](#labels)
 - [Texte, Textarea et champs cachés](#text)
 - [Checkbox et boutons radios](#checkboxes-and-radio-buttons)
@@ -149,7 +149,7 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 > **Note:** Besoin de créer un élément "button" ? Essayez la méthode *button*. Elle a la même signature que *submit*.
 
 <a name="custom-macros"></a>
-## Macros personnalisés
+## Macros personnalisées
 
 Il est simple de définir vos propres helpers de classes de formulaire personnalisés appelés "macros". Voilà comment ça marche. Premièrement, enregistrez simplement la macro avec un nom et une fonction anonyme :
 
@@ -162,6 +162,6 @@ Il est simple de définir vos propres helpers de classes de formulaire personnal
 
 Maintenant, vous pouvez l'appeler par son nom :
 
-**Appel d'un macro personnalisé**
+**Appel d'une macro personnalisée**
 
     echo Form::myField();
