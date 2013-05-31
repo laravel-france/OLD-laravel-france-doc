@@ -32,11 +32,11 @@
  - [La validation](/docs/4/validation)
  <a name="base-de-donnees"></a>
 ### Base de données
- - [Les bases](/docs/4/database)
+ - [Les bases de données](/docs/4/database)
  - [Query Builder](/docs/4/queries)
  - [L'ORM Eloquent](/docs/4/eloquent)
  - [Le constructeur de schéma](/docs/4/schema)
- - [Les migrations & et la population](/docs/4/migrations)
+ - [Les migrations et la population](/docs/4/migrations)
  - [Redis](/docs/4/redis)
  <a name="artisan-cli"></a>
 ### Artisan CLI

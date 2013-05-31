@@ -9,7 +9,7 @@
 <a name="basic-controllers"></a>
 ## Contrôleurs basiques
 
-Plutôt que de définir toute la logique de votre application au niveau des routes dans le fichier `routes.php`,  il est d'usage de déplacer le comportement de votre application dans des contrôleurs. Les contrôleurs permettent de regrouper en une classe, la logique de routes connexes, et aussi de prendre avantage des fonctionnalités avancées du framework comme [l'injection de dépendences](/docs/4/ioc).
+Plutôt que de définir toute la logique de votre application au niveau des routes dans le fichier `routes.php`, il est d'usage de déplacer le comportement de votre application dans des contrôleurs. Les contrôleurs permettent de regrouper en une classe, la logique de routes connexes, et aussi de prendre avantage des fonctionnalités avancées du framework comme [l'injection de dépendances](/docs/4/ioc).
 
 Les contrôleurs sont stockés dans le dossier `app/controllers`, et ce dossier est enregistré dans l'option `classmap` de votre fichier `composer.json` par défaut.
 
@@ -130,7 +130,7 @@ Si votre méthode de contrôleur contient plusieurs mots, vous devrez accéder �
 
 Les contrôleurs de ressource rendent plus facile la construction de contrôleur RESTful autour d'une ressource. Par exemple, vous pourriez créer un contrôleur qui gère des photos stockées par votre application. En utilisant la commande `controller:make` d'Artisan et avec la méthode `Route::resource`, nous pouvons créer facilement ce type de contrôleur.
 
-Pour créer le contrôleur en ligne de commande, executez la commande suivante :
+Pour créer le contrôleur en ligne de commande, exécutez la commande suivante :
 
 	php artisan controller:make PhotoController
 

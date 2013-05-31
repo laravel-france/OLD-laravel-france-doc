@@ -15,14 +15,14 @@
 <a name="introduction"></a>
 ## Introduction
 
-Le Query Builder (Constructeur de requête) de Laravel fournit une interface pratique et fluide pour créer et executer des requêtes pour vos bases de données. Il peut être utilisé avec la plupart des opérations sur votre base de données dans votre application, et fonctionne sur toutes les bases de données supportées.
+Le Query Builder (Constructeur de requête) de Laravel fournit une interface pratique et fluide pour créer et exécuter des requêtes pour vos bases de données. Il peut être utilisé avec la plupart des opérations sur votre base de données dans votre application, et fonctionne sur toutes les bases de données supportées.
 
-> **Note:** Le Query builder de Laravel utilise la méthode de bind de PDO pour proteger votre application contre les injections SQL. Il n'y a donc pas besoin de faire des traitements sur les données avant de les passer au Query Builder.
+> **Note:** Le Query builder de Laravel utilise la méthode de bind de PDO pour protéger votre application contre les injections SQL. Il n'y a donc pas besoin de faire des traitements sur les données avant de les passer au Query Builder.
 
 <a name="selects"></a>
-## Selection
+## Sélection
 
-**Récuperer toutes les lignes d'une table**
+**Récupérer toutes les lignes d'une table**
 
 	$users = DB::table('users')->get();
 
@@ -31,7 +31,7 @@ Le Query Builder (Constructeur de requête) de Laravel fournit une interface pra
 		var_dump($user->name);
 	}
 
-**Récuperer une ligne d'une table**
+**Récupérer une ligne d'une table**
 
 	$user = DB::table('users')->where('name', 'John')->first();
 
@@ -128,9 +128,9 @@ Vous pouvez également spécifier des clauses de jointures plus complexes :
 <a name="advanced-wheres"></a>
 ## Clauses WHERE avancées
 
-Parfois vous pouvez avoir besoin de créer des clauses WHERE avancées comme des "WHERE EXISTS" ou des requêtes avec des clauses imbriquées. Le Query Builder le Laravel peut gférer cela également :
+Parfois vous pouvez avoir besoin de créer des clauses WHERE avancées comme des "WHERE EXISTS" ou des requêtes avec des clauses imbriquées. Le Query Builder de Laravel peut gérer cela également :
 
-**Groupage de paramètre**
+**Groupage de paramètres**
 
 	DB::table('users')
 	            ->where('name', '=', 'John')
@@ -141,7 +141,7 @@ Parfois vous pouvez avoir besoin de créer des clauses WHERE avancées comme des
 	            })
 	            ->get();
 
-La requête ci dessus éxecutera la requête suivante :
+La requête ci-dessus exécutera la requête suivante :
 
 	select * from users where name = 'John' or (votes > 100 and title <> 'Admin')
 
@@ -156,7 +156,7 @@ La requête ci dessus éxecutera la requête suivante :
 	            })
 	            ->get();
 
-La requête ci-dessus éxecutera la requête suivante:
+La requête ci-dessus exécutera la requête suivante:
 
 	select * from users
 	where exists (
@@ -183,7 +183,7 @@ Le Query Builder fournit naturellement des méthodes d'aggrégats, tel que `coun
 <a name="raw-expressions"></a>
 ## Expressions brutes
 
-Parfois vous aurez besoin d'utiliser des expressions brutes dans une requête. Ces expressions seront injectées dans la requête en tant que simple chaine, faites donc attention aux injections SQL! Pour créer une requête bruite, utilisez la méthode `DB::raw`:
+Parfois vous aurez besoin d'utiliser des expressions brutes dans une requête. Ces expressions seront injectées dans la requête en tant que simple chaîne, faites donc attention aux injections SQL ! Pour créer une requête bruite, utilisez la méthode `DB::raw` :
 
 **Utilisation d'une expression brute**
 
@@ -254,7 +254,7 @@ Si la table a un identifiant de type qui s'auto-incrémente, utilisez la méthod
 
 Le constructeur de requête vous fournit également une manière rapide de faire des unions :
 
-**Execuction d'une requête Union**
+**Exécution d'une requête Union**
 
 	$first = DB::table('users')->whereNull('first_name');
 
@@ -271,4 +271,4 @@ Vous pouvez facilement mettre en cache les résultats d'une requête en utilisan
 
   $users = DB::table('users')->remember(10)->get();
 
-Dans cet exemple, les résultats de la requête seront cachés pour dix minutes. Tant que les résultats sont cachés, la requête ne sera plus éxécutée sur la base de donnée, et les résultats seront chargés depuis le driver de cache par défaut spécifié pour votre application.
+Dans cet exemple, les résultats de la requête seront enregistrés en cache pour dix minutes. Tant que les résultats sont en cache, la requête ne sera plus exécutée sur la base de données, et les résultats seront chargés depuis le driver de cache par défaut spécifié pour votre application.

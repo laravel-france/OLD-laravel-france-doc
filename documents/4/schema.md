@@ -135,7 +135,7 @@ Vous pouvez vérifier facilement l'existence d'une table ou d'une colonne en uti
 <a name="adding-indexes"></a>
 ## Ajout d'index
 
-Le constructeur de schema supporte plusieurs types d'index. Il y a deux manières de les ajouter. La première est de manière fluide, lors de la définition d'une colonne :
+Le constructeur de schéma supporte plusieurs types d'index. Il y a deux manières de les ajouter. La première est de manière fluide, lors de la définition d'une colonne :
 
 **Crée de manière fluide une colonne et un index**
 
@@ -159,9 +159,9 @@ Laravel fournit également de quoi ajouter des clés étrangères à vos tables 
 
     $table->foreign('user_id')->references('id')->on('users');
 
-Dans cet exemple, nous définissons que la colonne `user_id` référence  la colonne `id` de la table `users`.
+Dans cet exemple, nous définissons que la colonne `user_id` référence la colonne `id` de la table `users`.
 
-Vous pouvez également spécifier des options de contraintes pour les actions "on delete" et "on update" :
+Vous pouvez également spécifier des options de contrainte pour les actions "on delete" et "on update" :
 
     $table->foreign('user_id')
           ->references('id')->on('users')
@@ -185,7 +185,7 @@ Command  | Description
 <a name="storage-engines"></a>
 ## Moteur de stockage
 
-Pour définir le moteur de stockage d'une table, définissez la propriété `engine`  sur le constructeur de schema:
+Pour définir le moteur de stockage d'une table, définissez la propriété `engine` sur le constructeur de schéma:
 
     Schema::create('users', function($table)
     {

@@ -17,7 +17,7 @@
 
 Les Packages sont la manière principale d'ajouter des fonctionnalités à Laravel. Un package peut être n'importe quoi, un outil pour travailler efficacement avec les dates comme [Carbon](https://github.com/briannesbitt/Carbon), ou un framework entier de test en BDD comme [Behat](https://github.com/Behat/Behat).
 
-Bien sûr, il y a différents types de packages. Certains packages sont autonomes, cela signifie qu'ils marcheront dans tous les contextes, pas juste avec Laravel. Par exemple, Carbon et Behat font parti de ces packages autonomes. Ces packages peuvent être ajouter facilement à votre projet en ajoutant une ligne dans le fichier `composer.json`.
+Bien sûr, il y a différents types de packages. Certains packages sont autonomes, cela signifie qu'ils marcheront dans tous les contextes, pas juste avec Laravel. Par exemple, Carbon et Behat font partie de ces packages autonomes. Ces packages peuvent être ajouter facilement à votre projet en ajoutant une ligne dans le fichier `composer.json`.
 
 Et d'un autre côté, il y a des packages développés spécifiquement pour Laravel. Dans les versions précédentes de Laravel, ces packages étaient connus sous le nom de "bundles". Ces packages peuvent avoir des routes, des contrôleurs, des vues, des fichiers de configuration et des migrations développés spécifiquement pour améliorer une application Laravel. Etant donné qu'aucune règle particulière n'existe pour développer un package autonome, ce guide couvrira le développement des packages spécifiques pour Laravel.
 
@@ -28,13 +28,13 @@ Tous les packages Laravel sont distribués via [Packagist](http://packagist.org)
 
 La manière la plus simple de créer un package Laravel est d'utiliser la commande Artisan `workbench` de Laravel. D'abord, vous aurez besoin de définir quelques options dans le fichier `app/config/workbench.php`. Dans ce fichier, vous trouverez une option `name` et `email`. Ces valeurs sont utilisées pour générer un fichier `composer.json` pour vos nouveaux packages. Une fois que vous avez inscrit ces valeurs, vous êtes prêt à construire un package !
 
-**Execution de la commande Artistan `workbench`**
+**Exécution de la commande Artistan `workbench`**
 
 	php artisan workbench vendor/package --resources
 
 Le nom du vendor est une manière de distinguer votre package de celui des autres qui aurait le même nom. Par exemple, si je (Taylor Otwell) créais un nouveau package nommé "Zapper", le nom du vendor pourrait être `Taylor` et le nom du package serait `Zapper`. Par défaut, le framework va créer un package générique ; cependant, la commande `resource` dit au workbench de générer le package avec les dossiers spécifiques de Laravel tels que `migrations`, `views`, `config`, etc.
 
-Une fois que la commande `workbench` a été executée, votre package sera disponible dans le dossier `workbench` de votre installation Laravel. Ensuite, vous devez enregistrer le `ServiceProvider` qui a été créé pour votre package. Vous devez enregistrer le fournisseur en l'ajoutant dans le tableau `providers` du fichier de configuration `app/config/app.php`. Cela dira à Laravel de charger votre package lorsque votre application démarre. Les fournisseurs de services utilisent une convention de nommage de la forme suivante : `[NomDuPackage]ServiceProvider`. Donc, en utilisant l'exemple précédent, vous ajouterez la ligne `Taylor\Zapper\ZapperServiceProvider` au tableau `providers`.
+Une fois que la commande `workbench` a été exécutée, votre package sera disponible dans le dossier `workbench` de votre installation Laravel. Ensuite, vous devez enregistrer le `ServiceProvider` qui a été créé pour votre package. Vous devez enregistrer le fournisseur en l'ajoutant dans le tableau `providers` du fichier de configuration `app/config/app.php`. Cela dira à Laravel de charger votre package lorsque votre application démarre. Les fournisseurs de services utilisent une convention de nommage de la forme suivante : `[NomDuPackage]ServiceProvider`. Donc, en utilisant l'exemple précédent, vous ajouterez la ligne `Taylor\Zapper\ZapperServiceProvider` au tableau `providers`.
 
 Une fois que le fournisseur a été enregistré, vous êtes prêt à développer votre package ! Cependant, avant de se lancer dedans, vous devriez lire les sections ci-dessous pour être plus familier avec la structure d'un package et avoir un bon processus de développement.
 

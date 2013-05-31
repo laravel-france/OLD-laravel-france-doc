@@ -147,7 +147,7 @@ Vous pouvez aussi spécifier qu'un filtre s'applique sur un jeu entier de routes
 
 Dans l'exemple ci-dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
 
-Vous pouvez également ajouter une contrainte les filtres basés sur un patron par verbe HTTP :
+Vous pouvez également spécifier une contrainte selon le verbe HTTP :
 
     Route::when('admin/*', 'admin', array('post'));
 
