@@ -12,9 +12,9 @@ Laravel est un logiciel open source, ce qui signifie que tout un chacun peut con
 <a name="pull-requests"></a>
 ## Les requêtes Pull
 
-Le développement de nouvelles fonctionnalités et les corrections d'anomalies nécessitent des requêtes `pull` différentes. Avant d'envoyer une requête `pull` pour une nouvelle fonctionnalité, vous devez créer un cas (menu  `Issues` du site Github) et inclure le terme `[Proposal]` dans le titre. La proposition doit décrire la nouvelle fonctionnalité y compris des éléments d'implémentation. Après examen, la proposition  sera acceptée ou rejetée. Une fois la proposition acceptée, une requête `pull`  doit être créée pour implémenter la nouvelle fonctionnalité. Toute requête `pull` ne respectant pas ce protocole sera immédiatement close.
+Le développement de nouvelles fonctionnalités et les corrections d'anomalies nécessitent des requêtes `pull` différentes. Avant d'envoyer une requête `pull` pour une nouvelle fonctionnalité, vous devez créer un cas (menu `Issues` du site Github) et inclure le terme `[Proposal]` dans le titre. La proposition doit décrire la nouvelle fonctionnalité y compris des éléments d'implémentation. Après examen, la proposition sera acceptée ou rejetée. Une fois la proposition acceptée, une requête `pull` doit être créée pour implémenter la nouvelle fonctionnalité. Toute requête `pull` ne respectant pas ce protocole sera immédiatement close.
 
-Dans le cas des corrections d'anomalies, des requêtes `pull`  doivent être envoyées sans proposition préalable dans un cas Github. Si vous estimez détenir la solution en termes de correction d'une anomalie recensée sur le site Github, merci de joindre un commentaire détaillant la correction proposée.
+Dans le cas des corrections d'anomalies, des requêtes `pull` doivent être envoyées sans proposition préalable dans un cas Github. Si vous estimez détenir la solution en termes de correction d'une anomalie recensée sur le site Github, merci de joindre un commentaire détaillant la correction proposée.
 
 ### Les demandes de fonctionnalité
 

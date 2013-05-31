@@ -74,7 +74,7 @@ Notez que les vues qui `extend` un layout Blade surchargent simplement les secti
 
 	The current UNIX timestamp is {{ time() }}.
 
-Pour échapper la sortie,     utilisez trois accollades :
+Pour échapper la sortie, utilisez trois accollades :
 
 	Hello, {{{ $name }}}.
 

@@ -53,7 +53,7 @@ Vous pouvez écouter pour des événements de requêtes en utilisant la méthode
 <a name="database-transactions"></a>
 ## Transactions sur la base de données
 
-Pour éxecuter une liste d'opération durant une transaction, vous pouvez utiliser la méthode `transaction` :
+Pour exécuter une liste d'opérations durant une transaction, vous pouvez utiliser la méthode `transaction` :
 
 	DB::transaction(function()
 	{

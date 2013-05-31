@@ -69,7 +69,7 @@ La méthode `getContent` retournera le contenu de la chaîne évaluée de la ré
 
     $this->assertEquals('John', $view['name']);
 
-Pour appeller une route HTTPS, vous pouvez utiliser la méthode `callSecure` :
+Pour appeler une route HTTPS, vous pouvez utiliser la méthode `callSecure` :
 
     $response = $this->callSecure('GET', 'foo/bar');
 
@@ -124,7 +124,7 @@ Laravel est livré avec plusieurs méthodes `assert` pour vous faciliter les tes
         $this->assertResponseOk();
     }
 
-**Affirme que le status de la réponse est correct**
+**Affirme que le statut de la réponse est correct**
 
     $this->assertResponseStatus(403);
 
