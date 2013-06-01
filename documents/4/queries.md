@@ -269,6 +269,6 @@ Vous pouvez facilement mettre en cache les résultats d'une requête en utilisan
 
 **Mise en cache du résultat d'une requête**
 
-  $users = DB::table('users')->remember(10)->get();
+	$users = DB::table('users')->remember(10)->get();
 
 Dans cet exemple, les résultats de la requête seront enregistrés en cache pour dix minutes. Tant que les résultats sont en cache, la requête ne sera plus exécutée sur la base de données, et les résultats seront chargés depuis le driver de cache par défaut spécifié pour votre application.
