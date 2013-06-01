@@ -915,4 +915,4 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
 
 Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
 
-    protected $visible = array('first_name', 'last_name');
+	protected $visible = array('first_name', 'last_name');
