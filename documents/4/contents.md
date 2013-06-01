@@ -17,7 +17,7 @@
 ### Aller plus loin
  - [La gestion du cache](/docs/4/cache)
  - [Les événements](/docs/4/events)
- - [Facades](/docs/facades)
+ - [Facades](/docs/4/facades)
  - [Formulaires & HTML](/docs/4/html)
  - [Le conteneur de dépendances](/docs/4/ioc)
  - [Traduction & Localisation](/docs/4/localization)
