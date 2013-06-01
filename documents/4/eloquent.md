@@ -209,6 +209,10 @@ Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprim
 
 	}
 
+Pour ajouter une colonne `deleted_at` à votre table, vous pouvez utiliser la méthode `softDeletes` depuis une migration:
+
+    $table->softDeletes();
+
 Maintenant, lorsque vous appellez la méthode `delete` sur le modèle, la colonne `deleted_at` sera remplie avec la date et l'heure de suppression. Lorsque vous requêtez un modèle avec de la suppression douce, les modèles "supprimés" ne seront pas inclus dans le résultat. Pour forcer l'apparition des modèles réputés supprimés, utilisez la méthode `withTrashed` sur la requête :
 
 **Force l'affichage des lignes réputées supprimées**
