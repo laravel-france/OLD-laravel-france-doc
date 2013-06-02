@@ -295,7 +295,7 @@ Les cadres vous permettent de réutiliser facilement des logiques de requêtes d
 
 **Utilisation d'un cadre de requête**
 
-  $users = User::popular()->orderBy('created_at')->get();
+	$users = User::popular()->orderBy('created_at')->get();
 
 <a name="relationships"></a>
 ## Relations
