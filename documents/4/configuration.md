@@ -76,3 +76,10 @@ Pour activer le mode de maintenance, exécutez la commande Artisan `down` :
 Et pour désactiver ce mode, utilisez la commande `up` :
 
 	php artisan up
+	
+Pour afficher une vue lorsque votre application est en mode maintenance, vous pouvez ajouter quelquechose comme cela dans votre fichier app/start/global.php :
+
+	App::down(function()
+	{
+    		return Response::view('maintenance', array(), 503);
+	});
