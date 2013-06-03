@@ -13,13 +13,13 @@ Parfois vous pourriez avoir besoin d'accéder aux valeurs de configuration duran
 
 **Accède à une valeur de configuration**
 
-    Config::get('app.timezone');
+	Config::get('app.timezone');
 
 Remarquez que la syntaxe de style "point" peut être utilisée pour accéder aux valeurs des fichiers de configuration. Si vous souhaitez définir une valeur pendant l'exécution : 
 
 **Définit une valeur de configuration**
 
-    Config::set('database.default', 'sqlite');
+	Config::set('database.default', 'sqlite');
 
 <a name="environment-configuration"></a>
 ## Configuration des environnements
@@ -28,13 +28,10 @@ Il est souvent utile d'avoir différentes valeurs de configuration basées sur l
 
 Créez simplement dans un dossier dans votre dossier `config` qui correspond au nom de votre environnement, comme par exemple `local`. Ensuite, créez les fichiers de configuration que vous souhaitez surcharger et spécifiez les options que vous souhaitez changer. Par exemple, pour surcharger le driver de cache de votre environnement "local", vous devrez créer un fichier `cache.php` dans `app/config/local` avec le contenu suivant :
 
-    <?php
-
-    return array(
-
-        'driver' => 'file',
-
-    );
+	<?php
+	return array(
+		'driver' => 'file',
+	);
 
 > **Note:** N'utilisez pas le nom d'environnement 'testing' en tant que nom d'environnement, ce nom est réservé pour les tests unitaires.
 
@@ -42,27 +39,25 @@ Notez que vous n'avez pas à spécifier _toutes_ les options qui se trouvent dan
 
 Ensuite, nous devons indiquer au framework comment déterminer sur quel environnement il tourne actuellement. Par défaut, l'environnement sera toujours `production`. Cependant, vous pouvez configurer d'autres environnements dans le fichier `bootstrap/start.php` depuis la racine de votre installation. Dans ce fichier, vous trouverez un appel à `$app->detectEnvironment`. Le tableau passé à cette méthode est utilisé pour déterminer l'environnement courant. Vous pouvez ajouter d'autres environnements et noms de machines dans le tableau au besoin.
 
-    <?php
+	<?php
 
-    $env = $app->detectEnvironment(array(
-
-        'local' => array('your-machine-name'),
-
-    ));
+	$env = $app->detectEnvironment(array(
+		'local' => array('your-machine-name'),
+	));
 
 Vous pouvez également passer une fonction anonyme à la méthode `detectEnvironment`, vous permettant d'implémenter votre propre détection d'environnement :
 
-  $env = $app->detectEnvironment(function()
-  {
-    return $_SERVER['MY_LARAVEL_ENV'];
-  });
+	$env = $app->detectEnvironment(function()
+	{
+		return $_SERVER['MY_LARAVEL_ENV'];
+	});
 
 
 Vous pouvez accéder à l'environnement courant de l'application par la méthode `environment` :
 
 **Accède à l'environnement courant de l'application**
 
-    $environment = App::environment();
+	$environment = App::environment();
     
 <a name="maintenance-mode"></a>
 ## Mode de maintenance
