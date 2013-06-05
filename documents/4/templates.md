@@ -110,11 +110,11 @@ Pour échapper la sortie, utilisez trois accollades :
 
 	@include('view.name')
 
-+**Affichage d'une ligne de langue**
+**Affichage d'une ligne de langue**
 
-  @lang('language.line')
+	@lang('language.line')
 
-  @choice('language.line', 1);
+	@choice('language.line', 1);
 
 **Commentaires**
 
