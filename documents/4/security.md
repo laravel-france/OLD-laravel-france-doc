@@ -117,7 +117,7 @@ Vous pouvez également utiliser la méthode `once` pour connecter un utilisateur
 <a name="manually"></a>
 ## Identifier des utilisateurs à la main
 
-Si vous avez besoin d'identifier un utilisateur dans votre application, vous pouvez simplement appeller la méthode `login` avec une instance de la classe utilisateur :
+Si vous avez besoin d'identifier une instance d'un utilisateur dans votre application, vous pouvez simplement appeler la méthode `login` avec cette instance :
 
     $user = User::find(1);
 
