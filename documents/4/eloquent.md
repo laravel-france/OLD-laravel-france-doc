@@ -624,7 +624,7 @@ Dans cet exemple, le champ `post_id` sera automatiquement rempli dans le comment
 
 ### Associations de modèles (Belongs To)
 
-Lors de la mise à jour d'une relation `belongsTo`, vous pouvez utiliser la méthode `associate`. Cette méthode renseignement la clé étrangère dans le modèle enfant :
+Lors de la mise à jour d'une relation `belongsTo`, vous pouvez utiliser la méthode `associate`. Cette méthode renseigne la clé étrangère dans le modèle enfant :
 
     $account = Account::find(10);
 
