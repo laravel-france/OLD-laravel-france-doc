@@ -171,7 +171,7 @@ Pour supprimer une clé étrangère, vous pouvez utiliser la méthode `dropForei
 
     $table->dropForeign('posts_user_id_foreign');
 
-> **Note:** Lors de la création d'une clé étrangère qui référence un entier autoincrémental, souvenez vous de toujours rendre la clé étrangère `unsigned`.
+> **Note:** Lors de la création d'une clé étrangère qui référence un entier auto-incrémental, souvenez vous de toujours rendre la clé étrangère `unsigned`.
 
 <a name="dropping-indexes"></a>
 ## Suppression d'index
