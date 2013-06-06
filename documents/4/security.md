@@ -3,6 +3,7 @@
 - [Configuration](#configuration)
 - [Stockage de mot de passe](#storing-passwords)
 - [Identifier les utilisateurs](#authenticating-users)
+- [Identifier des utilisateurs manuellement](#manually)
 - [Protection de routes](#protecting-routes)
 - [Identification HTTP Basic](#http-basic-authentication)
 - [Réinitialisation du mot de passe](#password-reminders-and-reset)
@@ -112,6 +113,17 @@ Vous pouvez également utiliser la méthode `once` pour connecter un utilisateur
 **Déconnecte un utilisateur**
 
 	Auth::logout();
+
+<a name="manually"></a>
+## Identifier des utilisateurs à la main
+
+Si vous avez besoin d'identifier un utilisateur dans votre application, vous pouvez simplement appeller la méthode `login` avec une instance de la classe utilisateur :
+
+    $user = User::find(1);
+
+    Auth::login($user);
+
+Ceci est l'équivalent de la connexion d'un utilisateur via la commande `attempt`.
 
 <a name="protecting-routes"></a>
 ## Protection de routes

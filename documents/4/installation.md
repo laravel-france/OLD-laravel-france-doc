@@ -12,20 +12,20 @@
 
 Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances. Premièrement, téléchargez une copie de `composer.phar`. Une fois que vous avez l'archive PHAR, vous pouvez soit la laisser dans le dossier local de votre projet, soit la déplacer vers `usr/local/bin` pour l'utiliser de manière globale sur votre système. Sur Windows, vous pouvez utiliser l'installeur de Composer [pour Windows](https://getcomposer.org/Composer-Setup.exe).
 
-Une fois que Laravel est installé, vous pouvez mettre à jour le framework en utilisant la commande `php composer.phar update`.
-
 <a name="install-laravel"></a>
 ## Installation de Laravel
+
+### Via Composer Create-Project
+
+Vous pouvez installer Laravel en exécutant la commande `create-project` de composer dans votre terminal :
+
+    composer create-project laravel/laravel
 
 ### Via un téléchargement
 
 Une fois que Composer est installé, téléchargez la [dernière version](https://github.com/laravel/laravel/archive/master.zip) du framework, et extrayez son contenu dans un dossier sur votre serveur. Ensuite, à la racine de votre application Laravel, lancez la commande `php composer.phar install` pour installer toutes les dépendances du framework. Ce process requis que git soit installé sur le serveur pour terminer l'installation.
 
-### Via Composer Create-Project
-
-Vous pouvez également installer Laravel en exécutant la commande `create-project` de composer dans votre terminal :
-
-    composer create-project laravel/laravel
+Si vous souhaitez mettre à jour le framework Laravel, vous pouvez éxécuter la commande `php composer.phar update`.
 
 <a name="server-requirements"></a>
 ## Prérequis

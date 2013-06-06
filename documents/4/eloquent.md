@@ -66,6 +66,8 @@ Parfois vous pourriez vouloir lancer une exception si un modèle n'est pas trouv
 
     $model = User::findOrFail(1);
 
+    $model = User::where('votes', '>', 100)->firstOrFail();
+
 Pour enregistrer le gestionnaire d'erreur, écoutez auprès d'un `ModelNotFoundException`
 
     use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -620,6 +622,16 @@ Vous aurez souvent besoin d'insérer des nouveaux modèles liés. Par exemple, p
 
 Dans cet exemple, le champ `post_id` sera automatiquement rempli dans le commentaire inséré.
 
+### Associations de modèles (Belongs To)
+
+Lors de la mise à jour d'une relation `belongsTo`, vous pouvez utiliser la méthode `associate`. Cette méthode renseignement la clé étrangère dans le modèle enfant :
+
+    $account = Account::find(10);
+
+    $user->account()->associate($account);
+
+    $user->save();
+
 ### Insertion de modèles liés, plusieurs vers plusieurs
 
 Vous devrez également insérer des modèles liés par une relation `plusieurs vers plusieurs`. Continuons d'utiliser nos modèles d'exemples `User` et `Role`. Nous pouvons facilement attacher des nouveaux rôles à un utilisateur avec la méthode :
@@ -824,6 +836,13 @@ Vous pouvez personnaliser quels champs seront automatiquement mutés, voir même
     }
 
 Lorsqu'une colonne est considérée comme une date, vous pouvez définir sa valeur comme étant un timestamp UNIX, une chaîne de date (`Y-m-d`), une chaîne de type date et heure (`Y-m-d H:i:s`), ou bien sûr une instance de `DateTime` / `Carbon`.
+
+Pour désactiver totalement la mutation des dates, retournez simplement un tableau vide depuis la méthode `getDates` :
+
+    public function getDates()
+    {
+      return array();
+    }
 
 <a name="model-events"></a>
 ## Evénements de modèle
