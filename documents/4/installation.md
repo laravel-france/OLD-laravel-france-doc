@@ -25,7 +25,7 @@ Vous pouvez installer Laravel en exécutant la commande `create-project` de comp
 
 Une fois que Composer est installé, téléchargez la [dernière version](https://github.com/laravel/laravel/archive/master.zip) du framework, et extrayez son contenu dans un dossier sur votre serveur. Ensuite, à la racine de votre application Laravel, lancez la commande `php composer.phar install` pour installer toutes les dépendances du framework. Ce process requis que git soit installé sur le serveur pour terminer l'installation.
 
-Si vous souhaitez mettre à jour le framework Laravel, vous pouvez éxécuter la commande `php composer.phar update`.
+Si vous souhaitez mettre à jour le framework Laravel, vous pouvez exécuter la commande `php composer.phar update`.
 
 <a name="server-requirements"></a>
 ## Prérequis
