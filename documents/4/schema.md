@@ -69,6 +69,7 @@ Commande  | Description
 `$table->time('sunrise');`  |  Equivalent de TIME
 `$table->timestamp('added_on');`  |  Equivalent de TIMESTAMP
 `$table->timestamps();`  |  Ajoute les colonnes **created\_at** et **updated\_at**
+`$table->softDeletes();`  |  Ajoute la colonne deleted_at pour la suppression douce
 `$table->text('description');`  |  Equivalent de TEXT
 `$table->binary('data');`  |  Equivalent de BLOB
 `$table->enum('choices', array('foo', 'bar'));` | Equivalent de ENUM
