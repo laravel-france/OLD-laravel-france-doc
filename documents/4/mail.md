@@ -4,11 +4,12 @@
 - [Utilisation](#basic-usage)
 - [Incrustation de pièces jointes](#embedding-inline-attachments)
 - [Mise en queue de mail](#queueing-mail)
+- [Mail & Local Development](#mail-and-local-development)
 
 <a name="configuration"></a>
 ## Configuration
 
-Laravel fournit une API simple et claire de la célèbre librairie [SwiftMailer](http://swiftmailer.org). La configuration de l'envoi de message s'effectue dans le fichier `app/config/mail.php`. Vous pouvez configurer le host SMTP, son port, les informations d'authentification et aussi la mise en oeuvre d'une adresse destinée à l'envoi "En tant que". Vous pouvez utiliser n'importe quel type de serveur SMTP. Si vous souhaitez utiliser la fonction PHP `mail` pour envoyer des mels, alors changez le `driver` pour `mail` dans le fichier de configuration. Un driver `sendmail` est également disponible.
+Laravel fournit une API simple et claire de la célèbre librairie [SwiftMailer](http://swiftmailer.org). La configuration de l'envoi de message s'effectue dans le fichier `app/config/mail.php`. Vous pouvez configurer le host SMTP, son port, les informations d'authentification et aussi la mise en oeuvre d'une adresse destinée à l'envoi "En tant que". Vous pouvez utiliser n'importe quel type de serveur SMTP. Si vous souhaitez utiliser la fonction PHP `mail` pour envoyer des e-mails, alors changez le `driver` pour `mail` dans le fichier de configuration. Un driver `sendmail` est également disponible.
 
 <a name="basic-usage"></a>
 ## Utilisation
@@ -74,18 +75,18 @@ Incruster des images dans les messages est généralement laborieux ; cependant,
 Notez que la variable `$message` est toujours passée aux vues de message par la classe `Mail`.
 
 <a name="queueing-mail"></a>
-## Mise en queue de mel
+## Mise en queue d'e-mail
 
-Etant donné que l'envoi de mel peut augmenter drastiquement le temps de réponse de votre application, plusieurs développeurs choisissent de mettre en queue les emails pour un envoi de tâche de fond. Laravel rend cela simple en utilisant son [API de queue](/docs/4/queues). Pour mettre en queue un mel, utilisez simplement la méthode `queue` sur la classe `Mail` :
+Etant donné que l'envoi d'e-mail peut augmenter drastiquement le temps de réponse de votre application, plusieurs développeurs choisissent de mettre en queue les emails pour un envoi de tâche de fond. Laravel rend cela simple en utilisant son [API de queue](/docs/4/queues). Pour mettre en queue un e-mail, utilisez simplement la méthode `queue` sur la classe `Mail` :
 
-**Mise en queue d'un mel**
+**Mise en queue d'un e-mail**
 
 	Mail::queue('emails.welcome', $data, function($m)
 	{
 		$m->to('foo@example.com', 'John Smith')->subject('Welcome!');
 	});
 
-Vous pouvez également spécifier un délai en secondes avant l'envoi du mel avec la méthode `later` :
+Vous pouvez également spécifier un délai en secondes avant l'envoi de l'e-mail avec la méthode `later` :
 
 	Mail::later(5, 'emails.welcome', $data, function($m)
 	{
@@ -98,3 +99,12 @@ Si vous souhaitez spécifier une queue spécifique, ou "tube", sur laquelle votr
 	{
 		$m->to('foo@example.com', 'John Smith')->subject('Welcome!');
 	});
+
+<a name="mail-and-local-development"></a>
+## E-mail & développement local
+
+Lors du développement d'une application qui envoi des e-mails, il est généralement préférable de désactiver l'envoi des mails depuis votre environnement local, ou de développement. Pour se faire, vous pouvez soit utiliser la méthode `Mail::pretend`, ou définir l'option `pretend` dans le fichier de configuration `app/config/mail.php` à `true`. Quand le mail est en mode `pretend`, les messages seront écris dans le fichier de log de votre application plutôt que d'être envoyé au destinataire.
+
+**Active le mode simulation d'envoi d'e-mail**
+
+	Mail::pretend();
