@@ -103,7 +103,7 @@ Si vous souhaitez spécifier une queue spécifique, ou "tube", sur laquelle votr
 <a name="mail-and-local-development"></a>
 ## E-mail & développement local
 
-Lors du développement d'une application qui envoi des e-mails, il est généralement préférable de désactiver l'envoi des mails depuis votre environnement local, ou de développement. Pour se faire, vous pouvez soit utiliser la méthode `Mail::pretend`, ou définir l'option `pretend` dans le fichier de configuration `app/config/mail.php` à `true`. Quand le mail est en mode `pretend`, les messages seront écris dans le fichier de log de votre application plutôt que d'être envoyé au destinataire.
+Lors du développement d'une application qui envoie des e-mails, il est généralement préférable de désactiver l'envoi des e-mails depuis votre environnement local, ou de développement. Pour ce faire, vous pouvez soit utiliser la méthode `Mail::pretend`, ou définir l'option `pretend` dans le fichier de configuration `app/config/mail.php` à `true`. Quand l'e-mail est en mode `pretend`, les messages seront écris dans le fichier de log de votre application plutôt que d'être envoyés au destinataire.
 
 **Active le mode simulation d'envoi d'e-mail**
 
