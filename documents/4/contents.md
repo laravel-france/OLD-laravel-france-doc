@@ -19,6 +19,7 @@
  - [Les événements](/docs/4/events)
  - [Facades](/docs/4/facades)
  - [Formulaires & HTML](/docs/4/html)
+ - [Helpers](/docs/4/helpers)
  - [Le conteneur de dépendances](/docs/4/ioc)
  - [Traduction & Localisation](/docs/4/localization)
  - [Email](/docs/4/mail)
