@@ -38,5 +38,5 @@ Les sociétés suivantes ont fait des contributions financières pour le dévelo
 - [Cartalyst](http://cartalyst.com)
 - [Elli Davis - Toronto Realtor](http://ellidavis.com)
 - [Jay Banks - Vancouver Lofts & Condos](http://jaybanks.ca/vancouver-lofts-condos)
-- [Julie Kinnear - Toronto MLS](http://juliekinnear.com/toronoto-mls-listings)
+- [Julie Kinnear - Toronto MLS](http://juliekinnear.com/toronto-mls-listings)
 - [Jamie Sarner - Toronto Real Estate](http://jamiesarner.com)
