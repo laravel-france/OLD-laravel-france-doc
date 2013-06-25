@@ -63,8 +63,5 @@ Si le fichier `.htaccess` fourni avec Laravel ne fonctionne pas, essayez celui c
     Options +FollowSymLinks
     RewriteEngine On
 
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
-
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]

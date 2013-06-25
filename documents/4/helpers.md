@@ -126,6 +126,20 @@ La méthode `array_set` va définir une valeur dans un tableau multidimensionnel
 
     array_set($array, 'names.editor', 'Taylor');
 
+### array_sort
+
+La méthode `array_sort` trie le tableau par le résultat de la fonction anonyme donnée.
+
+    $array = array(
+        array('name' => 'Jill'),
+        array('name' => 'Barry'),
+    );
+
+    $array = array_values(array_sort($array, function($value)
+    {
+        return $value['name'];
+    }));
+
 ### head
 
 Retourne le premier élément d'un tableau. Utile pour chaîner des méthodes en PHP 5.3.x.

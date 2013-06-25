@@ -24,13 +24,19 @@ Par défaut, la méthode `POST` sera utilisée ; cependant, vous êtes libre de 
 
     echo Form::open(array('url' => 'foo/bar', 'method' => 'put'))
 
-> **Note:** Etant donné que les formulaires HTML ne supportent que les méthodes `POST`, les méthodes `PUT` et `DELETE` seront simulées en ajoutant un champ caché `_method` à votre formulaire.
+> **Note:** Etant donné que les formulaires HTML ne supportent que les méthodes `POST` et `GET`, les méthodes `PUT` et `DELETE` seront simulées en ajoutant un champ caché `_method` à votre formulaire.
 
 Vous pouvez également ouvrir un formulaire qui pointe vers une route nommée ou une action de contrôleur :
 
     echo Form::open(array('route' => 'route.name'))
 
     echo Form::open(array('action' => 'Controller@method'))
+
+Vous pouvez également passer des paramètres de routes :
+
+    echo Form::open(array('route' => array('route.name', $user->id)))
+
+    echo Form::open(array('action' => array('Controller@method', $user->id)))
 
 Si votre formulaire contient un champ pour la mise en ligne de fichier, ajoutez l'option `files` à votre tableau :
 
@@ -100,6 +106,11 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 **Génération d'un champ mot de passe**
 
     echo Form::password('password');
+
+**Autres type d'inputs**
+
+    echo Form::email($name, $value = null, $attributes = array());
+    echo Form::file($name, $attributes = array());
 
 <a name="checkboxes-and-radio-buttons"></a>
 ## Checkbox et boutons radios

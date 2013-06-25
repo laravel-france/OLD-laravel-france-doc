@@ -154,6 +154,7 @@ Vous trouverez ci-dessous une liste des règles de validation et leurs fonctions
 - [Required](#rule-required)
 - [Required If](#rule-required-if)
 - [Required With](#rule-required-with)
+- [Required Without](#rule-required-without)
 - [Same](#rule-same)
 - [Size](#rule-size)
 - [Unique (Database)](#rule-unique)
@@ -311,6 +312,11 @@ Le champ sous validation doit être présent si le champ _field_ est égale à l
 #### required_with:_foo_,_bar_,...
 
 Le champ sous validation doit être présent _seulement si_ les autres champs spécifiés sont présents.
+
+<a name="rule-required-without"></a>
+#### required_without:_foo_,_bar_,...
+
+Le champ sous validation doit être présent _seulement lorsque_ les autres champs spécifiés ne sont pas présent.
 
 <a name="rule-same"></a>
 #### same:_field_

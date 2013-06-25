@@ -12,7 +12,7 @@
 
 Pour installer le framework Laravel, vous pouvez exécuter la commande suivante depuis votre terminal :
 
-    composer create-project laravel/laravel
+    composer create-project laravel/laravel your-project-name
 
 Ou, vous pouvez également télécharger une copie [sur le dépôt Github](https://github.com/laravel/laravel/archive/master.zip). Ensuite, [installez composer](http://getcomposer.org), lancez la commande `composer install` depuis la racine du projet. Cette commande va télécharger et installer les dépendances du framework.
 

@@ -95,6 +95,12 @@ Une fois que la commande `workbench` a créé le package, vous pouvez utiliser `
 
 Étant donné que vos packages sont dans le dossier `workbench`, vous pouvez vous demander comment Composer sait comment charger les fichiers de votre package. En fait, quand le dossier `workbench` existe, Laravel va intelligemment le scanner à la recherche de package, et charger leurs fichiers d'autoload Composer au démarrage de l'application !
 
+Si vous avez besoin de regénérer les fichiers de chargement automatique de vos packages, vous pouvez utiliser la commande `php artisan dump-autoload`. Cette commande va regénérer les fichiers de chargement automatique de votre projet de base, ainsi que de tous les workbenchs que vous avez créés.
+
+**Exécution de la commande Dump Autoload**
+
+    php artisan dump-autoload
+
 <a name="package-routing"></a>
 ## Routage de package
 

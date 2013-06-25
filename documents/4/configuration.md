@@ -15,11 +15,13 @@ Parfois vous pourriez avoir besoin d'accéder aux valeurs de configuration duran
 
 	Config::get('app.timezone');
 
-Remarquez que la syntaxe de style "point" peut être utilisée pour accéder aux valeurs des fichiers de configuration. Si vous souhaitez définir une valeur pendant l'exécution : 
+Remarquez que la syntaxe de style "point" peut être utilisée pour accéder aux valeurs des fichiers de configuration. Si vous souhaitez définir une valeur pendant l'exécution :
 
 **Définit une valeur de configuration**
 
 	Config::set('database.default', 'sqlite');
+
+Les valeurs de configurations qui sont définies lors de l'éxécution sont définies uniquement pour la requête en cours, et ne seront pas persistées pour les requêtes suivantes.
 
 <a name="environment-configuration"></a>
 ## Configuration des environnements
@@ -58,7 +60,7 @@ Vous pouvez accéder à l'environnement courant de l'application par la méthode
 **Accède à l'environnement courant de l'application**
 
 	$environment = App::environment();
-    
+
 <a name="maintenance-mode"></a>
 ## Mode de maintenance
 
@@ -71,7 +73,7 @@ Pour activer le mode de maintenance, exécutez la commande Artisan `down` :
 Et pour désactiver ce mode, utilisez la commande `up` :
 
 	php artisan up
-	
+
 Pour afficher une vue lorsque votre application est en mode maintenance, vous pouvez ajouter quelque chose comme cela dans votre fichier app/start/global.php :
 
 	App::down(function()

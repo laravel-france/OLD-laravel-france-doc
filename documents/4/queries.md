@@ -197,7 +197,15 @@ Parfois vous aurez besoin d'utiliser des expressions brutes dans une requête. C
 
 	DB::table('users')->increment('votes');
 
+    DB::table('users')->increment('votes', 5);
+
 	DB::table('users')->decrement('votes');
+
+    DB::table('users')->decrement('votes', 5);
+
+Vous pouvez également spécifier des colonnes additionelles à mettre à jour:
+
+    DB::table('users')->increment('votes', 1, array('name' => 'John'));
 
 <a name="inserts"></a>
 ## Insertions
