@@ -11,7 +11,7 @@
 
 ### array_add
 
-La fonction `array_add` Ajout une paire clé/valeur donnée au tableau si la clé donnée n'existe pas dans la tableau.
+La fonction `array_add` ajoute une paire clé/valeur donnée au tableau si la clé donnée n'existe pas dans la tableau.
 
     $array = array('foo' => 'bar');
 
@@ -27,7 +27,7 @@ La fonction `array_divide` retourne deux tableaux, un qui contient les clés, et
 
 ### array_dot
 
-La fonction `array_dot` aplatie un tableau multidimensionnel en un tableau à un seul niveau qui utilise la notion "point" pour indiquer la profondeur.
+La fonction `array_dot` aplatit un tableau multi-dimensionnel en un tableau à un seul niveau qui utilise la notion "point" pour indiquer la profondeur.
 
     $array = array('foo' => array('bar' => 'baz'));
 
@@ -37,13 +37,13 @@ La fonction `array_dot` aplatie un tableau multidimensionnel en un tableau à un
 
 ### array_except
 
-La méthode `array_except` supprimer la paire clé/valeur donnée du tableau .
+La méthode `array_except` supprime la paire clé/valeur donnée du tableau .
 
     $array = array_except($array, array('keys', 'to', 'remove'));
 
 ### array_fetch
 
-La méthode `array_fetch` retourne un tableau aplati qui contient les éléments imbriqués séléctionnés.
+La méthode `array_fetch` retourne un tableau aplati qui contient les éléments imbriqués sélectionnés.
 
     $array = array(array('name' => 'Taylor'), array('name' => 'Dayle'));
 
@@ -68,7 +68,7 @@ Une valeur par défaut peut être passée en troisième paramètre :
 
 ### array_flatten
 
-La méthode `array_flatten` va aplatir un tableau multidimensionnel en un tableau à une seule dimension.
+La méthode `array_flatten` va aplatir un tableau multi-dimensionnel en un tableau à une seule dimension.
 
     $array = array('name' => 'Joe', 'languages' => array('PHP', 'Ruby'));
 
@@ -78,7 +78,7 @@ La méthode `array_flatten` va aplatir un tableau multidimensionnel en un tablea
 
 ### array_forget
 
-La méthode `array_forget` va supprimé la paire clé/valeur d'un tableau multidimensionnel en utilisant une notation en "point".
+La méthode `array_forget` va supprimer la paire clé/valeur d'un tableau multi-dimensionnel en utilisant une notation en "point".
 
     $array = array('names' => array('joe' => array('programmer')));
 
@@ -94,7 +94,7 @@ La méthode `array_get` va récupérer une valeur donnée d'un tableau multidime
 
 ### array_only
 
-La méthode `array_only` va retourné seulement la paire clé/valeur spécifiée du tableau.
+La méthode `array_only` va retourner seulement la paire clé/valeur spécifiée du tableau.
 
     $array = array('name' => 'Joe', 'age' => 27, 'votes' => 1);
 
@@ -112,7 +112,7 @@ La méthode `array_pluck` va prendre une liste d'une paire clé/valeur du tablea
 
 ### array_pull
 
-La méthode `array_pull` retournera une pair clé/valeur depuis le tableau, et la supprimer.
+La méthode `array_pull` retournera une paire clé/valeur depuis le tableau, et la supprimera.
 
     $array = array('name' => 'Taylor', 'age' => 27);
 
@@ -120,7 +120,7 @@ La méthode `array_pull` retournera une pair clé/valeur depuis le tableau, et l
 
 ### array_set
 
-La méthode `array_set` va définir une valeur dans un tableau multidimensionnel en utilisant la notation en "point".
+La méthode `array_set` va définir une valeur dans un tableau multi-dimensionnel en utilisant la notation en "point".
 
     $array = array('names' => array('programmer' => 'Joe'));
 
@@ -176,7 +176,7 @@ Retourne le chemin d'accès complet vers le dossier `application/storage`.
 
 ### camel_case
 
-Converti une chaîne en `camelCase`.
+Convertit une chaîne en `camelCase`.
 
     $camel = camel_case('foo_bar');
 
@@ -192,7 +192,7 @@ Obtient le nom d'une classe donnée, sans aucun namespace.
 
 ### e
 
-Execute `htmlentites` sur la chaîne donnée, avec support d'UTF-8.
+Exécute `htmlentites` sur la chaîne donnée, avec support d'UTF-8.
 
     $entities = e('<html>foo</html>');
 
@@ -204,7 +204,7 @@ Détermine si une chaîne se termine par une autre chaîne.
 
 ### snake_case
 
-Converti une chaîne en `snake_case`.
+Convertit une chaîne en `snake_case`.
 
     $snake = snake_case('fooBar');
 
@@ -224,7 +224,7 @@ Détermine si une chaîne contient une autre chaîne.
 
 ### str_finish
 
-Ajoute une chaîne à une autre chaîne. Supprime toutes les instances de la chaîne ajouté en doublon.
+Ajoute une chaîne à une autre chaîne. Supprime toutes les instances de la chaîne ajoutée en doublon.
 
     $string = str_finish('this/string', '/');
 
@@ -232,13 +232,13 @@ Ajoute une chaîne à une autre chaîne. Supprime toutes les instances de la cha
 
 ### str_is
 
-Détermine si une chaîne donnée correspond à un patron donné. Un Asterisque `*` peut être utilisé pour indiquer le joker.
+Détermine si une chaîne donnée correspond à un patron donné. Un astérisque `*` peut être utilisé pour indiquer le joker.
 
     $value = str_is('foo*', 'foobar');
 
 ### str_plural
 
-Converti une chaîne vers son pluriel (Anglais uniquement).
+Convertit une chaîne vers son pluriel (Anglais uniquement).
 
     $plural = str_plural('car');
 
@@ -250,13 +250,13 @@ Génère une chaîne aléatoire de la longueur donnée.
 
 ### str_singular
 
-Converti une chaîne en son équivalent singulier (Anglais uniquement).
+Convertit une chaîne en son équivalent singulier (Anglais uniquement).
 
     $singular = str_singular('cars');
 
 ### studly_case
 
-Converti une chaîne en `StudlyCase`.
+Convertit une chaîne en `StudlyCase`.
 
     $value = studly_case('foo_bar');
 
@@ -309,7 +309,7 @@ Génère un lien HTML vers une route donnée.
 
 ### link_to_action
 
-Génère une lien HTML vers une action de contrôleur donnée.
+Génère un lien HTML vers une action de contrôleur donnée.
 
     echo link_to_action('HomeController@getIndex', $title, $parameters = array(), $attributes = array());
 
@@ -342,18 +342,18 @@ Obtient la valeur du jeton CSRF courant.
 
 ### dd
 
-Dump la variable donnée et stop l'éxecution du script.
+Dump la variable donnée et stop l'exécution du script.
 
     dd($value);
 
 ### value
 
-Si la valeur donnée est une fonction anonyme, alors retourné ce qu'elle retourne lors de son éxecution. Sinon, retourne la valeur donnée.
+Si la valeur donnée est une fonction anonyme, alors retourne ce qu'elle retourne lors de son exécution. Sinon, retourne la valeur donnée.
 
     $value = value(function() { return 'bar'; });
 
 ### with
 
-Retourne un objet donné. Utile pour faire du chaînage de méthode sur des constructeurs avec PHP 5.3.x.
+Retourne un objet donné. Utile pour faire du chaînage de méthodes sur des constructeurs avec PHP 5.3.x.
 
     $value = with(new Foo)->doWork();
