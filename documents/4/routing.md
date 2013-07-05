@@ -84,6 +84,14 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 	})
 	->where('id', '[0-9]+');
 
+Bien sûr, vous pouvez passer un tableau de contraintes quand cela est nécessaire :
+
+    Route::get('user/{id}/{name}', function($id, $name)
+    {
+        //
+    })
+    ->where(array('id' => '[0-9]+', 'name' => '[a-z]+'))
+
 <a name="route-filters"></a>
 ## Filtres de routes
 

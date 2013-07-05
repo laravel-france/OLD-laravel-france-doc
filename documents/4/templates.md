@@ -74,9 +74,11 @@ Notez que les vues qui `extend` un layout Blade surchargent simplement les secti
 
 	The current UNIX timestamp is {{ time() }}.
 
-Pour échapper la sortie, utilisez trois accollades :
+Bien sûr, toutes les données utilisateurs doivent être échappées ou purifiées. Pour échapper la sortie, utilisez trois accollades :
 
 	Hello, {{{ $name }}}.
+
+> **Note:** Soyez vraiment prudent lors de l'affichage de contenu soumit par les utilisateurs de votre application. Utilisez toujours les triples accollades pour échapper toutes les entitées HTML dans le contenu.
 
 **Déclaration If**
 

@@ -22,6 +22,8 @@ La configuration Redis pour votre application est située dans le fichier **app/
 
 La configuration de serveur par défaut doit être suffisante pour le développement. Toutefois, vous pouvez modifier ce tableau à votre convenance. Donnez seulement un nom à chacun de vos serveurs Redis, puis indiquez le host et le port utilisés pour chaque serveur.
 
+Si votre serveur Redis requiert une identification, vous pouvez ajouter une clé `password` au tableau de configuration de votre serveur Redis.
+
 L'option `cluster` indiquera au client Redis de Laravel de faire du Sharding côté client sur les noeuds Redis, vous permettant de mettre en commun des noeuds et de créer un grand nombre de RAM disponibles. Cependant, notez que le sharding côté client ne gère pas les défaillances, de ce fait l'usage sera plutôt pour mettre en cache des données qui sont disponibles depuis une autre source.
 
 <a name="usage"></a>

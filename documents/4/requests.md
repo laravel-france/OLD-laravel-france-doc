@@ -110,6 +110,10 @@ L'objet retourné par la méthode `file` est une instance de la classe `Symfony\
 
 	$path = Input::file('photo')->getRealPath();
 
+**Retourne le nom original du fichier téléchargé**
+
+    $name = Input::file('photo')->getClientOriginalName();
+
 **Retourne la taille d'un fichier téléchargé**
 
 	$size = Input::file('photo')->getSize();

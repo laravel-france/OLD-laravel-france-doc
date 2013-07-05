@@ -82,6 +82,10 @@ Laravel vous fournit une classe pour faire de la journalisation, qui se base sur
 
 Le journaliseur fournit les 7 niveaux de journalisation définis dans la [RFC 5424](http://tools.ietf.org/html/rfc5424) : **debug**, **info**, **notice**, **warning**, **error**, **critical**, et **alert**.
 
+Un tableau de données contextuelles peut être passé à la méthode de journalisation :
+
+    Log::info('Log message', array('context' => 'Other helpful information'));
+
 Monolog a une multitude de gestionnaires supplémentaires que vous pouvez utiliser pour faire de la journalisation. Si besoin, vous pouvez accéder directement à l'objet Monolog utilisé par Laravel :
 
     $monolog = Log::getMonolog();

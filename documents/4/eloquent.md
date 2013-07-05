@@ -259,7 +259,7 @@ Pour déterminer si un modèle donné a été supprimé de manière douce, vous 
 <a name="timestamps"></a>
 ## Timestamps
 
-Par défaut, Eloquent maintiendra les colonnes `created_at` et `updated_at` de votre table automatiquement. Ajoutez simplement ces colonnes de type `datetime` à votre table et Eloquent va automatiquement se charger du reste. Si vous ne souhaitez pas qu'Eloquent s'en occupe, ajoutez la propriété suivante au modèle :
+Par défaut, Eloquent maintiendra les colonnes `created_at` et `updated_at` de votre table automatiquement. Ajoutez simplement ces colonnes de type `timestamp` à votre table et Eloquent va automatiquement se charger du reste. Si vous ne souhaitez pas qu'Eloquent s'en occupe, ajoutez la propriété suivante au modèle :
 
 **Désactivation de l'auto-timestamps**
 
@@ -352,6 +352,17 @@ Pour définir la relation inverse sur le modèle `Phone`, nous utilisons la mét
         public function user()
         {
             return $this->belongsTo('User');
+        }
+
+    }
+
+Dans l'exemple ci dessus, Eloquent recherchera une colonne `user_id` sur la table `phones`. Si vous souhaitez définir un autre nom pour votre clé étrangère, vous pouvez le passer en tant que second argument de la méthode `belongsTo` :
+
+    class Phone extends Eloquent {
+
+        public function user()
+        {
+            return $this->belongsTo('User', 'custom_key');
         }
 
     }

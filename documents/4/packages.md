@@ -130,6 +130,18 @@ Cependant, si votre package contient uniquement un fichier de configuration, vou
 
 	Config::get('package::option');
 
+Parfois, vous pourriez souhaiter enregistrer des ressources de package, tel que des vues, en dehors de la méthode typique `$this->package`. Typiquement, cela sera uniquement fait si les ressource ne sont pas dans un endroit conventionnel. Pour enregistrer des ressources manuellement, utilisez la méthode `addNamespace` sur les classes `View`, `Lang`, et `Config` :
+
+**Enregistrement d'un namespace de ressource manuellement**
+
+    View::addNamespace('package', __DIR__.'/path/to/views');
+
+Une fois que le namespace est enregistré, vous pouvez l'utilisez en utilisant la syntaxe "double deux points" pour accéder aux ressources :
+
+    return View::make('package::view.name');
+
+La signature de la méthode `addNamespace` est la même pour les classes `View`, `Lang`, et `Config`.
+
 ### Fichiers de configuration en cascade
 
 Quand d'autres développeurs installent votre package, ils peuvent vouloir surcharger certaines options de configuration. Cependant, s'ils changent les valeurs dans le code source de votre package, ils seront écrasés quand Composer mettra à jour le package. A la place, la commande artisan `config:publish` devrait être utilisée :
