@@ -316,7 +316,7 @@ Le champ sous validation doit être présent _seulement si_ les autres champs sp
 <a name="rule-required-without"></a>
 #### required_without:_foo_,_bar_,...
 
-Le champ sous validation doit être présent _seulement lorsque_ les autres champs spécifiés ne sont pas présent.
+Le champ sous validation doit être présent _seulement lorsque_ les autres champs spécifiés ne sont pas présents.
 
 <a name="rule-same"></a>
 #### same:_field_

@@ -107,7 +107,7 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
 
     echo Form::password('password');
 
-**Autres type d'inputs**
+**Autres types d'input**
 
     echo Form::email($name, $value = null, $attributes = array());
     echo Form::file($name, $attributes = array());

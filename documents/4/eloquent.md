@@ -92,7 +92,7 @@ Bien sûr, vous pouvez également utiliser les fonctions d'agrégat du Query Bui
 
     $count = User::where('votes', '>', 100)->count();
 
-Si vous êtes dans l'impossibilité de générer la requête que vous souhaitez via l'interface Fluent, alors n'hesitez pas à utiliser la méthode `whereRaw`:
+Si vous êtes dans l'impossibilité de générer la requête que vous souhaitez via l'interface Fluent, alors n'hésitez pas à utiliser la méthode `whereRaw`:
 
   $users = User::whereRaw('age > ? and votes = 100', array(25))->get();
 

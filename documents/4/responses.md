@@ -39,7 +39,7 @@ Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundatio
 
 	return Redirect::to('user/login');
 
-**Retourune une redirection avec des données flash**
+**Retourne une redirection avec des données flash**
 
     return Redirect::to('user/login')->with('message', 'Login Failed');
 
