@@ -282,6 +282,11 @@ Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méth
             return time();
         }
 
+		protected function getDateFormat()
+		{
+			return 'U';
+		}
+
     }
 
 <a name="query-scopes"></a>
