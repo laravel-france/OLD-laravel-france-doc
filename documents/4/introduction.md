@@ -23,11 +23,12 @@ Par ailleurs, jetez un coup d'oeil aux [livres sur Laravel](http://wiki.laravel.
 
 - [Code Bright](https://leanpub.com/codebright) par Dayle Rees
 - [Laravel Testing Decoded](https://leanpub.com/laravel-testing-decoded) par Jeffrey Way
+- [Laravel: From Apprentice To Artisan](https://leanpub.com/laravel) par Taylor Otwell
 
 <a name="development-team"></a>
 ## Equipe de développement
 
-Laravel a été créé par [Taylor Otwell](https://github.com/taylorotwell), qui continue de diriger le développement du framework. D'autres membres proéminents de la communauté et contributeurs incluant [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammed Zaki](https://github.com/crynobone), et [Phil Sturgeon](https://github.com/philsturgeon).
+Laravel a été créé par [Taylor Otwell](https://github.com/taylorotwell), qui continue de diriger le développement du framework. D'autres membres proéminents de la communauté et contributeurs incluant [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammad Zaki](https://github.com/crynobone), et [Phil Sturgeon](https://github.com/philsturgeon).
 
 <a name="framework-sponsors"></a>
 ## Sponsors du framework
