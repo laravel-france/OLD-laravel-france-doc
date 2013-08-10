@@ -96,6 +96,12 @@ Si vous êtes dans l'impossibilité de générer la requête que vous souhaitez 
 
   $users = User::whereRaw('age > ? and votes = 100', array(25))->get();
 
+**Spécification de la connexion**
+
+Vous pouvez spécifier quelle connexion à la base de données est utilisée quand vous lancez une requête Eloquent. Utilisez simplement la méthode `on` :
+
+    $user = User::on('connection-name')->find(1);
+
 <a name="mass-assignment"></a>
 ## Assignement de masse
 
@@ -271,19 +277,14 @@ Par défaut, Eloquent maintiendra les colonnes `created_at` et `updated_at` de v
 
     }
 
-Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méthode `freshTimestamp` de votre modèle :
+Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méthode `getDateFormat` de votre modèle :
 
 **Création d'un format de timestamp personnalisé pour ce modèle**
 
     class User extends Eloquent {
 
-        public function freshTimestamp()
+        protected function getDateFormat()
         {
-            return time();
-        }
-
-		protected function getDateFormat()
-		{
 			return 'U';
 		}
 
@@ -307,6 +308,23 @@ Les cadres vous permettent de réutiliser facilement des logiques de requêtes d
 **Utilisation d'un cadre de requête**
 
 	$users = User::popular()->orderBy('created_at')->get();
+
+**Cadres dynamiques**
+
+Des fois, vous pouvez vouloir définir un cadre qui accepte des paramètres. Ajoutez juste vos paramètres dans la fonction de cadre :
+
+    class User extends Eloquent {
+
+        public function scopeOfType($query, $type)
+        {
+            return $query->whereType($type);
+        }
+
+    }
+
+Passez ensuite le paramètre dans l'appel du cadre :
+
+    $users = User::ofType('member')->get();
 
 <a name="relationships"></a>
 ## Relations
@@ -867,7 +885,11 @@ Pour désactiver totalement la mutation des dates, retournez simplement un table
 <a name="model-events"></a>
 ## Evénements de modèle
 
-Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagir avec le modèle durant son cycle de vie en utilisant les méthodes : `creating` (avant la création), `created` (une fois créé), `updating` (avant la mise à jour), `updated` (une fois mis à jour), `saving` (avant l'enregistrement), `saved` (une fois enregistré), `deleting` (avant la suppression), `deleted` (une fois supprimé). Si `false` est retourné par la méthode `creating`, `updating`, ou `saving`, alors l'action est annulée :
+Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagir avec le modèle durant son cycle de vie en utilisant les méthodes : `creating` (avant la création), `created` (une fois créé), `updating` (avant la mise à jour), `updated` (une fois mis à jour), `saving` (avant l'enregistrement), `saved` (une fois enregistré), `deleting` (avant la suppression), `deleted` (une fois supprimé).
+
+Chaque fois qu'un nouvel item est sauvegardé pour la première fois, les événements `creating` et `created` sont lancés. Si un item n'est pas nouveau et que la méthode `save` est appelée, les événements `updating` / `updated` sont lancés. Dans les deux cas, les événements `saving` / `saved` sont lancés.
+
+Si `false` est retourné par la méthode `creating`, `updating`, ou `saving`, alors l'action est annulée :
 
 **Annulation de la création d'un modèle**
 

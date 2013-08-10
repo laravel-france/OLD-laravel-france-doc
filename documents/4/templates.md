@@ -112,6 +112,20 @@ Bien sûr, toutes les données utilisateurs doivent être échappées ou purifi�
 
 	@include('view.name')
 
+Vous pouvez aussi passer un tableau de données à la vue incluse :
+
+    @include('view.name', array('some'=>'data'))
+
+**Sections de remplacement**
+
+Par défaut, les sections sont ajoutées à n'importe quel contenu précédent qui existe dans la session. Pour remplacer une section entièrement, vous pouvez utiliser la déclaration `overwrite`:
+
+    @extends('list.item.container')
+  
+    @section('list.item.content')
+        <p>This is an item of type {{ $item->type }}</p>
+    @overwrite
+
 **Affichage d'une ligne de langue**
 
 	@lang('language.line')

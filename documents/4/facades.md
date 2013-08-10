@@ -95,6 +95,10 @@ Finalement, si nous le souhaitons, nous pouvons ajouter un alias pour notre faç
 
     Payment::process();
 
+### A Note On Auto-Loading Aliases
+
+Les classes dans le tableau `aliases` ne sont disponible dans quelques instances car [PHP n'essayera pas de charger automatiquement des classes appelées indéfinies](https://bugs.php.net/bug.php?id=39003). Si `\ServiceWrapper\ApiTimeoutException` est un alias de `ApiTimeoutException`, un `catch(ApiTimeoutException $e)` hors de l'espace de nom `\ServiceWrapper` ne captera jamais d'exception, même si une est lancée. Un problème similaire se retrouve aussi dans Models. La seule solution consiste à renoncer aux alias et d'`utiliser` les classes que vous voulez atteindre au début de chaque fichier qui les requiert.
+
 <a name="mocking-facades"></a>
 ## Mockage de Façades
 
