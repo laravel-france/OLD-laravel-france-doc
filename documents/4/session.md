@@ -4,6 +4,7 @@
 - [Utilisation](#session-usage)
 - [Flasher des données](#flash-data)
 - [Enregistrer les sessions en base de données](#database-sessions)
+- [Drivers de session](#session-drivers)
 
 <a name="configuration"></a>
 ## Configuration
@@ -32,6 +33,10 @@ Les sessions sont paramétrables dans le fichier `app/config/session.php`. Exami
 	$value = Session::get('key', 'default');
 
 	$value = Session::get('key', function() { return 'default'; });
+
+**Retourner toutes les données de la session**
+
+    $data = Session:all();
 
 **Déterminer l'existence d'une variable de session**
 
@@ -86,3 +91,16 @@ Evidemment, vous pouvez utiliser la commande Artisan `session:table` pour géné
 	composer dump-autoload
 
 	php artisan migrate
+
+<a name="session-drivers"></a>
+## Drivers de session
+
+Le driver de session définit où les données de session seront stockées pour chaque requête. Laravel embarque plusieurs grands drivers :
+
+- `native` - la session sera assurée par PHP selon sa configuration à l'installation.
+- `cookie` - la session sera stockée en sécurité, cookies cryptés.
+- `database` - la session sera stockée dans la base de données utilisée par votre application.
+- `memcached` / `redis` - la session utilisera un des plus rapides systèmes de mise en cache.
+- `array` - la session sera stockée dans un simple tableau PHP et ne sera pas persistante entre les requêtes.
+
+Le driver `array` est typiquement utilisé pour lancer des [tests unitaires](/docs/testing), de ce fait aucune donnée de session ne sera persistante.

@@ -192,7 +192,7 @@ Obtient le nom d'une classe donnée, sans aucun namespace.
 
 ### e
 
-Exécute `htmlentites` sur la chaîne donnée, avec support d'UTF-8.
+Exécute `htmlentities` sur la chaîne donnée, avec support d'UTF-8.
 
     $entities = e('<html>foo</html>');
 
