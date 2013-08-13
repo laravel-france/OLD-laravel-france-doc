@@ -20,9 +20,11 @@ Les sessions sont paramétrables dans le fichier `app/config/session.php`. Exami
 
 	Session::put('key', 'value');
 
-**Pousser une valeur dans une variable de session**
+**Empile une valeur dans une variable de session**
 
     Session::push('user.teams', 'developers');
+    
+    Session::push('user', 'patrick');
 
 **Lire une variable de session**
 
