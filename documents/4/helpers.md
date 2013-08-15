@@ -6,6 +6,10 @@
 - [URLs](#urls)
 - [Divers](#miscellaneous)
 
+## Avertissement
+
+Ces fonctions d'aide ne sont pas accessibles directement dans les vues.
+
 <a name="arrays"></a>
 ## Tableaux
 
@@ -159,17 +163,25 @@ Retourne le dernier élément d'un tableau. Utile pour chaîner des méthodes.
 
 Retourne le chemin d'accès complet vers le dossier `application`.
 
+    echo app_path();
+
 ### base_path
 
 Retourne le chemin d'accès complet vers le dossier racine de l'installation.
+
+    echo base_path();
 
 ### public_path
 
 Retourne le chemin d'accès complet vers le dossier `public`.
 
+    echo public_path();
+
 ### storage_path
 
 Retourne le chemin d'accès complet vers le dossier `application/storage`.
+
+    echo storage_path();
 
 <a name="strings"></a>
 ## Strings
