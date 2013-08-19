@@ -981,3 +981,17 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
 Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
 
 	protected $visible = array('first_name', 'last_name');
+
+<a name="array-appends"></a>
+Occassionnellement, vous pouvez avoir besoin d'ajouter un tableau d'attributs qui ne correspondent pas à un colonne dans votre base de données. Pour ce faire, vous devez simplement définir un accesseur pour la valeur :
+
+    public function getIsAdminAttribute()
+    {
+        return $this->attributes['admin'] == 'yes';
+    }
+
+Une fois que vous avez créé l'accesseur, ajoutez la valeur de la propriété `appends` au modèle :
+
+    protected $appends = array('is_admin');
+
+Une fois que l'attribut a été ajouté à la list `appends`, il peut être inclus à la fois sous la modèle tableau ou JSON du modèle.
