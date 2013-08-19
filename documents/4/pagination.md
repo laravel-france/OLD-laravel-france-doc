@@ -54,6 +54,16 @@ Si vous souhaitez créer une pagination manuellement en fournissant un tableau d
 
 	$paginator = Paginator::make($items, $totalItems, $perPage);
 
+**Personnaliser l'URI de la pagination**
+
+Vous pouvez aussi personnaliser l'URI utilisée par la pagination via la méthode `setBaseUrl` :
+
+    $users = User::paginate();
+
+    $users->setBaseUrl('custom/url');
+
+L'exemple ci-dessus créera des URLs de la forme suivante : http://example.com/custom/url?page=2
+
 <a name="appending-to-pagination-links"></a>
 ## Ajout de paramètres sur les liens de pagination
 
