@@ -118,7 +118,7 @@ Vous pouvez aussi passer un tableau de données à la vue incluse :
 
 **Sections de remplacement**
 
-Par défaut, les sections sont ajoutées à n'importe quel contenu précédent qui existe dans la session. Pour remplacer une section entièrement, vous pouvez utiliser la déclaration `overwrite`:
+Par défaut, les sections sont ajoutées à n'importe quel contenu précédent qui existe dans la section. Pour remplacer une section entièrement, vous pouvez utiliser la déclaration `overwrite`:
 
     @extends('list.item.container')
   

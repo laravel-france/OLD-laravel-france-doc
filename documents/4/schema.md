@@ -32,7 +32,7 @@ Pour spécifier quelle connexion doit être utilisée par le constructeur de sch
 
     Schema::connection('foo')->create('users', function($table)
     {
-        $table->increments('id'):
+        $table->increments('id');
     });
 
 Pour supprimer une table, vous pouvez utiliser la méthode `Schema::drop` :
