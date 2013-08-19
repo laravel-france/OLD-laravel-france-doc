@@ -295,6 +295,6 @@ Vous pouvez également préciser le chiffrement ou le mode utilisé par le chiff
 
 **Réglage du chiffrement et du mode**
 
-	Crypt::setMode('crt');
+	Crypt::setMode('ctr');
 
 	Crypt::setCipher($cipher);

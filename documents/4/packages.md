@@ -38,6 +38,8 @@ Une fois que la commande `workbench` a été exécutée, votre package sera disp
 
 Une fois que le fournisseur a été enregistré, vous êtes prêt à développer votre package ! Cependant, avant de se lancer dedans, vous devriez lire les sections ci-dessous pour être plus familier avec la structure d'un package et avoir un bon processus de développement.
 
+> **Note:** Si votre service provider ne peut être trouvé, lancez la commande `php artisan dump-autoload` dans le répertoire principal de votre application.
+
 <a name="package-structure"></a>
 ## Structure d'un package
 

@@ -93,11 +93,13 @@ Le second argument passé ici à `View::make` est un tableau de données qui doi
 
 **Passage de données à une vue**
 
-	$view = View::make('greeting', $data);
-
 	$view = View::make('greeting')->with('name', 'Steve');
 
 Dans l'exemple ci-dessus, `$name` sera accessible dans la vue, et aura comme valeur `Steve`.
+
+Si vous le désirez, vous pouvez passer un tableau de données comme second paramètre à la méthode `make` :
+
+	$view = View::make('greetings', $data);
 
 Vous pouvez également partager des données avec toutes les vues :
 

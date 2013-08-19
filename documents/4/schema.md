@@ -32,7 +32,7 @@ Pour spécifier quelle connexion doit être utilisée par le constructeur de sch
 
     Schema::connection('foo')->create('users', function($table)
     {
-        $table->increments('id'):
+        $table->increments('id');
     });
 
 Pour supprimer une table, vous pouvez utiliser la méthode `Schema::drop` :
@@ -55,7 +55,8 @@ Le constructeur de table contient une variété de types de colonne que vous pou
 
 Commande  | Description
 ------------- | -------------
-`$table->increments('id');`  |  Clé primaire de type auto-incrémentale.
+`$table->increments('id');`  |  Clé primaire de type auto-incrémentale
+`$table->bigIncrements('id');`  |  Clé primaire de type auto-incrémentale utilisant un équivalent de "grand entier"
 `$table->string('email');`  |  Equivalent de VARCHAR
 `$table->string('name', 100);`  |  Equivalent de VARCHAR avec une taille
 `$table->integer('votes');`  |  Equivalent d'INTEGER

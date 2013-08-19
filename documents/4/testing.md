@@ -73,6 +73,8 @@ Pour appeler une route HTTPS, vous pouvez utiliser la méthode `callSecure` :
 
     $response = $this->callSecure('GET', 'foo/bar');
 
+> **Note:** les filtres de routage sont désactivés dans l'environnement de test. Pour les activer, ajoutez `Route::enableFilters()` à votre test.
+
 ### Inspecteur de DOM
 
 Vous pouvez également appeler une route et recevoir une instance de l'inspecteur de DOM que vous pouvez utiliser pour regarder le contenu :

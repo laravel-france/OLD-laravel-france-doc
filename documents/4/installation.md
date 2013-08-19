@@ -19,7 +19,7 @@ Laravel utilise [Composer](http://getcomposer.org) pour gérer ses dépendances.
 
 Vous pouvez installer Laravel en exécutant la commande `create-project` de composer dans votre terminal :
 
-    composer create-project laravel/laravel
+    composer create-project laravel/laravel --prefer-dist
 
 ### Via un téléchargement
 

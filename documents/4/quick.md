@@ -73,7 +73,7 @@ Magnifique ! Maintenant vous avez mis en place une vue simple qui hérite d'un l
 
 Pour créer une table qui garde nos données, nous allons utiliser le système de migration de Laravel. Les migrations vous laissent définir des modifications sur votre base de données de manière expressive, et de les partager facilement avec le reste de votre équipe.
 
-Premièrement, configurons une connexion à la base de données. Vous pouvez configurer vos connexions à la base données depuis le fichier `app/config/database.php`. Par défault, Laravel est configuré pour utiliser SQLite, et une base de données SQLite est inclue dans le dossier `app/database`. Si vous le souhaitez, vous pouvez changer l'option `driver` pour `mysql` et configurer la connexion `mysql` dans le fichier de configuration des bases de données.
+Premièrement, configurons une connexion à la base de données. Vous pouvez configurer vos connexions à la base de données depuis le fichier `app/config/database.php`. Par défault, Laravel est configuré pour utiliser MySQL et vous aurez besoin de fournir les informations de connexion au fichier de configuration de bases de données. Si vous le souhaitez, vous pouvez changer l'option `driver` pour `sqlite` et vous utiliserez la base de données SQLite incluse dans le répertoire `app/database`.
 
 Ensuite, pour créer une migration, nous allons utiliser [Artisan](/docs/4/artisan). Depuis la racine de votre projet, exécutez la ligne suivante dans votre terminal :
 

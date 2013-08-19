@@ -23,7 +23,7 @@ Pour créer une nouvelle commande, vous pouvez utiliser la commande Artisan `com
 
 Par défaut, la commande générée sera placée dans le dossier `app/commands`. Vous pouvez cependant préciser un chemin personnalisé et un namespace :
 
-	php artisan command:make FooCommand --path="app/classes" --namespace="Classes"
+	php artisan command:make FooCommand --path=app/classes --namespace=Classes
 
 ### Ecriture de la commande
 
