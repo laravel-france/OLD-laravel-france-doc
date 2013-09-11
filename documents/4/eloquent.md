@@ -198,6 +198,8 @@ Pour supprimer un modèle, appelez simplement la méthode `delete` sur une insta
 
     User::destroy(1);
 
+    User::destroy(array(1, 2, 3));
+
     User::destroy(1, 2, 3);
 
 Bien sûr, vous pouvez également supprimer un ensemble de modèles :
@@ -303,11 +305,16 @@ Les cadres vous permettent de réutiliser facilement des logiques de requêtes d
         {
            return $query->where('votes', '>', 100);
         }
+
+        public function scopeWomen($query)
+        {
+            return $query->whereGender('W');
+        }
     }
 
 **Utilisation d'un cadre de requête**
 
-	$users = User::popular()->orderBy('created_at')->get();
+	$users = User::popular()->women()->orderBy('created_at')->get();
 
 **Cadres dynamiques**
 
@@ -764,7 +771,7 @@ Notez que cette opération ne supprimera pas les enregistrements de la table `ro
 <a name="collections"></a>
 ## Collections
 
-Toutes les requêtes qui renvoient plusieurs résultats par Eloquent via la méthode `get` ou par une relation retournent un objet Eloquent `Collection`. Cet objet implémente l'interface PHP `IteratorAggregate`, donc nous pouvons itérer dessus comme pour un tableau. Cependant, cet objet a également une variété de méthodes utiles pour travailler avec une liste de résultats.
+Toutes les requêtes qui renvoient plusieurs résultats par Eloquent, via la méthode `get` ou par une relation, retournent un objet `Collection`. Cet objet implémente l'interface PHP `IteratorAggregate`, donc nous pouvons itérer dessus comme pour un tableau. Cependant, cet objet a également une variété de méthodes utiles pour travailler avec une liste de résultats.
 
 Par exemple, nous pouvons déterminer si une liste de résultats contient une clé primaire donnée en utilisant la méthode `contains` :
 
@@ -885,7 +892,7 @@ Pour désactiver totalement la mutation des dates, retournez simplement un table
 <a name="model-events"></a>
 ## Evénements de modèle
 
-Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagir avec le modèle durant son cycle de vie en utilisant les méthodes : `creating` (avant la création), `created` (une fois créé), `updating` (avant la mise à jour), `updated` (une fois mis à jour), `saving` (avant l'enregistrement), `saved` (une fois enregistré), `deleting` (avant la suppression), `deleted` (une fois supprimé).
+Les modèles Eloquent lancent plusieurs événements, vous permettant d'interagir avec le modèle durant son cycle de vie en utilisant les méthodes : `creating` (avant la création), `created` (une fois créé), `updating` (avant la mise à jour), `updated` (une fois mis à jour), `saving` (avant l'enregistrement), `saved` (une fois enregistré), `deleting` (avant la suppression), `deleted` (une fois supprimé), `restoring` (avant la restauration), `restored` (une fois restauré).
 
 Chaque fois qu'un nouvel item est sauvegardé pour la première fois, les événements `creating` et `created` sont lancés. Si un item n'est pas nouveau et que la méthode `save` est appelée, les événements `updating` / `updated` sont lancés. Dans les deux cas, les événements `saving` / `saved` sont lancés.
 

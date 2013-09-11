@@ -43,6 +43,8 @@ Une instance de `Response` hérite de la classe `Symfony\Component\HttpFoundatio
 
     return Redirect::to('user/login')->with('message', 'Login Failed');
 
+> **Note** : Depuis que la méthode `with` envoie les données à la session, vous pouvez récupérer les données en utilisant la méthode `Session::get`.
+
 **Retourne une redirection vers une route nommée**
 
 	return Redirect::route('login');
@@ -159,6 +161,15 @@ Une classe compositeur de vue doit être définie comme ceci :
 	}
 
 Notez qu'il n'y a pas de convention sur l'endroit où les compositeurs de vues doivent être stockés. Vous êtes libres de les mettre où vous le souhaitez, tant qu'ils peuvent être chargés automatiquement par l'une des directives de votre fichier `composer.json`.
+
+### Créateurs de vues
+
+Un **créateur** de vue fonctionne exactement comme les composeurs de vues ; cependant, ils sont lancés immédiatement quand la vue est instanciée. Pour enregistrer un créateur de vue, utilisez simplement la méthode `creator` :
+
+    View::creator('profile', function($view)
+    {
+        $view->with('count', User::count());
+    });
 
 <a name="special-responses"></a>
 ## Réponses spéciales

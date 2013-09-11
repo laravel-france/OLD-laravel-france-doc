@@ -7,7 +7,7 @@
 <a name="introduction"></a>
 ## Introduction
 
-Laravel est un logiciel open source, ce qui signifie que tout un chacun peut contribuer à son développement et à son amélioration. Le code source de Laravel est actuellement disponible sur le site [Github](http://github.com), lequel fournit une méthode simple permettant de créer une branche du projet et d'intégrer vos contributions.
+Laravel est un logiciel open source, ce qui signifie que tout un chacun peut contribuer à son développement et à son amélioration. Le code source de Laravel est actuellement disponible sur le site [Github](https://github.com/laravel), lequel fournit une méthode simple permettant de créer une branche du projet et d'intégrer vos contributions.
 
 <a name="pull-requests"></a>
 ## Les requêtes Pull
@@ -15,6 +15,8 @@ Laravel est un logiciel open source, ce qui signifie que tout un chacun peut con
 Le développement de nouvelles fonctionnalités et les corrections d'anomalies nécessitent des requêtes `pull` différentes. Avant d'envoyer une requête `pull` pour une nouvelle fonctionnalité, vous devez créer un cas (menu `Issues` du site Github) et inclure le terme `[Proposal]` dans le titre. La proposition doit décrire la nouvelle fonctionnalité y compris des éléments d'implémentation. Après examen, la proposition sera acceptée ou rejetée. Une fois la proposition acceptée, une requête `pull` doit être créée pour implémenter la nouvelle fonctionnalité. Toute requête `pull` ne respectant pas ce protocole sera immédiatement close.
 
 Dans le cas des corrections d'anomalies, des requêtes `pull` doivent être envoyées sans proposition préalable dans un cas Github. Si vous estimez détenir la solution en termes de correction d'une anomalie recensée sur le site Github, merci de joindre un commentaire détaillant la correction proposée.
+
+Les rapports de bugs et demandes de modification de la documentation peut aussi être proposés via Github dans le [dépôt de la documentation](https://github.com/laravel/docs).
 
 ### Les demandes de fonctionnalité
 

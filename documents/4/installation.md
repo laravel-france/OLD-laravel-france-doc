@@ -40,8 +40,6 @@ Le framework Laravel a quelques prérequis système :
 
 Laravel n'a presque pas besoin de configuration pour fonctionner. En fait, vous êtes libre de commencer à développer ! Cependant, vous devriez au minimum jeter un oeil au fichier `app/config/app.php` et à sa documentation. Il contient plusieurs options comme `timezone` et `locale` que vous pourriez vouloir changer pour votre application.
 
-> **Note:** Une option de configuration doit à tout prix avoir une valeur, il s'agit de l'option `key` du fichier `app/config/app.php`. Cette valeur doit être une chaîne de 32 caractères aléatoires. Cette clé est utilisée pour chiffrer des valeurs, et les valeurs chiffrées ne seront pas sûres tant que cette clé n'est pas définie. Vous pouvez définir une clé aléatoire rapidement en lançant la commande Artisan suivante : `php artisan key:generate`.
-
 <a name="permissions"></a>
 ### Permissions
 Laravel a besoin que le serveur web ait un accès en écriture sur les dossiers à l'intérieur de `app/storage`.
