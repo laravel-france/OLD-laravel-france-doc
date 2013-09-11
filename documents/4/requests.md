@@ -114,6 +114,10 @@ L'objet retourné par la méthode `file` est une instance de la classe `Symfony\
 
     $name = Input::file('photo')->getClientOriginalName();
 
+**Retourne l'extension d'un fichier téléchargé**
+
+    $extension = Input::file('photo')->getClientOriginalExtension();
+
 **Retourne la taille d'un fichier téléchargé**
 
 	$size = Input::file('photo')->getSize();
