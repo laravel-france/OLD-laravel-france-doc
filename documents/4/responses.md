@@ -164,7 +164,7 @@ Notez qu'il n'y a pas de convention sur l'endroit où les compositeurs de vues d
 
 ### Créateurs de vues
 
-Un **créateur** de vue fonctionne exactement comme les composeurs de vues ; however, they are fired immediately when the view is instantiated. To register a view creator, simple use the `creator` method:
+Un **créateur** de vue fonctionne exactement comme les composeurs de vues ; cependant, ils sont lancés immédiatement quand la vue est instanciée. Pour enregistrer un créateur de vue, utilisez simplement la méthode `creator` :
 
     View::creator('profile', function($view)
     {

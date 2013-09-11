@@ -18,8 +18,6 @@ Dans le cas des corrections d'anomalies, des requêtes `pull` doivent être envo
 
 Les rapports de bugs et demandes de modification de la documentation peut aussi être proposés via Github dans le [dépôt de la documentation](https://github.com/laravel/docs).
 
-Les ajouts et corrections à la documentation peuvent être faites via le [dépôt de la documentation en anglais](https://github.com/laravel/docs) sur Github, et sur le [dépôt de la version française](https://github.com/laravel-france/laravel-france-doc) aussi sur Github.
-
 ### Les demandes de fonctionnalité
 
 Si vous avez une idée de fonctionnalité que vous aimeriez voir être ajoutée à Laravel, créez un cas Github et incluez le terme `[Request]` dans le titre. Cette fonctionnalité sera analysée par une personne de l'équipe de développement.
