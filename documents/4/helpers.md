@@ -161,7 +161,7 @@ Retourne le dernier élément d'un tableau. Utile pour chaîner des méthodes.
 
 ### app_path
 
-Retourne le chemin d'accès complet vers le dossier `application`.
+Retourne le chemin d'accès complet vers le dossier `app`.
 
     echo app_path();
 
@@ -179,7 +179,7 @@ Retourne le chemin d'accès complet vers le dossier `public`.
 
 ### storage_path
 
-Retourne le chemin d'accès complet vers le dossier `application/storage`.
+Retourne le chemin d'accès complet vers le dossier `app/storage`.
 
     echo storage_path();
 
@@ -324,6 +324,12 @@ Génère un lien HTML vers une route donnée.
 Génère un lien HTML vers une action de contrôleur donnée.
 
     echo link_to_action('HomeController@getIndex', $title, $parameters = array(), $attributes = array());
+
+### route
+
+Génère une URL pour une route nommée.
+
+    $url = route('routeName', $params);
 
 ### secure_asset
 

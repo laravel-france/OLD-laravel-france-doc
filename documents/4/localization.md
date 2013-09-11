@@ -49,6 +49,10 @@ Le premier segment passé à la méthode `get` est le nom du fichier de traducti
 
 > **Note*: Si la ligne n'existe pas dans le fichier, la clé sera renvoyée par la méthode `get`.
 
+Vous pouvez aussi utiliser la fonction `trans`, qui est un alias de la méthode `Lang::get`.
+
+    echo trans('messages.welcome');
+
 **Ligne de traduction variable**
 
 Vous pouvez placer une variable dans votre ligne de langue :
