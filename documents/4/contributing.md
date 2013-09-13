@@ -16,7 +16,7 @@ Le développement de nouvelles fonctionnalités et les corrections d'anomalies n
 
 Dans le cas des corrections d'anomalies, des requêtes `pull` doivent être envoyées sans proposition préalable dans un cas Github. Si vous estimez détenir la solution en termes de correction d'une anomalie recensée sur le site Github, merci de joindre un commentaire détaillant la correction proposée.
 
-Les rapports de bugs et demandes de modification de la documentation peut aussi être proposés via Github dans le [dépôt de la documentation](https://github.com/laravel/docs).
+Les rapports de bugs et demandes de modification de la documentation peuvent aussi être proposés via Github dans le [dépôt de la documentation](https://github.com/laravel/docs).
 
 ### Les demandes de fonctionnalité
 

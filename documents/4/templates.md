@@ -65,7 +65,7 @@ Blade est un moteur de template simple et puissant fourni par Laravel. A la diff
 
 Notez que les vues qui `extend` un layout Blade surchargent simplement les sections du layout. Le contenu du layout peut être inclus dans une vue enfant en utilisant la directive `@parent` dans une section, vous permettant d'ajouter dans le contenu du layout votre propre contenu, pour par exemple ajouter des liens dans la sidebar ou dans le footer.
 
-Des fois, quand vous n'êtes pas sûr qu'une section a été définie, vous pouvez passer une valeur par défaut à la directive `@yield`. Vous pouvez passer la valeur par défaut comme second argument :
+Parfois, quand vous n'êtes pas sûr qu'une section a été définie, vous pouvez passer une valeur par défaut à la directive `@yield`. Vous pouvez passer la valeur par défaut comme second argument :
 
     @yield('section', 'Default Content');
 
