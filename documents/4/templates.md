@@ -1,8 +1,8 @@
 # Templates
 
 - [Layouts de contrôleur](#controller-layouts)
-- [Blade Templating](#blade-templating)
-- [Other Blade Control Structures](#other-blade-control-structures)
+- [Le moteur de template Blade](#blade-templating)
+- [Structures de contrôle Blade](#other-blade-control-structures)
 
 <a name="controller-layouts"></a>
 ## Layouts de contrôleur
