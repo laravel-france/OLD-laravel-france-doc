@@ -164,7 +164,7 @@ Et, vous pouvez aussi spécifier quelles méthodes doivent être disponibles via
             array('only' => array('index', 'show')));
 
     Route::resource('photo', 'PhotoController',
-            array('except' => array('create', 'store', 'update', delete')));
+            array('except' => array('create', 'store', 'update', 'delete')));
 
 <a name="handling-missing-methods"></a>
 ## Gestion de méthodes manquantes
