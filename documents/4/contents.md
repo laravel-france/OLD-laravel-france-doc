@@ -17,6 +17,7 @@
 ### Aller plus loin
  - [La gestion du cache](/docs/4/cache)
  - [Les événements](/docs/4/events)
+ - [Étendre le Framework](/docs/4/extending)
  - [Facades](/docs/4/facades)
  - [Formulaires & HTML](/docs/4/html)
  - [Helpers](/docs/4/helpers)
