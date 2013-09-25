@@ -349,7 +349,7 @@ Le champ sous validation doit être unique dans la table de la base de donnée. 
 
 Vous pouvez aussi spécifier plusieurs conditions qui seront ajoutées comme clauses "where" à la requête :
 
-    'email' => 'unique:users,email_address,NULL,id,account_id,1
+    'email' => 'unique:users,email_address,NULL,id,account_id,1'
 
 Dans la règle ci-dessus, seules les lignes avec un `account_id` à `1` seront incluses dans la vérification du `unique`.
 
