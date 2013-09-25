@@ -84,9 +84,9 @@ Les sections de cache vous permettent de grouper des éléments de même nature 
 
 **Accès à une section de cache**
 
-	Cache::section('people')->put('John', $john);
+	Cache::section('people')->put('John', $john, $minutes);
 
-	Cache::section('people')->put('Anne', $anne);
+	Cache::section('people')->put('Anne', $anne, $minutes);
 
 Vous pouvez également accéder aux éléments de la section, et utilisez les autres méthodes tel que `increment` et `decrement`:
 
