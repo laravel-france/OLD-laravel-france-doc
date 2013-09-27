@@ -30,6 +30,21 @@ De multiples règles peuvent être délimitées en utilisant le caractère "pipe
 		array('name' => array('required', 'min:5'))
 	);
 
+**Validation de multiples champs**
+
+    $validator = Validator::make(
+        array(
+            'name' => 'Dayle',
+            'password' => 'lamepassword',
+            'email' => 'email@example.com'
+        ),
+        array(
+            'name' => 'required',
+            'password' => 'required|min:8',
+            'email' => 'required|email|unique'
+        )
+    );
+
 Une fois que l'instance de `Validator` a été créée, les méthodes `fails` ou `passes` peuvent être utilisées pour effectuer la validation.
 
 	if ($validator->fails())
