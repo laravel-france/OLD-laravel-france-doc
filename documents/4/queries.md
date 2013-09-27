@@ -116,6 +116,12 @@ Le Query Builder peut être utilisé pour faire des jointures. Regardez l'exempl
 	            ->join('orders', 'users.id', '=', 'orders.user_id')
 	            ->select('users.id', 'contacts.phone', 'orders.price');
 
+**Jointure de type Left Join**
+
+    DB::table('users')
+        ->leftJoin('posts', 'users.id', '=', 'posts.user_id')
+        ->get();
+
 Vous pouvez également spécifier des clauses de jointures plus complexes :
 
 	DB::table('users')
