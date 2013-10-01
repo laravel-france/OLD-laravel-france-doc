@@ -38,7 +38,7 @@ Les sessions sont paramétrables dans le fichier `app/config/session.php`. Exami
 
 **Retourner toutes les données de la session**
 
-    $data = Session:all();
+    $data = Session::all();
 
 **Déterminer l'existence d'une variable de session**
 
