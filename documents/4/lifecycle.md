@@ -24,12 +24,12 @@ Vous pouvez ajouter des opérations précédant et suivant l'exécution de la re
 
 **Enregistrer des gestionnaires d'événements**
 
-	App::before(function()
+	App::before(function($request)
 	{
 		//
 	});
 
-	App::after(function(request, $response)
+	App::after(function($request, $response)
 	{
 		//
 	});

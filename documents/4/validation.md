@@ -4,6 +4,7 @@
 - [Travail avec les messages d'erreurs](#working-with-error-messages)
 - [Messages d'erreurs et vues](#error-messages-and-views)
 - [Règles de validation disponibles](#available-validation-rules)
+- [Règles d'ajout conditionnelles](#conditionally-adding-rules)
 - [Messages d'erreur personnalisés](#custom-error-messages)
 - [Règles de validation personnalisées](#custom-validation-rules)
 
@@ -14,10 +15,10 @@ Laravel vous est livré avec un outil simple et pratique pour valider des donné
 
 **Exemple de validation basique**
 
-	$validator = Validator::make(
-		array('name' => 'Dayle'),
-		array('name' => 'required|min:5')
-	);
+    $validator = Validator::make(
+        array('name' => 'Dayle'),
+        array('name' => 'required|min:5')
+    );
 
 Le premier argument passé à la méthode `make` sont les données à valider. Le second argument est un tableau de règles de validation qui doit s'appliquer aux données.
 
@@ -25,10 +26,10 @@ De multiples règles peuvent être délimitées en utilisant le caractère "pipe
 
 **Utilisation de tableau pour définir différentes règles**
 
-	$validator = Validator::make(
-		array('name' => 'Dayle'),
-		array('name' => array('required', 'min:5'))
-	);
+    $validator = Validator::make(
+        array('name' => 'Dayle'),
+        array('name' => array('required', 'min:5'))
+    );
 
 **Validation de multiples champs**
 
@@ -47,14 +48,14 @@ De multiples règles peuvent être délimitées en utilisant le caractère "pipe
 
 Une fois que l'instance de `Validator` a été créée, les méthodes `fails` ou `passes` peuvent être utilisées pour effectuer la validation.
 
-	if ($validator->fails())
-	{
-		// Les données ne passent pas la validation
-	}
+    if ($validator->fails())
+    {
+        // Les données ne passent pas la validation
+    }
 
 Si la validation échoue, vous pouvez récuperer les messages d'erreurs depuis le validateur.
 
-	$messages = $validator->messages();
+    $messages = $validator->messages();
 
 Vous pouvez également accéder à un tableau de règles de validation qui ont échoué, sans les messages. Pour ce faire, utilisez la méthode `failed` :
 
@@ -71,63 +72,63 @@ Après avoir appelé la méthode `messages` de l'instance de la classe `Validato
 
 **Retrouve le premier message d'erreur pour un champ**
 
-	echo $messages->first('email');
+    echo $messages->first('email');
 
 **Retrouve tous les messages d'erreur pour un champ**
 
-	foreach ($messages->get('email') as $message)
-	{
-		//
-	}
+    foreach ($messages->get('email') as $message)
+    {
+        //
+    }
 
 **Retrouve tous les messages d'erreur de tous les champs**
 
-	foreach ($messages->all() as $message)
-	{
-		//
-	}
+    foreach ($messages->all() as $message)
+    {
+        //
+    }
 
 **Détermine si un message d'erreur existe pour un champ**
 
-	if ($messages->has('email'))
-	{
-		//
-	}
+    if ($messages->has('email'))
+    {
+        //
+    }
 
 **Retrouve un message d'erreur avec un format donné**
 
-	echo $messages->first('email', '<p>:message</p>');
+    echo $messages->first('email', '<p>:message</p>');
 
 > **Note:** Par défaut, les messages sont formatés pour utiliser une syntaxe compatible avec Bootstrap.
 
 **Retrouve tous les messages d'erreur avec un format donné**
 
-	foreach ($messages->all('<li>:message</li>') as $message)
-	{
-		//
-	}
+    foreach ($messages->all('<li>:message</li>') as $message)
+    {
+        //
+    }
 
 <a name="error-messages-and-views"></a>
 ## Messages d'erreurs et vues
 
 Une fois que vous avez effectué la validation, vous aurez besoin d'une manière simple de récuperer vos messages d'erreurs dans votre vue. C'est une chose prévue par Laravel. Considérez l'exemple ci-dessous :
 
-	Route::get('register', function()
-	{
-		return View::make('user.register');
-	});
+    Route::get('register', function()
+    {
+        return View::make('user.register');
+    });
 
-	Route::post('register', function()
-	{
-		$rules = array(...);
+    Route::post('register', function()
+    {
+        $rules = array(...);
 
-		$validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), $rules);
 
-		if ($validator->fails())
-		{
-			return Redirect::to('register')->withErrors($validator);
-		}
-	});
+        if ($validator->fails())
+        {
+            return Redirect::to('register')->withErrors($validator);
+        }
+    });
 
 Notez que lorsque la validation échoue, nous passons une instance de `Validator` à la redirection grâce à la méthode `withErrors`. Cette méthode va flasher les messages d'erreurs vers la session pour les rendre disponibles lors de la prochaine requête.
 
@@ -135,7 +136,7 @@ Cependant, remarquez que nous n'avons pas lié explicitement les messages d'erre
 
 Donc, après une redirection vous pouvez utilisez la variable `$errors` liée automatiquement dans vos vues :
 
-	<?php echo $errors->first('email'); ?>
+    <?php echo $errors->first('email'); ?>
 
 <a name="available-validation-rules"></a>
 ## Règles de validation disponibles
@@ -247,11 +248,11 @@ Le champ sous validation doit exister dans la base de données.
 
 **Usage basique de la règle exists**
 
-	'state' => 'exists:states'
+    'state' => 'exists:states'
 
 **Spécification d'une colonne particulière**
 
-	'state' => 'exists:states,abbreviation'
+    'state' => 'exists:states,abbreviation'
 
 Vous pouvez également spécifier plus de conditions qui seront ajoutés en tant que clause "WHERE" à la requête :
 
@@ -289,7 +290,7 @@ Le fichier sous validation doit avoir un type MIME qui correspond à une des ext
 
 **Utilisation basique du filtre mimes**
 
-	'photo' => 'mimes:jpeg,bmp,png'
+    'photo' => 'mimes:jpeg,bmp,png'
 
 <a name="rule-min"></a>
 #### min:_value_
@@ -350,15 +351,15 @@ Le champ sous validation doit être unique dans la table de la base de donnée. 
 
 **Usage basique de la règle**
 
-	'email' => 'unique:users'
+    'email' => 'unique:users'
 
 **Spécification de la colonne**
 
-	'email' => 'unique:users,email_address'
+    'email' => 'unique:users,email_address'
 
 **Force la règle à ignorer l'id donné**
 
-	'email' => 'unique:users,email_address,10'
+    'email' => 'unique:users,email_address,10'
 
 **Ajout additionnel des clauses Where**
 
@@ -373,6 +374,32 @@ Dans la règle ci-dessus, seules les lignes avec un `account_id` à `1` seront i
 
 Le champ sous validation doit être formé comme une URL.
 
+<a name="conditionally-adding-rules"></a>
+## Règles d'ajout conditionnelles
+
+Des fois vous pouvez avoir besoin de requêrir un champ donné seulement si un autre champ a un valeur plus grande que 100. Ou vous pouvez avoir besoin de deux champs qui ont une valeur donnée seulement quand un autre champ est présent. L'ajout de ces règles de validation n'est pas compliqué. Premièrement, créez une instance `Validator` avec vos _règles statiques_ qui ne changent jamais :
+
+    $v = Validator::make($data, array(
+        'email' => 'required|email',
+        'games' => 'required|numeric',
+    ));
+
+Partons du principe que nos web application est pour des collectionneurs de jeux. Si un collectionneur de jeu enregistre avec notre application et qu'il a plus de 100 jeux, nous voulons lui demander pourquoi il a autant de jeux. Par exemple, peut-être il a un magasin de re-vente de jeux vidéos, ou peut-être qu'il aime juste les collectionner. Pour ajouter cette règle, nous pouvons utiliser la méthode `sometimes` de l'instance `Validator`.
+
+    $v->sometimes('reason', 'required|max:500', function($input)
+    {
+        return $input->games >= 100;
+    });
+
+Le premier argument passé à la méthode `sometimes` est le nom du champ qui subit la validation contionnelle. Le second argument correspond aux règles que nous voulons ajouter. Si le `Closure` passé comme troisième argument retourne `true`, alors les règles seront ajoutées. Cette méthode permet aussi de créer des validations conditionnelles complexes. Vous pouvez même ajouter des validations conditionnelles pour plusieurs champs à la fois :
+
+    $v->sometimes(array('reason', 'cost'), 'required', function($input)
+    {
+        return $input->games >= 100;
+    });
+
+> **Note :** Le paramètre $input passé à votre `Closure` sera une instance de `Illuminate\Support\Fluent` et peut être utilisé comme un objet pour accéder à vos inputs et fichiers.
+
 <a name="custom-error-messages"></a>
 ## Messages d'erreur personnalisés
 
@@ -380,40 +407,41 @@ Si besoin, vous pouvez utiliser des messages d'erreurs personnalisés pour la va
 
 **Passage des messages à la méthode make**
 
-	$messages = array(
-		'required' => 'The :attribute field is required.',
-	);
+    $messages = array(
+        'required' => 'The :attribute field is required.',
+    );
 
-	$validator = Validator::make($input, $rules, $messages);
+    $validator = Validator::make($input, $rules, $messages);
 
 *Note:* Le joker `:attribute` sera remplacé par le nom du champ sous validation. Vous pouvez également utiliser d'autres jokers dans les messages de validation.
 
 **Autres jokers de validation**
 
-	$messages = array(
-		'same'    => ':attribute et :other doivent être identiques.',
-		'size'    => ':attribute doit faire :size.',
-		'between' => ':attribute doit être entre :min et :max.',
-		'in'      => ':attribute doit être une des valeurs suivantes : :values',
-	);
+    $messages = array(
+        'same'    => ':attribute et :other doivent être identiques.',
+        'size'    => ':attribute doit faire :size.',
+        'between' => ':attribute doit être entre :min et :max.',
+        'in'      => ':attribute doit être une des valeurs suivantes : :values',
+    );
 
 Parfois vous pourrez vouloir spécifier un message personnalisé uniquement pour un champ spécifique :
 
 **Spécification d'un message d'erreur personnalisé pour un attribut précis**
 
-	$messages = array(
-		'email.required' => 'Nous avons besoin de connaître votre adresse mel !',
-	);
+    $messages = array(
+        'email.required' => 'Nous avons besoin de connaître votre adresse mel !',
+    );
 
 Dans certains cas, vous pourriez vouloir spécifier vos messages d'erreurs personnalisés dans un fichier de langue plutôt que de les passer directement à `Validator`. Pour ce faire, ajoutez vos messages au tableau `custom` du fichier de langue `app/lang/xx/validation.php`.
 
+<a name="localization"></a>
 **Spécification d'un message d'erreur personnalisé dans un fichier de langue**
 
-	'custom' => array(
-		'email' => array(
-			'required' => 'Nous avons besoin de connaître votre adresse mel !',
-		),
-	),
+    'custom' => array(
+        'email' => array(
+            'required' => 'Nous avons besoin de connaître votre adresse mel !',
+        ),
+    ),
 
 <a name="custom-validation-rules"></a>
 ## Règles de validation personnalisées
@@ -422,10 +450,10 @@ Laravel fournit une variété de règles de validation utiles, cependant vous po
 
 **Enregistrement d'une règle personnalisée**
 
-	Validator::extend('foo', function($attribute, $value, $parameters)
-	{
-		return $value == 'foo';
-	});
+    Validator::extend('foo', function($attribute, $value, $parameters)
+    {
+        return $value == 'foo';
+    });
 
 > **Note:** Le nom de la règle passée à la méthode `extend` doit être en "snake_case".
 
@@ -441,29 +469,29 @@ Plutôt que d'utiliser des fonctions anonymes pour étendre le validateur, vous 
 
 **Extension de la classe Validator**
 
-	<?php
+    <?php
 
-	class CustomValidator extends Illuminate\Validation\Validator {
+    class CustomValidator extends Illuminate\Validation\Validator {
 
-		public function validateFoo($attribute, $value, $parameters)
-		{
-			return $value == 'foo';
-		}
+        public function validateFoo($attribute, $value, $parameters)
+        {
+            return $value == 'foo';
+        }
 
-	}
+    }
 
 Ensuite, vous devez enregistrer votre classe de validation personnalisée :
 
 **Enregistrement d'une nouvelle classe de validation**
 
-	Validator::resolver(function($translator, $data, $rules, $messages)
-	{
-		return new CustomValidator($translator, $data, $rules, $messages);
-	});
+    Validator::resolver(function($translator, $data, $rules, $messages)
+    {
+        return new CustomValidator($translator, $data, $rules, $messages);
+    });
 
 Lorsque vous créez une règle de validation personnalisée, vous pourriez avoir besoin de créer des jokers personnalisés pour les messages d'erreurs. Vous pouvez les créer en ajoutant une méthode `replaceXXX` au validateur.
 
-	protected function replaceFoo($message, $attribute, $rule, $parameters)
-	{
-		return str_replace(':foo', $parameters[0], $message);
-	}
+    protected function replaceFoo($message, $attribute, $rule, $parameters)
+    {
+        return str_replace(':foo', $parameters[0], $message);
+    }
