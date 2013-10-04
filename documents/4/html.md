@@ -10,6 +10,7 @@
 - [Listes de séléction](#drop-down-lists)
 - [Boutons](#buttons)
 - [Macros personnalisées](#custom-macros)
+- [Génération d'URL](#generating-urls)
 
 <a name="opening-a-form"></a>
 ## Ouverture d'un formulaire
@@ -176,3 +177,9 @@ Maintenant, vous pouvez l'appeler par son nom :
 **Appel d'une macro personnalisée**
 
     echo Form::myField();
+
+<a name="generating-urls"></a>
+
+## Génération d'URL
+
+Pour plus d'informations sur la génération d'URL, visitez la documentation sur les <a href="helpers#urls">Helpers</a>.
