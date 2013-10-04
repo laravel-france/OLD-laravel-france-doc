@@ -4,6 +4,7 @@
 - [Fichiers de langues](#language-files)
 - [Utilisation basique](#basic-usage)
 - [Plurialisation](#pluralization)
+- [Localisation de la validation](#validation)
 
 <a name="introduction"></a>
 ## Introduction
@@ -84,3 +85,8 @@ Ensuite, vous utiliserez la méthode `Lang::choice` pour retrouver cette ligne:
 Etant donné que le traducteur de Laravel utilise le composant Translation de Symfony, vous pouvez créer des règles de plurialisation très explicites facilement :
 
 	'apples' => '{0} Il n\'y en a pas|[1,19] Il y en a quelques une|[20,Inf] Il y en a beaucoup',
+
+<a name="validation"></a>
+## Localisation de la validation
+
+Pour la localisation des messages et erreurs de la validation, veuillez jetez un oeil sur la documentation de <a href="validation#localization">Validation</a>.

@@ -217,11 +217,11 @@ Si vous souhaitez simplement mettre à jour les timestamps d'un modèle, utilise
 
 Lors de la suppression douce d'un modèle, il n'est en fait pas vraiment supprimé de votre base de données. A la place, un timestamp `deleted_at` est défini sur la ligne. Pour activer la suppression douce sur un modèle, ajoutez la propriété `softDelete` à ce dernier :
 
-	class User extends Eloquent {
+    class User extends Eloquent {
 
-		protected $softDelete = true;
+        protected $softDelete = true;
 
-	}
+    }
 
 Pour ajouter une colonne `deleted_at` à votre table, vous pouvez utiliser la méthode `softDeletes` depuis une migration:
 
@@ -231,7 +231,7 @@ Maintenant, lorsque vous appellez la méthode `delete` sur le modèle, la colonn
 
 **Force l'affichage des lignes réputées supprimées**
 
-	$users = User::withTrashed()->where('account_id', 1)->get();
+    $users = User::withTrashed()->where('account_id', 1)->get();
 
 Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la méthode `onlyTrashed` :
 
@@ -239,23 +239,23 @@ Si vous souhaitez recevoir **uniquement** les lignes supprimées, utilisez la m�
 
 Pour annuler cette suppression, utilisez la méthode `restore` :
 
-	$user->restore();
+    $user->restore();
 
 Vous pouvez également utiliser la méthode `restore` sur une requête :
 
-	User::withTrashed()->where('account_id', 1)->restore();
+    User::withTrashed()->where('account_id', 1)->restore();
 
 La méthode `restore` peut également être utilisée sur une relation :
 
-	$user->posts()->restore();
+    $user->posts()->restore();
 
 Si vous souhaitez réellement supprimer une ligne de la base de données, vous pouvez utiliser la méthode `forceDelete` :
 
-	$user->forceDelete();
+    $user->forceDelete();
 
 La méthode `forceDelete` marche également sur les relations :
 
-	$user->posts()->forceDelete();
+    $user->posts()->forceDelete();
 
 Pour déterminer si un modèle donné a été supprimé de manière douce, vous pouvez utiliser la méthode `trashed` :
 
@@ -287,8 +287,8 @@ Si vous souhaitez personnaliser le format de vos timestamps, surchargez la méth
 
         protected function getDateFormat()
         {
-			return 'U';
-		}
+            return 'U';
+        }
 
     }
 
@@ -314,7 +314,7 @@ Les cadres vous permettent de réutiliser facilement des logiques de requêtes d
 
 **Utilisation d'un cadre de requête**
 
-	$users = User::popular()->women()->orderBy('created_at')->get();
+    $users = User::popular()->women()->orderBy('created_at')->get();
 
 **Cadres dynamiques**
 
@@ -555,35 +555,35 @@ Lorsque vous accédez aux lignes d'un modèle, vous pourriez vouloir limiter vos
 
 **Vérification d'une relation lors de la sélection**
 
-	$posts = Post::has('comments')->get();
+    $posts = Post::has('comments')->get();
 
 Vous pouvez également spécifier un opérateur et un nombre :
 
-	$posts = Post::has('comments', '>=', 3)->get();
+    $posts = Post::has('comments', '>=', 3)->get();
 
 <a name="dynamic-properties"></a>
 ### Propriétés dynamiques
 
 Eloquent vous autorise à accéder à vos relations par des propriétés dynamiques. Eloquent va automatiquement charger la relation pour vous, et est assez malin pour savoir quand appeler la méthode `get` (pour les relations one-to-many) ou `first` (pour les relations one-to-one). La relation sera alors accessible par une propriété dynamique qui porte le même nom que la relation. Par exemple, avec le modèle `$phone`:
 
-	class Phone extends Eloquent {
+    class Phone extends Eloquent {
 
-		public function user()
-		{
-			return $this->belongsTo('User');
-		}
+        public function user()
+        {
+            return $this->belongsTo('User');
+        }
 
-	}
+    }
 
-	$phone = Phone::find(1);
+    $phone = Phone::find(1);
 
 Plutôt que d'afficher l'adresse e-mail de l'utilisateur ainsi :
 
-	echo $phone->user()->first()->email;
+    echo $phone->user()->first()->email;
 
 L'appel peut se faire de cette manière :
 
-	echo $phone->user->email;
+    echo $phone->user->email;
 
 <a name="eager-loading"></a>
 ## Chargements liés
@@ -796,33 +796,39 @@ Si une collection est castée en une chaîne, alors sa représentation JSON sera
 
 Les collections Eloquent contiennent également quelques méthodes utiles pour boucler et filtrer sur les objets qu'elle contient :
 
-**Bouclage et filtrage de collections**
+**Bouclage de collections**
 
     $roles = $user->roles->each(function($role)
     {
 
     });
 
-    $roles = $user->roles->filter(function($role)
-    {
+**Filtrage de collections**
 
+La fonction fournie sera utilisée comme retour pour <a href="http://php.net/manual/en/function.array-filter.php">array_filter()</a>
+
+    $users = $user->filter(function($users)
+    {
+        if ($user->isAdmin()) {
+            return $user;
+        }
     });
 
 **Applique une fonction sur chaque object d'une collection**
 
-	$roles = User::find(1)->roles;
+    $roles = User::find(1)->roles;
 
-	$roles->each(function($role)
-	{
-		//
-	});
+    $roles->each(function($role)
+    {
+
+    });
 
 **Tri une collection par une valeur**
 
-	$roles = $roles->sortBy(function($role)
-	{
-		return $role->created_at;
-	});
+    $roles = $roles->sortBy(function($role)
+    {
+        return $role->created_at;
+    });
 
 Parfois, vous pourriez vouloir retourner une collection personnalisée avec vos propres méthodes ajoutées. Vous devez spécifier cela dans votre modèle Eloquent en surchargeant la méthode `newCollection` :
 
@@ -987,7 +993,7 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
 
 Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
 
-	protected $visible = array('first_name', 'last_name');
+    protected $visible = array('first_name', 'last_name');
 
 <a name="array-appends"></a>
 Occassionnellement, vous pouvez avoir besoin d'ajouter un tableau d'attributs qui ne correspondent pas à un colonne dans votre base de données. Pour ce faire, vous devez simplement définir un accesseur pour la valeur :
