@@ -42,7 +42,7 @@ De multiples règles peuvent être délimitées en utilisant le caractère "pipe
         array(
             'name' => 'required',
             'password' => 'required|min:8',
-            'email' => 'required|email|unique'
+            'email' => 'required|email|unique:users'
         )
     );
 
