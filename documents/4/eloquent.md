@@ -807,7 +807,7 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 
 La fonction fournie sera utilisée comme retour pour <a href="http://php.net/manual/en/function.array-filter.php">array_filter()</a>
 
-    $users = $user->filter(function($users)
+    $users = $user->filter(function($user)
     {
         if ($user->isAdmin()) {
             return $user;
