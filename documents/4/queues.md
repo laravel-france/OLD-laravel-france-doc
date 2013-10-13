@@ -113,11 +113,11 @@ Laravel fournit une commande Artisan permettant d'activer l'exécution des tâch
 
 **Démarrer l'exécution de la file de travaux**
 
-	php artisan queue:listen
+    php artisan queue:listen
 
 Vous pouvez aussi indiquer le gestionnaire que vous souhaitez démarrer :
 
-	php artisan queue:listen connection
+    php artisan queue:listen connection
 
 Notez qu'une fois le gestionnaire démarré, il reste actif jusqu'à ce qu'il soit stoppé manuellement. Utilisez un moniteur de tâches comme [Supervisor](http://supervisord.org/) pour vous assurer que le gestionnaire est bien arrêté.
 
@@ -125,13 +125,17 @@ Vous pouvez également définir le temps maximum en secondes qu'une tâche est a
 
 **Spécification d'un délai maximum**
 
-  php artisan queue:listen --timeout=60
+    php artisan queue:listen --timeout=60
+
+En plus, vous pouvez spécifier le nombre de secondes d'attente avant de la recherche pour les nouveaux jobs :
+
+    php artisan queue:listen --sleep=5
 
 Pour exécuter uniquement la première tâche de la file d'attente, utilisez la commande `queue:work` :
 
 **Exécuter la première tâche de la file d'attente**
 
-	php artisan queue:work
+    php artisan queue:work
 
 <a name="push-queues"></a>
 ## Queues en mode Push
