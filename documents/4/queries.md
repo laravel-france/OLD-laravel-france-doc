@@ -17,7 +17,7 @@
 
 Le Query Builder (Constructeur de requête) de Laravel fournit une interface pratique et fluide pour créer et exécuter des requêtes pour vos bases de données. Il peut être utilisé avec la plupart des opérations sur votre base de données dans votre application, et fonctionne sur toutes les bases de données supportées.
 
-> **Note:** Le Query builder de Laravel utilise la méthode de bind de PDO pour protéger votre application contre les injections SQL. Il n'y a donc pas besoin de faire des traitements sur les données avant de les passer au Query Builder. Les seules méthodes qui ne sont pas protégées sont `groupBy` and `orderBy`. Vous ne devriez pas passer directement les données entrées par un utilisateur à ces fonctions.
+> **Note:** Le Query builder de Laravel utilise la méthode de bind de PDO pour protéger votre application contre les injections SQL. Il n'y a donc pas besoin de faire des traitements sur les données avant de les passer au Query Builder.
 
 <a name="selects"></a>
 ## Sélection
