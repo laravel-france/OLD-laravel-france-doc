@@ -12,8 +12,8 @@
     - [Les erreurs et la journalisation](/docs/errors)
 - Continuons la découverte de Laravel
     - [La gestion du cache](/docs/cache)
-    - [Les événements](/docs/events)
     - [Étendre le Framework](/docs/extending)
+    - [Les événements](/docs/events)
     - [Les conteneurs de dépendances](/docs/ioc)
     - [La régionalisation](/docs/localization)
     - [La messagerie](/docs/mail)
