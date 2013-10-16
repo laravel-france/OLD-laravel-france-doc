@@ -74,9 +74,15 @@ Parfois, quand vous n'êtes pas sûr qu'une section a été définie, vous pouve
 
 **Affichage de données**
 
-	Hello, {{ $name }}.
+    Hello, {{ $name }}.
 
-	The current UNIX timestamp is {{ time() }}.
+    The current UNIX timestamp is {{ time() }}.
+
+Si vous avez besoin d'afficher un texte brut entre accolades et sans traitement par Blade, vous devez préfixer les accolades de votre texte avec un symbole `@` :
+
+**Affichage de textes bruts avec accollades**
+
+    @{{ Ceci ne sera pas traité par Blade }}
 
 Bien sûr, toutes les données utilisateurs doivent être échappées ou purifiées. Pour échapper la sortie, utilisez trois accollades :
 
