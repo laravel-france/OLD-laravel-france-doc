@@ -53,6 +53,12 @@ Les cookies créés par Laravel sont cryptés et signés avec un code d'authenti
 
 	$response->withCookie(Cookie::make('name', 'value', $minutes));
 
+**Mise en queue d'un cookie pour la prochaine réponse**
+
+Si vous voulez définir un cookie avant qu'une réponse ne soit créée, utilisez la méthode `Cookie::queue()`. Le cookie sera automatiquement attaché à la réponse finale de votre application.
+
+    Cookie::queue($name, $value, $minutes);
+
 **Crée un cookie permanent**
 
 	$cookie = Cookie::forever('name', 'value');
