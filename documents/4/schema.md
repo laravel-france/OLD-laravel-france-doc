@@ -152,6 +152,10 @@ Commande  | Description
 `$table->unique('email');`  |  Ajout d'un index d'unicité
 `$table->index('state');`  |  Ajout d'un index basique
 
+> Note : le nom d'un index est formé par l'ensemble des champs le composant. Afin d'éviter des erreurs de noms d'index trop longs, vous pouvez définir le nom de l'index que vous ajoutez, en le passant comme second argument.
+
+    $table->primary(array('user_id', 'news_id'), 'user_news');
+
 <a name="foreign-keys"></a>
 ## Clés étrangères
 
