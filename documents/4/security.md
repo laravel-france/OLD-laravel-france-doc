@@ -29,15 +29,13 @@ La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 
 **Vérification d'un mot de passe contre son équivalent crypté**
 
-	if (Hash::check('secret', $hashedPassword))
-	{
-		// The passwords match...
-	}
+    if (Hash::check('secret', $hashedPassword)) {
+        // The passwords match...
+    }
 
 **Vérifie si un mot de passe a besoin d'être recrypté**
 
-    if (Hash::needsRehash($hashed))
-    {
+    if (Hash::needsRehash($hashed)) {
         $hashed = Hash::make('secret');
     }
 
@@ -46,8 +44,7 @@ La classe Laravel `Hash` fournit un cryptage sécurisé Bcrypt :
 
 Pour connecter un utilisateur dans votre application, vous devez utiliser la méthode `Auth::attempt`.
 
-	if (Auth::attempt(array('email' => $email, 'password' => $password))))
-	{
+	if (Auth::attempt(array('email' => $email, 'password' => $password)))) {
 		return Redirect::intended('dashboard');
 	}
 
@@ -59,17 +56,15 @@ Pour déterminer si un utilisateur est déjà connecté à votre application, vo
 
 **Détermine si un utilisateur est identifié**
 
-  if (Auth::check())
-  {
-    // The user is logged in...
-  }
+    if (Auth::check()) {
+        // The user is logged in...
+    }
 
 Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre application, vous devez passer `true` en tant que second argument à la méthode `attempt`, cela gardera l'utilisateur connecté indéfiniement (ou jusqu'à ce qu'il se déconnecte) :
 
 **Identifier un utilisateur et se souvenir de lui**
 
-	if (Auth::attempt(array('email' => $email, 'password' => $password), true))
-	{
+	if (Auth::attempt(array('email' => $email, 'password' => $password), true)) {
 		// The user is being remembered...
 	}
 
@@ -77,8 +72,7 @@ Si vous souhaitez fournir la fonctionnalité "Se souvenir de moi" dans votre app
 
 Vous pouvez ajouter des conditions particulières à la requête d'identification :
 
-    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1)))
-    {
+    if (Auth::attempt(array('email' => $email, 'password' => $password, 'active' => 1))) {
         // The user is active, not suspended, and exists.
     }
 
@@ -86,18 +80,17 @@ Une fois qu'un utilisateur est connecté, vous pouvez accéder à son modèle/en
 
 **Accès à l'utilisateur connecté**
 
-	$email = Auth::user()->email;
+    $email = Auth::user()->email;
 
 Pour connecter simplement un utilisateur dans votre application en utilisant son Id, utilisez la méthode `loginUsingId` :
 
-  Auth::loginUsingId(1);
+    Auth::loginUsingId(1);
 
 La méthode `validate` vous permet de valider que les identifiants d'un utilisateur sont corrects sans le connecter à l'application :
 
 **Valide les identifiants d'un utilisateur sans le connecter**
 
-	if (Auth::validate($credentials))
-	{
+	if (Auth::validate($credentials)) {
 		//
 	}
 
@@ -105,8 +98,7 @@ Vous pouvez également utiliser la méthode `once` pour connecter un utilisateur
 
 **Connecte un utilisateur pour une seule requête**
 
-	if (Auth::once($credentials))
-	{
+	if (Auth::once($credentials)) {
 		//
 	}
 
