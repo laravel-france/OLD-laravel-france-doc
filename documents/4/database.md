@@ -81,6 +81,6 @@ Par défaut, Laravel tient un journal de log de toutes les requêtes qui ont ét
 
     DB::connection()->disableQueryLog();
 
-Pour récupérer un tableau des requêtes exécutées, vous pouvez utiliser la méthode `getQueryLog` :
+Pour récupérer les requêtes exécutées dans un tableau, vous pouvez utiliser la méthode `getQueryLog` :
  
     $queries = DB::getQueryLog();
