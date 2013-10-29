@@ -151,6 +151,14 @@ Cela vous permet de construire des formulaires plus rapidement car cela lit les 
         'Dogs' => array('spaniel' => 'Spaniel'),
     ));
 
+**Génération d'une liste déroulante avec une liste de nombres**
+
+    echo Form::selectRange('number', 10, 20);
+
+**Génération d'une liste déroulante avec les noms des mois**
+
+    echo Form::selectMonth('month');
+
 <a name="buttons"></a>
 ## Boutons
 
@@ -179,7 +187,6 @@ Maintenant, vous pouvez l'appeler par son nom :
     echo Form::myField();
 
 <a name="generating-urls"></a>
-
 ## Génération d'URL
 
-Pour plus d'informations sur la génération d'URL, visitez la documentation sur les <a href="helpers#urls">Helpers</a>.
+Pour plus d'informations sur la génération d'URL, visitez la documentation sur les [helpers](/docs/helpers#urls).

@@ -25,7 +25,9 @@ Vous pouvez aussi paginer un modèle [Eloquent](/docs/eloquent) :
 
 **Paginer un modèle Eloquent**
 
-	$users = User::where('votes', '>', 100)->paginate(15);
+    $allUsers = User::paginate(15);
+
+	$someUsers = User::where('votes', '>', 100)->paginate(15);
 
 L'argument transmis à la méthode `paginate` est le nombre d'éléments à afficher par page. Vous pouvez placer les éléments à afficher dans une vue et créer les liens de pagination à l'aide de la méthode `links` :
 

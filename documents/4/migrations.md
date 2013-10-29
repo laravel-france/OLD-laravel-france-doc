@@ -45,7 +45,7 @@ Les options `--table` et `--create` peuvent être également utilisées pour ind
 
 	php artisan migrate --package=vendor/package
 
-> **Note:** Si vous recevez une erreur "class not found" lors de l'exécution des migrations, essayez de lancer la commande `composer update`.
+> **Note:** Si vous recevez une erreur "class not found" lors de l'exécution des migrations, essayez de lancer la commande `composer dump-autoload`.
 
 <a name="rolling-back-migrations"></a>
 ## Annulation de migrations
@@ -95,6 +95,10 @@ Laravel fournit également une manière simple de peupler votre base de données
 Pour peupler votre base de données, vous pouvez utiliser la commande `db:seed` avec Artisan en ligne de commande :
 
 	php artisan db:seed
+
+Par défaut, la commande `db:seed` lance la classe `DatabaseSeeder` qui peut être utilisée pour appeler les autres classes de seed. Cependant, vous pouvez utiliser l'option `--class` pour spécifier une classe seed :
+
+    php artisan db:seed --class=UserTableSeeder
 
 Vous pouvez également peupler votre base de données en utilisant la commande `migrate:refresh`, qui va également annuler les migrations et les relancer :
 

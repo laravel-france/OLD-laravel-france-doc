@@ -47,13 +47,14 @@ Ensuite, nous devons indiquer au framework comment déterminer sur quel environn
 		'local' => array('your-machine-name'),
 	));
 
+Dans cet exemple, 'local' est le nom de l'environnement, et 'your-machine-name' est le nom d'hôte de votre serveur web. Dans Linux et Mac OS, vous pouvez déterminer votre nom d'hôte en ouvrant un terminal et en tapant la commande `hostname`.
+
 Vous pouvez également passer une fonction anonyme à la méthode `detectEnvironment`, vous permettant d'implémenter votre propre détection d'environnement :
 
 	$env = $app->detectEnvironment(function()
 	{
 		return $_SERVER['MY_LARAVEL_ENV'];
 	});
-
 
 Vous pouvez accéder à l'environnement courant de l'application par la méthode `environment` :
 

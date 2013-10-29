@@ -4,6 +4,7 @@
 - [Exécuter des requêtes](#running-queries)
 - [Transaction sur la base de données](#database-transactions)
 - [Accéder aux connexions](#accessing-connections)
+- [Log de requête](#query-logging)
 
 <a name="configuration"></a>
 ## Configuration
@@ -72,3 +73,14 @@ Lorsque plusieurs connexions sont ouvertes, vous pouvez accéder à la connexion
 Parfois vous pourriez avoir besoin de vous reconnecter à une base de données : 
 
     DB::reconnect('foo');
+
+<a name="query-logging"></a>
+## Log de requête
+
+Par défaut, Laravel tient un journal de log de toutes les requêtes qui ont été lancées pour la requête courante. Toutefois, dans certains cas, comme lors de l'insertion d'un grand nombre de lignes, cela peut entrainer une augmentation excessive de l'utilisation de la mémoire par l'application. Pour désactiver le journal de log, vous pouvez utiliser la méthode `disableQueryLog` :
+
+    DB::connection()->disableQueryLog();
+
+Pour récupérer un tableau des requêtes exécutées, vous pouvez utiliser la méthode `getQueryLog` :
+ 
+    $queries = DB::getQueryLog();

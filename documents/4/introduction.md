@@ -26,6 +26,7 @@ Par ailleurs, jetez un coup d'oeil aux [livres sur Laravel](http://wiki.laravel.
 - [Laravel: From Apprentice To Artisan](https://leanpub.com/laravel) par Taylor Otwell
 - [Implementing Laravel](https://leanpub.com/implementinglaravel) par Chris Fidao
 - [Getting Stuff Done With Laravel 4](https://leanpub.com/gettingstuffdonelaravel) par Chuck Heintzelman
+- [Laravel 4 Cookbook](https://leanpub.com/laravel4cookbook) par Christopher Pitt
 
 <a name="development-team"></a>
 ## Equipe de développement

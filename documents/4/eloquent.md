@@ -154,6 +154,8 @@ Pour créer un nouvel enregistrement dans la base de données pour un modèle, c
 
 Vous pouvez également utiliser la méthode `create` pour sauvegarder un modèle en une seule ligne. L'instance du modèle inséré sera retournée par la méthode. Cependant avant de faire cela, vous devrez spécifier l'attribut `fillable` ou `guarded` sur le modèle, car tous les modèles Eloquent sont protégés contre l'assignement de masse.
 
+Après avoir sauvé ou créé un nouveau modèle qui utilise un ID auto-incrémental, vous pouvez retrouver l'ID en accédant à l'attribut `id` de l'objet.
+
 **Mise en place de l'attribut guarded sur le modèle**
 
     class User extends Eloquent {
@@ -585,6 +587,8 @@ L'appel peut se faire de cette manière :
 
     echo $phone->user->email;
 
+ > **Note:** les relations retournant plusieurs résultats retourneront une instance de la classe `Illuminate\Database\Eloquent\Collection`.
+
 <a name="eager-loading"></a>
 ## Chargements liés
 
@@ -805,7 +809,7 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 
 **Filtrage de collections**
 
-La fonction fournie sera utilisée comme retour pour <a href="http://php.net/manual/en/function.array-filter.php">array_filter()</a>
+Lors du filtrage de collections, le retour fourni sera utilisé comme retour pour [array_filter](http://php.net/manual/en/function.array-filter.php).
 
     $users = $user->filter(function($user)
     {
@@ -813,6 +817,8 @@ La fonction fournie sera utilisée comme retour pour <a href="http://php.net/man
             return $user;
         }
     });
+
+ > **Note:** lors du filtrage d'une collection et la conversion en JSON, essayez d'appeler les `valeurs` de la première fonction pour remettre à zéro les clés du tableau.
 
 **Applique une fonction sur chaque object d'une collection**
 

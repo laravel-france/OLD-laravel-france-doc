@@ -44,6 +44,8 @@ Pour écouter une erreur fatale PHP, vous devez utiliser la méthode `App::fatal
         //
     });
 
+Si vous avez plusieurs gestionnaires d'exception, ils doivent être définis du plus généric au plus spécifique. Ainsi, par exemple, un gestionnaire qui gère toutes les exceptions de type `Exception` doit être défini avant un type d'exception personnalisée comme `Illuminate\Encryption\DecryptException`.
+
 <a name="http-exceptions"></a>
 ## Exceptions HTTP
 

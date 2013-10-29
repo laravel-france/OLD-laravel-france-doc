@@ -49,11 +49,12 @@ La méthode `array_except` supprime la paire clé/valeur donnée du tableau .
 
 La méthode `array_fetch` retourne un tableau aplati qui contient les éléments imbriqués sélectionnés.
 
-    $array = array(array('name' => 'Taylor'), array('name' => 'Dayle'));
+    $array = array(
+        array('developer' => array('name' => 'Taylor')),
+        array('developer' => array('name' => 'Dayle')),
+    );
 
-    var_dump(array_fetch($array, 'name'));
-
-    // array('Taylor', 'Dayle');
+    $array = array_fetch($array, 'developer.name');
 
 ### array_first
 

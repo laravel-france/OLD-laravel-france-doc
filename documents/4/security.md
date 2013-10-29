@@ -252,7 +252,11 @@ Une fois de plus, remarquez que nous utilisons `Session` pour afficher les erreu
 
 	Route::post('password/reset/{token}', function()
 	{
-		$credentials = array('email' => Input::get('email'));
+		$credentials = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+            'password_confirmation' => Input::get('password_confirmation')
+        );
 
 		return Password::reset($credentials, function($user, $password)
 		{

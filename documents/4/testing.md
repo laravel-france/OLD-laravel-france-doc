@@ -105,7 +105,7 @@ Nous pouvons mocker l'appel à la classe `Event` en utilisant la méthode `shoul
 
     public function testGetIndex()
     {
-        Event::shouldReceive('fire')->once()->with(array('name' => 'Dayle'));
+        Event::shouldReceive('fire')->once()->with('foo', array('name' => 'Dayle'));
 
         $this->call('GET', '/');
     }

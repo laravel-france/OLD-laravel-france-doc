@@ -63,6 +63,7 @@ Commande  | Description
 `$table->bigInteger('votes');`  |  Equivalent de BIGINT
 `$table->smallInteger('votes');`  |  Equivalent de SMALLINT
 `$table->float('amount');`  |  Equivalent de FLOAT
+`$table->double('column', 15, 8);`  |  DOUBLE equivalent with precision
 `$table->decimal('amount', 5, 2);`  |  Equivalent de DECIMAL avec une précision et une échelle
 `$table->boolean('confirmed');`  |  Equivalent de BOOLEAN
 `$table->date('created_at');`  |  Equivalent de DATE

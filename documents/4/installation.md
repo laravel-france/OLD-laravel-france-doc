@@ -35,6 +35,8 @@ Le framework Laravel a quelques prérequis système :
 - PHP >= 5.3.7
 - L'extension PHP MCrypt
 
+ > Quant à PHP 5.5, certaines distributions d'OS peuvent requérir l'installation manuelle de l'extension PHP JSON. Pour Ubuntu, la commande est `apt-get install php5-json`.
+
 <a name="configuration"></a>
 ## Configuration
 

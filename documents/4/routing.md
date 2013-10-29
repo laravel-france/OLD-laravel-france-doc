@@ -116,6 +116,10 @@ Si une réponse est retournée par un filtre, cette réponse sera considérée c
 		return 'You are over 200 years old!';
 	}));
 
+**Attachement d'un filtre à une action sur un contrôleur**
+
+    Route::get('user', array('before' => 'old', 'uses' => 'UserController@showProfile'));
+
 **Attachement de plusieurs filtres à une route**
 
 	Route::get('user', array('before' => 'auth|old', function()

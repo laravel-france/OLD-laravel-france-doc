@@ -73,6 +73,14 @@ Lors de la création d'un package avec `workbench`, la commande `boot` contient 
 
 Cette méthode autorise Laravel à connaitre comment charger correctement les vues, la configuration, et les autres ressources dans votre application. En général, il ne doit pas y avoir besoin de changer cette ligne de code, étant donné qu'elle met en place le package en utilisant les conventions.
 
+Par défaut, après l'enregistrement d'un package, ces resources seront disponibles en utilisant le terme "package" de `vendor/package`. Cependant, vous pouvez passer un second argument dans la méthode `package` pour remplacer ce comportement. Par exemple :
+
+    // Passer un espace de nom personnalisé à la méthode du package
+    $this->package('vendor/package', 'custom-namespace');
+
+    // Les resources du package sont maintenant accessibles via custom-namespace
+    $view = View::make('custom-namespace::foo');
+
 Il n'y a pas d'"emplacement par défaut" pour les classes de fournisseurs de services. Vous êtes libre de les mettre où vous voulez, même de les organiser dans un espace de noms `Providers` de votre répertoire `app`. Le fichier peut être placé n'importe où, tant que les [outils d'auto-chargement](http://getcomposer.org/doc/01-basic-usage.md#autoloading) de Composer savent comment charger la classe.
 
 <a name="package-conventions"></a>
