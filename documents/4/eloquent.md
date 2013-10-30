@@ -81,8 +81,7 @@ Pour enregistrer le gestionnaire d'erreur, écoutez auprès d'un `ModelNotFoundE
 
     $users = User::where('votes', '>', 100)->take(10)->get();
 
-    foreach ($users as $user)
-    {
+    foreach ($users as $user) {
         var_dump($user->name);
     }
 
@@ -162,7 +161,7 @@ Après avoir sauvé ou créé un nouveau modèle qui utilise un ID auto-incréme
 
         protected $guarded = array('id', 'account_id');
 
-      }
+    }
 
 **Création d'un utilisateur en utilisant la méthode create**
 
@@ -261,8 +260,7 @@ La méthode `forceDelete` marche également sur les relations :
 
 Pour déterminer si un modèle donné a été supprimé de manière douce, vous pouvez utiliser la méthode `trashed` :
 
-    if ($user->trashed())
-    {
+    if ($user->trashed()) {
         //
     }
 
@@ -515,8 +513,7 @@ Maintenant, nous pouvons récupérer les photos soit de notre staff, soit d'une 
 
     $staff = Staff::find(1);
 
-    foreach ($staff->photos as $photo)
-    {
+    foreach ($staff->photos as $photo) {
         //
     }
 
@@ -605,8 +602,7 @@ Les chargements liés (eager loading) existent pour éviter le problème des req
 
 Maintenant considérez le code suivant :
 
-    foreach (Book::all() as $book)
-    {
+    foreach (Book::all() as $book) {
         echo $book->author->name;
     }
 
@@ -614,8 +610,7 @@ La boucle exécutera une requête pour récupérer tous les livres de la table, 
 
 Heureusement, nous pouvons utiliser les chargements liés pour réduire drastiquement le nombre de requêtes. Les relations qui doivent être chargées doivent être précisées avec la méthode `with` :
 
-    foreach (Book::with('author')->get() as $book)
-    {
+    foreach (Book::with('author')->get() as $book) {
         echo $book->author->name;
     }
 
@@ -747,8 +742,7 @@ Comme vous l'avez déjà appris, le travail avec les relations plusieurs-vers-pl
 
     $user = User::find(1);
 
-    foreach ($user->roles as $role)
-    {
+    foreach ($user->roles as $role) {
         echo $role->pivot->created_at;
     }
 
@@ -783,8 +777,7 @@ Par exemple, nous pouvons déterminer si une liste de résultats contient une cl
 
     $roles = User::find(1)->roles;
 
-    if ($roles->contains(2))
-    {
+    if ($roles->contains(2)) {
         //
     }
 
@@ -898,7 +891,7 @@ Pour désactiver totalement la mutation des dates, retournez simplement un table
 
     public function getDates()
     {
-      return array();
+        return array();
     }
 
 <a name="model-events"></a>
@@ -923,11 +916,11 @@ Les modèles Eloquent contiennent également une méthode static `boot`, qui peu
 
     class User extends Eloquent {
 
-      public static function boot()
-      {
-        parent::boot();
+        public static function boot()
+        {
+            parent::boot();
 
-        // Setup event bindings...
+            // Setup event bindings...
       }
 
     }
@@ -996,6 +989,8 @@ Parfois vous pourriez souhaiter que certains attributs ne soient pas inclus dans
         protected $hidden = array('password');
 
     }
+
+ > **Note:** Quand vous cachez des relations, utilisez le nom de la **méthode** de la relation, pas le nom d'accession dynamique.
 
 Alternativement, vous pouvez utiliser la propriété `visible` pour définir une liste blanche :
 

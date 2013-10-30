@@ -18,31 +18,31 @@ La plupart des routes de votre application seront définies dans le fichier `app
 
 **Route GET basique**
 
-	Route::get('/', function()
-	{
-		return 'Hello World';
-	});
+    Route::get('/', function()
+    {
+        return 'Hello World';
+    });
 
 **Route POST basique**
 
-	Route::post('foo/bar', function()
-	{
-		return 'Hello World';
-	});
+    Route::post('foo/bar', function()
+    {
+        return 'Hello World';
+    });
 
 **Enregistrement d'une route répondant à tous les verbes HTTP**
 
-	Route::any('foo', function()
-	{
-		return 'Hello World';
-	});
+    Route::any('foo', function()
+    {
+        return 'Hello World';
+    });
 
 **Force une route à utiliser HTTPS**
 
-	Route::get('foo', array('https', function()
-	{
-		return 'Must be over HTTPS';
-	}));
+    Route::get('foo', array('https', function()
+    {
+        return 'Must be over HTTPS';
+    }));
 
 Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire utilisez la méthode `URL::to` :
 
@@ -51,38 +51,38 @@ Vous aurez souvent besoin de générer des URLs vers vos routes, pour ce faire u
 <a name="route-parameters"></a>
 ## Paramètres de routes
 
-	Route::get('user/{id}', function($id)
-	{
-		return 'User '.$id;
-	});
+    Route::get('user/{id}', function($id)
+    {
+        return 'User '.$id;
+    });
 
 **Paramètre optionnel de routes**
 
-	Route::get('user/{name?}', function($name = null)
-	{
-		return $name;
-	});
+    Route::get('user/{name?}', function($name = null)
+    {
+        return $name;
+    });
 
 **Paramètre optionnel de routes avec une valeur par défaut**
 
-	Route::get('user/{name?}', function($name = 'John')
-	{
-		return $name;
-	});
+    Route::get('user/{name?}', function($name = 'John')
+    {
+        return $name;
+    });
 
 **Routes avec paramètre contraintes par une expression régulière**
 
-	Route::get('user/{name}', function($name)
-	{
-		//
-	})
-	->where('name', '[A-Za-z]+');
+    Route::get('user/{name}', function($name)
+    {
+        //
+    })
+    ->where('name', '[A-Za-z]+');
 
-	Route::get('user/{id}', function($id)
-	{
-		//
-	})
-	->where('id', '[0-9]+');
+    Route::get('user/{id}', function($id)
+    {
+        //
+    })
+    ->where('id', '[0-9]+');
 
 Bien sûr, vous pouvez passer un tableau de contraintes quand cela est nécessaire :
 
@@ -92,6 +92,15 @@ Bien sûr, vous pouvez passer un tableau de contraintes quand cela est nécessai
     })
     ->where(array('id' => '[0-9]+', 'name' => '[a-z]+'))
 
+Si vous voulez un paramètre de route pour toujours être contraint par une expression régulière donnée, vous pouvez utiliser la méthode `pattern` :
+
+    Route::pattern('id', '[0-9]+');
+
+    Route::get('user/{id}', function($id)
+    {
+        // Only called if {id} is numeric.
+    });
+
 <a name="route-filters"></a>
 ## Filtres de routes
 
@@ -99,22 +108,21 @@ Les filtres de routes fournissent une manière simple de limiter l'accès à cer
 
 **Définition d'un filtre de route**
 
-	Route::filter('old', function()
-	{
-		if (Input::get('age') < 200)
-		{
-			return Redirect::to('home');
-		}
-	});
+    Route::filter('old', function()
+    {
+        if (Input::get('age') < 200) {
+            return Redirect::to('home');
+        }
+    });
 
 Si une réponse est retournée par un filtre, cette réponse sera considérée comme la réponse de la requête et la route ne sera pas exécutée, et les filtres `after` seront annulés également.
 
 **Attachement d'un filtre à une route**
 
-	Route::get('user', array('before' => 'old', function()
-	{
-		return 'You are over 200 years old!';
-	}));
+    Route::get('user', array('before' => 'old', function()
+    {
+        return 'You are over 200 years old!';
+    }));
 
 **Attachement d'un filtre à une action sur un contrôleur**
 
@@ -122,22 +130,22 @@ Si une réponse est retournée par un filtre, cette réponse sera considérée c
 
 **Attachement de plusieurs filtres à une route**
 
-	Route::get('user', array('before' => 'auth|old', function()
-	{
-		return 'You are authenticated and over 200 years old!';
-	}));
+    Route::get('user', array('before' => 'auth|old', function()
+    {
+        return 'You are authenticated and over 200 years old!';
+    }));
 
 **Spécification des paramètres de filtres**
 
-	Route::filter('age', function($route, $request, $value)
-	{
-		//
-	});
+    Route::filter('age', function($route, $request, $value)
+    {
+        //
+    });
 
-	Route::get('user', array('before' => 'age:200', function()
-	{
-		return 'Hello World';
-	}));
+    Route::get('user', array('before' => 'age:200', function()
+    {
+        return 'Hello World';
+    }));
 
 Les filtres 'after' reçoivent une `$response` en tant que troisième argument du filtre :
 
@@ -150,12 +158,12 @@ Les filtres 'after' reçoivent une `$response` en tant que troisième argument d
 
 Vous pouvez aussi spécifier qu'un filtre s'applique sur un jeu entier de routes en se basant sur leurs URIs.
 
-	Route::filter('admin', function()
-	{
-		//
-	});
+    Route::filter('admin', function()
+    {
+        //
+    });
 
-	Route::when('admin/*', 'admin');
+    Route::when('admin/*', 'admin');
 
 Dans l'exemple ci-dessus, le filtre `admin` s'applique sur tous les routes qui commencent par `admin/`. L'étoile est utilisée en tant que joker, et correspond à n'importe quelle combinaison de caractères.
 
@@ -169,28 +177,28 @@ Pour du filtrage avancé, vous pouvez utiliser une classe plutôt qu'une fonctio
 
 **Définition d'une classe de filtre**
 
-	class FooFilter {
+    class FooFilter {
 
-		public function filter()
-		{
-			// Filter logic...
-		}
+        public function filter()
+        {
+            // Filter logic...
+        }
 
-	}
+    }
 
 **Enregistrement d'un filtre basé sur une classe**
 
-	Route::filter('foo', 'FooFilter');
+    Route::filter('foo', 'FooFilter');
 
 <a name="named-routes"></a>
 ## Routes nommées
 
 Les routes nommées rendent agréable le référencement d'une route lors de la génération d'un lien ou d'une redirection. Pour spécifier un nom à une route, faites de la manière suivante :
 
-	Route::get('user/profile', array('as' => 'profile', function()
-	{
-		//
-	}));
+    Route::get('user/profile', array('as' => 'profile', function()
+    {
+        //
+    }));
 
 Vous pouvez également spécifier un nom de route pour les actions de contrôleurs :
 
@@ -198,9 +206,9 @@ Vous pouvez également spécifier un nom de route pour les actions de contrôleu
 
 Mantenant, vous pouvez utiliser le nom de la route lorsque vous générez une URL ou redirigez l'utilisateur :
 
-	$url = URL::route('profile');
+    $url = URL::route('profile');
 
-	$redirect = Redirect::route('profile');
+    $redirect = Redirect::route('profile');
 
 Vous pouvez accéder au nom de la route qui est actuellement utilisé par la méthode `currentRouteName` :
 
@@ -211,18 +219,18 @@ Vous pouvez accéder au nom de la route qui est actuellement utilisé par la mé
 
 Parfois, vous pourriez avoir besoin d'appliquer un filtre sur tout un groupe de route. Plutôt que de définir l'appel à ce filtre route par route, vous pouvez utiliser les groupes de routes :
 
-	Route::group(array('before' => 'auth'), function()
-	{
-		Route::get('/', function()
-		{
-			// Has Auth Filter
-		});
+    Route::group(array('before' => 'auth'), function()
+    {
+        Route::get('/', function()
+        {
+            // Has Auth Filter
+        });
 
-		Route::get('user/profile', function()
-		{
-			// Has Auth Filter
-		});
-	});
+        Route::get('user/profile', function()
+        {
+            // Has Auth Filter
+        });
+    });
 
 <a name="sub-domain-routing"></a>
 ## Routage de sous-domaine
@@ -231,15 +239,15 @@ Les routes de Laravel permettent également de router à partir d'un sous-domain
 
 **Enregistrement d'un groupe de routes à partir du sous-domaine**
 
-	Route::group(array('domain' => '{account}.myapp.com'), function()
-	{
+    Route::group(array('domain' => '{account}.myapp.com'), function()
+    {
 
-		Route::get('user/{id}', function($account, $id)
-		{
-			//
-		});
+        Route::get('user/{id}', function($account, $id)
+        {
+            //
+        });
 
-	});
+    });
 <a name="route-prefixing"></a>
 ## Préfixage de routes
 
@@ -247,15 +255,15 @@ Un groupe de route peut être préfixé en utilisant l'option `prefix` dans le t
 
 **Préfixage d'un groupe de routes**
 
-	Route::group(array('prefix' => 'admin'), function()
-	{
+    Route::group(array('prefix' => 'admin'), function()
+    {
 
-		Route::get('user', function()
-		{
-			//
-		});
+        Route::get('user', function()
+        {
+            //
+        });
 
-	});
+    });
 
 <a name="route-model-binding"></a>
 ## Liaison d'un modèle à une route
@@ -264,14 +272,14 @@ La liaison de modèle fournit une manière agréable d'injecter l'instance d'un 
 
 **Liaison d'un paramètre à un modèle**
 
-	Route::model('user', 'User');
+    Route::model('user', 'User');
 
 Ensuite, définissez une route qui contient le paramètre `{user}` :
 
-	Route::get('profile/{user}', function(User $user)
-	{
-		//
-	});
+    Route::get('profile/{user}', function(User $user)
+    {
+        //
+    });
 
 Etant donné que nous avons lié au paramètre `{user}` le modèle `User`, une instance de `User` sera injectée à la route. Donc, par exemple, une requête sur `profile/1` injectera une instance `User` qui a un ID de 1.
 
@@ -287,17 +295,17 @@ Si vous souhaitez spécifier un comportement non trouvé personnalisé, vous pou
 
 Si vous avez besoin de résoudre vous-même la manière de trouver un modèle, utilisez la méthode `Route::bind` :
 
-	Route::bind('user', function($value, $route)
-	{
-		return User::where('name', $value)->first();
-	});
+    Route::bind('user', function($value, $route)
+    {
+        return User::where('name', $value)->first();
+    });
 
 <a name="throwing-404-errors"></a>
 ## Lancer une erreur 404
 
 Il y a deux manières de lancer une erreur 404 depuis une route. Première méthode, utilisez la méthode `App::abort` :
 
-	App::abort(404);
+    App::abort(404);
 
 Seconde méthode, vous pouvez lever une exception de type `Symfony\Component\HttpKernel\Exception\NotFoundHttpException`.
 
@@ -309,4 +317,3 @@ Plus d'informations sur la gestion des exceptions 404 et l'utilisation de répon
 Les contrôleurs de ressources rendent plus facile la construction de contrôleurs RESTful autour d'une ressource.
 
 Voir la documentation des [contrôleurs](/docs/4/controllers#resource-controllers) pour plus d'informations.
-
