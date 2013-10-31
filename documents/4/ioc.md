@@ -165,7 +165,12 @@ Le conteneur lance des événements chaque fois qu'il résout un objet. Vous pou
 
 **Enregistrement d'un écouteur de résolution**
 
-    App::resolving(function($object)
+    App::resolvingAny(function($object)
+    {
+        //
+    });
+
+    App::resolving('foo', function($object)
     {
         //
     });
