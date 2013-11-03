@@ -49,6 +49,7 @@ Vous pouvez également accéder à des informations additionelles sur la paginat
 - `getTotal`
 - `getFrom`
 - `getTo`
+- `count`
 
 Si vous souhaitez créer une pagination manuellement en fournissant un tableau d'éléments, utilisez la méthode `Paginator::make` :
 
