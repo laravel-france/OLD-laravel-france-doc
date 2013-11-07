@@ -3,7 +3,6 @@
 - [Philosophie de Laravel](#laravel-philosophy)
 - [Apprentissage de Laravel](#learning-laravel)
 - [Equipe de développement](#development-team)
-- [Sponsors du Framework](#framework-sponsors)
 
 <a name="laravel-philosophy"></a>
 ## Philosophie de Laravel
@@ -32,15 +31,3 @@ Par ailleurs, jetez un coup d'oeil aux [livres sur Laravel](http://wiki.laravel.
 ## Equipe de développement
 
 Laravel a été créé par [Taylor Otwell](https://github.com/taylorotwell), qui continue de diriger le développement du framework. D'autres membres proéminents de la communauté et contributeurs incluant [Dayle Rees](https://github.com/daylerees), [Shawn McCool](https://github.com/ShawnMcCool), [Jeffrey Way](https://github.com/JeffreyWay), [Jason Lewis](https://github.com/jasonlewis), [Ben Corlett](https://github.com/bencorlett), [Franz Liedke](https://github.com/franzliedke), [Dries Vints](https://github.com/driesvints), [Mior Muhammad Zaki](https://github.com/crynobone), et [Phil Sturgeon](https://github.com/philsturgeon).
-
-<a name="framework-sponsors"></a>
-## Sponsors du framework
-
-Les sociétés suivantes ont fait des contributions financières pour le développement du framework Laravel :
-
-- [UserScape](http://userscape.com)
-- [Cartalyst](http://cartalyst.com)
-- [Elli Davis - Toronto Realtor](http://ellidavis.com)
-- [Jay Banks - Vancouver Lofts & Condos](http://jaybanks.ca/vancouver-lofts-condos)
-- [Julie Kinnear - Toronto MLS](http://juliekinnear.com/toronto-mls-listings)
-- [Jamie Sarner - Toronto Real Estate](http://jamiesarner.com)
