@@ -804,7 +804,7 @@ Les collections Eloquent contiennent également quelques méthodes utiles pour b
 
 Lors du filtrage de collections, le retour fourni sera utilisé comme retour pour [array_filter](http://php.net/manual/en/function.array-filter.php).
 
-    $users = $user->filter(function($user)
+    $users = $users->filter(function($user)
     {
         if ($user->isAdmin()) {
             return $user;

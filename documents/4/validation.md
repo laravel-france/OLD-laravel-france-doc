@@ -155,6 +155,8 @@ Vous trouverez ci-dessous une liste des règles de validation et leurs fonctions
 - [Date](#rule-date)
 - [Date Format](#rule-date-format)
 - [Different](#rule-different)
+- [Digits](#rule-digits)
+- [Digits Between](#rule-digitsbetween)
 - [E-Mail](#rule-email)
 - [Exists (Database)](#rule-exists)
 - [Image (File)](#rule-image)
@@ -235,6 +237,16 @@ Le champ sous validation doit correspondre au format _format_ défini, en accord
 #### different:_champ_
 
 Le _champ_ donné doit être différent du champ sous validation.
+
+<a name="rule-digits"></a>
+#### digits:_value_
+
+Le champ sous validation doit être un _numérique_ et doit avoir la longueur exacte de _value_.
+
+<a name="rule-digitsbetween"></a>
+#### digitsbetween:_min_,_max_
+
+Le champ sous validation doit avec une longueur comprise entre _min_ et _max_.
 
 <a name="rule-email"></a>
 #### email
