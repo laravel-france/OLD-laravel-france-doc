@@ -27,7 +27,7 @@ Ou, vous pouvez également télécharger une copie [sur le dépôt Github](https
 
 Après installation, vous avez besoin de donner les droits en écriture pour le serveur web sur les dossiers dans `app/storage. Voir la documentation [Installation](/docs/artisan) pour plus de détails sur la configuration.
 
-<a name="directories"></name>
+<a name="directories"></a>
 ### Structure des répertoires
 
 Après avoir installé le framework, jetez un coup d'oeil autour du projet pour vous familiariser avec la structure des dossiers. Le dossier `app` contient des dossiers tels que `views`, `controllers` et `models`. La majorité du code de votre application va résider dans ce dossier. Vous pouvez également explorer le dossier `app/config` et les options de configuration qui s'offrent à vous.
