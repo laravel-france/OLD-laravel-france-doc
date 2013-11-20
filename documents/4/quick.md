@@ -25,7 +25,7 @@ Ou, vous pouvez également télécharger une copie [sur le dépôt Github](https
 <a name="permissions"></a>
 ### Permissions
 
-Après installation, vous avez besoin de donner les droits en écriture pour le serveur web sur les dossiers dans `app/storage. Voir la documentation [Installation](/docs/artisan) pour plus de détails sur la configuration.
+Après installation, vous avez besoin de donner les droits en écriture pour le serveur web sur les dossiers dans `app/storage. Voir la documentation [Installation](/docs/4/installation#configuration) pour plus de détails sur la configuration.
 
 <a name="directories"></a>
 ### Structure des répertoires
